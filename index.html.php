@@ -1,5 +1,5 @@
 <?php
-define(ROOT, dirname(__FILE__).'/');
+require_once "config/config.php";
 require_once ROOT.'contrib/lessphp/lessc-0.4.0.inc.php';
 function less($href){
 	$less = new lessc;
