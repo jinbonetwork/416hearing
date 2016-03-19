@@ -1,11 +1,12 @@
 <?php
-define(ROOT, dirname(__FILE__).'/');
-require_once ROOT.'contrib/lessphp/lessc-0.4.0.inc.php';
-function less($href){
+require_once dirname(__FILE__).'/contrib/lessphp/lessc-0.4.0.inc.php';
+function less($hrefs){
+	$root = dirname(__FILE__).'/';
+	$lessCode = '';
+	foreach($hrefs as $href) $lessCode .= file_get_contents($root.$href);
 	$less = new lessc;
 	echo "<style>\n";
-	echo "/* $href */\n";
-	echo $less->compileFile(ROOT.$href);
+	echo $less->compile($lessCode);
 	echo "</style>\n";
 }
 ?>
@@ -25,9 +26,15 @@ function less($href){
 	<link rel="stylesheet" href="contrib/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="contrib/PageStackNavigation/css/demo.css" />
 	<link rel="stylesheet" type="text/css" href="contrib/PageStackNavigation/css/component.css" />
+	<link rel="stylesheet" type="text/css" href="contrib/notosans/2015.06.15/css/style.css">
+	<link rel="stylesheet" type="text/css" href="contrib/bareunbatang/style.css">
+	<link rel="stylesheet" type="text/css" href="contrib/montserrat-master/css/montserrat.css">
 	<?php
-	less('css/style.less');
-	less('journal/style.less');
+	less(array(
+		'css/style.less',
+		'journal/style.less',
+		'resources/scroll-effect/style.less'
+	));
 	?>
 	<script src="contrib/jquery/jquery-2.2.1.min.js"></script>
 	<script src="contrib/underscore/underscore-min.js"></script>
@@ -56,7 +63,7 @@ function less($href){
 	<!-- /navigation-->
 	<!-- pages stack -->
 	<div class="pages-stack">
-		<div class="page" id="page-journal">
+		<div class="page se-container" id="page-journal">
 			<?php echo file_get_contents(dirname(__FILE__).'/journal/index.html'); ?>
 		</div>
 		<div class="page" id="page-docu">
@@ -145,6 +152,7 @@ function less($href){
 	<script src="contrib/PageStackNavigation/js/classie.js"></script>
 	<script src="contrib/PageStackNavigation/js/main.js"></script>
 	<script src="journal/script.js"></script>
+	<script src="resources/scroll-effect/script.js"></script>
 </body>
 
 </html>

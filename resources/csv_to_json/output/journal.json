@@ -7,20 +7,7 @@
                 "title": "세월호 침몰 참사 발생",
                 "content": "2014년 4월 16일 오전 8시48분경 전남 진도군 조도면 병풍도 북쪽 20㎞ 지점에서 승객 476명을 태우고 제주도로 향하던 세월호가 침몰하였다. 이때 선장과 선원은 승객들을 뒤로한채 가장 먼저 탈출하였고, 정부는 적극적인 구조활동을 펼치지 않았으며, 모든 방송사는 '전원 구조'라는 오보를 냈다. 결국 이 사고는 295명의 사망자와 9명의 미수습자가 발생한 대형 참사가 되었다.",
                 "level": 1,
-                "media": [
-                    {
-						"type": "video",
-						"url": "https://www.youtube.com/embed/HgGXCsslGno"
-					},
-					{
-						"type": "image",
-						"url": "http://www.ohmyjnews.com/up_file/1409738402_1.JPG"
-					},
-					{
-						"type": "doc",
-						"url": "http://blog.ohmynews.com/hope2010/attachment/1135621177.pdf"
-					}
-                ]
+                "media": []
             },
             {
                 "date": "2014.04.18",

@@ -1,0 +1,22 @@
+{
+  "name": "easyfont-montserrat",
+  "homepage": "https://github.com/easyfont/montserrat",
+  "authors": [
+    "kdawson133 <kdawson133@gmail.com>"
+  ],
+  "description": "Easy font montserrat",
+  "main": "montserrat.css",
+  "moduleType": [],
+  "keywords": [
+    "montserrat",
+    "font"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

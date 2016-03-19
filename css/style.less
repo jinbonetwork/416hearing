@@ -1,7 +1,24 @@
-body {
-	background: #ffffff;
-}
+@font-noto: 'Noto Sans CJK KR Black';
+@font-batang: 'BareunBatang';
+@font-mont: 'Montserrat Regular';
+@font-size-m: 16px;
+@font-size-w: 17px;
+@color: #595757;
 
+body {
+	background: #eeeeee;
+}
+p {
+	margin: 0;
+}
 .js .page {
 	background: #ffffff;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.pages-stack:not(.pages-stack--open) .page {
+	transform: none !important;
+}
+.pages-stack.pages-stack--open .page {
+	overflow: hidden;
 }

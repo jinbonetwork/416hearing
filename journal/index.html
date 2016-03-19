@@ -1,1 +1,48 @@
-<p>sdfsdkfhksdf</p>
+<section class="title se-section">
+	<div class="sect-name se-title"></div>
+	<div class="content">
+		<div class="maintitle">
+			<p>가족협의회</p>
+			<p>활동일지</p>
+		</div>
+		<div class="subtitle">- 특별법을 중심으로</div>
+	</div>
+</section>
+
+<script type="text/template" id="section-template">
+	<section class="se-section">
+		<div class="sect-name se-title">
+			<span><%= sectname %></span>
+		</div>
+		<div class="articles"><%= articles %></div>
+	</section>
+</script>
+
+<script type="text/template" id="article-template">
+	<article class="<%= level %>">
+		<div class="date"><%= date %></div>
+		<div class="wrapper">
+			<div class="title"><%= title %></div>
+			<div class="content"><%= content %></div>
+			<div class="media num-<%= nummedia %>"><%= media %></div>
+		</div>
+	</article>
+</script>
+
+<script type="text/template" id="image-template">
+	<div class="medium"><div class="wrapper">
+		<img src="<%= url %>">
+	</div></div>
+</script>
+
+<script type="text/template" id="video-template">
+	<div class="medium"><div class="wrapper">
+		<iframe width="560" height="315" src="<%= url %>" frameborder="0" allowfullscreen></iframe>
+	</div></div>
+</script>
+
+<script type="text/template" id="doc-template">
+	<div class="medium"><div class="wrapper">
+		<a href="<%= url %>"><i class="fa fa-file"></i></a>
+	</div></div>
+</script>

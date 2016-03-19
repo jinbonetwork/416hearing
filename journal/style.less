@@ -1,5 +1,142 @@
-@blue: #0000ff;
-
-p {
-	color: @blue;
+#page-journal {
+	////////
+	//말단의 요소들에 대해서만 em을 사용해 font-size를 정의하도록 한다.
+	//그렇게 하면 각 요소의 font-size는 언제나 #page-journal의 font-size를 참조하게 된다.
+	////////
+	font-size: @font-size-m;
+	section:nth-of-type(2) {
+		.section(@color, #5a91e2, #ffffff);
+	}
+	section:nth-of-type(3) {
+		.section(@color, #f5a9f2, #f3f781);
+	}
+	section:nth-of-type(4) {
+		.section(#ffffff, #73ffda, @color);
+	}
+	section:nth-of-type(5) {
+		.section(@color, #5a91e2, #ffffff);
+	}
+	section:nth-of-type(6) {
+		.section(@color, #f5a9f2, #f3f781);
+	}
+	.section(@color, @color-strong, @bgcolor) {
+		color: @color;
+		padding: 8%;
+		background-color: @bgcolor;
+		.sect-name {
+			transform: rotateZ(30deg); -wekit-transform: rotateZ(30deg);
+			transform-origin: 0 0; -webkit-transform-origin: 0 0;
+			span {
+				display: block;
+				font-family: @font-noto;
+				font-size: 1.3em;
+				color: @color-strong;
+				transform: skewX(-30deg); -webkit-transform: skewX(-30deg);
+				transform-origin: 0 0; -webkit-transform-origin: 0 0;
+			}
+		}
+		article {
+			margin-top: 1em;
+			&.important {
+				.date:before {
+					content: '';
+					display: block;
+					height: 0.3em;
+					width: 120%;
+					background-color: @color-strong;
+				}
+				.title {
+					font-size: 1.4em;
+				}
+			}
+			.date {
+				display: inline-block;
+				font-family: @font-mont;
+				font-size: 1.0635em;
+				color: @color-strong;
+			}
+			& > .wrapper {
+				border-left: solid 2px @color-strong;
+				padding-left: 1em;
+			}
+			.title {
+				font-family: @font-noto;
+				font-size: 1.0635em;
+				line-height: 1.1em;
+				margin-top: 1em;
+			}
+			.content {
+				font-family: @font-batang;
+				margin-top: 1em;
+				line-height: 1.5em;
+			}
+			.media {
+				margin-top: 1em;
+				&.num-0 {
+					margin-top: 0;
+				}
+				.medium {
+					position: relative;
+					padding-bottom: 50%;
+					& > .wrapper {
+						position: absolute;
+						top: 0; left: 0;
+						overflow: hidden;
+					}
+				}
+			}
+		}
+	}
+	section.title {
+		font-family: @font-noto;
+		text-align: center;
+		color: @color;
+		background-color: #ffffff;
+		.content {
+			display: inline-block;
+			padding: 3em 0;
+			text-align: left;
+			transform: rotateZ(-20deg);
+			-webkit-transform: rotateZ(-20deg);
+		}
+		.maintitle {
+			font-size: 2.5em;
+			line-height: 1em;
+			p:first-child {
+				transform: skewX(30deg);
+				-webkit-transform: skewX(30deg);
+			}
+			p:last-child {
+				transform: skewX(-30deg);
+				-webkit-transform: skewX(-30deg);
+			}
+		}
+		.subtitle {
+			font-size: 1.7em;
+			line-height: 1em;
+			transform: skewX(30deg);
+			-webkit-transform: skewX(30deg);
+		}
+	}
+}
+@media screen and (max-width: 559px) {
+	#page-journal {
+		.sect-name {
+			position: absolute !important;
+		}
+	}
+}
+@media screen and (min-width: 425px) {
+	#page-journal {
+		section.title {
+			.maintitle {
+				font-size: 3.6em;
+			}
+			.subtitle {
+				font-size: 2.4em;
+			}
+		}
+	}
+}
+@media screen and (min-width: 560px) {
 }
