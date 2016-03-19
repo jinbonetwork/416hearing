@@ -5,7 +5,7 @@
 			<p>가족협의회</p>
 			<p>활동일지</p>
 		</div>
-		<div class="subtitle">- 특별법을 중심으로</div>
+		<div class="subtitle"><span>- 특별법을 중심으로</span></div>
 	</div>
 </section>
 
@@ -20,11 +20,13 @@
 
 <script type="text/template" id="article-template">
 	<article class="<%= level %>">
-		<div class="date"><%= date %></div>
+		<div class="date"><span><%= date %></span></div>
 		<div class="wrapper">
-			<div class="title"><%= title %></div>
-			<div class="content"><%= content %></div>
-			<div class="media num-<%= nummedia %>"><%= media %></div>
+			<div class="title"><span><%= title %></span></div>
+			<div class="content"><span><%= content %></span></div>
+			<div class="media num-<%= nummedia %>">
+				<div class="wrapper"><%= media %></div>
+			</div>
 		</div>
 	</article>
 </script>
@@ -37,12 +39,14 @@
 
 <script type="text/template" id="video-template">
 	<div class="medium"><div class="wrapper">
-		<iframe width="560" height="315" src="<%= url %>" frameborder="0" allowfullscreen></iframe>
+		<iframe class="video" width="560" height="315" src="<%= url %>" frameborder="0" allowfullscreen></iframe>
 	</div></div>
 </script>
 
 <script type="text/template" id="doc-template">
 	<div class="medium"><div class="wrapper">
-		<a href="<%= url %>"><i class="fa fa-file"></i></a>
+		<a  class="doc" href="<%= url %>">
+			<span><i class="fa fa-file"></i><span>
+		</a>
 	</div></div>
 </script>

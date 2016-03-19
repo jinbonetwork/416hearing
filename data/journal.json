@@ -9,17 +9,18 @@
                 "level": 1,
                 "media": [
                     {
-						"type": "video",
-						"url": "https://www.youtube.com/embed/HgGXCsslGno"
-					},
-					{
-						"type": "image",
-						"url": "http://www.ohmyjnews.com/up_file/1409738402_1.JPG"
-					},
-					{
-						"type": "doc",
-						"url": "http://blog.ohmynews.com/hope2010/attachment/1135621177.pdf"
-					}
+                        "type": "image",
+                        "url": "http://www.ohmyjnews.com/up_file/1409738402_1.JPG"
+                    },
+                    {
+                        "type": "video",
+                        "url": "https://www.youtube.com/embed/HgGXCsslGno"
+                    },
+                    {
+                        "type": "doc",
+                        "url": "http://blog.ohmynews.com/hope2010/attachment/1135621177.pdf"
+                    }
+
                 ]
             },
             {
@@ -41,7 +42,12 @@
                 "title": "416 세월호 희생자\/실종자\/생존자 가족대책위원회 발족",
                 "content": "정부는 참사에 대해 거짓말과 무책임한 태도로 일관했다. 결국 416피해자와 그 가족이 직접 참사 수습에 대응하고 진상을 밝히자는 의지를 모아 피해자전체가족회의를 열어 ‘416세월호 희생자\/실종자\/생존자 가족대책위원회(이하 가족대책위)’를 결성하여 인간의 기본권을 보장하라는 목소리를 지켜나갔다.",
                 "level": 1,
-                "media": []
+                "media": [
+                    {
+                        "type": "image",
+                        "url": "http://www.ohmyjnews.com/up_file/1409738402_1.JPG"
+                    }
+                ]
             },
             {
                 "date": "2014.05.19",
@@ -76,7 +82,16 @@
                 "title": "성역없는 진상규명과 책임자 처벌 촉구 범국민 천만서명 운동 발대식",
                 "content": "가족대책위는 7일 오전 서울 대한문 앞에서 성역 없는 진상규명과 참사 책임자 처벌을 촉구하는 세월호 특별법 제정을 위한 시민들의 서명운동에 직접 동참, 7월 4일 ‘416특별법 범국민 촉구 서명지(350만여명 서명)’를 국회의장에게 전달하였다.",
                 "level": 1,
-                "media": []
+                "media": [
+                    {
+                        "type": "image",
+                        "url": "http://www.ohmyjnews.com/up_file/1409738402_1.JPG"
+                    },
+                    {
+                        "type": "video",
+                        "url": "https://www.youtube.com/embed/HgGXCsslGno"
+                    }
+                ]
             },
             {
                 "date": "2014.06.08",
@@ -118,7 +133,24 @@
                 "title": "세월호가족대책위, 416특별법 제정 촉구 단식 농성 돌입 및 기자회견",
                 "content": "가족대책위는 416특별법 제정과정에서 가족의 의견을 반영하고 철저한 진상조사를 촉구하는 기자회견을 열고 국회의사당 본청 앞에서 농성을 시작하였다. 14일에는 수사권과 기소권을 포함하는 특별법 제정을 촉구하며 국회와 광화문광장에서 단식농성에 돌입하였다.",
                 "level": 1,
-                "media": []
+                "media": [
+                    {
+                        "type": "image",
+                        "url": "http://www.ohmyjnews.com/up_file/1409738402_1.JPG"
+                    },
+                    {
+                        "type": "video",
+                        "url": "https://www.youtube.com/embed/HgGXCsslGno"
+                    },
+                    {
+                        "type": "image",
+                        "url": "http://www.ohmyjnews.com/up_file/1409738402_1.JPG"
+                    },
+                    {
+                        "type": "video",
+                        "url": "https://www.youtube.com/embed/HgGXCsslGno"
+                    }
+                ]
             },
             {
                 "date": "",
@@ -132,7 +164,28 @@
                 "title": "단원고 생존학생, 학부모, 416참사 진상규명 촉구 안산-국회 도보행진",
                 "content": "'진실을 밝혀주세요.' 416참사 생존학생 43명은 세월호 특별법 제정과 친구들의 목숨을 앗아간 참사의 진상규명을 요구하며 이틀간 도보로 안산에서 국회까지 행진했다. 국회에서 단식농성중이던 416가족들이 이들을 맞이했으며 학생들은 어려운 행진을 마무리했다.",
                 "level": 1,
-                "media": []
+                "media": [
+                    {
+                        "type": "image",
+                        "url": "http://www.ohmyjnews.com/up_file/1409738402_1.JPG"
+                    },
+                    {
+                        "type": "video",
+                        "url": "https://www.youtube.com/embed/HgGXCsslGno"
+                    },
+                    {
+                        "type": "image",
+                        "url": "http://www.ohmyjnews.com/up_file/1409738402_1.JPG"
+                    },
+                    {
+                        "type": "video",
+                        "url": "https://www.youtube.com/embed/HgGXCsslGno"
+                    },
+                    {
+                        "type": "image",
+                        "url": "http://www.ohmyjnews.com/up_file/1409738402_1.JPG"
+                    }
+                ]
             },
             {
                 "date": "2014.07.24",
@@ -174,7 +227,32 @@
                 "title": "세월호가족대책위, 416특별법 제정 촉구 및 대통령 면담 요구하며 청운동 농성 시작",
                 "content": "가족대책위는 수사권·기소권 방치, 특검추천권 여당부여 등의 여야가 합의한 특별법 재협상을 요구하며 대통령 결단을 촉구하는 농성에 돌입했다. 가족들은 10월31일 세월호 3법 타결에 따라 76일째인 11월 5일 기자회견을 끝으로 농성장을 철수하였다.",
                 "level": 1,
-                "media": []
+                "media": [
+                    {
+                        "type": "video",
+                        "url": "https://www.youtube.com/embed/HgGXCsslGno"
+                    },
+                    {
+                        "type": "image",
+                        "url": "http://www.ohmyjnews.com/up_file/1409738402_1.JPG"
+                    },
+                    {
+                        "type": "video",
+                        "url": "https://www.youtube.com/embed/HgGXCsslGno"
+                    },
+                    {
+                        "type": "image",
+                        "url": "http://www.ohmyjnews.com/up_file/1409738402_1.JPG"
+                    },
+                    {
+                        "type": "video",
+                        "url": "https://www.youtube.com/embed/HgGXCsslGno"
+                    },
+                    {
+                        "type": "image",
+                        "url": "http://www.ohmyjnews.com/up_file/1409738402_1.JPG"
+                    }   
+                ]
             },
             {
                 "date": "2014.08.30",
