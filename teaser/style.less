@@ -1,0 +1,98 @@
+#page-teaser {
+	font-size: @font-size-m;
+	section.title {
+		font-family: @font-noto;
+		text-align: center;
+		color: @color;
+		background-color: #ffffff;
+	}
+	section.opinion {
+		text-align: center;
+		.container {
+			max-width: 1000px;
+			width: 100%;
+			margin: auto;
+		}
+		.opinion-form {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			label {
+				display: inline-block;
+				padding: 3em 0;
+				font-size: 1.2em;
+				font-family: @font-mont;
+				text-align: left;
+				transform: skewX(-5deg) rotateZ(-5deg);
+				-webkit-transform: skewX(-5deg) rotateZ(-5deg);
+			}
+			fieldset.opinion-fieldset {
+				position: relative;
+				z-index: 1;
+				border: 0;
+				margin: 0;
+				padding: 0 100px 0 0;
+				textarea {
+					height: 60px;
+					width: 100%;
+					margin: 0;
+					padding: 1.0em;
+				}
+				button.opinion-submit {
+					display: inline-block;
+					position: absolute;
+					z-index: 2;
+					right: 0;
+					bottom: 0;
+					margin: 0;
+					padding: 0;
+					background: #000;
+					color: #fff;
+					width: 100px;
+					height: 100%;
+					text-align: center;
+					cursor: pointer;
+				}
+			}
+			#opinion-memo-alert-box {
+				text-align: center;
+				color: @alert-color;
+				display: none;
+			}
+		}
+		#opinion-items-wrap {
+			padding: 10px 0 0 0;
+			color: @color;
+			.result-info {
+				text-align: right;
+			}
+			#opinion-items {
+				text-align: left;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				li {
+					margin :0;
+					padding: 15px;
+					border-bottom: 1px dotted @color;
+					.regdate {
+						text-align: right;
+					}
+				}
+			}
+			#opinion-nav {
+				display: inline-block;
+				list-style: none;
+				margin: 0;
+				padding: 5px 0 0 0;
+				li {
+					display: inline-block;
+					padding: 2px;
+					.active {
+						cursor: pointer;
+					}
+				}
+			}
+		}
+	}
+}

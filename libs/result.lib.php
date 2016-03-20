@@ -17,3 +17,10 @@ function PrintError($code,$message) {
 
 	PrintResult($result);
 }
+
+function Error($message) {
+	global $conn;
+
+	echo $message;
+	exit;
+}

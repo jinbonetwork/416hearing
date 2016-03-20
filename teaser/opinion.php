@@ -4,7 +4,9 @@ require_once LIBPATH."/db.lib.php";
 require_once LIBPATH."/result.lib.php";
 require_once CLASSPATH."/Opinion.class.php";
 
-$conn = db_connect();
+if(!($conn = db_connect())) {
+	PrintError(2,'데이터베이스에 연결할 수 없습니다.');
+}
 
 if($mode == 'add') {
 	if(!trim($memo)) {
@@ -31,17 +33,27 @@ if($total_cnt) {
 	if($e_page < $total_page) $n_page = $e_page + 1;
 
 	$opinions = Opinion::getList($conn,1,$page,$limit);
-	if($output == 'json') {
-		ob_start();
-		include_once dirname(__FILE__)."/list.html.php";
-		$content = ob_get_contents();
-		ob_end_clean();
+	$result = array(
+		'error'=>0,
+		'total_cnt'=>$total_cnt,
+		'total_page'=>$total_page,
+		'page'=>$page,
+		'nav'=>array(
+			's_page'=>$s_page,
+			'e_page'=>$e_page,
+			'p_page'=>($p_page ? $p_page : 0),
+			'n_page'=>($n_page ? $n_page : 0)
+		),
+		'opinions'=>$opinions
+	);
 
-		$result = array('error'=>0,'message'=>$content);
-		printResult($result);
-	} else {
-		include_once dirname(__FILE__)."/list.html.php";
-	}
+	printResult($result);
+} else {
+	$result = array(
+		'error'=>0,
+		'total_cnt'=>0
+	);
+	printResult($result);
 }
 
 db_close();
