@@ -1,15 +1,53 @@
 <section class="title">
 	<div class="content">
 		<div class="maintitle">
-			2차 청문회
+			<h2>416세월호참사 특별조사위원회</h2>
+			<h3>2차 청문회</h3>
 		</div>
-		<div>
+		<div class="period">
 			2016.3.29(화) ~ 30(수)
 		</div>
 	</div>
 </section>
 
-<form>
-	<textarea>
-	</textarea>
-</form>
+<section class="opinion">
+	<div class="container">
+		<form id="opinion-form" class="opinion-form" action="./teaser/opinion.php" method="post" onsubmit="return check_opinion_submit(this);">
+			<label for="opinion-memo">2차 청문회에서 함께 물어봐 주십시오</label>
+			<fieldset class="opinion-fieldset">
+				<textarea class="opinion-memo" id="opinion-memo" name="memo"></textarea>
+				<button type="submit" class="opinion-submit">질문하기</button>
+			</fieldset>
+			<div id="opinion-memo-alert-box"></div>
+		</form>
+	</div>
+	<div id="opinion-items-wrap" class="container">
+	</div>
+</section>
+
+<script type="text/template" id="opinion-items-template">
+	<div id="opinion-items-wrap" class="container">
+		<div class="result-info">
+			<%= page %> / <%= total_page %>
+		</div>
+		<ul id="opinion-items">
+			<%= items %>
+		</ul>
+		<ul id="opinion-nav">
+			<%= navi %>
+		</ul>
+	</div>
+</script>
+
+<script type="text/template" id="opinion-item-template">
+	<li data-id="<%= id %>">
+		<div class="memo"><%= memo %></div>
+		<div class="regdate"><%= regdate %></div>
+	</li>
+</script>
+
+<script type="text/template" id="opinion-nav-template">
+	<li class="<% classname %>" data-id="<%= id %>">
+		<span><%= label %></span>
+	</li>
+</script>

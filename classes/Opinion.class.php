@@ -14,7 +14,7 @@ class Opinion {
 	}
 
 	public static function getList($conn,$publish=1,$page=1,$limit=20) {
-		$que = "SELECT * FROM `416hearing_opinion`".($publish >= 0 ? " WHERE `published` = '".$publish."'" : "")." LIMIT ".( ($page-1) * $limit ).",".$limit;
+		$que = "SELECT * FROM `416hearing_opinion`".($publish >= 0 ? " WHERE `published` = '".$publish."'" : "")." ORDER BY id DESC LIMIT ".( ($page-1) * $limit ).",".$limit;
 		$result = mysql_query($que,$conn);
 		$total_cnt = mysql_num_rows($result);
 		$opinions = array();
