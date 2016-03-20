@@ -18,41 +18,42 @@
 		$ct().css('background-color', g_sectInfo[0].bgcolor);
 
 		$(window).resize(function(){
-			console.log('resize');
 			$ct('.se-section').each(function(index){
 				var offset = $(this).offset();
-				g_sectInfo[index].top = offset.top;
+				g_sectInfo[index].top = offset.top + $ct().scrollTop();
 			});
 		});
 
 		$ct().scroll(function(){
 			// 배경색 변환 ////
+			var siLen = g_sectInfo.length;
 			var scrTop = $(this).scrollTop();
 			var direct = (scrTop < g_preScrTop ? 'up' : 'down');
 			var scrMd = scrTop + $(window).height() * 0.5;
 			var scrBt = scrTop + $(window).height();
 			var sect = false;
 			if(direct == 'up'){
-				for(var i = 1, len = g_sectInfo.length; i < len; i++){
+				for(var i = 1; i < siLen; i++){
 					if(scrMd < g_sectInfo[i].top && g_sectInfo[i].top < scrBt){ sect = i-1; break; }
 				}
 			} else {
-				for(var i = 0, len = g_sectInfo.length; i < len; i++){
+				for(var i = 0; i < siLen; i++){
 					if(scrTop <= g_sectInfo[i].top && g_sectInfo[i].top <= scrMd){ sect = i; break; }
 				}
 			}
 			if(sect !== false) {
 				$ct().css('background-color', g_sectInfo[sect].bgcolor);
+				$ct('.se-bgcolor').css('background-color', g_sectInfo[sect].bgcolor);
 				g_preSect = sect;
 			}
 			// 타이틀 고정 ////
-			for(var i = 0, len = g_sectInfo.length; i < len-1; i++){
-				if(g_sectInfo[i].top <= scrTop && scrTop + $(window).height() <= g_sectInfo[i+1].top){
-					g_sectInfo[i].$title.addClass('fixed');
-				} else {
-					g_sectInfo[i].$title.removeClass('fixed');
+			$ct('.se-section .se-title').removeClass('fixed');
+			for(var i = 0; i < siLen-1; i++){
+				if(g_sectInfo[i].top <= scrTop && scrBt <= g_sectInfo[i+1].top){
+					g_sectInfo[i].$title.addClass('fixed'); break;
 				}
 			}
+			if(g_sectInfo[siLen-1].top <= scrTop) g_sectInfo[siLen-1].$title.addClass('fixed');
 			// pre 값들 저장 ////
 			g_preScrTop = scrTop;
 		});

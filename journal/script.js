@@ -9,60 +9,38 @@
 				$jn().trigger($.Event('ready'));
 				//$('button.menu-button').trigger('click');
 				adjustImages();
-				//adjustVideo();
 			}
 		});
 		$(".gallery").fancybox({
 			openEffect	: 'none',
 			closeEffect	: 'none'
 		});
+		$(window).resize(function(){
+			adjustImages();
+		});
+		$jn('.medium img').load(function(){
+			adjustImages();
+		});
 	});
-	/*
-	function adjustVideo(){
-		$jn('.medium iframe.video').each(function(){
-			var width = $(this).attr('width');
-			var height = $(this).attr('height');
+	function adjustImages(){
+		$jn('.medium img').each(function(){
+			var width = $(this).width();
+			var height = $(this).height();
 			var wrapWidth = $(this).parents('.wrapper').width();
 			var wrapHeight = $(this).parents('.wrapper').height();
 			var ratio = wrapWidth / width;
 			if(height * ratio < wrapHeight){
-				ratio = wrapHeight / height;
+				var ratio = wrapHeight / height;
 				var nH = height * ratio;
 				var nW = width * ratio;
-				$(this).attr('width', nW);
-				$(this).attr('height', nH);
-				$(this).css({ 'margin-left': (wrapWidth - nW)/2+'px' });
+				$(this).css({ width: nW, height: nH});
+				$(this).css({ 'margin-left': (wrapWidth-nW)/2+'px' });
 			} else {
-				var nW = width * ratio;
 				var nH = height * ratio;
-				$(this).attr('width', nW);
-				$(this).attr('height', nH);
-				$(this).css({ 'margin-top': (wrapHeight - nH)/2+'px' });
+				var nW = width * ratio;
+				$(this).css({ width: nW, height: nH});
+				$(this).css({ 'margin-top': (wrapHeight-nH)/2+'px' });
 			}
-		});
-	}
-	*/
-	function adjustImages(){
-		$jn('.medium img').each(function(){
-			$(this).load(function() {
-				var width = $(this).width();
-				var height = $(this).height();
-				var wrapWidth = $(this).parents('.wrapper').width();
-				var wrapHeight = $(this).parents('.wrapper').height();
-				if(wrapHeight > height) {
-					var ratio = wrapHeight / height;
-					var nH = height * ratio;
-					var nW = width * ratio;
-					$(this).css({ width: nW, height: nH});
-					$(this).css({ 'margin-left': (wrapWidth-nW)/2+'px' });
-				} else {
-					var ratio = wrapWidth / width;
-					var nH = height * ratio;
-					var nW = width * ratio;
-					$(this).css({ width: nW, height: nH});
-					$(this).css({ 'margin-top': (wrapHeight-nH)/2+'px' });
-				}
-			});
 		});
 	}
 	function makeHtml(sections){
