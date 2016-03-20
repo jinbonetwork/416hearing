@@ -12,5 +12,9 @@ $dbinfo = array(
 
 define( "ROOT", rtrim( dirname(__FILE__), "config" ) );
 define( "CONFPATH", dirname(__FILE__) );
+define( "CLASSPATH", ROOT."classes" );
 define( "LIBPATH", ROOT."libs" );
+
+@extract($_GET);
+@extract($_POST);
 ?>

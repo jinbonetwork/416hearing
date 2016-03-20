@@ -35,6 +35,7 @@ function less($hrefs){
 	less(array(
 		'css/style.less',
 		'journal/style.less',
+		'teaser/style.less',
 		'resources/scroll-effect/style.less'
 	));
 	?>
@@ -48,7 +49,7 @@ function less($hrefs){
 	<!-- navigation -->
 	<nav class="pages-nav">
 		<div class="pages-nav__item"><a class="link link--page" href="#page-journal">가족협의회 활동일지</a></div>
-		<div class="pages-nav__item"><a class="link link--page" href="#page-docu">Documentation</a></div>
+		<div class="pages-nav__item"><a class="link link--page" href="#page-teaser">2차 청문회</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-manuals">Manuals</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-software">Software</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-custom">Customization &amp; Settings</a></div>
@@ -69,15 +70,8 @@ function less($hrefs){
 		<div class="page se-container" id="page-journal">
 			<?php echo file_get_contents(dirname(__FILE__).'/journal/index.html'); ?>
 		</div>
-		<div class="page" id="page-docu">
-			<header class="bp-header cf">
-				<h1 class="bp-header__title">Documentation</h1>
-				<p class="bp-header__desc">Based on Ilya Kostin's Dribbble shot <a href="https://dribbble.com/shots/2286042-Stacked-navigation">Stacked navigation</a></p>
-				<p class="info">
-					"We cannot have peace among men whose hearts find delight in killing any living creature." &mdash; Rachel Carson
-				</p>
-			</header>
-			<!--img class="poster" src="images/6.jpg" alt="img06" /-->
+		<div class="page" id="page-teaser">
+			<?php echo file_get_contents(dirname(__FILE__).'/teaser/index.html'); ?>
 		</div>
 		<div class="page" id="page-manuals">
 			<header class="bp-header cf">
@@ -87,7 +81,7 @@ function less($hrefs){
 					"When you adopt a vegan diet we make a connection, you don't go back, it is not a diet, it is a lifestyle." &mdash; Freelee Frugivore
 				</p>
 			</header>
-			<!--img class="poster" src="images/2.jpg" alt="img02" />
+			<!--img class="poster" src="images/2.jpg" alt="img02" /-->
 		</div>
 		<div class="page" id="page-software">
 			<header class="bp-header cf">
@@ -155,6 +149,7 @@ function less($hrefs){
 	<script src="contrib/PageStackNavigation/js/classie.js"></script>
 	<script src="contrib/PageStackNavigation/js/main.js"></script>
 	<script src="journal/script.js"></script>
+	<script src="teaser/script.js"></script>
 	<script src="resources/scroll-effect/script.js"></script>
 </body>
 
