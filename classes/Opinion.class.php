@@ -20,7 +20,7 @@ class Opinion {
 		$opinions = array();
 		for($i=0; $i<$total_cnt; $i++) {
 			$row = mysql_fetch_assoc($result);
-			$row['memo'] = stripslashes($row['memo']);
+			$row['memo'] = nl2br(stripslashes($row['memo']));
 			$opinions[] = $row;
 		}
 
@@ -28,13 +28,20 @@ class Opinion {
 	}
 
 	public static function add($conn,$args) {
-		$que = "INSERT INTO `416hearing_opinion` (`memo`,`published`,`regdate`) VALUES ('".addslashes($args['memo'])."','1',".time().")";
+		$que = "INSERT INTO `416hearing_opinion` (`memo`,`published`,`regdate`) VALUES ('".addslashes(strip_tags( $args['memo'], '<a>') )."','1',".time().")";
 		if(!($result = mysql_query($que,$conn))) {
 			return -1;
 		}
 		$insert_id = mysql_insert_id($conn);
 
 		return $insert_id;
+	}
+
+	public static function del($conn,$ids) {
+		if(count($ids) > 0) {
+			$que = "DELETE FROM `416hearing_opinion` WHERE id IN (".implode(",",$ids).")";
+			@mysql_query($que,$conn);
+		}
 	}
 }
 ?>
