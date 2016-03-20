@@ -25,8 +25,8 @@ function less($hrefs){
 	<meta name="author" content="Codrops" /-->
 	<!--link rel="shortcut icon" href="favicon.ico"-->
 	<link rel="stylesheet" href="contrib/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="contrib/PageStackNavigation/css/demo.css" />
-	<link rel="stylesheet" type="text/css" href="contrib/PageStackNavigation/css/component.css" />
+	<link rel="stylesheet" type="text/css" href="resources/PageStackNavigation-custom/demo.css" />
+	<link rel="stylesheet" type="text/css" href="resources/PageStackNavigation-custom/component.css" />
 	<link rel="stylesheet" type="text/css" href="contrib/notosans/2015.06.15/css/style.css">
 	<link rel="stylesheet" type="text/css" href="contrib/bareunbatang/style.css">
 	<link rel="stylesheet" type="text/css" href="contrib/montserrat-master/css/montserrat.css">

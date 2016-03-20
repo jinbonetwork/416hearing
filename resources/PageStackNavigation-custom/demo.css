@@ -199,7 +199,8 @@ a:hover {
 	content: '\e004';
 }
 
-@media screen and (max-width: 40em) {
+/*@media screen and (max-width: 40em) { */
+@media screen and (max-width: 559px) {
 	.bp-header {
 		padding: 50px 20px 1em;
 	}
