@@ -30,6 +30,7 @@ function less($hrefs){
 	<link rel="stylesheet" type="text/css" href="contrib/notosans/2015.06.15/css/style.css">
 	<link rel="stylesheet" type="text/css" href="contrib/bareunbatang/style.css">
 	<link rel="stylesheet" type="text/css" href="contrib/montserrat-master/css/montserrat.css">
+	<link rel="stylesheet" href="contrib/fancybox/2.1.5/source/jquery.fancybox.css">
 	<?php
 	less(array(
 		'css/style.less',
@@ -40,6 +41,7 @@ function less($hrefs){
 	<script src="contrib/jquery/jquery-2.2.1.min.js"></script>
 	<script src="contrib/underscore/underscore-min.js"></script>
 	<script src="contrib/PageStackNavigation/js/modernizr-custom.js"></script>
+	<script src="contrib/fancybox/2.1.5/source/jquery.fancybox.pack.js"></script>
 </head>
 
 <body>

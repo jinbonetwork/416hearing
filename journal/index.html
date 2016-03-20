@@ -33,19 +33,22 @@
 
 <script type="text/template" id="image-template">
 	<div class="medium"><div class="wrapper">
-		<img src="<%= url %>">
+		<a class="gallery" rel="gallery<%= gallery %>" href="<%= url %>"><img src="<%= url %>"></a>
 	</div></div>
 </script>
 
 <script type="text/template" id="video-template">
-	<div class="medium"><div class="wrapper">
-		<iframe class="video" width="560" height="315" src="<%= url %>" frameborder="0" allowfullscreen></iframe>
+	<div class="medium vedio"><div class="wrapper">
+		<a class="gallery fancybox.iframe" rel="gallery<%= gallery %>" href="https://www.youtube.com/embed/<%= url %>">
+			<span><i class="fa fa-play"></i></span>
+			<img src="http://img.youtube.com/vi/<%= url %>/maxresdefault.jpg">
+		</a>
 	</div></div>
 </script>
 
 <script type="text/template" id="doc-template">
 	<div class="medium"><div class="wrapper">
-		<a  class="doc" href="<%= url %>">
+		<a class="gallery fancybox.iframe" rel="gallery<%= gallery %>" href="<%= url %>">
 			<span><i class="fa fa-file"></i><span>
 		</a>
 	</div></div>

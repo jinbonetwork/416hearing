@@ -17,6 +17,14 @@
 		});
 		$ct().css('background-color', g_sectInfo[0].bgcolor);
 
+		$(window).resize(function(){
+			console.log('resize');
+			$ct('.se-section').each(function(index){
+				var offset = $(this).offset();
+				g_sectInfo[index].top = offset.top;
+			});
+		});
+
 		$ct().scroll(function(){
 			// 배경색 변환 ////
 			var scrTop = $(this).scrollTop();
