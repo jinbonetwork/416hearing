@@ -2,7 +2,7 @@
 	var g_preScrTop = 0;
 
 	$(document).ready(function(){
-		$('button.menu-button').trigger('click');
+		//$('button.menu-button').trigger('click');
 		$('.page').scroll(function(){
 			var scrTop = $(this).scrollTop();
 			var direct = (scrTop < g_preScrTop ? 'up' : 'down');

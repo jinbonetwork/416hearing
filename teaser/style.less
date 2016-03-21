@@ -5,8 +5,53 @@
 		text-align: center;
 		color: @color;
 		background-color: #ffffff;
-	}
+		.sect-name {
+			color: @color;
+		}
+		.content {
+			display: inline-block;
+			padding: 6em 0;
+			margin-left: -3em;
+			text-align: left;
+			transform: rotateZ(-30deg); -webkit-transform: rotateZ(-30deg);
+		}
+		.maintitle {
+			p {
+				&:first-child {
+					font-size: 1.3em;
+					line-height: 1em;
+					transform: skewX(30deg); -webkit-transform: skewX(30deg);
+					transform-origin: left top;; -webkit-transform-origin: left top;
+					position: relative;
+					left: 1.5em;
+				}
+				&:last-child {
+					font-size: 4em;
+					line-height: 1em;
+					transform: skewX(-30deg); -webkit-transform: skewX(-30deg);
+					transform-origin: left bottom; -webkit-transform-origin: left bottom;
+				}
+			}
+		}
+		.subtitle {
+			p {
+				font-size: 1.6em;
+				line-height: 1em;
+				color: #0be4db;
+			}
+			.period {
+				font-size: 0.5em;
+				line-height: 1em;
+				color: @color * 1.5;
+			}
+			transform: skewX(30deg); -webkit-transform: skewX(30deg);
+			transform-origin: left top; -webkit-transform-origin: left top;
+		}
+	}// section.title
 	section.opinion {
+		color: #ffffff;
+		padding: 8%;
+		background-color: #1a1a1a;
 		text-align: center;
 		.container {
 			max-width: 1000px;

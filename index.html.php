@@ -47,7 +47,6 @@ function less($hrefs){
 		<div class="pages-nav__item"><a class="link link--page" href="#page-journal">가족협의회 활동일지</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-hearing">1차 청문회(준비중)</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-teaser">2차 청문회</a></div>
-
 		<div class="pages-nav__item"><a class="link link--page" href="#page-dummy"></a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-dummy"></a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-dummy"></a></div>
@@ -59,13 +58,17 @@ function less($hrefs){
 	</section>
 	<!-- pages stack -->
 	<div class="pages-stack">
+
+
+		<div class="page" id="page-teaser">
+			<?php echo file_get_contents(dirname(__FILE__).'/teaser/index.html'); ?>
+		</div>
+
+
 		<div class="page se-container" id="page-journal">
 			<?php echo file_get_contents(dirname(__FILE__).'/journal/index.html'); ?>
 		</div>
 		<div class="page" id="page-hearing">
-		</div>
-		<div class="page" id="page-teaser">
-			<?php echo file_get_contents(dirname(__FILE__).'/teaser/index.html'); ?>
 		</div>
 	</div>
 	<!-- /pages-stack -->
