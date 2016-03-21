@@ -8,16 +8,41 @@
 @alert-color: #f00;
 
 body {
-	background: #eeeeee;
+	background: #dfe5ea;
 }
 p {
 	margin: 0;
 }
+.introduction {
+	display: none;
+}
+.pages-nav.pages-nav--open + .introduction {
+	font-size: @font-size-m;
+	display: block;
+	margin: 10px 30px 0 0px;
+	padding: 10px 20px 0 20px;
+	color: @color;
+	text-align: justify;
+	& > p.content {
+		font-family: @font-batang;
+		font-size: 1em;
+		line-height: 1.2em;
+		margin-bottom: 1em;
+	}
+	& > p.credit {
+		font-family: @font-mont;
+		font-size: 0.9em;
+	}
+}
+.js .pages-nav {
+	font-size: @font-size-m;
+	padding-top: 9.5em;
+	a.link--page {
+		font-size: 1em;
+		font-family: @font-noto;
+		color: @color-strong;
+	}
 
-.js .page {
-	background: #ffffff;
-	overflow-y: auto;
-	overflow-x: hidden;
 }
 .pages-stack:not(.pages-stack--open) .page {
 	transform: none !important;
@@ -25,13 +50,14 @@ p {
 .pages-stack.pages-stack--open .page {
 	overflow: hidden;
 }
-
 .menu-button {
-	color: @color;
-	i { font-size: 30px; }
-}
-.pages-stack.pages-stack--open ~ .menu-button {
-	color: @color !important;
+	i {
+		color: @color;
+		font-size: 30px;
+	}
+	&.menu-button--open i {
+		color: @color !important;
+	}
 }
 @media screen and (max-width: 559px) {
 	.menu-button {
@@ -41,15 +67,53 @@ p {
 		transition: opacity 1s; -webkit-transition: opacity 1s;
 	}
 }
+@media screen and (min-width: 425px) {
+	.pages-nav.pages-nav--open + .introduction {
+		margin: 20px auto;
+		width: 80%;
+	}
+	.js .pages-nav {
+		margin-left: 10%;
+		width: 80%;
+	}
+}
 @media screen and (min-width: 560px) {
 	.menu-button {
 		top: 20px;
 		left: 20px;
+	}
+	.pages-nav.pages-nav--open + .introduction,
+	.js .pages-nav {
+		font-size: @font-size-w;
+	}
+}
+@media screen and (min-width: 768px) {
+	.pages-nav.pages-nav--open + .introduction {
+		margin: 0;
+		padding: 60px 15px 0 60px;
+		width: 40%;
+	}
+	.js .pages-nav {
+		margin: 0;
+		width: 100%;
+		padding-top: 30px;
+		padding-left: 45%;
 	}
 }
 @media screen and (min-width: 1024px) {
 	.menu-button {
 		top: 30px;
 		left: 30px;
+	}
+	.pages-nav.pages-nav--open + .introduction {
+		margin: 0;
+		padding: 80px 0 0 80px;
+		width: 40%;
+	}
+	.js .pages-nav {
+		margin: 0;
+		width: 100%;
+		padding-top: 30px;
+		padding-left: 45%;
 	}
 }

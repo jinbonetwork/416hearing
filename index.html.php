@@ -45,26 +45,27 @@ function less($hrefs){
 	<!-- navigation -->
 	<nav class="pages-nav">
 		<div class="pages-nav__item"><a class="link link--page" href="#page-journal">가족협의회 활동일지</a></div>
-		<div class="pages-nav__item"><a class="link link--page" href="#page-manuals">Manuals</a></div>
+		<div class="pages-nav__item"><a class="link link--page" href="#page-hearing">1차 청문회(준비중)</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-teaser">2차 청문회</a></div>
+
+		<div class="pages-nav__item"><a class="link link--page" href="#page-dummy"></a></div>
+		<div class="pages-nav__item"><a class="link link--page" href="#page-dummy"></a></div>
+		<div class="pages-nav__item"><a class="link link--page" href="#page-dummy"></a></div>
 	</nav>
 	<!-- /navigation-->
+	<section class="introduction">
+		<p class="content">세월호 청문회가 진행되고 있습니다. 하지만 파행 ... 이런 점에 대한 설명을 담아 사이트를 만들어 봤습니다.</p>
+		<p class="credit">만든이들: 417가족대책위 & 진보넷 독립네트워크팀</p>
+	</section>
 	<!-- pages stack -->
 	<div class="pages-stack">
 		<div class="page se-container" id="page-journal">
 			<?php echo file_get_contents(dirname(__FILE__).'/journal/index.html'); ?>
 		</div>
+		<div class="page" id="page-hearing">
+		</div>
 		<div class="page" id="page-teaser">
 			<?php echo file_get_contents(dirname(__FILE__).'/teaser/index.html'); ?>
-		</div>
-		<div class="page" id="page-manuals">
-			<header class="bp-header cf">
-				<h1 class="bp-header__title">Manuals</h1>
-				<p class="bp-header__desc">Based on Ilya Kostin's Dribbble shot <a href="https://dribbble.com/shots/2286042-Stacked-navigation">Stacked navigation</a></p>
-				<p class="info">
-					"When you adopt a vegan diet we make a connection, you don't go back, it is not a diet, it is a lifestyle." &mdash; Freelee Frugivore
-				</p>
-			</header>
 		</div>
 	</div>
 	<!-- /pages-stack -->
