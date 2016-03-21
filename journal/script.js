@@ -7,7 +7,7 @@
 			},
 			complete: function(){
 				$jn().trigger($.Event('ready'));
-				//$('button.menu-button').trigger('click');
+				$('button.menu-button').trigger('click');
 				adjustImages();
 			}
 		});

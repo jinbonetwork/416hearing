@@ -210,7 +210,7 @@ html.js,
 .no-js .menu-button {
 	display: none;
 }
-
+/*
 .menu-button::before,
 .menu-button::after,
 .menu-button span {
@@ -266,6 +266,7 @@ html.js,
 	-webkit-transform: rotate3d(0, 0, 1, -45deg);
 	transform: rotate3d(0, 0, 1, -45deg);
 }
+*/
 
 /*@media screen and (max-width: 60em) { */
 @media screen and (max-width: 840px) {

@@ -5,7 +5,7 @@
 	////////
 	font-size: @font-size-m;
 	section:nth-of-type(2) {
-		.section(@color, #5a91e2, #ffffff);
+		.section(@color, @color-strong, #ffffff);
 	}
 	section:nth-of-type(3) {
 		.section(@color, #f5a9f2, #f3f781);
@@ -14,7 +14,7 @@
 		.section(#ffffff, #73ffda, @color);
 	}
 	section:nth-of-type(5) {
-		.section(@color, #5a91e2, #ffffff);
+		.section(@color, @color-strong, #ffffff);
 	}
 	section:nth-of-type(6) {
 		.section(@color, #f5a9f2, #f3f781);
@@ -24,6 +24,9 @@
 		text-align: center;
 		color: @color;
 		background-color: #ffffff;
+		.sect-name {
+			color: @color;
+		}
 		.content {
 			display: inline-block;
 			padding: 3em 0;
@@ -193,6 +196,7 @@
 	background-color: @bgcolor;
 	.sect-name {
 		padding-top: 1em;
+		color: @color-strong;
 		transform: rotateZ(30deg); -wekit-transform: rotateZ(30deg);
 		transform-origin: 0 0; -webkit-transform-origin: 0 0;
 		span {
@@ -200,7 +204,6 @@
 			font-family: @font-noto;
 			font-size: 1.3em;
 			line-height: 1.1em;
-			color: @color-strong;
 			transform: skewX(-30deg); -webkit-transform: skewX(-30deg);
 			transform-origin: 0 0; -webkit-transform-origin: 0 0;
 		}

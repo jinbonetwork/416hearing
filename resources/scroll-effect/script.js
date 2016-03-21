@@ -11,6 +11,7 @@
 			g_sectInfo.push({
 				top: offset.top,
 				bgcolor: $(this).css('background-color'),
+				color: $(this).find('.se-title').css('color'),
 				$title: $(this).find('.se-title')
 			});
 			$(this).css('background-color', 'transparent');
@@ -33,8 +34,11 @@
 			var scrBt = scrTop + $(window).height();
 			var sect = false;
 			if(direct == 'up'){
-				for(var i = 1; i < siLen; i++){
-					if(scrMd < g_sectInfo[i].top && g_sectInfo[i].top < scrBt){ sect = i-1; break; }
+				if(scrTop == 0) sect = 0;
+				else {
+					for(var i = 1; i < siLen; i++){
+						if(scrMd < g_sectInfo[i].top && g_sectInfo[i].top < scrBt){ sect = i-1; break; }
+					}
 				}
 			} else {
 				for(var i = 0; i < siLen; i++){
@@ -43,7 +47,8 @@
 			}
 			if(sect !== false) {
 				$ct().css('background-color', g_sectInfo[sect].bgcolor);
-				$ct('.se-bgcolor').css('background-color', g_sectInfo[sect].bgcolor);
+				$('.se-bgcolor').css('background-color', g_sectInfo[sect].bgcolor);
+				$('.se-color').css('color', g_sectInfo[sect].color);
 				g_preSect = sect;
 			}
 			// 타이틀 고정 ////
