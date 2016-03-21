@@ -25,7 +25,7 @@
 			<div class="title"><span><%= title %></span></div>
 			<div class="content"><span><%= content %></span></div>
 			<div class="media num-<%= nummedia %>">
-				<div class="wrapper"><%= media %></div>
+				<div class="r-wrap"><div class="r-wrap-in"><%= media %></div></div>
 			</div>
 		</div>
 	</article>
@@ -33,23 +33,26 @@
 
 <script type="text/template" id="image-template">
 	<div class="medium"><div class="wrapper">
-		<a class="gallery" rel="gallery<%= gallery %>" href="<%= url %>"><img src="<%= url %>"></a>
+		<a class="gallery" rel="gallery<%= gallery %>" href="<%= url %>">
+			<img src="<%= url %>" alt="<%= title %>">
+		</a>
 	</div></div>
 </script>
 
 <script type="text/template" id="video-template">
 	<div class="medium vedio"><div class="wrapper">
 		<a class="gallery fancybox.iframe" rel="gallery<%= gallery %>" href="https://www.youtube.com/embed/<%= url %>">
-			<span><i class="fa fa-play"></i></span>
-			<img src="http://img.youtube.com/vi/<%= url %>/maxresdefault.jpg">
+			<span class="icon"><i class="fa fa-play"></i></span>
+			<img src="http://img.youtube.com/vi/<%= url %>/maxresdefault.jpg" alt="<%= title %>">
 		</a>
 	</div></div>
 </script>
 
 <script type="text/template" id="doc-template">
 	<div class="medium"><div class="wrapper">
-		<a class="gallery fancybox.iframe" rel="gallery<%= gallery %>" href="<%= url %>">
-			<span><i class="fa fa-file"></i><span>
+		<a class="gallery fancybox.iframe" rel="single<%= gallery %>" href="<%= url %>">
+			<span class="icon"><i class="fa fa-file"></i></span>
+			<span class="title"><%= title %></span>
 		</a>
 	</div></div>
 </script>

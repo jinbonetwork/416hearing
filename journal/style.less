@@ -8,16 +8,16 @@
 		.section(@color, @color-strong, #ffffff);
 	}
 	section:nth-of-type(3) {
-		.section(@color, #f5a9f2, #f3f781);
+		.section(@color, #ffb0a9, #f2f2f2);
 	}
 	section:nth-of-type(4) {
-		.section(#ffffff, #73ffda, @color);
+		.section(#ffffff, #0be4db, #1a1a1a);
 	}
 	section:nth-of-type(5) {
-		.section(@color, @color-strong, #ffffff);
+		.section(@color, #97d5ac, #ffffff);
 	}
 	section:nth-of-type(6) {
-		.section(@color, #f5a9f2, #f3f781);
+		.section(@color, #7657c5, #dfe5ea);
 	}
 	section.title {
 		font-family: @font-noto;
@@ -31,8 +31,8 @@
 			display: inline-block;
 			padding: 3em 0;
 			text-align: left;
-			transform: rotateZ(-20deg);
-			-webkit-transform: rotateZ(-20deg);
+			transform: rotateZ(-30deg);
+			-webkit-transform: rotateZ(-30deg);
 		}
 		.maintitle {
 			p {
@@ -79,9 +79,13 @@
 			}
 		}
 		section:nth-of-type(n) article .media .medium > .wrapper a {
-			span {
+			span.icon {
 				margin: -1.5em 0 0 -1.5em;
 				i { font-size: 3em; }
+			}
+			span.title {
+				display: block;
+				font-size: 0.9em;
 			}
 		}
 		.media-num(4px);
@@ -137,9 +141,12 @@
 				font-size: 3em; //챕터 제목
 			}
 			article .media .medium > .wrapper a {
-				span {
+				span.icon {
 					margin: -2em 0 0 -2em;
 					i { font-size: 4em; }
+				}
+				span.title {
+					font-size: 1em;
 				}
 			}
 		}
@@ -238,13 +245,13 @@
 			& > div {
 				max-width: 36.2em;
 			}
-		}
-		.title {
-			font-family: @font-noto;
-			margin-top: 1em;
-			span {
-				font-size: 1.0635em;
-				line-height: 1.1em;
+			& > .title {
+				font-family: @font-noto;
+				margin-top: 1em;
+				span {
+					font-size: 1.0635em;
+					line-height: 1.1em;
+				}
 			}
 		}
 		.content {
@@ -256,22 +263,23 @@
 			}
 		}
 		.media {
-			position: relative;
 			margin-top: 1em;
-			& > .wrapper {
-				position: absolute;
-				top: 0; left: 0;
-				width: 100%; height: 100%;
+			& > .r-wrap {
+				position: relative;
+				padding-bottom: 50%;
+				& > .r-wrap-in {
+					position: absolute;
+					top: 0; left: 0;
+					width: 100%; height: 100%;
+				}
 			}
 			.medium {
 				position: absolute;
 				& > .wrapper {
 					width: 100%; height: 100%;
 					overflow: hidden;
-					background-color: #eeeeee;
-					img {
-						filter: grayscale(100%); -webkit-filter: grayscale(100%);
-					}
+					background-color: @color;
+					img { filter: grayscale(100%); -webkit-filter: grayscale(100%); }
 					a {
 						&:link, &:active, &:visited, &:hover {
 							color: @color-strong;
@@ -283,14 +291,28 @@
 						width: 100%;
 						height: 100%;
 						position: relative;
-						span {
-							position: absolute;;
+						span.icon {
+							position: absolute;
 							z-index: 2;
 							top: 50%;
 							left: 50%;
 							margin-top: -0.8em;
 							margin-left: -0.8em;
 							i { font-size: 1.6em; }
+						}
+						span.title {
+							//display: block;
+							display: none;
+							position: absolute;
+							top: 0; left: 0;
+							z-index: 3;
+							width: 100%;
+							height: 100%;
+							padding: 10px;
+							overflow: hidden;
+							font-family: @font-noto;
+							color: #ffffff;
+							opacity: 0.7;
 						}
 					}// a
 				}// .wrapper
@@ -299,7 +321,7 @@
 	}// article
 }// .section()
 .media-num(@half-gutter){
-	.media {
+	.media .r-wrap {
 		padding-bottom: 50%;
 	}
 	.media.num-0 {
@@ -444,7 +466,7 @@
 	}
 }// .media-num()
 .media-num-vw(@half-gutter){
-	.media {
+	.media .r-wrap {
 		padding-bottom: 25%;
 	}
 	.media.num-1 {

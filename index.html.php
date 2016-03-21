@@ -68,7 +68,7 @@ function less($hrefs){
 		</div>
 	</div>
 	<!-- /pages-stack -->
-	<button class="menu-button se-color"><span><i class="fa fa-th-large"></i></span></button>
+	<button class="menu-button"><span><i class="fa fa-th-large se-color"></i></span></button>
 
 	<script src="contrib/PageStackNavigation/js/classie.js"></script>
 	<script src="contrib/PageStackNavigation/js/main.js"></script>

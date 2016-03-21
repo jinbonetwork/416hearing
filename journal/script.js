@@ -7,41 +7,43 @@
 			},
 			complete: function(){
 				$jn().trigger($.Event('ready'));
-				$('button.menu-button').trigger('click');
 				adjustImages();
+				$(window).resize(function(){
+					adjustImages();
+				});
+				$jn('.medium img').load(function(){
+					adjustOneImage($(this));
+				});
 			}
 		});
 		$(".gallery").fancybox({
 			openEffect	: 'none',
 			closeEffect	: 'none'
 		});
-		$(window).resize(function(){
-			adjustImages();
-		});
-		$jn('.medium img').load(function(){
-			adjustImages();
-		});
 	});
 	function adjustImages(){
 		$jn('.medium img').each(function(){
-			var width = $(this).width();
-			var height = $(this).height();
-			var wrapWidth = $(this).parents('.wrapper').width();
-			var wrapHeight = $(this).parents('.wrapper').height();
-			var ratio = wrapWidth / width;
-			if(height * ratio < wrapHeight){
-				var ratio = wrapHeight / height;
-				var nH = height * ratio;
-				var nW = width * ratio;
-				$(this).css({ width: nW, height: nH});
-				$(this).css({ 'margin-left': (wrapWidth-nW)/2+'px' });
-			} else {
-				var nH = height * ratio;
-				var nW = width * ratio;
-				$(this).css({ width: nW, height: nH});
-				$(this).css({ 'margin-top': (wrapHeight-nH)/2+'px' });
-			}
+			adjustOneImage($(this));
 		});
+	}
+	function adjustOneImage($image){
+		var width = $image.width();
+		var height = $image.height();
+		var wrapWidth = $image.parents('.wrapper').width();
+		var wrapHeight = $image.parents('.wrapper').height();
+		var ratio = wrapWidth / width;
+		if(height * ratio < wrapHeight){
+			ratio = wrapHeight / height;
+			var nH = height * ratio;
+			var nW = width * ratio;
+			$image.css({ width: nW+1, height: nH+1 });
+			$image.css({ 'margin-left': (wrapWidth-nW)/2, 'margin-top': 0 });
+		} else {
+			var nH = height * ratio;
+			var nW = width * ratio;
+			$image.css({ width: nW+1, height: nH+1 });
+			$image.css({ 'margin-top': (wrapHeight-nH)/2, 'margin-left': 0 });
+		}
 	}
 	function makeHtml(sections){
 		var tplSection = _.template($('#section-template').html());
@@ -72,7 +74,8 @@
 		var html = '';
 		for(var i = 0, len = media.length; i < len; i++){
 			var template = _.template($('#'+media[i].type+'-template').html());
-			html += template({ url: media[i].url, gallery: gallery });
+			var title = media[i].url.replace(/https*:\/\/.+\//, '');
+			html += template({ url: media[i].url, gallery: gallery, title: title });
 		}
 		return html;
 	}
