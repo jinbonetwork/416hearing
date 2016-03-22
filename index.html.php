@@ -54,22 +54,20 @@ function less($hrefs){
 	<!-- /navigation-->
 	<section class="introduction">
 		<p class="content">세월호 청문회가 진행되고 있습니다. 하지만 파행 ... 이런 점에 대한 설명을 담아 사이트를 만들어 봤습니다.</p>
-		<p class="credit">만든이들: 417가족대책위 & 진보넷 독립네트워크팀</p>
+		<p class="credit">만든이들: 417가족대책위, 진보넷 독립네트워크팀</p>
 	</section>
 	<!-- pages stack -->
 	<div class="pages-stack">
-
-
-		<div class="page" id="page-teaser">
+		<div class="page se-container" id="page-teaser">
 			<?php echo file_get_contents(dirname(__FILE__).'/teaser/index.html'); ?>
 		</div>
-
-
+		
 		<div class="page se-container" id="page-journal">
 			<?php echo file_get_contents(dirname(__FILE__).'/journal/index.html'); ?>
 		</div>
 		<div class="page" id="page-hearing">
 		</div>
+
 	</div>
 	<!-- /pages-stack -->
 	<button class="menu-button"><span><i class="fa fa-th-large se-color"></i></span></button>
