@@ -614,6 +614,10 @@
 					{
 						"type": "video",
 						"url": "pByergWfD0s"
+					},
+					{
+						"type": "doc",
+						"url": "./data/docs/82대_과제.pdf"
 					}
 				]
             },
@@ -734,6 +738,14 @@
 					{
 						"type": "image",
 						"url": "./data/images/151209_poster.jpg"
+					},
+					{
+						"type": "image",
+						"url": "./data/images/DSC00742.JPG"
+					},
+					{
+						"type": "doc",
+						"url": "./data/docs/제1차_청문회_정리보고서.pdf"
 					}
 				]
             }

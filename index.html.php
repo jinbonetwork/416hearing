@@ -53,8 +53,8 @@ function less($hrefs){
 	</nav>
 	<!-- /navigation-->
 	<section class="introduction">
-		<p class="content">세월호 청문회가 진행되고 있습니다. 하지만 파행 ... 이런 점에 대한 설명을 담아 사이트를 만들어 봤습니다.</p>
-		<p class="credit">만든이들: 417가족대책위, 진보넷 독립네트워크팀</p>
+		<p class="content">세월호 청문회가 진행되고 있습니다. 사이트에 대한 설명문이 짧게 들어갑니다. 뭐라고 하면 될까요 생각해 주세요.</p>
+		<p class="credit">만든이들: <a href="http://416family.org">416가족대책위</a>, <a href="http://lab.jinbo.net">진보넷 독립네트워크팀</a></p>
 	</section>
 	<!-- pages stack -->
 	<div class="pages-stack">
