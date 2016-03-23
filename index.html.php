@@ -58,14 +58,17 @@ function less($hrefs){
 	</section>
 	<!-- pages stack -->
 	<div class="pages-stack">
+
+		<div class="page se-container" id="page-teaser">
+			<?php echo file_get_contents(dirname(__FILE__).'/teaser/index.html'); ?>
+		</div>
+		
 		<div class="page se-container" id="page-journal">
 			<?php echo file_get_contents(dirname(__FILE__).'/journal/index.html'); ?>
 		</div>
 		<div class="page" id="page-hearing">
 		</div>
-		<div class="page se-container" id="page-teaser">
-			<?php echo file_get_contents(dirname(__FILE__).'/teaser/index.html'); ?>
-		</div>
+
 
 	</div>
 	<!-- /pages-stack -->
