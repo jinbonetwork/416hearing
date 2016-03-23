@@ -4,6 +4,10 @@
 
 	$(document).ready(function(){
 		$('.menu-button').trigger('click');
+
+		$('.menu-button').click(function(){
+			$(this).find('.se-color').css('color', '');
+		});
 		$('.page').scroll(function(){
 			var scrTop = $(this).scrollTop();
 			var direct = (scrTop < g_preScrTop ? 'up' : 'down');

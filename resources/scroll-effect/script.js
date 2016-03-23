@@ -39,8 +39,10 @@
 				var bgcolor = $thisSect.find('.se-background').css('background-color');
 				var color = $thisSect.find('.se-title').css('color');
 				$contain.css('background-color', bgcolor);
-				$('.se-bgcolor').css('background-color', bgcolor);
-				$('.se-color').css('color', color);
+				$contain.find('.se-bgcolor').css('background-color', bgcolor);
+				$contain.find('.se-color').css('color', color);
+				//$('.out-se-color').css('color', color);
+				$('.menu-button .se-color').css('color', color);
 			}
 
 			// pre 값들 저장 ////
