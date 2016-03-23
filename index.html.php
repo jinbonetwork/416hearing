@@ -51,7 +51,7 @@ function less($hrefs){
 	<!-- /navigation-->
 	<section class="introduction">
 		<p class="content">감추는 자가 범인이다.<br>끝까지 밝혀야 합니다!</p>
-		<p class="credit">만든이들: <a href="http://416family.org">416가족협의회</a> &amp; <a href="http://lab.jinbo.net">진보넷 독립네트워크팀</a></p>
+		<p class="credit">만든이들: <a href="https://www.facebook.com/416family">416가족협의회</a> &amp; <a href="http://lab.jinbo.net">진보넷 독립네트워크팀</a></p>
 	</section>
 	<!-- pages stack -->
 	<div class="pages-stack">

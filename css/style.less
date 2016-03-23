@@ -24,26 +24,22 @@ ul {
 .pages-nav.pages-nav--open + .introduction {
 	font-size: @font-size-m;
 	display: block;
-	margin: 10px 30px 0 0px;
-	padding: 10px 20px 0 20px;
 	color: @color;
-	text-align: justify;
+	text-align: center;
 	& > p.content {
-		font-family: @font-batang;
-		font-size: 1em;
-		line-height: 1.2em;
-		margin-bottom: 1em;
+		padding: 17vh 0 0 0;
+		font-family: @font-noto;
+		font-size: 2em;
+		margin-bottom: 0.5em;
 	}
 	& > p.credit {
-		font-family: @font-mont;
+		font-family: @font-batang;
 		font-size: 0.9em;
 	}
 }
 .js .pages-nav {
 	font-size: @font-size-m;
-	padding-top: 9.5em;
 	a.link--page {
-		font-size: 1em;
 		font-family: @font-noto;
 		color: @color-strong;
 	}
@@ -73,14 +69,6 @@ ul {
 	}
 }
 @media screen and (min-width: 425px) {
-	.pages-nav.pages-nav--open + .introduction {
-		margin: 20px auto;
-		width: 80%;
-	}
-	.js .pages-nav {
-		margin-left: 10%;
-		width: 80%;
-	}
 }
 @media screen and (min-width: 560px) {
 	.menu-button {
@@ -94,15 +82,20 @@ ul {
 }
 @media screen and (min-width: 768px) {
 	.pages-nav.pages-nav--open + .introduction {
-		margin: 0;
-		padding: 60px 15px 0 60px;
-		width: 40%;
+		& > p.content {
+			margin-right: auto;
+			margin-left: auto;
+			padding: 20vh 0 0 0;
+			width: 90%;
+			font-size: 4em;
+			line-height: 1.1;
+		}
 	}
 	.js .pages-nav {
 		margin: 0;
 		width: 100%;
-		padding-top: 30px;
-		padding-left: 45%;
+		padding: 0 20%;
+		text-align: center;
 	}
 }
 @media screen and (min-width: 1024px) {
@@ -111,14 +104,12 @@ ul {
 		left: 30px;
 	}
 	.pages-nav.pages-nav--open + .introduction {
-		margin: 0;
-		padding: 80px 0 0 80px;
-		width: 40%;
+		& > p.content {
+		}
 	}
 	.js .pages-nav {
 		margin: 0;
 		width: 100%;
-		padding-top: 30px;
-		padding-left: 45%;
+		font-size: 1.2em;
 	}
 }
