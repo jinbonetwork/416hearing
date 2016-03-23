@@ -6,7 +6,7 @@
 		$('.menu-button').trigger('click');
 
 		$('.menu-button').click(function(){
-			$(this).find('.se-color').css('color', '');
+			$(this).find('.out-se-color').css('color', '');
 		});
 		$('.page').scroll(function(){
 			var scrTop = $(this).scrollTop();
