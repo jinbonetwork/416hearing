@@ -7,7 +7,6 @@
 			},
 			complete: function(){
 				$jn().trigger($.Event('ready'));
-				adjustImages();
 				$(window).resize(function(){
 					adjustImages();
 				});
@@ -17,8 +16,8 @@
 			}
 		});
 		$(".gallery").fancybox({
-			openEffect	: 'none',
-			closeEffect	: 'none'
+			openEffect: 'none',
+			closeEffect: 'none'
 		});
 	});
 	function adjustImages(){
