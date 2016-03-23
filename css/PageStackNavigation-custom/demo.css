@@ -37,7 +37,6 @@
 /* Main styles */
 
 body {
-	font-family: 'Avenir Next', Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
 	margin: 0;
 	color: #cecece;
 	background: #1d1e21;
@@ -47,7 +46,7 @@ body {
 
 a {
 	text-decoration: none;
-	color: #5c5edc;
+	color: #6d92c4;
 	outline: none;
 }
 

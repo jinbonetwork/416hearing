@@ -26,7 +26,7 @@ html.js,
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 50vh;
+	height: 20vh;
 	padding: 30px;
 	pointer-events: none;
 	opacity: 0;
@@ -147,8 +147,8 @@ html.js,
 	pointer-events: none;
 	-webkit-perspective: 1200px;
 	perspective: 1200px;
-	-webkit-perspective-origin: 50% -50%;
-	perspective-origin: 50% -50%;
+	-webkit-perspective-origin: 50% -200%;
+	perspective-origin: 50% -200%;
 }
 
 .js .page {
