@@ -34,6 +34,7 @@
 			}
 
 			// 타이틀 고정 ////
+			/*
 			$contain.find('.se-section').each(function(index){
 				var offset = $(this).offset();
 				var top = offset.top;
@@ -47,6 +48,23 @@
 					} else {
 						if($title.hasClass('bottom') && bottom > $title.outerHeight()) $title.removeClass('bottom');
 					}
+					return false;
+				}
+			});
+			*/
+			$contain.find('.se-section').each(function(index){
+				var offset = $(this).offset();
+				var top = offset.top;
+				var bottom = top + $(this).outerHeight(true);
+				if(top < 0 && bottom > 0) {
+					$contain.find('.se-title.fixed').removeClass('fixed');
+					$contain.find('.se-title.bottom').removeClass('bottom');
+					$title = $(this).find('.se-title');
+					if(bottom < $title.outerHeight()) $title.addClass('bottom');
+					else $title.addClass('fixed');
+
+					console.log($title.find('span').text(), $title.outerHeight());
+
 					return false;
 				}
 			});
