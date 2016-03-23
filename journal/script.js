@@ -74,7 +74,9 @@
 		var html = '';
 		for(var i = 0, len = media.length; i < len; i++){
 			var template = _.template($('#'+media[i].type+'-template').html());
-			var title = media[i].url.replace(/https*:\/\/.+\//, '');
+			//var title = media[i].url.replace(/https*:\/\/.+\//, '');
+			var title = media[i].url.replace(/.+\//g, '');
+
 			html += template({ url: media[i].url, gallery: gallery, title: title });
 		}
 		return html;
