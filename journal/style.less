@@ -60,13 +60,6 @@
 	.media-num(2px);
 }// #page-journal
 
-@media screen and (max-width: 559px) {
-	#page-journal {
-		.sect-name {
-			position: absolute !important;
-		}
-	}
-}
 @media screen and (min-width: 425px) {
 	#page-journal {
 		section.title {
@@ -95,7 +88,10 @@
 	#page-journal {
 		font-size: @font-size-w; //설명문
 		section:nth-of-type(n+2) {
-			padding: 8% 9.5em 8% 70px;
+			padding: 0 9.5em 0 70px;
+			.sect-name {
+				top: 0;
+			}
 		}
 	}
 }
@@ -194,15 +190,20 @@
 	}
 }
 
-.section(@color, @color-strong, @bgcolor) {
-	color: @color;
-	padding: 8%;
+.section(@color-main, @color-extra, @bgcolor) {
+	color: @color-main;
+	padding: 0 8%;
+	article:last-of-type > .wrapper {
+		padding-bottom: 5em;
+	}
 	.se-background {
 		background-color: @bgcolor;
 	}
 	.sect-name {
-		padding-top: 1em;
-		color: @color-strong;
+		position: absolute;
+		top: -3em;
+		right: 0;
+		color: @color-extra;
 		transform: rotateZ(30deg); -wekit-transform: rotateZ(30deg);
 		transform-origin: 0 0; -webkit-transform-origin: 0 0;
 		span {
@@ -222,25 +223,25 @@
 				display: block;
 				height: 0.3em;
 				width: 120%;
-				background-color: @color-strong;
+				background-color: @color-extra;
 			}
 			.title span {
-				color: @color-strong;
+				color: @color-extra;
 				font-size: 1.4em;
 			}
 		}
 		.date {
 			display: inline-block;
 			font-family: @font-mont;
-			color: @color-strong;
+			color: @color-extra;
 			span {
 				font-size: 1.0635em;
 			}
 		}
 		& > .wrapper {
-			border-left: solid 2px @color-strong;
+			border-left: solid 2px @color-extra;
 			padding-left: 1em;
-			min-height: 5em;
+			padding-bottom: 2em;
 			& > div {
 				max-width: 36.2em;
 			}
@@ -263,9 +264,9 @@
 		}
 		.media {
 			margin-top: 1em;
+			margin-bottom: 1em;
 			& > .r-wrap {
 				position: relative;
-				//padding-bottom: 50%;
 				& > .r-wrap-in {
 					position: absolute;
 					top: 0; left: 0;
@@ -281,7 +282,7 @@
 					img { filter: grayscale(100%); -webkit-filter: grayscale(100%); }
 					a {
 						&:link, &:active, &:visited, &:hover {
-							color: @color-strong;
+							color: @color-extra;
 						}
 						&:active, &:hover {
 							img { filter: grayscale(0); -webkit-filter: grayscale(0); }
