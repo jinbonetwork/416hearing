@@ -1,8 +1,13 @@
 (function($){
 	var g_preScrTop = 0;
+	var isMenuOpen = false;
 
 	$(document).ready(function(){
-		$('button.menu-button').trigger('click');
+		$('.menu-button').trigger('click');
+
+		$('.menu-button').click(function(){
+			$(this).find('.se-color').css('color', '');
+		});
 		$('.page').scroll(function(){
 			var scrTop = $(this).scrollTop();
 			var direct = (scrTop < g_preScrTop ? 'up' : 'down');
