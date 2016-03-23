@@ -10,10 +10,6 @@
 			var direct = (scrTop < g_preScrTop ? 'up' : 'down');
 			var winHeight = $(window).height();
 			var $thisSect;
-			/*
-			var $fixedTitle = $contain.find('.se-title.fixed');
-			var ftHeight = ($fixedTitle.length ? $fixedTitle.outerHeight() : 0);
-			*/
 			$contain.find('.se-section').each(function(index){
 				var offset = $(this).offset();
 				var top = offset.top;
@@ -25,16 +21,35 @@
 				} else if(direct == 'up' && index == 0 && top == 0){
 					$thisSect = $(this);
 				}
-				/*
-				if(ftHeight !== 0 && top > 0 && top < ftHeight){
-					$fixedTitle.removeClass('fixed');
-				}
-				*/
 				if(top < 0) {
 					$contain.find('.se-title.fixed').removeClass('fixed');
 					$(this).find('.se-title').addClass('fixed');
 				}
 			});// each()
+
+			/*
+			var $fixedTitle = $contain.find('.se-title.fixed');
+			if($fixedTitle.find('span').length){
+				var $fixedSect = $fixedTitle.parents('.se-section');
+				var ft_h = $fixedTitle.outerHeight();
+				var ft_ofs = $fixedTitle.offset();
+				var ftSect_h = $fixedSect.outerHeight(true);
+				var ftSect_ofs = $fixedSect.offset();
+				var ftSect_bottom = ftSect_ofs.top + ftSect_h;
+				if(ftSect_bottom < ft_h) {
+					$fixedTitle.removeClass('fixed');
+					$fixedTitle.addClass('bottom');
+				}
+			}
+			var $bottomTitle = $contain.find('.se-title.fixed');
+			if($bottomTitle.length){
+				$bottomTitle.parents('.se-section');
+
+				 + $bottomTitle.outerHeight(true);
+			}
+			*/
+
+
 			if($.type($thisSect) !== 'undefined'){
 				var bgcolor = $thisSect.find('.se-background').css('background-color');
 				var color = $thisSect.find('.se-title').css('color');
