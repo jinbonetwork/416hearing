@@ -51,7 +51,9 @@ a {
 }
 
 a:hover {
-	color: #fff;
+	color: #0be4db;
+
+	transition: 0.8s color;
 }
 
 
