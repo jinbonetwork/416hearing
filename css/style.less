@@ -35,10 +35,10 @@ ul {
 
 		span {
 			-webkit-animation-name: heading; /* Chrome, Safari, Opera */
-			-webkit-animation-duration: 6s; /* Chrome, Safari, Opera */
+			-webkit-animation-duration: 8s; /* Chrome, Safari, Opera */
 			animation-name: heading;
-			animation-duration: 6s;	
-			color: #0be4db;
+			animation-duration: 8s;	
+			color: #ae4949;
 		}
 	}
 	& > p.credit {
@@ -47,18 +47,12 @@ ul {
 	}
 }
 		@-webkit-keyframes heading {
-			0% {color: @color-strong;}
-			25% {color: #ffb0a9;}
-			50% {color: #97d5ac;}
-			75% {color: #7657c5;}
-			100% {color: #0be4db;}
+			0% {opacity: 0;}
+			100% {opacity: 1;}
 		}
 		@keyframes heading {
-			0% {color: @color-strong;}
-			25% {color: #ffb0a9;}
-			50% {color: #97d5ac;}
-			75% {color: #7657c5;}
-			100% {color: #0be4db;}
+			0% {opacity: 0.1;}
+			100% {opacity: 1;}
 		}
 .js .pages-nav {
 	font-size: @font-size-m;
