@@ -185,35 +185,26 @@
 		}
 		& > .content > article {
 			margin-bottom: 1em;
+			& > .number {
+				float: left;
+				color: @color-strong;
+				font-family: @font-mont;
+				font-size: 1.3em;
+				line-height: 1.1em;
+			}
 			& > .title {
+				margin-left: 1.2em;
 				margin-bottom: 1em;
 				font-family: @font-noto;
 				text-align: justify;
 				.maintitle {
 					font-size: 1.1em;
+					margin-bottom: 0.5em;
+					line-height: 1.1em;
 				}
 				.subtitle {
 					font-size: 1em;
 					line-height: 1.1em;
-				}
-			}
-			ul li {
-				.number {
-					float: left;
-					color: @color-strong;
-					font-family: @font-mont;
-					font-size: 1.3em;
-				}
-				p {
-					font-family: @font-batang;
-					margin-left: 1.2em;
-					line-height: 1.5em;
-					text-align: justify;
-				}
-				&:after {
-					content: '';
-					display: block;
-					clear: both;
 				}
 			}
 		}
@@ -367,13 +358,18 @@
 			}
 		}
 		section.suspicion {
-			& > .content > article > .title {
-				.maintitle {
+			& > .content > article {
+				& > .number {
 					font-size: 1.8em;
-					line-height: 2em;
 				}
-				.subtitle {
-					font-size: 1.1em;
+				& > .title {
+					margin-left: 1.7em;
+					.maintitle {
+						font-size: 1.8em;
+					}
+					.subtitle {
+						font-size: 1.1em;
+					}
 				}
 			}
 		}
