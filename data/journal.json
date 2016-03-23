@@ -736,6 +736,14 @@
                 "level": 1,
                 "media": [
 					{
+						"type": "video",
+						"url": "vDuPMIAyhFE"
+					},
+					{
+						"type": "video",
+						"url": "Tcc-zMQbPOc"
+					},
+					{
 						"type": "image",
 						"url": "./data/images/151209_poster.jpg"
 					},
