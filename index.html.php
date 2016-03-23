@@ -44,7 +44,7 @@ function less($hrefs){
 <body>
 	<!-- navigation -->
 	<nav class="pages-nav">
-		<div class="pages-nav__item"><a class="link link--page" href="#page-journal">가족협의회 활동일지</a></div>
+		<div class="pages-nav__item"><a class="link link--page" href="#page-journal">416가족의 발자취</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-hearing">1차 청문회(준비중)</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-teaser">2차 청문회</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-dummy"></a></div>
@@ -53,8 +53,8 @@ function less($hrefs){
 	</nav>
 	<!-- /navigation-->
 	<section class="introduction">
-		<p class="content">세월호 청문회가 진행되고 있습니다. 사이트에 대한 설명문이 짧게 들어갑니다. 뭐라고 하면 될까요 생각해 주세요.</p>
-		<p class="credit">만든이들: <a href="http://416family.org">416가족대책위</a> &amp; <a href="http://lab.jinbo.net">진보넷 독립네트워크팀</a></p>
+		<p class="content">감추는 자가 범인이다.<br></p>
+		<p class="credit">만든이들: <a href="http://416family.org">416가족협의회</a> &amp; <a href="http://lab.jinbo.net">진보넷 독립네트워크팀</a></p>
 	</section>
 	<!-- pages stack -->
 	<div class="pages-stack">
