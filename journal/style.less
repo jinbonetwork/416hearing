@@ -8,18 +8,19 @@
 		.section(@color, @color-strong, #ffffff);
 	}
 	section:nth-of-type(3) {
-		.section(@color, #ffb0a9, #f2f2f2);
-	}
-	section:nth-of-type(4) {
 		.section(#ffffff, #0be4db, #1a1a1a);
 	}
+	section:nth-of-type(4) {
+		.section(@color, #97d5ac, #f2f2f2);
+	}
 	section:nth-of-type(5) {
-		.section(@color, #97d5ac, #ffffff);
+		.section(#ffffff, #ffb0a9, #1a1a1a);
 	}
 	section:nth-of-type(6) {
 		.section(@color, #7657c5, #dfe5ea);
 	}
 	section.title {
+		padding: 8% 8% 20% 8%;
 		font-family: @font-noto;
 		text-align: center;
 		color: @color;
@@ -36,7 +37,7 @@
 		}
 		.maintitle {
 			p {
-				font-size: 2.5em;
+				font-size: 3.2em;
 				line-height: 1em;
 				&:first-child {
 					transform: skewX(30deg);
@@ -50,8 +51,9 @@
 		}
 		.subtitle {
 			span {
-				font-size: 1.7em;
+				font-size: 1.5em;
 				line-height: 1em;
+				color: #6d92c4;
 			}
 			transform: skewX(30deg);
 			-webkit-transform: skewX(30deg);
@@ -63,9 +65,8 @@
 @media screen and (min-width: 425px) {
 	#page-journal {
 		section.title {
-			padding: 8%;
 			.maintitle p {
-				font-size: 3.6em; //헤더
+				font-size: 3.8em; //헤더
 			}
 			.subtitle span {
 				font-size: 2.4em; //헤더 부제
@@ -99,10 +100,10 @@
 	#page-journal {
 		section.title {
 			.maintitle p {
-				font-size: 5em; //헤더
+				font-size: 7em; //헤더
 			}
 			.subtitle span {
-				font-size: 3.5em; //헤더 부제
+				font-size: 3em; //헤더 부제
 			}
 		}
 		section:nth-of-type(n+2) {
@@ -127,7 +128,7 @@
 				font-size: 8em; //헤더
 			}
 			.subtitle span {
-				font-size: 5em; //헤더 부제
+				font-size: 4em; //헤더 부제
 			}
 		}
 		section:nth-of-type(n+2) {
@@ -148,11 +149,10 @@
 	#page-journal {
 		section.title {
 			.maintitle p {
-				font-size: 10.6em; //헤더
+				font-size: 9.6em; //헤더
 			}
 			.subtitle span {
-				font-size: 6.8em; //헤더 부제
-				color: #6d92c4;
+				font-size: 4.8em; //헤더 부제
 			}
 		}
 		section:nth-of-type(n+2) {
@@ -176,8 +176,6 @@
 @media screen and (min-width: 1680px) {
 	#page-journal {
 		section.title {
-			padding-top: 133px;
-			padding-bottom: 133px;
 		}
 		section:nth-of-type(n+2) {
 			article {
@@ -285,7 +283,7 @@
 							color: @color-extra;
 						}
 						&:active, &:hover {
-							img { filter: grayscale(0); -webkit-filter: grayscale(0); }
+							img { filter: grayscale(0); -webkit-filter: grayscale(0); transition: 3s filter linear; }
 						}
 						display: block;
 						width: 100%;

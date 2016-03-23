@@ -72,9 +72,9 @@
 		}
 	}
 	section.opinion {
-		@color: #ffffff;
-		@color-strong: #0be4db;
-		@bgcolor: #1a1a1a;
+		@color: #4d4d4d;
+		@color-strong: #7657c5;
+		@bgcolor: #dfe5ea;
 
 		color: @color;
 		.se-background{
@@ -102,6 +102,7 @@
 				line-height: 1.5em;
 			}
 			fieldset.opinion-fieldset {
+				z-index: 100;
 				position: relative;
 				border: 0;
 				margin: 0;
@@ -172,9 +173,9 @@
 		}
 	} //section.opinion
 	section.suspicion {
-		@color: #595757;
-		@color-strong: #7657c5;
-		@bgcolor: #dfe5ea;
+		@color: #ffffff;
+		@color-strong: #0be4db;
+		@bgcolor: #1a1a1a;
 
 		color: @color;
 		.se-background{
@@ -184,7 +185,7 @@
 			color: @color-strong;
 		}
 		& > .content > article {
-			margin-bottom: 1em;
+			margin-bottom: 2em;
 			& > .number {
 				float: left;
 				color: @color-strong;
@@ -210,9 +211,9 @@
 		}
 	}// section.suspicion
 	section.witnesses {
-		@color: #595757;
-		@color-strong: #97d5ac;
-		@bgcolor: #ffffff;
+		@color: #ffffff;
+		@color-strong: #ffb0a9;
+		@bgcolor: #1a1a1a;
 
 		color: @color;
 		.se-background{
@@ -244,9 +245,9 @@
 			&:nth-of-type(3) { .article-color(#ffb0a9); };
 			&:nth-of-type(4) { .article-color(#0be4db); };
 			&:nth-of-type(5) { .article-color(#7657c5); };
-			&:nth-of-type(6) { .article-color(#1a1a1a); };
+			&:nth-of-type(6) { .article-color(#f5f8f9); };
 
-			margin-bottom: 5em;
+			margin-bottom: 8em;
 			.sect-name.article {
 				padding: 0;
 				span {
@@ -268,7 +269,7 @@
 						margin-left: 3em;
 						p:last-child {
 							font-size: 0.9em;
-							color: #595757;
+							color: #ffffff;
 						}
 					}
 					&:after {
@@ -360,10 +361,10 @@
 		section.suspicion {
 			& > .content > article {
 				& > .number {
-					font-size: 1.8em;
+					font-size: 3em;
 				}
 				& > .title {
-					margin-left: 1.7em;
+					margin-left: 2.6em;
 					.maintitle {
 						font-size: 1.8em;
 					}
@@ -456,7 +457,7 @@
 			}
 		}
 		section:nth-of-type(n+2) {
-			padding-left: 27em;
+			padding-left: 30em;
 			padding-right: 0;
 			.sect-name {
 				&.section {
@@ -470,6 +471,9 @@
 	#page-teaser {
 		section.title {
 			padding: 15em 0;
+		}
+		section:nth-of-type(n+2) {
+			padding-left: 40em;
 		}
 	}
 }
