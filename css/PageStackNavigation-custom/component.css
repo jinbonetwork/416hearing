@@ -16,7 +16,7 @@ html.js,
 	-webkit-align-items: center;
 	align-items: center;
 	padding: 20px;
-	text-align: center; 
+	text-align: center;
 	background: #0e0f0f;
 }
 
@@ -160,7 +160,8 @@ html.js,
 	/* box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1); */
 
 	background: #ffffff;
-	overflow-y: auto;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 	overflow-x: hidden;
 	box-shadow: 0 -5px 18px rgba(0, 0, 0, 0.1);
 }
