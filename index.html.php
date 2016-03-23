@@ -47,9 +47,9 @@ function less($hrefs){
 		<div class="pages-nav__item"><a class="link link--page" href="#page-journal">416가족의 발자취</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-hearing">1차 청문회(준비중)</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-teaser">2차 청문회</a></div>
-		<div class="pages-nav__item"><a class="link link--page" href="#page-dummy"></a></div>
-		<div class="pages-nav__item"><a class="link link--page" href="#page-dummy"></a></div>
-		<div class="pages-nav__item"><a class="link link--page" href="#page-dummy"></a></div>
+		<div class="pages-nav__item"><a class="link link--page" href="#page-dummy1"></a></div>
+		<div class="pages-nav__item"><a class="link link--page" href="#page-dummy2"></a></div>
+		<div class="pages-nav__item"><a class="link link--page" href="#page-dummy3"></a></div>
 	</nav>
 	<!-- /navigation-->
 	<section class="introduction">
@@ -67,9 +67,9 @@ function less($hrefs){
 		<div class="page se-container" id="page-teaser">
 			<?php echo file_get_contents(dirname(__FILE__).'/teaser/index.html'); ?>
 		</div>
-		<div class="page" id="page-dummy">
-			<?php echo file_get_contents(dirname(__FILE__).'/teaser/index.html'); ?>
-		</div>
+		<div class="page" id="page-dummy1"></div>
+		<div class="page" id="page-dummy2"></div>
+		<div class="page" id="page-dummy3"></div>
 	</div>
 	<!-- /pages-stack -->
 	<button class="menu-button"><span><i class="fa fa-th-large se-color"></i></span></button>
