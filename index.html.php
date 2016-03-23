@@ -47,13 +47,10 @@ function less($hrefs){
 		<div class="pages-nav__item"><a class="link link--page" href="#page-journal">416가족의 발자취</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-hearing">1차 청문회(준비중)</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-teaser">2차 청문회</a></div>
-		<div class="pages-nav__item"><a class="link link--page" href="#page-dummy1"></a></div>
-		<div class="pages-nav__item"><a class="link link--page" href="#page-dummy2"></a></div>
-		<div class="pages-nav__item"><a class="link link--page" href="#page-dummy3"></a></div>
 	</nav>
 	<!-- /navigation-->
 	<section class="introduction">
-		<p class="content">감추는 자가 범인이다.<br></p>
+		<p class="content">감추는 자가 범인이다.<br>끝까지 밝혀야 합니다!</p>
 		<p class="credit">만든이들: <a href="http://416family.org">416가족협의회</a> &amp; <a href="http://lab.jinbo.net">진보넷 독립네트워크팀</a></p>
 	</section>
 	<!-- pages stack -->

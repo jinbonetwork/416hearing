@@ -147,8 +147,8 @@ html.js,
 	pointer-events: none;
 	-webkit-perspective: 1200px;
 	perspective: 1200px;
-	-webkit-perspective-origin: 50% -200%;
-	perspective-origin: 50% -200%;
+	-webkit-perspective-origin: 50% -100%;
+	perspective-origin: 50% -100%;
 }
 
 .js .page {
