@@ -145,6 +145,7 @@
 		classie.add(stack, 'pages-stack--open');
 		// reveal the menu
 		classie.add(nav, 'pages-nav--open');
+
 		// now set the page transforms
 		var stackPagesIdxs = getStackPagesIdxs();
 		for(var i = 0, len = stackPagesIdxs.length; i < len; ++i) {

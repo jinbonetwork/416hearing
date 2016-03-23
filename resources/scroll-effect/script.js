@@ -10,6 +10,10 @@
 			var direct = (scrTop < g_preScrTop ? 'up' : 'down');
 			var winHeight = $(window).height();
 			var $thisSect;
+			/*
+			var $fixedTitle = $contain.find('.se-title.fixed');
+			var ftHeight = ($fixedTitle.length ? $fixedTitle.outerHeight() : 0);
+			*/
 			$contain.find('.se-section').each(function(index){
 				var offset = $(this).offset();
 				var top = offset.top;
@@ -21,6 +25,11 @@
 				} else if(direct == 'up' && index == 0 && top == 0){
 					$thisSect = $(this);
 				}
+				/*
+				if(ftHeight !== 0 && top > 0 && top < ftHeight){
+					$fixedTitle.removeClass('fixed');
+				}
+				*/
 				if(top < 0) {
 					$contain.find('.se-title.fixed').removeClass('fixed');
 					$(this).find('.se-title').addClass('fixed');
