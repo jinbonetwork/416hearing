@@ -21,12 +21,11 @@
 				} else if(direct == 'up' && index == 0 && top == 0){
 					$thisSect = $(this);
 				}
-				if(top <= 0 && winHeight < bottom){
+				if(top < 0) {
+					$contain.find('.se-title.fixed').removeClass('fixed');
 					$(this).find('.se-title').addClass('fixed');
-				} else {
-					$(this).find('.se-title').removeClass('fixed');
 				}
-			});
+			});// each()
 			if($.type($thisSect) !== 'undefined'){
 				var bgcolor = $thisSect.find('.se-background').css('background-color');
 				var color = $thisSect.find('.se-title').css('color');
@@ -34,8 +33,9 @@
 				$('.se-bgcolor').css('background-color', bgcolor);
 				$('.se-color').css('color', color);
 			}
+
 			// pre 값들 저장 ////
 			g_preScrTop = scrTop;
-		});
+		});// scroll()
 	});
 })(jQuery);
