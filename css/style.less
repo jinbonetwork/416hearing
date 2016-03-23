@@ -27,16 +27,39 @@ ul {
 	color: @color;
 	text-align: center;
 	& > p.content {
-		padding: 17vh 0 0 0;
+		padding: 45vw 0 0 0;
 		font-family: @font-noto;
 		font-size: 2em;
 		margin-bottom: 0.5em;
+		line-height: 1.1;
+
+		span {
+			-webkit-animation-name: heading; /* Chrome, Safari, Opera */
+			-webkit-animation-duration: 6s; /* Chrome, Safari, Opera */
+			animation-name: heading;
+			animation-duration: 6s;	
+			color: #0be4db;
+		}
 	}
 	& > p.credit {
 		font-family: @font-batang;
 		font-size: 0.9em;
 	}
 }
+		@-webkit-keyframes heading {
+			0% {color: @color-strong;}
+			25% {color: #ffb0a9;}
+			50% {color: #97d5ac;}
+			75% {color: #7657c5;}
+			100% {color: #0be4db;}
+		}
+		@keyframes heading {
+			0% {color: @color-strong;}
+			25% {color: #ffb0a9;}
+			50% {color: #97d5ac;}
+			75% {color: #7657c5;}
+			100% {color: #0be4db;}
+		}
 .js .pages-nav {
 	font-size: @font-size-m;
 	a.link--page {
@@ -78,6 +101,9 @@ ul {
 	.pages-nav.pages-nav--open + .introduction,
 	.js .pages-nav {
 		font-size: @font-size-w;
+		& > p.content {
+			padding: 25vw 0 0 0;
+		}
 	}
 }
 @media screen and (min-width: 768px) {
