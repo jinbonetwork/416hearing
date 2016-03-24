@@ -64,6 +64,15 @@ function less($hrefs){
 		<div class="page" id="page-hearing">
 			<h1 style="padding: 20%;">준비중</h1>
 		</div>
+		<div class="page se-container" id="page-teaser">
+			<?php echo file_get_contents(dirname(__FILE__).'/teaser/index.html'); ?>
+		</div>
+		<div class="page se-container" id="page-journal">
+			<?php echo file_get_contents(dirname(__FILE__).'/journal/index.html'); ?>
+		</div>
+		<div class="page" id="page-hearing">
+			<h1 style="padding: 20%;">준비중</h1>
+		</div>
 	</div>
 	<!-- /pages-stack -->
 	<button class="menu-button"><span><i class="fa fa-bars out-se-color"></i></span></button>
