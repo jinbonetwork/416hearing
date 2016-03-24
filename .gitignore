@@ -1,2 +1,4 @@
 *.swp
 config/db.config.php
+data/docs/*
+data/images/*
