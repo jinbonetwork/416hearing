@@ -161,8 +161,8 @@ html.js,
 
 	background: #ffffff;
 	overflow-y: scroll;
-	-webkit-overflow-scrolling: touch;
 	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
 	box-shadow: 0 -5px 18px rgba(0, 0, 0, 0.1);
 }
 
