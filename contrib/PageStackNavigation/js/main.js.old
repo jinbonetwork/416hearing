@@ -166,6 +166,7 @@
 			futureCurrent = pages.indexOf(futurePage),
 			stackPagesIdxs = getStackPagesIdxs(futureCurrent);
 
+
 		// set transforms for the new current page
 		futurePage.style.WebkitTransform = 'translate3d(0, 0, 0)';
 		futurePage.style.transform = 'translate3d(0, 0, 0)';
@@ -196,6 +197,7 @@
 
 	// gets the current stack pages indexes. If any of them is the excludePage then this one is not part of the returned array
 	function getStackPagesIdxs(excludePageIdx) {
+
 		var nextStackPageIdx = current + 1 < pagesTotal ? current + 1 : 0,
 			nextStackPageIdx_2 = current + 2 < pagesTotal ? current + 2 : 1,
 			idxs = [],
@@ -212,6 +214,7 @@
 			idxs.push(nextStackPageIdx_2);
 		}
 
+		console.log(idxs, excludeIdx);
 		return idxs;
 
 	}
