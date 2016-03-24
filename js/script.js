@@ -3,11 +3,12 @@
 	var isMenuOpen = false;
 
 	$(document).ready(function(){
-		$('.menu-button').trigger('click');
-
+		//menu-button click ////
 		$('.menu-button').click(function(){
 			$(this).find('.out-se-color').css('color', '');
 		});
+
+		//scroll ////
 		$('.page').scroll(function(){
 			var scrTop = $(this).scrollTop();
 			var direct = (scrTop < g_preScrTop ? 'up' : 'down');
