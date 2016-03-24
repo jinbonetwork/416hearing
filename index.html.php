@@ -13,7 +13,6 @@ function less($hrefs){
 ?>
 <!DOCTYPE html>
 <html lang="ko" class="no-js">
-
 <head>
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -40,7 +39,7 @@ function less($hrefs){
 	<script src="contrib/fancybox/2.1.5/source/jquery.fancybox.pack.js"></script>
 	<meta property="og:title" content="세월호 청문회"/>
 	<meta property="og:type" content="website"/>
-	<meta property="og:url" content="http://www.taogi.net/416hearing"/>
+	<meta property="og:url" content="http://taogi.net/416hearing"/>
 	<meta property="og:image" content="http://www.taogi.net/416hearing/data/images/og_image.png"/>
 	<meta property="og:description" content="세월호 청문회 - 감추는 자가 범인이다. 끝까지 밝혀야 합니다!">
 	<meta property="og:site_name" content="세월호 청문회"/>
