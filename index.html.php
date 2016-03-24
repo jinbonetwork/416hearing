@@ -80,7 +80,7 @@ function less($hrefs){
 	<!-- /pages-stack -->
 	<button class="menu-button"><span><i class="fa fa-bars out-se-color"></i></span></button>
 	<script src="contrib/PageStackNavigation/js/classie.js"></script>
-	<script src="contrib/PageStackNavigation/js/main.js"></script>
+	<script src="js/PageStackNavigation-custom/main.js"></script>
 	<script src="js/script.js"></script>
 	<script src="journal/script.js"></script>
 	<script src="teaser/script.js"></script>
