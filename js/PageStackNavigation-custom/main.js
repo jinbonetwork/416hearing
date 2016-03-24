@@ -147,6 +147,7 @@
 		classie.add(nav, 'pages-nav--open');
 		// now set the page transforms
 		var stackPagesIdxs = getStackPagesIdxs();
+
 		for(var i = 0, len = stackPagesIdxs.length; i < len; ++i) {
 			var page = pages[stackPagesIdxs[i]];
 			page.style.WebkitTransform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)'; // -200px, -230px, -260px
@@ -165,7 +166,6 @@
 		var futurePage = id ? document.getElementById(id) : pages[current],
 			futureCurrent = pages.indexOf(futurePage),
 			stackPagesIdxs = getStackPagesIdxs(futureCurrent);
-
 
 		// set transforms for the new current page
 		futurePage.style.WebkitTransform = 'translate3d(0, 0, 0)';
@@ -197,7 +197,6 @@
 
 	// gets the current stack pages indexes. If any of them is the excludePage then this one is not part of the returned array
 	function getStackPagesIdxs(excludePageIdx) {
-
 		var nextStackPageIdx = current + 1 < pagesTotal ? current + 1 : 0,
 			nextStackPageIdx_2 = current + 2 < pagesTotal ? current + 2 : 1,
 			idxs = [],
@@ -214,7 +213,8 @@
 			idxs.push(nextStackPageIdx_2);
 		}
 
-		console.log(idxs, excludeIdx);
+		if(idxs[0] == 1 && idxs[1] == 2 && idxs[2] == 1) idxs = [1, 2, 0];
+
 		return idxs;
 
 	}
