@@ -67,11 +67,11 @@ function opinion_init_click_event() {
 	jQuery('#opinion-nav li').each(function(idx) {
 		var li = jQuery(this);
 		if( li.hasClass('active') ) {
-			li.bind('click',function(e) {
+			li.on('click',function(e) {
 				go_opinion( li.attr('data-id') );
 			});
 		} else {
-			li.unbind('click');
+			li.off('click');
 		}
 	});
 }

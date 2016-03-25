@@ -15,7 +15,7 @@ if($total_cnt) {?>
 			<li class="prev">
 <?php		if($p_page) {?>
 				<a href="javascript://" onclick="get_opinion(<?php print $p_page; ?>); ?>"><span class="prev active">이전</span></a>
-<?php		} else ?>
+<?php		} else { ?>
 				<span class="prev">이전</span>
 <?php		}?>
 			</li>
@@ -31,7 +31,7 @@ if($total_cnt) {?>
 			<li class="next">
 <?php		if($n_page) {?>
 				<a href="javascript://" onclick="get_opinion(<?php print $n_page; ?>); ?>"><span class="prev active">이전</span></a>
-<?php		} else ?>
+<?php		} else { ?>
 				<span class="next">다음</span>
 <?php		}?>
 			</li>

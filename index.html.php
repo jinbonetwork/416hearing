@@ -30,6 +30,7 @@ function less($hrefs){
 		'css/style.less',
 		'journal/style.less',
 		'teaser/style.less',
+		'hearing/style.less',
 		'resources/scroll-effect/style.less'
 	));
 	?>
@@ -74,7 +75,8 @@ function less($hrefs){
 			<?php echo file_get_contents(dirname(__FILE__).'/journal/index.html'); ?>
 		</div>
 		<div class="page" id="page-hearing">
-			<h1 style="padding: 20%;">준비중</h1>
+			준비중
+			<?php //echo file_get_contents(dirname(__FILE__).'/hearing/index.html'); ?>
 		</div>
 	</div>
 	<!-- /pages-stack -->
@@ -84,6 +86,7 @@ function less($hrefs){
 	<script src="js/script.js"></script>
 	<script src="journal/script.js"></script>
 	<script src="teaser/script.js"></script>
+	<script src="hearing/script.js"></script>
 	<script src="resources/scroll-effect/script.js"></script>
 </body>
 

@@ -1,0 +1,66 @@
+<div class="outline inner-page inner-page-open">
+</div>
+<div class="section-container">
+</div>
+
+<script type="text/template" id="hearing-outline-template">
+	<div class="part">
+		<div class="part-title"><%= part_title %></div>
+		<ul><%= items %></ul>
+	</div>
+</script>
+
+<script type="text/template" id="hearing-item-template">
+	<li><%= item %></li>
+</script>
+
+<script type="text/template" id="hearing-section-template">
+	<section id="heargin-section-<%= section %>" class="inner-page">
+		<div class="header">
+			<div class="part-title">
+				<div class="part-num">part <%= part_num %></div>
+				<div class="part-main-title"><%= part_main_title %></div>
+				<div class="part-subtitle">- <%= part_subtitle %></div>
+			</div>
+			<div class="title">
+				<span class="title-num-wrapper">
+					<span>의혹</span>
+					<span class="title-num"><%= title_num %></span>
+				</span>
+				<span class="title-wrapper"><%= title %></span>
+			</div>
+			<div class="media num-<%= nummedia %>">
+				<div class="r-wrap"><div class="r-wrap-in"><%= media %></div></div>
+				<div class="caption"><%= caption %></div>
+			</div>
+			<div class="background"><%= background %></div>
+			<div class="witnesses">
+				<div class="header">관련증인</div>
+				<ul><%= widneses =></ul>
+			</div>
+		</div>
+		<div class="content">
+			<div class="abstract">
+				<div class="header">청문회 주요내용</div>
+				<div class="content"><%= abstract %></div>
+			</div>
+			<div class="dialogue">
+				<div class="header">그들의 한마디</div>
+				<!-- 여기 -->
+			</div>
+			<div class="media">
+				<div class="media-wrapper"></div>
+				<span class="caption"></div>
+			</div>
+			<div class="conclusion"></div>
+			<div class="etc"></div>
+		</div>
+	</section>
+</script>
+<script type="text/template" id="hearing-witnesses-template">
+	<li>
+		<img src="<%= photo %>">
+		<span class="name"><%= name %></span>
+		<span class="organ"><%= organ %></span>
+	</li>
+</script>
