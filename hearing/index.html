@@ -6,7 +6,7 @@
 <script type="text/template" id="hearing-outline-template">
 	<div class="part">
 		<div class="part-title"><%= part_title %></div>
-		<ul><%= items %></ul>
+		<ul class="items"><%= items %></ul>
 	</div>
 </script>
 
@@ -15,7 +15,7 @@
 </script>
 
 <script type="text/template" id="hearing-section-template">
-	<section id="heargin-section-<%= section %>" class="inner-page">
+	<section id="suspicion-<%= section %>" class="inner-page">
 		<div class="header">
 			<div class="part-title">
 				<div class="part-num">part <%= part_num %></div>
@@ -31,36 +31,77 @@
 			</div>
 			<div class="media num-<%= nummedia %>">
 				<div class="r-wrap"><div class="r-wrap-in"><%= media %></div></div>
-				<div class="caption"><%= caption %></div>
 			</div>
 			<div class="background"><%= background %></div>
 			<div class="witnesses">
 				<div class="header">관련증인</div>
-				<ul><%= widneses =></ul>
+				<ul class="list"><%= widneses =></ul>
 			</div>
 		</div>
 		<div class="content">
 			<div class="abstract">
 				<div class="header">청문회 주요내용</div>
-				<div class="content"><%= abstract %></div>
+				<p="content"><%= abstract %></p>
+				<div class="media num-<%= nummedia %>">
+					<div class="r-wrap"><div class="r-wrap-in"><%= media %></div></div>
+				</div>
 			</div>
 			<div class="dialogue">
 				<div class="header">그들의 한마디</div>
-				<!-- 여기 -->
+				<ul class="list"><% dialogue %></ul>
 			</div>
 			<div class="media">
 				<div class="media-wrapper"></div>
 				<span class="caption"></div>
 			</div>
-			<div class="conclusion"></div>
-			<div class="etc"></div>
+			<div class="conclusion">
+				<p><%= conclusion %></p>
+				<div class="media num-<%= nummedia %>">
+					<div class="r-wrap"><div class="r-wrap-in"><%= media %></div></div>
+				</div>
+			</div>
+			<div class="etc">
+				<div class="media num-<%= nummedia %>">
+					<div class="r-wrap"><div class="r-wrap-in"><%= media %></div></div>
+				</div>
+				<ul class="links"><%= links %></ul>
+			</div>
 		</div>
 	</section>
 </script>
+
+<script type="text/template" id="hearing-media-template">
+	<%= medium %>
+	<div class="caption"><%= caption %></div>
+</script>
+
 <script type="text/template" id="hearing-witnesses-template">
 	<li>
 		<img src="<%= photo %>">
 		<span class="name"><%= name %></span>
 		<span class="organ"><%= organ %></span>
+	</li>
+</script>
+
+<script type="text/template" id="hearing-dialogue-template">
+	<li>
+		<div class="question">
+			<sapn class="name"><%= q_name %></span>
+			<p><%= question =></p>
+		</div>
+		<div class="answer">
+			<div class="photo">
+				<img src="<%= photo %>">
+				<span class="name"><%= name %></span>
+				<span class="organ"><%= organ %></span>
+			</div>
+			<div class="speech-bubble">
+				<div class="nipple"></div>
+				<p><%= answer %></p>
+			</div>
+			<div class="media num-<%= nummedia %>">
+				<div class="r-wrap"><div class="r-wrap-in"><%= media %></div></div>
+			</div>
+		</div>
 	</li>
 </script>

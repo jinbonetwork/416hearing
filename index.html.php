@@ -69,7 +69,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<nav class="pages-nav">
 		<div class="pages-nav__item"><a class="link link--page" href="#page-teaser">2차 청문회</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-journal">416가족의 발자취</a></div>
-		<div class="pages-nav__item"><a class="link link--page" href="#page-hearing">1차 청문회(준비중)</a></div>
+		<div class="pages-nav__item"><a class="link link--page" href="#page-hearing">1차 청문회</a></div>
 	</nav>
 	<!-- /navigation-->
 	<section class="introduction">
@@ -85,8 +85,8 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 			<?php echo file_get_contents(dirname(__FILE__).'/journal/index.html'); ?>
 		</div>
 		<div class="page" id="page-hearing">
-			<div style="padding: 20%; font-size: 100px; text-align: center;">준비중</div>
-			<?php //echo file_get_contents(dirname(__FILE__).'/hearing/index.html'); ?>
+			<!--div style="padding: 20%; font-size: 100px; text-align: center;">준비중</div-->
+			<?php echo file_get_contents(dirname(__FILE__).'/hearing/index.html'); ?>
 		</div>
 	</div>
 	<!-- /pages-stack -->
