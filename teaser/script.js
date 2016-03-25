@@ -55,6 +55,10 @@ function go_opinion(page) {
 			}
 		},
 		complete: function() {
+			var wrapOffset = jQuery('#opinion-items-wrap').offset();
+			var scrTop = jQuery('#page-teaser').scrollTop();
+			jQuery('#page-teaser').animate({ scrollTop: scrTop +wrapOffset.top }, 400);
+
 			opinion_init_click_event();
 		},
 		error: function( jqXHR, textStatus, errorThrown ) {
@@ -67,11 +71,11 @@ function opinion_init_click_event() {
 	jQuery('#opinion-nav li').each(function(idx) {
 		var li = jQuery(this);
 		if( li.hasClass('active') ) {
-			li.on('click',function(e) {
+			li.bind('click',function(e) {
 				go_opinion( li.attr('data-id') );
 			});
 		} else {
-			li.off('click');
+			li.unbind('click');
 		}
 	});
 }
