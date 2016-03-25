@@ -10,6 +10,7 @@ function less($hrefs){
 	echo $less->compile($lessCode);
 	echo "</style>\n";
 }
+require_once "libs/auth.lib.php";
 ?>
 <!DOCTYPE html>
 <html lang="ko" class="no-js">
@@ -68,7 +69,7 @@ function less($hrefs){
 	</section>
 	<!-- pages stack -->
 	<div class="pages-stack">
-		<div class="page se-container" id="page-teaser">
+		<div class="page se-container<?php print (isAdmin() ? " is-admin" : ""); ?>" id="page-teaser">
 			<?php echo file_get_contents(dirname(__FILE__).'/teaser/index.html'); ?>
 		</div>
 		<div class="page se-container" id="page-journal">

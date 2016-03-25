@@ -40,7 +40,7 @@ function check_opinion_submit(TheForm) {
 	return false;
 }
 
-function go_opinion(page, scroll = true) {
+function go_opinion(page, scroll) {
 	var url = jQuery('form#opinion-form').attr('action') + '?page=' + page;
 
 	jQuery.ajax({
@@ -74,7 +74,7 @@ function opinion_init_click_event() {
 		var li = jQuery(this);
 		if( li.hasClass('active') ) {
 			li.bind('click',function(e) {
-				go_opinion( li.attr('data-id') );
+				go_opinion( li.attr('data-id'), true );
 			});
 		} else {
 			li.unbind('click');
