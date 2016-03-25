@@ -15,11 +15,7 @@
 		</div>
 	</div>
 	<div class="live">
-		<div class="editor">
-<?php if( file_exists( dirname(__FILE__)."/../data/live/live.html" ) )
-		include_once dirname(__FILE__)."/../data/live/live.html"; ?>
-		</div>
-		<button type="button">저장</button>
+		<div id="live-content" class="editor">[%=live%]</div>
 	</div>
 </section>
 

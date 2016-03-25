@@ -1,3 +1,6 @@
-[submodule "gnuboard5"]
+[submodule "medium-editor"]
     path = contrib/medium-editor
 	url = https://github.com/yabwe/medium-editor.git
+[submodule "spectrum"]
+    path = contrib/spectrum
+	url = https://github.com/bgrins/spectrum.git

@@ -31,6 +31,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 <?php if(defined("__EDIT_MODE__") && __EDIT_MODE__ == true) {?>
 	<link rel="stylesheet" href="contrib/medium-editor/dist/css/medium-editor.min.css">
 	<link rel="stylesheet" href="contrib/medium-editor/dist/css/themes/bootstrap.min.css">
+	<link rel="stylesheet" href="contrib/spectrum/spectrum.css">
 <?php }?>
 	<?php
 	less(array(
@@ -47,6 +48,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<script src="contrib/fancybox/2.1.5/source/jquery.fancybox.pack.js"></script>
 <?php if(defined("__EDIT_MODE__") && __EDIT_MODE__ == true) {?>
 	<script src="contrib/medium-editor/dist/js/medium-editor.min.js"></script>
+	<script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 <?php }?>
 	<meta property="og:title" content="세월호 청문회"/>
 	<meta property="og:type" content="website"/>
@@ -79,7 +81,8 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<!-- pages stack -->
 	<div class="pages-stack">
 		<div class="page se-container<?php print ( ( defined("__EDIT_MODE__") && __EDIT_MODE__ == true ) ? " is-admin" : "" ); ?>" id="page-teaser">
-			<?php echo file_get_contents(dirname(__FILE__).'/teaser/index.html'); ?>
+			<?php $live = file_get_contents(dirname(__FILE__)."/data/live/live.html");
+			echo str_replace("[%=live%]",$live,file_get_contents(dirname(__FILE__).'/teaser/index.html')); ?>
 		</div>
 		<div class="page se-container" id="page-journal">
 			<?php echo file_get_contents(dirname(__FILE__).'/journal/index.html'); ?>

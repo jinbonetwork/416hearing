@@ -130,7 +130,7 @@ function opinion_make(json) {
 }
 
 function live_save() {
-	var params = 'content='+jQuery('.page.is-admin .live>.editor').html();
+	var params = 'mode=save&content='+jQuery('.page.is-admin .live>.editor').html();
 	var url = location.href.replace(/\/edit(\/)?$/,'')+'/teaser/live.php';
 
 	jQuery.ajax({
@@ -138,16 +138,31 @@ function live_save() {
 		data: params,
 		dataType: 'json',
 		method: 'POST',
+		beforeSend: function() {
+			loading();
+		},
 		success: function(data) {
+			removeloading();
 			if(parseInt( data.error ) == 0) {
 			} else {
 				console.log(data.message);
 			}
 		},
 		error: function( jqXHR, textStatus, errorThrown ) {
-			console.log(jqXHR.repondText);
+			console.log(jqXHR.responseText);
 		}
 	});
+}
+
+function loading() {
+	jQuery('body').append(jQuery('<div class="saving"><div class="saving-background"></div><div class="is-loading"><i class="fa fa-spinner fa-pulse"></i></div></div>'));
+	jQuery('.saving .is-loading').css({
+		'left' : parseInt( ( jQuery(window).width() - 100 ) / 2 ),
+		'top' : parseInt( ( jQuery(window).height() - 100 ) / 2 )
+	});
+}
+function removeloading() {
+	jQuery('body .saving').remove();
 }
 
 (function($){
@@ -156,12 +171,15 @@ function live_save() {
 		$('#page-teaser').trigger($.Event('ready'));
 
 		if( jQuery('.page.is-admin .live>.editor').length > 0 ) {
-			var editor = new MediumEditor('.page.is-admin .live>.editor',{
-			})
+			jQuery('.page.is-admin .live>.editor').attr('contenteditable',"true");
+			CKEDITOR.disableAutoInline = true;
+			CKEDITOR.inline( 'live-content' );
 
-			jQuery('.page.is-admin .live>button').click(function(e) {
+			var bt = jQuery('<button type="button">저장하기</button>');
+			bt.click(function(e) {
 				live_save();
 			});
+			jQuery('.page .live').append(bt);
 
 			jQuery(document).keydown(function(event) {
 				var code = event.charCode || event.keyCode;
