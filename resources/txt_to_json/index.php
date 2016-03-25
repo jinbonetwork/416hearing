@@ -41,12 +41,23 @@ class TxtToJson {
 		*/
 		$txt = preg_replace('/\r/', '', $txt);
 		$txt = preg_replace('/\s*(\s)/', '$1', $txt);
-		$txt = preg_replace('/\n$/', "\n[END]", $txt);
 
-		foreach
+		preg_match_all('/.+\n/', $txt, $lines);
+		$lines = $lines[0];
+		$array = array('title'=>'', 'background'=>'', );
+		$curLevel = -1;
+		foreach($lines as $line){
+			if(preg_match('/#+\s/', $line)){
+				$curLevel++;
+				if($curLevel == 0){
+					array[0] = preg_replace('/#\s+/', '', $line);
+					echo array[0];
+				}
 
+			} else {
 
-		return $txt;
+			}
+		}
 	}
 }
 new TxtToJson();
