@@ -129,9 +129,47 @@ function opinion_make(json) {
 	return htmlMarkup;
 }
 
+function live_save() {
+	var params = 'content='+jQuery('.page.is-admin .live>.editor').html();
+	var url = location.href.replace(/\/edit(\/)?$/,'')+'/teaser/live.php';
+
+	jQuery.ajax({
+		url: url,
+		data: params,
+		dataType: 'json',
+		method: 'POST',
+		success: function(data) {
+			if(parseInt( data.error ) == 0) {
+			} else {
+				console.log(data.message);
+			}
+		},
+		error: function( jqXHR, textStatus, errorThrown ) {
+			console.log(jqXHR.repondText);
+		}
+	});
+}
+
 (function($){
 	$(document).ready(function(){
 		go_opinion(1, false);
 		$('#page-teaser').trigger($.Event('ready'));
+
+		if( jQuery('.page.is-admin .live>.editor').length > 0 ) {
+			var editor = new MediumEditor('.page.is-admin .live>.editor',{
+			})
+
+			jQuery('.page.is-admin .live>button').click(function(e) {
+				live_save();
+			});
+
+			jQuery(document).keydown(function(event) {
+				var code = event.charCode || event.keyCode;
+				if(code == 83 && (event.ctrlKey || event.altKey)) {
+					event.preventDefault();
+					live_save();
+				}
+			});
+		}
 	});
 })(jQuery);

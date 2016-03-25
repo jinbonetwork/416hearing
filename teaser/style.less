@@ -50,6 +50,28 @@
 			transform: skewX(30deg); -webkit-transform: skewX(30deg);
 			transform-origin: left top; -webkit-transform-origin: left top;
 		}
+		.live {
+			position: relative;
+			z-index: 100;
+			padding-top: 5%;
+			margin: auto;
+			max-width: 680px;
+			.editor {
+				text-align: left;
+				font-weight: normal;
+			}
+			button {
+				margin-top: 15px;
+				padding: 10px 15px;
+				background: #5a91e2;
+				color: #fff;
+				font-weight: bold;
+				border: 0;
+				border-radius: 10px;
+				cursor: pointer;
+				display: none;
+			}
+		}
 	}// section.title
 	section:nth-of-type(n+2) {
 		padding: 4em 8% 4em 8%;
@@ -343,6 +365,9 @@
 			}
 		}
 	}
+}
+.is-admin .live button {
+	display: inline-block !important;
 }
 @media screen and (min-width: 768px) {
 	#page-teaser {

@@ -10,7 +10,9 @@ function less($hrefs){
 	echo $less->compile($lessCode);
 	echo "</style>\n";
 }
-require_once "libs/auth.lib.php";
+if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
+	define("__EDIT_MODE__",true);
+}
 ?>
 <!DOCTYPE html>
 <html lang="ko" class="no-js">
@@ -26,6 +28,10 @@ require_once "libs/auth.lib.php";
 	<link rel="stylesheet" type="text/css" href="contrib/bareunbatang/style.css">
 	<link rel="stylesheet" type="text/css" href="contrib/montserrat-master/css/montserrat.css">
 	<link rel="stylesheet" href="contrib/fancybox/2.1.5/source/jquery.fancybox.css">
+<?php if(defined("__EDIT_MODE__") && __EDIT_MODE__ == true) {?>
+	<link rel="stylesheet" href="contrib/medium-editor/dist/css/medium-editor.min.css">
+	<link rel="stylesheet" href="contrib/medium-editor/dist/css/themes/bootstrap.min.css">
+<?php }?>
 	<?php
 	less(array(
 		'css/style.less',
@@ -39,6 +45,9 @@ require_once "libs/auth.lib.php";
 	<script src="contrib/underscore/underscore-min.js"></script>
 	<script src="contrib/PageStackNavigation/js/modernizr-custom.js"></script>
 	<script src="contrib/fancybox/2.1.5/source/jquery.fancybox.pack.js"></script>
+<?php if(defined("__EDIT_MODE__") && __EDIT_MODE__ == true) {?>
+	<script src="contrib/medium-editor/dist/js/medium-editor.min.js"></script>
+<?php }?>
 	<meta property="og:title" content="세월호 청문회"/>
 	<meta property="og:type" content="website"/>
 	<meta property="og:url" content="http://taogi.net/416hearing"/>
@@ -69,7 +78,7 @@ require_once "libs/auth.lib.php";
 	</section>
 	<!-- pages stack -->
 	<div class="pages-stack">
-		<div class="page se-container<?php print (isAdmin() ? " is-admin" : ""); ?>" id="page-teaser">
+		<div class="page se-container<?php print ( ( defined("__EDIT_MODE__") && __EDIT_MODE__ == true ) ? " is-admin" : "" ); ?>" id="page-teaser">
 			<?php echo file_get_contents(dirname(__FILE__).'/teaser/index.html'); ?>
 		</div>
 		<div class="page se-container" id="page-journal">

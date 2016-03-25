@@ -1,0 +1,3 @@
+[submodule "gnuboard5"]
+    path = contrib/medium-editor
+	url = https://github.com/yabwe/medium-editor.git
