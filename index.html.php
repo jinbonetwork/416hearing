@@ -75,7 +75,7 @@ function less($hrefs){
 			<?php echo file_get_contents(dirname(__FILE__).'/journal/index.html'); ?>
 		</div>
 		<div class="page" id="page-hearing">
-			준비중
+			<div style="padding: 20%; font-size: 100px; text-align: center;">준비중</div>
 			<?php //echo file_get_contents(dirname(__FILE__).'/hearing/index.html'); ?>
 		</div>
 	</div>
