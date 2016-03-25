@@ -57,7 +57,7 @@ function go_opinion(page) {
 		complete: function() {
 			var wrapOffset = jQuery('#opinion-items-wrap').offset();
 			var scrTop = jQuery('#page-teaser').scrollTop();
-			jQuery('#page-teaser').animate({ scrollTop: scrTop +wrapOffset.top }, 400);
+			jQuery('#page-teaser').animate({ scrollTop: scrTop + wrapOffset.top }, 400);
 
 			opinion_init_click_event();
 		},
@@ -89,7 +89,9 @@ function opinion_make(json) {
 
 	var itemsMarkup  = '';
 	for(var i = 0; i < json.opinions.length; i++ ) {
-		var d = new Date(parseInt(json.opinions[i].regdate) * 1000).toGMTString();
+		//var d = new Date(parseInt(json.opinions[i].regdate) * 1000).toGMTString();
+		var d = new Date(parseInt(json.opinions[i].regdate) * 1000);
+		d = d.getFullYear() + '.' + (d.getMonth()+1) + '.' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
 		itemsMarkup += tplopinionitem({
 			id: json.opinions[i].id,
 			memo: json.opinions[i].memo,
