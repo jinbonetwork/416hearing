@@ -6,7 +6,7 @@
 				makeHtml(sections);
 			},
 			complete: function(){
-				$jn().trigger($.Event('ready'));
+				$jn().trigger('ready');
 				$(window).resize(function(){
 					adjustImages();
 				});
@@ -14,10 +14,6 @@
 					adjustOneImage($(this));
 				});
 			}
-		});
-		$(".gallery").fancybox({
-			openEffect: 'none',
-			closeEffect: 'none'
 		});
 	});
 	function adjustImages(){
@@ -45,8 +41,8 @@
 		}
 	}
 	function makeHtml(sections){
-		var tplSection = _.template($('#section-template').html());
-		var tplArticle = _.template($('#article-template').html());
+		var tplSection = _.template($jn('#section-template').html());
+		var tplArticle = _.template($jn('#article-template').html());
 		for(var i = 0, leni = sections.length; i < leni; i++){
 			var sectName = sections[i].section;
 			var articles = sections[i].data;
@@ -72,7 +68,7 @@
 		if(!media.length) return '';
 		var html = '';
 		for(var i = 0, len = media.length; i < len; i++){
-			var template = _.template($('#'+media[i].type+'-template').html());
+			var template = _.template($jn('#'+media[i].type+'-template').html());
 			var title = media[i].url.replace(/.+\//g, '');
 			html += template({ url: media[i].url, gallery: gallery, title: title });
 		}

@@ -14,16 +14,23 @@ class TxtToJson {
 		echo "<xmp>$json</xmp>";
 	}
 	private function convert($txt){
-		$txt = preg_replace('/“/', '', $txt);
-		$txt = preg_replace('/”/', '', $txt);
+		$txt = preg_replace('/“/', '"', $txt);
+		$txt = preg_replace('/”/', '"', $txt);
+		$txt = preg_replace('/‘/', '\'', $txt);
+		$txt = preg_replace('/’/', '\'', $txt);
 		$txt = preg_replace('/　/', ' ', $txt);
 		$txt = preg_replace('/＃/', '#', $txt);
 		$txt = preg_replace('/\r/', "\n", $txt);
-		$txt = preg_replace('/\s+(\s)/', '$1', $txt);
-		$txt = preg_replace('/(<a.*)\n(.*<\/a>)/', '$1$2', $txt);
+		$txt = preg_replace('/\s+(\s)/', '$1', $txt); //연속된 두 개이상의 공백은 하나로
+		$txt = preg_replace('/(<[a-z]+.*>[^<>\n]*)\n([^<>\n]*<\/[a-z]+>)/', '$1$2', $txt); //태그로 감싸진 부분 내에 줄바꿈이 있으면 삭제.
+		$txt = preg_replace('/"([^"]*)"/', '&ldquo;$1&rdquo;', $txt); //쌍따옴표 대신에 엔티티 사용
+		$txt = preg_replace('/(<[^<>\n]*)&ldquo;([^<>\n]*)&rdquo;([^<>\n]*>)/', '$1"$2"$3', $txt); //태그 내의 엔티티를 다시 쌍따옴표로 바꾼다.
+		$txt = preg_replace('/\'([^\']*)\'/', '&lsquo;$1&rsquo;', $txt); //외따옴표 대신에 엔티티 사용
+		$txt = preg_replace('/(<[^<>\n]*)&lsquo;([^<>\n]*)&rsquo;([^<>\n]*>)/', '$1"$2"$3', $txt); //태그 내의 엔티티를 다시 외따옴표로 바꾼다.
 		preg_match_all('/.+\n/', $txt, $lines);
 
 		//echo '<xmp>'; print_r($lines[0]); echo '</xmp>'; return;
+		//echo '<xmp>'.$txt.'</xmp>'; return;
 
 		$lines = $lines[0];
 		$array = array(
@@ -55,23 +62,23 @@ class TxtToJson {
 				} else if($curLevel == 2 && $dialogueStart){
 					$dialIdx_i++; $dialIdx_j = -1;
 					$array['dialogue'][$dialIdx_i] = array(
-						'q_name'=>'', 'q_content'=>array(), 'q_media'=>array(),
-						'a_name'=>'', 'a_content'=>array(), 'a_media'=>array()
+						'qName'=>'', 'qContent'=>array(), 'qMedia'=>array(),
+						'aName'=>'', 'aContent'=>array(), 'aMedia'=>array()
 					);
 				} else if($curLevel == 2 && !$dialogueStart && $curIndex > 1) { //함께 보기
 					$array['etc'] = $this->put($array['etc'], $line);
 				} else if($curLevel == 3 && $dialogueStart){
 					$dialIdx_j++;
 					if($dialIdx_j == 0){
-						$array['dialogue'][$dialIdx_i]['q_name'] = $line;
+						$array['dialogue'][$dialIdx_i]['qName'] = $line;
 					} else if($dialIdx_j == 1){
-						$array['dialogue'][$dialIdx_i]['a_name'] = $line;
+						$array['dialogue'][$dialIdx_i]['aName'] = $line;
 					}
 				} else if($curLevel == 4 & $dialogueStart){
 					if($dialIdx_j == 0){
-						array_push($array['dialogue'][$dialIdx_i]['q_content'], $line);
+						array_push($array['dialogue'][$dialIdx_i]['qContent'], $line);
 					} else if($dialIdx_j == 1){
-						array_push($array['dialogue'][$dialIdx_i]['a_content'], $line);
+						array_push($array['dialogue'][$dialIdx_i]['aContent'], $line);
 					}
 				}
 			} else { // #이 없는 줄의 경우
@@ -88,13 +95,13 @@ class TxtToJson {
 					$key;
 					$value;
 					if(preg_match('/\[(.+)\|(.+)\|(.+)\]/', $line, $match)){
-						$medium = array('url'=>trim($match[1]), 'size'=>trim($match[2]), 'caption'=>trim($match[3]));
-						if($dialIdx_j == 0) $key = 'q_media';
-						else if($dialIdx_j == 1) $key = 'a_media';
+						$medium = array('url'=>$this->url(trim($match[1])), 'size'=>trim($match[2]), 'caption'=>trim($match[3]));
+						if($dialIdx_j == 0) $key = 'qMedia';
+						else if($dialIdx_j == 1) $key = 'aMedia';
 						$value = $medium;
 					} else {
-						if($dialIdx_j == 0) $key = 'q_content';
-						else if($dialIdx_j == 1) $key = 'a_content';
+						if($dialIdx_j == 0) $key = 'qContent';
+						else if($dialIdx_j == 1) $key = 'aContent';
 						$value = $line;
 					}
 					array_push($array['dialogue'][$dialIdx_i][$key], $value);
@@ -105,12 +112,19 @@ class TxtToJson {
 	}// convert()
 	private function put($array, $data){
 		if(preg_match('/\[(.+)\|(.+)\|(.+)\]/', $data, $match)){
-			$medium = array('url'=>trim($match[1]), 'size'=>trim($match[2]), 'caption'=>trim($match[3]));
+			$medium = array('url'=>$this->url(trim($match[1])), 'size'=>trim($match[2]), 'caption'=>trim($match[3]));
 			array_push($array['media'], $medium);
 		} else {
 			array_push($array['content'], $data);
 		}
 		return $array;
+	}
+	private function url($url){
+		if(!preg_match('/\.(jpg|png|svg|gif|hwp|pdf|docx)$/', $url)){
+			$url = preg_replace('/.*\//', '', $url);
+			$url = preg_replace('/(.*\?v=|\?t=.*)/', '', $url);
+		}
+		return $url;
 	}
 }
 new TxtToJson();

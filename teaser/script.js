@@ -91,7 +91,6 @@ function opinion_make(json) {
 
 	var itemsMarkup  = '';
 	for(var i = 0; i < json.opinions.length; i++ ) {
-		//var d = new Date(parseInt(json.opinions[i].regdate) * 1000).toGMTString();
 		var d = new Date(parseInt(json.opinions[i].regdate) * 1000);
 		d = d.getFullYear() + '.' + (d.getMonth()+1) + '.' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
 		itemsMarkup += tplopinionitem({

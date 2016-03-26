@@ -19,5 +19,11 @@
 			}
 			g_preScrTop = scrTop;
 		});
+
+		//fancy box ////
+		$(".gallery").fancybox({
+			openEffect: 'none',
+			closeEffect: 'none'
+		});
 	});
 })(jQuery);
