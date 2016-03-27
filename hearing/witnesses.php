@@ -19,8 +19,12 @@ if($_GET['name'] && $witnesses[$_GET['name']]) {
 			);
 		}
 		$witnesses[$name]['suspicions'] = $suspicions;
+		$witnesses[$name]['descript'] = nl2br($witnesses[$name]['descript']);
+		for($i=0; $i<@count($witnesses[$name]['timeline']); $i++) {
+			$witnesses[$name]['timeline'][$i]['content'] = nl2br($witnesses[$name]['timeline'][$i]['content']);	
+		}
 	}
-	printResult($witnesses[$_GET['name']]);
+	printResult($witnesses[$name]);
 } else {
 	foreach($witnesses as $name => $wit) {
 		$suspicions = array();
@@ -31,6 +35,10 @@ if($_GET['name'] && $witnesses[$_GET['name']]) {
 			);
 		}
 		$witnesses[$name]['suspicions'] = $suspicions;
+		$witnesses[$name]['descript'] = nl2br($witnesses[$name]['descript']);
+		for($i=0; $i<@count($witnesses[$name]['timeline']); $i++) {
+			$witnesses[$name]['timeline'][$i]['content'] = nl2br($witnesses[$name]['timeline'][$i]['content']);	
+		}
 	}
 	printResult($witnesses);
 }
