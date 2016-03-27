@@ -3,7 +3,7 @@
 		var parts;
 		var suspicions;
 		var witnesses;
-		var partMap = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2];
+		var partMap = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2];
 		$.ajax({
 			url: 'data/suspicions.json', dataType: 'json',
 			success: function(json){ suspicions = json; },
@@ -21,14 +21,19 @@
 		});
 		$hr().on('json-load', function(){
 			if(parts !== undefined && suspicions !== undefined && witnesses != undefined){
+				//var navigation = htmlNavigation(parts, partMap, suspicions);
+				var navigation = '';
 				for(var i = 0, leni = suspicions.length; i < leni; i++) {
-					$hr('.sections').append(makeHtml(i, parts, suspicions[i], witnesses, partMap));
+					$hr('.sections').append(makeHtml(i, parts, suspicions[i], witnesses, partMap, navigation));
 				}
 				$hr().trigger('ready');
 				$(window).resize(function(){ adjustImages(); });
 				$hr('.medium img').load(function(){ adjustOneImage($(this)); });
 
 				// 의혹 페이지로 이동 ////
+				//$hr('.outline').removeClass('open-inner-page');
+				//$hr('#suspicion-12').addClass('open-inner-page');
+
 				$hr('.outline li').click(function(){
 					var num = $(this).attr('data-num');
 					$hr('.outline').removeClass('open-inner-page');
@@ -62,7 +67,20 @@
 			$image.css({ 'margin-top': (wrapHeight-nH)/2, 'margin-left': 0 });
 		}
 	}
-	function makeHtml(sectNum, parts, section, witnesses, partMap){
+	function htmlNavigation(parts, partMap, suspicions){
+		var template =  _.template($hr('#navigation-template').html());
+		//var tplSuspicions =
+		var html = '';
+		for(var i = 0, len = parts.length; i < len; i++){
+			html += template({
+				partNum: i + 1,
+				title: parts[i].title,
+				subtitle: parts[i].sub_title
+				//suspicions:
+			});
+		}
+	}
+	function makeHtml(sectNum, parts, section, witnesses, partMap, navigation){
 		var tplSection = _.template($hr('#section-template').html());
 		if(_.isEmpty(section)) return;
 		return tplSection({
@@ -85,7 +103,8 @@
 			concMedia: htmlMedia(section.conclusion.media, 'hr'+sectNum+'md'),
 			etcMediaSize: mediaSize(section.etc.media),
 			etcMedia: htmlMedia(section.etc.media, 'hr'+sectNum+'et'),
-			etcLinks: htmlEtc(section.etc.content)
+			etcLinks: htmlEtc(section.etc.content),
+			navigation: navigation
 		});
 	}
 	function mediaSize(media){
@@ -147,7 +166,7 @@
 		for(var i = 0, len = media.length; i < len; i++){
 			var type;
 			if(media[i].url.match(/\.(png|jpg|svg|gif)/)) type = 'image';
-			else if(media[i].url.match(/\.(hwp|docx)/)) type = 'doc';
+			else if(media[i].url.match(/\.(hwp|pdf|docx)/)) type = 'doc';
 			else type = 'video';
 			var tplMedium = _.template($('#page-journal').find('#'+type+'-template').html());
 			var title = media[i].url.replace(/.+\//g, '');
