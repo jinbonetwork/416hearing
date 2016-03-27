@@ -1,4 +1,5 @@
 	function makeWitness(name,json) {
+		console.log(json);
 		var witnessesTpl = _.template($('#witnesses-summary-template').html());
 		var witnessesProfileTpl = _.template($('#witnesses-summary-profile-template').html());
 		var witnessesSusTpl = _.template($('#witnesses-summary-suspicions-template').html());
