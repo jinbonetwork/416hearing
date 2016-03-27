@@ -3,6 +3,8 @@
 	var isMenuOpen = false;
 
 	$(document).ready(function(){
+		$('.menu-button').click();
+
 		//menu-button click ////
 		$('.menu-button').click(function(){
 			$(this).find('.out-se-color').css('color', '');

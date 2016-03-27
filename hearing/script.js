@@ -46,6 +46,7 @@
 					var num = $(this).parents('section').attr('id').replace(/suspicion\-/, '');
 					closePage(num);
 				});
+
 				// 네비게이션 동작 ////
 				$hr('.navigation .header').click(function(){
 					if($(this).parents('.part').hasClass('folded')){

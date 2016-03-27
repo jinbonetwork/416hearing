@@ -27,22 +27,18 @@
 			 .part-num { color: #808080; }
 			 .title .main {
 				 color: #ffffff;
-				 //font-size: 2em;
 			 }
 			 .title .sub {
 				 color: #0be4db;
-				 //font-size: 1.5em;
 			 }
 			 li .num span:first-child {
 				 color: #1a1a1a;
 			 }
 			 li .num span:last-child {
-				 //font-size: 1.1875;
 				 color: #1a1a1a;
 			 }
 			 li .item span {
 				 color: #ffffff;
-				 //font-size: 1.125em;
 			 }
 		 }
 	 }
@@ -78,9 +74,13 @@
 				div {
 					float: left;
 					background-color: #7657c5;
-					padding: 0 0.5em;
+					a {
+						display: block;
+						padding: 0 0.5em;
+						width: 100%; height: 100%;
+					}
 				}
-				.go-why { margin-right: 1em; }
+				div, div + div { margin-right: 1px; }
 			}
 		}
 		& > .content {
@@ -140,7 +140,7 @@
 				font-size: 3.5em * @magnify;
 			}
 			.buttons div span {
-				font-size: 0.7em * @magnify;
+				font-size: 1em * @magnify;
 			}
 		}
 		& > .content .part {
@@ -163,7 +163,7 @@
 				font-size: 3.5em * @magnify;
 			}
 			.buttons div span {
-				font-size: 0.7em * @magnify;
+				font-size: 1em * @magnify;
 			}
 		}
 		& > .content .part {
@@ -197,7 +197,7 @@
 				font-size: 3.5em * @magnify;
 			}
 			.buttons div span {
-				font-size: 0.7em * @magnify;
+				font-size: 1em * @magnify;
 			}
 		}
 		& > .content {
