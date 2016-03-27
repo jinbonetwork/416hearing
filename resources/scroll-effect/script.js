@@ -4,6 +4,16 @@
 
 	var g_preScrTop = 0;
 	$('.se-container').on('ready', function(){
+		//initialize ////
+		var bgColor = $(this).find('.se-background').first().css('background-color');
+		var color =  $(this).find('.se-title').first().css('color');
+		$(this).css('background-color', bgColor);
+		$(this).find('.se-bgcolor').css('background-color', bgColor);
+		$(this).find('.se-bg-bd-t-r').css({'border-top-color': bgColor, 'border-right-color': bgColor});
+		$(this).find('.se-color').css('color', color);
+		$('.out-se-color').css('color', color);
+
+		//scroll ////
 		$(this).scroll(function(){
 			var $contain = $(this);
 			var scrTop = $contain.scrollTop();
@@ -29,6 +39,7 @@
 				var color = $thisSect.find('.se-title').css('color');
 				$contain.css('background-color', bgcolor);
 				$contain.find('.se-bgcolor').css('background-color', bgcolor);
+				$contain.find('.se-bg-bd-t-r').css({'border-top-color': bgcolor, 'border-right-color': bgcolor });
 				$contain.find('.se-color').css('color', color);
 				$('.out-se-color').css('color', color);
 			}

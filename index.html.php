@@ -80,7 +80,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	</section>
 	<!-- pages stack -->
 	<div class="pages-stack">
-		<div class="page" id="page-hearing">
+		<div class="page se-container" id="page-hearing">
 			<!--div style="padding: 20%; font-size: 100px; text-align: center;">준비중</div-->
 			<?php echo file_get_contents(dirname(__FILE__).'/hearing/index.html'); ?>
 		</div>

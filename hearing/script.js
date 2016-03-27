@@ -21,15 +21,20 @@
 		});
 		$hr().on('json-load', function(){
 			if(parts !== undefined && suspicions !== undefined && witnesses != undefined){
-				makeHtml(parts, suspicions, witnesses, partMap);
-				/*
-				$(window).resize(function(){
-					adjustImages();
+				for(var i = 0, leni = suspicions.length; i < leni; i++) {
+					$hr('.sections').append(makeHtml(i, parts, suspicions[i], witnesses, partMap));
+				}
+				$hr().trigger('ready');
+				$(window).resize(function(){ adjustImages(); });
+				$hr('.medium img').load(function(){ adjustOneImage($(this)); });
+
+				// 의혹 페이지로 이동 ////
+				$hr('.outline li').click(function(){
+					var num = $(this).attr('data-num');
+					$hr('.outline').removeClass('open-inner-page');
+					$hr('#suspicion-'+num).addClass('open-inner-page');
+					adjustImages()
 				});
-				$hr('.medium img').load(function(){
-					adjustOneImage($(this));
-				});
-				*/
 			}
 		});
 	});
@@ -57,35 +62,35 @@
 			$image.css({ 'margin-top': (wrapHeight-nH)/2, 'margin-left': 0 });
 		}
 	}
-	function makeHtml(parts, sections, witnesses, partMap){
+	function makeHtml(sectNum, parts, section, witnesses, partMap){
 		var tplSection = _.template($hr('#section-template').html());
-		//for(var i = 0, leni = sections.length; i < leni; i++){
-		for(var i = 11, leni = 12; i < leni; i++){
-			var section = sections[i];
-			if(_.isEmpty(section)) continue;
-			$hr('.sections').append(tplSection({
-				section: i + 1,
-				partNum: partMap[i] + 1,
-				partMainTitle: parts[partMap[i]].title,
-				partSubtitle: parts[partMap[i]].sub_title,
-				titleNum: i + 1,
-				title: section.title,
-				bgMediaNum: section.background.length,
-				bgMedia: htmlMedia(section.background.media, 'hr'+i+'bg'),
-				background: section.background.content,
-				witness: htmlWitnesses(section.witnesses, witnesses),
-				abstract: paragraphs(section.abstract.content),
-				abMediaNum: section.abstract.media.length,
-				abMedia: htmlMedia(section.abstract.media, 'hr'+i+'ab'),
-				dialogue: htmlDialogue(section.dialogue, witnesses, 'hr'+i+'da'),
-				conclusion: paragraphs(section.conclusion.content),
-				concMediaNum: section.conclusion.media.length,
-				concMedia: htmlMedia(section.conclusion.media, 'hr'+i+'md'),
-				etcMediaNum: section.etc.media.length,
-				etcMedia: htmlMedia(section.etc.media, 'hr'+i+'et'),
-				etcLinks: paragraphs(section.etc.content)
-			}));
-		}
+		if(_.isEmpty(section)) return;
+		return tplSection({
+			section: sectNum + 1,
+			partNum: partMap[sectNum] + 1,
+			partMainTitle: parts[partMap[sectNum]].title,
+			partSubtitle: parts[partMap[sectNum]].sub_title,
+			titleNum: sectNum + 1,
+			title: section.title,
+			bgMediaSize: mediaSize(section.background.media),
+			bgMedia: htmlMedia(section.background.media, 'hr'+sectNum+'bg'),
+			background: section.background.content,
+			witness: htmlWitnesses(section.witnesses, witnesses),
+			abstract: paragraphs(section.abstract.content),
+			abMediaSize: mediaSize(section.abstract.media),
+			abMedia: htmlMedia(section.abstract.media, 'hr'+sectNum+'ab'),
+			dialogue: htmlDialogue(section.dialogue, witnesses, 'hr'+sectNum+'da'),
+			conclusion: paragraphs(section.conclusion.content),
+			concMediaSize: mediaSize(section.conclusion.media),
+			concMedia: htmlMedia(section.conclusion.media, 'hr'+sectNum+'md'),
+			etcMediaSize: mediaSize(section.etc.media),
+			etcMedia: htmlMedia(section.etc.media, 'hr'+sectNum+'et'),
+			etcLinks: htmlEtc(section.etc.content)
+		});
+	}
+	function mediaSize(media){
+		if(media.length == 0) return '0';
+		else return media.length + (media[0].size == 's=b' ? '-big' : '-small');
 	}
 	function htmlDialogue(dialogue, witData, gallery){
 		var html = '';
@@ -94,16 +99,25 @@
 			var qna = dialogue[i];
 			html += template({
 				qName: qna.qName,
-				question: qna.qContent,
-				qMediaNum: qna.qMedia.length,
+				question: paragraphs(qna.qContent),
+				qMediaSize: mediaSize(qna.qMedia),
 				qMedia: htmlMedia(qna.qMedia, gallery+'q'),
-				photo: witData[qna.aName].photo,
+				photo: witData[qna.aName] ? witData[qna.aName].photo : '',
 				aName: qna.aName,
-				aOrgan: witData[qna.aName].organShort,
-				answer: qna.aContent,
-				aMediaNum: qna.aMedia.length,
+				aOrgan: witData[qna.aName] ? witData[qna.aName].organShort: '',
+				answer: paragraphs(qna.aContent),
+				aMediaSize:  mediaSize(qna.aMedia),
 				aMedia: htmlMedia(qna.aMedia, gallery+'a')
 			});
+		}
+		return html;
+	}
+	function htmlEtc(contents){
+		if(!contents.length) return '';
+		var html = '';
+		var template = _.template($hr('#etc-link-tempate').html());
+		for(var i = 0, len = contents.length; i < len; i++){
+			html += template({ etclink: contents[i] });
 		}
 		return html;
 	}
@@ -129,14 +143,18 @@
 	function htmlMedia(media, gallery){
 		if(!media.length) return '';
 		var html = '';
+		var template = _.template($hr('#medium-template').html());
 		for(var i = 0, len = media.length; i < len; i++){
 			var type;
 			if(media[i].url.match(/\.(png|jpg|svg|gif)/)) type = 'image';
 			else if(media[i].url.match(/\.(hwp|docx)/)) type = 'doc';
 			else type = 'video';
-			var template = _.template($('#page-journal').find('#'+type+'-template').html());
+			var tplMedium = _.template($('#page-journal').find('#'+type+'-template').html());
 			var title = media[i].url.replace(/.+\//g, '');
-			html += template({ url: media[i].url, gallery: gallery, title: title });
+			html += template({
+				medium: tplMedium({ url: media[i].url, gallery: gallery, title: title }),
+				caption: media[i].caption
+			});
 		}
 		return html;
 	}

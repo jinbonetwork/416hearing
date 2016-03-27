@@ -2,7 +2,7 @@
 class TxtToJson {
 	function __construct(){
 		$suspicions = array();
-		for($i = 1; $i <= 18; $i++){
+		for($i = 1; $i <= 14; $i++){
 			$txt = @file_get_contents('txts/suspicion/'.$i.'.txt');
 			if($txt) array_push($suspicions, $this->convert($txt));
 			else array_push($suspicions, array());
@@ -20,6 +20,7 @@ class TxtToJson {
 		$txt = preg_replace('/’/', '\'', $txt);
 		$txt = preg_replace('/　/', ' ', $txt);
 		$txt = preg_replace('/＃/', '#', $txt);
+		$txt = preg_replace('/–/', '-', $txt);
 		$txt = preg_replace('/\r/', "\n", $txt);
 		$txt = preg_replace('/\s+(\s)/', '$1', $txt); //연속된 두 개이상의 공백은 하나로
 		$txt = preg_replace('/(<[a-z]+.*>[^<>\n]*)\n([^<>\n]*<\/[a-z]+>)/', '$1$2', $txt); //태그로 감싸진 부분 내에 줄바꿈이 있으면 삭제.

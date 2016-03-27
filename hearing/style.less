@@ -1,1 +1,397 @@
-//max-width: 680px
+#page-hearing {
+	font-size: 16px; //기본 글자 크기. 모든 글자 크기를 이를 기준으로 em으로 설정한다.
+
+	// 텍스트 스타일에 관한 것들 ////
+	section.inner-page {
+		.article-title span {
+			font-family: @font-noto;
+			font-size: 1.125em; //18px
+			color: #7657c5;
+		}
+		.witness-photo {
+			span.name {
+				font-family: @font-noto;
+				color: #6d92c4;
+			}
+			span.organ {
+				font-family: @font-batang;
+				font-size: 0.875em; //14px;
+				color: #808080;
+			}
+		}
+		.media {
+			&.size-1-big span.icon i { font-size: 5em; }
+			span.icon i { font-size: 3em; }
+			span.title { font-family: @font-noto; }
+			.caption {
+				font-family: @font-noto;
+				font-size: 0.938em; //15px
+				color: #808080;
+			}
+			a:link, a:active, a:visited, a:hover { color: #6d92c4; }
+		}
+		& > .header {
+			font-family: @font-noto;
+			a:link, a:active, a:visited, a:hover {
+				color: #6d92c4;
+			}
+			.part-num {
+				font-size: 1.063em; //17px
+				color: #808080;
+			}
+			.part-main-title {
+				font-size: 2.25em; //36px
+				color: #ffffff;
+			}
+			.part-subtitle {
+				font-size: 1.5em; //24px
+				color: #0be4db;
+			}
+			.title-num-wrapper {
+				color: #1a1a1a;
+				span:first-child {
+					font-size: 1.313em; //21px
+					//line-height: 1.1em;
+				}
+				span:last-child {
+					font-family: @font-mont;
+					font-size: 1.625em; //26px
+				}
+				//line-height: 1.1em;
+			}
+			.title-wrapper span {
+				font-size: 1.458em; //23px
+				line-height: 1.1em;
+				color: #ffffff;
+			}
+			.background p {
+				font-family: @font-batang;
+				font-size: 1.063em; //17px
+				line-height: 1.8em;
+				color: #ffffff;
+			}
+		}//.header
+		& > .content {
+			.abstract .content p {
+				font-family: @font-batang;
+				line-height: 1.8em;
+				color: #808080;
+			}
+			.dialogue {
+				.question span.name {
+					font-family: @font-batang;
+					line-height: 1.4em;
+					color: #7657c5;
+				}
+				.question-wrapper p {
+					font-family: @font-noto;
+					line-height: 1.4em;
+					color: #808080;
+				}
+				.answer-wrapper p {
+					font-family:@font-batang;
+					font-size: 1.375em; //22px
+					line-height: 1.4em;
+				}
+				li:nth-child(odd) .answer-wrapper p {
+					color: #7657c5;
+				}
+				li:nth-child(even) .answer-wrapper p {
+					color: #ffffff;
+				}
+			}
+			.conclusion .conclusion-wrapper {
+				font-family: @font-batang;
+				line-height: 1.8em;
+				color: #808080;
+			}
+			.etc .links li {
+				font-family: @font-noto;
+				color: #dfe5ea;
+				a { color: #6d92c4; }
+			}
+		}// content
+	}//section.inner-page
+
+	// 텍스트 스파일 이외의 모든 것 ////
+	.inner-page { display: none; }
+	.open-inner-page { display: block; }
+	section.inner-page {
+		p { text-align: justify; }
+		b {
+			text-decoration: none;
+			box-shadow: 0 -0.4em 0 rgba(118, 87, 197, 0.4) inset
+		}
+		.media {
+			&.size-0 { display: none; }
+			&.size-1-big .medium > .wrapper span.icon {
+				margin-top: -2.5em;
+				margin-left: -2.5em;
+			}
+			.medi-with-cap { margin-bottom: 1em; }
+			.medium-wrapper {
+				position: relative;
+				padding-bottom: 50%;
+				margin-bottom: 0.5em;
+			}
+			.medium {
+				position: absolute;
+				top: 0; left: 0;
+				width: 100%; height: 100%;
+				& > .wrapper {
+					width: 100%; height: 100%;
+					overflow: hidden;
+					background-color: #808080;
+					img {
+						filter: grayscale(100%); -webkit-filter: grayscale(100%);
+						transition: 2s filter ease-in-out; -webkit-transition: 2s -webkit-filter ease-in-out;
+					}
+					a {
+						&:active, &:hover {
+							img { filter: grayscale(0); -webkit-filter: grayscale(0); }
+						}
+						display: block;
+						width: 100%;
+						height: 100%;
+						position: relative;
+						span.icon {
+							position: absolute;
+							z-index: 2;
+							top: 50%;
+							left: 50%;
+							margin-top: -1.5em;
+							margin-left: -1.5em;
+						}
+						span.title {
+							display: none;
+							position: absolute;
+							top: 0; left: 0;
+							z-index: 3;
+							width: 100%;
+							height: 100%;
+							padding: 10px;
+							overflow: hidden;
+							color: #ffffff;
+							opacity: 0.7;
+						}
+					}// a
+				}// .wrapper
+			}// .medium
+		}// .media
+		.witness-photo {
+			display: inline-block;
+			.photo-wrap {
+				width: 4em; height: 4em;
+				border-radius: 4em;
+				border: solid 2px #808080;
+				overflow: hidden;
+				img {
+					width: 125%; margin: 0 0 0 -0.3em; //이 값들은 실제 사진을 가지고 조절한다.
+					filter: grayscale(100%); -webkit-filter: grayscale(100%);
+				}
+			}
+			span {
+				display: block;
+				text-align: center;
+			}
+		}
+		.article-title:before {
+			content: ''; display: block;
+			width: 5.875em; height: 0.3em;
+			margin-bottom: 0.3em;
+			background-color: #0be4db;
+		}
+		& > .header {
+			.se-background { background-color: #1a1a1a; }
+			.se-title { color: #ffffff; }
+			max-width: 42.5em; //680px
+			margin: 8% 8% 3em 8%;
+			.part-title {
+				padding-bottom: 1em;
+				border-bottom: solid 2px #ffffff;
+			}
+			.title {
+				margin-top: 1em;
+				margin-bottom: 1em;
+				.title-num-wrapper {
+					display: inline-block;
+					margin-right: 0.5em;
+					background-color: #0be4db;
+				}
+			}
+			.background {
+				margin-bottom: 1em;
+			}
+			.witnesses {
+				& > .header { margin-bottom: 1em; }
+				li {
+					margin-right: 1em;
+					margin-bottom: 1em;
+				}
+			}
+			.
+		}// header
+		& > .content {
+			.se-background { background-color: #ffffff; }
+			.se-title { color: #1a1a1a; }
+			max-width: 42.5em; //680px
+			margin: 0 8% 3em 8%;
+			.abstract {
+				& > .header { margin-bottom: 1em; }
+				& > .content { margin-bottom: 1em; }
+			}
+			.dialogue {
+				margin-bottom: 1em;
+				& > .header { margin-bottom: 1em; }
+				.question {
+					margin-bottom: 1em;
+					.name {
+						float: left;
+						padding-right: 0.5em;
+					}
+				}
+				.answer {
+					.witness-photo { float: left; }
+					.speech-bubble {
+						margin-bottom: 1em;
+						&:after { content: ''; display: block; clear: both; }
+						margin-left: 5.5em;
+						position: relative;
+						@nipple-size: 16px;
+						@border-width: 1px;
+						.nipple:first-child {
+							margin-top: 2em;
+							position: absolute;
+							top: 0; left: @border-width - @nipple-size;
+							border-top: solid @nipple-size/2 #7657c5;
+							border-right: solid @nipple-size/2 #7657c5;
+							border-bottom: solid @nipple-size/2 transparent;
+							border-left: solid @nipple-size/2 transparent;
+						}
+						.nipple:nth-child(2) {
+							margin-top: 2em;
+							position: absolute;
+							top: @border-width; left: 3*@border-width - @nipple-size;
+							border-top: solid @nipple-size/2 #ffffff;
+							border-right: solid @nipple-size/2 #ffffff;
+							border-bottom: solid @nipple-size/2 transparent;
+							border-left: solid @nipple-size/2 transparent;
+						}
+						.answer-wrapper {
+							border: solid @border-width #7657c5;
+							padding: 1.5em;
+						}
+					}
+				}
+				li:nth-child(even) {
+					@bgcolor: #7657c5;
+					.nipple:nth-child(2) { border-top-color: @bgcolor !important; border-right-color: @bgcolor !important; }
+					.answer-wrapper { background-color: @bgcolor; }
+				}
+			}// dialogue
+			.conclusion {
+				& > .header { margin-bottom: 1em; }
+				.conclusion-wrapper { margin-bottom: 1em; }
+			}
+			.etc {
+				& > .header { margin-bottom: 1em; }
+				.links i {
+					float: left;
+					font-size: 0.625em; //10px;
+					color: #b3b3b3;
+					line-height: 2.5em;
+				}
+				.links li {
+					margin-left: 1em;
+					border-bottom: solid 1px #dfe5ea;
+					padding-bottom: 0.5em;
+				}
+			}
+		}
+	}// section
+}
+
+// 미디어 배치 ////
+@media screen and (min-width: 560px) {
+	#page-hearing .media.size-2-small .medi-with-cap {
+		width: 50%;
+		float: left;
+		&:nth-of-type(1) { .medium, .caption { padding-right: 7px; } }
+		&:nth-of-type(2) { .medium, .caption { padding-left: 7px; } }
+	}
+}
+
+// 패딩, 마진 ////
+@media screen and (min-width: 560px) {
+	#page-hearing section {
+		.media .medi-with-cap {
+			margin-bottom: 2em;
+		}
+		& > .header, & > .content {
+			margin-left: 70px; margin-right: 70px;
+		}
+		& > .header {
+			margin-bottom: 6em;
+		}
+		& > .header .title {
+			margin-bottom: 2em;
+		}
+		& > .header .background {
+			margin-bottom: 3em;
+		}
+		& > .content .abstract {
+			margin-bottom: 3em;
+		}
+		& > .content .abstract > .header {
+			margin-bottom: 2em;
+		}
+		& > .content .dialogue > .header {
+			margin-bottom: 2em;
+		}
+		& > .content .dialogue {
+			margin-bottom: 3em;
+		}
+		& > .content .dialogue  li {
+			margin-bottom: 2em;
+		}
+		& > .content .conclusion {
+			margin-bottom: 3em;
+		}
+		& > .content .conclusion > .header {
+			margin-bottom: 2em;
+		}
+		& > .content .etc > .header {
+			margin-bottom: 2em;
+		}
+	}
+}
+
+// '위혹 + 숫자'를 두 줄로 ////
+@media screen and (min-width: 768px) {
+	#page-hearing {
+		section.inner-page {
+			& > .header {
+				.title {
+					position: relative;
+				}
+				.title-num-wrapper {
+					position: absolute; top: 0; left: 0;
+					height: 100%; width: 4.5em;
+					span { line-height: 1.1em; }
+					& > .wrapper {
+						position: relative;
+						width: 100%; height: 100%;
+						span:last-child {
+							position: absolute; bottom: 0; right: 0;
+						}
+					}
+				}
+				.title-wrapper {
+					display: block;
+					margin-left: 5.5em;
+					span { line-height: 1.1em; }
+				}
+			}
+		}
+	}
+}

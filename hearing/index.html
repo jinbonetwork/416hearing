@@ -1,4 +1,28 @@
-<div class="outline inner-page inner-page-open">
+<div class="outline inner-page open-inner-page">
+	<style>
+		#page-hearing .outline ul {
+			font-size: 20px; margin: 150px;
+		}
+		#page-hearing .outline li {
+			cursor: pointer;
+		}
+	</style>
+	<ul>
+		<li data-num="1">의혹 1</li>
+		<li data-num="2">의혹 2</li>
+		<li data-num="3">의혹 3</li>
+		<li data-num="4">의혹 4</li>
+		<li data-num="5">의혹 5</li>
+		<li data-num="6">의혹 6</li>
+		<li data-num="7">의혹 7</li>
+		<li data-num="8">의혹 8</li>
+		<li data-num="9">의혹 9</li>
+		<li data-num="10">의혹 10</li>
+		<li data-num="11">의혹 11</li>
+		<li data-num="12">의혹 12</li>
+		<li data-num="13">의혹 13</li>
+		<li data-num="14">의혹 14</li>
+	</ul>
 </div>
 <div class="sections">
 </div>
@@ -10,13 +34,11 @@
 	</div>
 </script>
 
-<script type="text/template" id="item-template">
-	<li><%= item %></li>
-</script>
-
 <script type="text/template" id="section-template">
 	<section id="suspicion-<%= section %>" class="inner-page">
-		<div class="header">
+		<div class="header se-section">
+			<div class="se-background"></div>
+			<div class="se-title"></div>
 			<div class="part-title">
 				<div class="part-num">part <%= partNum %></div>
 				<div class="part-main-title"><%= partMainTitle %></div>
@@ -24,58 +46,65 @@
 			</div>
 			<div class="title">
 				<span class="title-num-wrapper">
-					<span>의혹</span>
-					<span class="title-num"><%= titleNum %></span>
+					<div class="wrapper">
+						<span>의혹</span>
+						<span class="title-num"><%= titleNum %></span>
+					</div>
 				</span>
-				<span class="title-wrapper"><%= title %></span>
+				<span class="title-wrapper"><span><%= title %></span></span>
 			</div>
 			<div class="background">
-				<div class="media num-<%= bgMediaNum %>">
-					<div class="r-wrap"><div class="r-wrap-in"><%= bgMedia %></div></div>
-				</div>
+				<div class="media size-<%= bgMediaSize %>"><%= bgMedia %></div>
 				<p><%= background %></p>
 			</div>
 			<div class="witnesses">
-				<div class="header">관련증인</div>
+				<div class="header article-title"><span>관련증인</span></div>
 				<ul class="list"><%= witness %></ul>
 			</div>
 		</div>
-		<div class="content">
+		<div class="content se-section">
+			<div class="se-background"></div>
+			<div class="se-title"></div>
 			<div class="abstract">
-				<div class="header">청문회 주요내용</div>
+				<div class="header article-title"><span>청문회 주요내용</span></div>
 				<div class="content"><%= abstract %></div>
-				<div class="media num-<%= abMediaNum %>">
-					<div class="r-wrap"><div class="r-wrap-in"><%= abMedia %></div></div>
-				</div>
+				<div class="media size-<%= abMediaSize %>"><%= abMedia %></div>
 			</div>
 			<div class="dialogue">
-				<div class="header">그들의 한마디</div>
+				<div class="header article-title"><span>그들의 한마디</span></div>
 				<ul class="list"><%= dialogue %></ul>
 			</div>
 			<div class="conclusion">
+				<div class="header article-title"><span>청문회를 마치고</span></div>
 				<div class="conclusion-wrapper"><%= conclusion %></div>
-				<div class="media num-<%= concMediaNum %>">
-					<div class="r-wrap"><div class="r-wrap-in"><%= concMedia %></div></div>
-				</div>
+				<div class="media size-<%= concMediaSize %>"><%= concMedia %></div>
+
 			</div>
 			<div class="etc">
-				<div class="media num-<%= etcMediaNum %>">
-					<div class="r-wrap"><div class="r-wrap-in"><%= etcMedia %></div></div>
-				</div>
+				<div class="header article-title"><span>함께 보기</span></div>
+				<div class="media size-<%= etcMediaSize %>"><%= etcMedia %></div>
 				<ul class="links"><%= etcLinks %></ul>
 			</div>
 		</div>
 	</section>
 </script>
 
+<script type="text/template" id="etc-link-tempate">
+	<i class="fa fa-circle"></i><li><%= etclink %></span></li>
+</script>
+
 <script type="text/template" id="medium-template">
-	<%= medium %>
-	<div class="caption"><%= caption %></div>
+	<div class="medi-with-cap">
+		<div class="medium-wrapper"><%= medium %></div>
+		<div class="caption"><%= caption %></div>
+	</div>
 </script>
 
 <script type="text/template" id="witnesses-template">
-	<li>
-		<img src="<%= photo %>">
+	<li class="witness-photo">
+		<div class="photo-wrap">
+			<img src="<%= photo %>">
+		</div>
 		<span class="name"><%= name %></span>
 		<span class="organ"><%= organ %></span>
 	</li>
@@ -84,25 +113,26 @@
 <script type="text/template" id="dialogue-template">
 	<li>
 		<div class="question">
-			<sapn class="name"><%= qName %></span>
+			<span class="name"><%= qName %>:</span>
 			<div class="question-wrapper"><%= question %></div>
-			<div class="media num-<%= qMediaNum %>">
-				<div class="r-wrap"><div class="r-wrap-in"><%= qMedia %></div></div>
-			</div>
+			<div class="media size-<%= qMediaSize %>"><%= qMedia %></div>
 		</div>
 		<div class="answer">
-			<div class="photo">
-				<img src="<%= photo %>">
+			<div class="witness-photo">
+				<div class="photo-wrap">
+					<img src="<%= photo %>">
+				</div>
 				<span class="name"><%= aName %></span>
 				<span class="organ"><%= aOrgan %></span>
 			</div>
 			<div class="speech-bubble">
 				<div class="nipple"></div>
-				<div class="answer-wrapper"><%= answer %></div>
+				<div class="nipple se-bg-bd-t-r"></div>
+				<div class="answer-wrapper">
+					<%= answer %>
+				</div>
 			</div>
-			<div class="media num-<%= aMediaNum %>">
-				<div class="r-wrap"><div class="r-wrap-in"><%= aMedia %></div></div>
-			</div>
+			<div class="media size-<%= aMediaSize %>"><%= aMedia %></div>
 		</div>
 	</li>
 </script>
