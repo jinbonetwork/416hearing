@@ -1,5 +1,4 @@
 	function makeWitness(name,json) {
-		console.log(name);
 		var witnessesTpl = _.template($('#witnesses-summary-template').html());
 		var witnessesProfileTpl = _.template($('#witnesses-summary-profile-template').html());
 		var witnessesSusTpl = _.template($('#witnesses-summary-suspicions-template').html());
@@ -101,6 +100,20 @@
 						'width':  w + 'px',
 						'height': h + 'px'
 					});
+					var n_h = 0;
+					Obj.find('.witness-summary-box').children().each(function() {
+						n_h += jQuery(this).outerHeight();
+					});
+					if(n_h < h) {
+						var t = (pos.top - 10);
+						if( t > ( jQuery(window).height() - n_h ) )
+							t = ( jQuery(window).height() - n_h );
+						Obj.find('.witness-summary').css({
+							'top': t + 'px',
+							'height': n_h + 'px'
+						});
+						Obj.find('.witness-summary-box').addClass('no-scroll');
+					}
 					Obj.find('.witness-container-background').hide();
 				} else {
 					var w = Math.min( 550, ( jQuery(window).width() - 20 ) );
