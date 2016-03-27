@@ -129,9 +129,9 @@
 </script>
 
 <script type="text/template" id="witnesses-template">
-	<li class="witness-photo">
+	<li class="witness-photo" data-name="<%= name %>">
 		<div class="photo-wrap">
-			<img src="<%= photo %>">
+			<img src="<%= photo %>" data-name="<%= name %>">
 		</div>
 		<span class="name"><%= name %></span>
 		<span class="organ"><%= organ %></span>
@@ -146,9 +146,9 @@
 			<div class="media size-<%= qMediaSize %>"><%= qMedia %></div>
 		</div>
 		<div class="answer">
-			<div class="witness-photo">
+			<div class="witness-photo" data-name="<%= name %>">
 				<div class="photo-wrap">
-					<img src="<%= photo %>">
+					<img src="<%= photo %>" data-name="<%= name %>">
 				</div>
 				<span class="name"><%= aName %></span>
 				<span class="organ"><%= aOrgan %></span>

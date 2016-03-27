@@ -51,6 +51,10 @@
 					var pastNum = $(this).parents('.navigation').find('.selected').find('.num').text();
 					closeAndOpenPage(pastNum, $(this).find('.num').text());
 				});
+				$hr('.witness-photo').click(function(e) {
+					var name = jQuery(this).attr('data-name');
+					getWitness(name,jQuery(this));
+				});
 			}
 		});
 	});

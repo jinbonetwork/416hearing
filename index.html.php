@@ -100,8 +100,8 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<script src="js/script.js"></script>
 	<script src="journal/script.js"></script>
 	<script src="teaser/script.js"></script>
-	<script src="hearing/script.js"></script>
 	<script src="hearing/witnesses.js"></script>
+	<script src="hearing/script.js"></script>
 	<script src="resources/scroll-effect/script.js"></script>
 </body>
 

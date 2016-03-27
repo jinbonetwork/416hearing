@@ -1,4 +1,3 @@
-(function($){
 	function makeWitness(name,json) {
 		var witnessesTpl = _.template($('#witnesses-summary-template').html());
 		var witnessesProfileTpl = _.template($('#witnesses-summary-profile-template').html());
@@ -125,12 +124,3 @@
 			}
 		});
 	}
-
-	jQuery(document).ready(function(){
-		jQuery('.witness-photo').click(function(e) {
-			alert('click');
-			var name = jQuery(this).attr('data-name');
-			getWitness(name,jQuery(this));
-		});
-	});
-})(jQuery);
