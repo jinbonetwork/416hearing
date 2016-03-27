@@ -34,8 +34,11 @@
 				//openPage(12);
 
 				$hr('.outline li').click(function(){
-					var num = $(this).attr('data-num');
-					openPage(num);
+					openPage($(this).attr('data-num'));
+				});
+				$hr('.go-back-outline').click(function(){
+					var num = $(this).parents('section').attr('id').replace(/suspicion\-/, '');
+					closePage(num);
 				});
 			}
 		});
