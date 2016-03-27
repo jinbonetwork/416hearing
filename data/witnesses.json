@@ -12,7 +12,7 @@
         "etc": null
     },
     "박상욱": {
-        "organ": "해경",
+        "organ": "해양경찰",
         "position": [
             "목포해양경찰서 123정 승조원 (경장)"
         ],
@@ -138,7 +138,7 @@
         "position": [
             "보건복지부 노인정책관"
         ],
-        "photo": "",
+        "photo": "./data/1st_hearing/images/bbj.png",
         "descript": " 보건복지부 노인정책관\n참사 당시 사고수습대책본부 발족, 긴급복지지원에 관해 진술\n",
         "suspitions": [
             13
@@ -146,7 +146,7 @@
         "etc": null
     },
     "이재두": {
-        "organ": "해경",
+        "organ": "해양경찰",
         "position": [
             "목포해양경찰서 3009함장 (경정)"
         ],
@@ -160,7 +160,7 @@
         "position": [
             "보건복지부 차관"
         ],
-        "photo": "",
+        "photo": "./data/1st_hearing/images/lyc.png",
         "descript": " 보건복지부 차관\n유가족 심리치유에 대한 지원 미비했음\n민간잠수사에 대한 의료지원이 부족했음\n",
         "suspitions": [
             13
@@ -172,7 +172,7 @@
         "position": [
             "해군작전사령부해난구조대장"
         ],
-        "photo": "",
+        "photo": "./data/1st_hearing/images/jjh.png",
         "descript": " 해군작전사령부해난구조대장\n참사 당시 현장에 출동한 최고위직책\n4월 17일에 수중수색 작업에 구조인력 투입\n참사 이후 민간잠수사에게 의료 지원을 제공하지 않음 \n",
         "suspitions": [
             13
@@ -180,7 +180,7 @@
         "etc": null
     },
     "고영주": {
-        "organ": "해경",
+        "organ": "해양경찰",
         "position": [
             "제주지방해양경찰청 항공단 B-513호 기장"
         ],
@@ -192,7 +192,7 @@
         "etc": null
     },
     "박종철": {
-        "organ": "해경",
+        "organ": "해양경찰",
         "position": [
             "해양경찰청 경비안전국 수색구조과장"
         ],
@@ -201,10 +201,26 @@
         "suspitions": [],
         "etc": null
     },
-    "참고인 2": {
-        "organ": "",
+    "참고인 3": {
+        "organ": "희생자 가족",
         "position": [],
-        "photo": "",
+        "photo": "./data/1st_hearing/images/testifier.png",
+        "descript": "",
+        "suspitions": [],
+        "etc": null
+    },
+    "참고인 4": {
+        "organ": "희생자 가족",
+        "position": [],
+        "photo": "./data/1st_hearing/images/testifier.png",
+        "descript": "",
+        "suspitions": [],
+        "etc": null
+    },
+    "참고인 2": {
+        "organ": "민간 잠수사",
+        "position": [],
+        "photo": "./data/1st_hearing/images/testifier.png",
         "descript": " 참사 수습에 참여했던 민간 잠수사\n",
         "suspitions": [],
         "etc": "",
@@ -237,7 +253,7 @@
         ]
     },
     "최상환": {
-        "organ": "해경",
+        "organ": "해양경찰",
         "position": [
             "해양경찰청 차장"
         ],
@@ -247,7 +263,7 @@
         "etc": null
     },
     "조형곤": {
-        "organ": "해경",
+        "organ": "해양경찰",
         "position": [
             "목포해양경찰서 경비구난과 상황담당관 (경감)"
         ],
@@ -273,7 +289,7 @@
         "etc": null
     },
     "김종인": {
-        "organ": "해경",
+        "organ": "해양경찰",
         "position": [
             "목포해양경찰서 123정 부장 (경위)"
         ],
@@ -293,7 +309,7 @@
         "etc": null
     },
     "김석균": {
-        "organ": "해경",
+        "organ": "해양경찰",
         "position": [
             "해양경찰청장 (치안총감)",
             "중앙구조본부장"
@@ -384,7 +400,7 @@
         "etc": null
     },
     "이춘재": {
-        "organ": "해경",
+        "organ": "해양경찰",
         "position": [
             "해양경찰청 경비안전국장 (치안감)"
         ],
@@ -413,11 +429,11 @@
         "etc": null
     },
     "김재전": {
-        "organ": "해경",
+        "organ": "해양경찰",
         "position": [
             "서해지방해양경찰청 항공단 B-512호 기장"
         ],
-        "photo": "",
+        "photo": "./data/1st_hearing/images/kjj.png",
         "descript": " 서해지방해양경찰청 항공단 B-512호 기장\n참사 당시 9시 45분 현장에 도착\n승객을 바구니에 태워서 구조\n선내 진입 및 퇴선 방송을 하지 않음\n",
         "suspitions": [
             2
@@ -425,7 +441,7 @@
         "etc": null
     },
     "이형래": {
-        "organ": "해경",
+        "organ": "해양경찰",
         "position": [
             "목포해양경찰서 123정 승조원 (경사)"
         ],
@@ -447,7 +463,7 @@
         "etc": null
     },
     "김문홍": {
-        "organ": "해경",
+        "organ": "해양경찰",
         "position": [
             "목포해양경찰서장 (총경)",
             "지역구조 본부장"
@@ -534,7 +550,7 @@
         ]
     },
     "김경일": {
-        "organ": "해경",
+        "organ": "해양경찰",
         "position": [
             "목포해양경찰서 123정 정장 (경위)"
         ],
@@ -672,7 +688,7 @@
         ]
     },
     "유연식": {
-        "organ": "해경",
+        "organ": "해양경찰",
         "position": [
             "서해지방해양경찰청 상황담당관 (총경)"
         ],
@@ -685,7 +701,7 @@
         "etc": "감봉 2개월"
     },
     "김민철": {
-        "organ": "해경",
+        "organ": "해양경찰",
         "position": [
             "서해지방해양경찰청 상황실 C팀장 (경감)"
         ],
@@ -695,9 +711,9 @@
         "etc": null
     },
     "참고인 1": {
-        "organ": "",
+        "organ": "민간 잠수사",
         "position": [],
-        "photo": "",
+        "photo": "./data/1st_hearing/images/testifier.png",
         "descript": " 참사 수습에 참여했던 민간 잠수사\n",
         "suspitions": [],
         "etc": "",
@@ -743,7 +759,7 @@
         "etc": null
     },
     "김수현": {
-        "organ": "해경",
+        "organ": "해양경찰",
         "position": [
             "서해지방해양경찰청장 (치안감)",
             "광역구조본부장"
