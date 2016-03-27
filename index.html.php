@@ -39,6 +39,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 		'journal/style.less',
 		'teaser/style.less',
 		'hearing/style.less',
+		'hearing/witnesses.less',
 		'resources/scroll-effect/style.less'
 	));
 	?>
@@ -100,6 +101,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<script src="journal/script.js"></script>
 	<script src="teaser/script.js"></script>
 	<script src="hearing/script.js"></script>
+	<script src="hearing/witnesses.js"></script>
 	<script src="resources/scroll-effect/script.js"></script>
 </body>
 

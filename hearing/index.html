@@ -164,3 +164,55 @@
 		</div>
 	</li>
 </script>
+
+<script type="text/template" id="witnesses-summary-template">
+	<div class="witness-summary">
+		<div class="witness-summary-inner">
+			<h4 class="witness-title">증인</h4>
+			<div class="witness-summary-box">
+				<%= profile %>
+				<%= suspicions %>
+				<%= timeline %>
+			</div>
+			<i class="fa fa-close"></i>
+		</div>
+	</div>
+</script>
+
+<script type="text/template" id="witnesses-summary-profile-template">
+	<div class="witness-profile">
+		<img class="witness-profile-photo <%= photoExistClass %>" src="<%= photo %>" />
+		<h4 class="witness-name"><%= name %></h4>
+		<div class="witness-positions"><%= positions %></div>
+		<p class="witness-description"><%= description %></p>
+	</div>
+</script>
+
+<script type="text/template" id="witnesses-summary-suspicions-template">
+	<dl class="witness-suspicions">
+		<dt class="witness-suspicions-title">관련의혹</dt>
+		<%= suspicions %>
+	</dl>
+</script>
+
+<script type="text/template" id="witnesses-summary-suspicion-item-template">
+		<dd class="witness-suspicion-data" data-id="<%= index %>">
+			<label><%= index %></label>
+			<span class="witness-suspicion-title" data-id="<%= index %>"><%= subject %></span>
+		</dd>
+</script>
+
+<script type="text/template" id="witnesses-summary-timeline-template">
+	<dl class="witness-timeline">
+		<dt class="witness-timeline-title">참사 전후 증인의 행적</dt>
+		<%= timeline %>
+	</dl>
+</script>
+
+<script type="text/template" id="witnesses-summary-timeline-item-template">
+		<dd class="witness-timeline-data">
+			<i class="fa fa-circle"></i>
+			<label class="witness-timeline-time"><%= time %></label>
+			<div class="witness-timeline-item"><%= content %></div>
+		</dd>
+</script>
