@@ -88,7 +88,7 @@
 				<div class="media size-<%= etcMediaSize %>"><%= etcMedia %></div>
 				<ul class="links"><%= etcLinks %></ul>
 			</div>
-			<div class="navigation" style="display: none;">
+			<div class="navigation">
 				<%= navigation %>
 			</div>
 		</div> <!--content -->
@@ -96,15 +96,14 @@
 </script>
 
 <script type="text/template" id="navigation-template">
-	<div class="part">
+	<div class="part folded">
 		<div class="header">
 			<div class="title">
 				<span class="main"><%= title %></span>
 				<span class="sub">- <%= subtitle %></span>
 			</div>
 			<div class="arrow">
-				<i class="arrow-down fa fa-chevron-down"></i>
-				<i class="arrow-up arrow-off fa fa-chevron-up"></i>
+				<i class="fa fa-chevron-up"></i>
 			</div>
 		</div>
 		<ul><%= supicions %></ul>
@@ -114,7 +113,7 @@
 <script type="text/template" id="nav-suspicion-template">
 	<li>
 		<span class="num"><%= num %></span>
-		<div  class="item"><span><%= item %></span></div>
+		<div class="item"><span><%= item %></span></div>
 	</li>
 </script>
 

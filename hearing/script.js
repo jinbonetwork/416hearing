@@ -29,16 +29,27 @@
 				$(window).resize(function(){ adjustImages(); });
 				$hr('.medium img').load(function(){ adjustOneImage($(this)); });
 
-				$hr('.se-section').addClass('se-diabled');
 				// 의혹 페이지로 이동 ////
-				//openPage(12);
-
+				$hr('.se-section').addClass('se-diabled');
 				$hr('.outline li').click(function(){
 					openPage($(this).attr('data-num'));
 				});
 				$hr('.go-back-outline').click(function(){
 					var num = $(this).parents('section').attr('id').replace(/suspicion\-/, '');
 					closePage(num);
+				});
+				// 네비게이션 동작 ////
+				$hr('.navigation .header').click(function(){
+					if($(this).parents('.part').hasClass('folded')){
+						$(this).parents('.navigation').find('.part').addClass('folded');
+						$(this).parents('.part').removeClass('folded');
+					} else {
+						$(this).parents('.part').addClass('folded');
+					}
+				});
+				$hr('.navigation li').click(function(){
+					var pastNum = $(this).parents('.navigation').find('.selected').find('.num').text();
+					closeAndOpenPage(pastNum, $(this).find('.num').text());
 				});
 			}
 		});
@@ -47,12 +58,40 @@
 		$hr('.outline').removeClass('open-inner-page');
 		$hr('#suspicion-'+pageNum).addClass('open-inner-page');
 		$hr('#suspicion-'+pageNum).find('.se-section').removeClass('se-diabled');
+		unfoldNavi(pageNum);
 		adjustImages();
 	}
 	function closePage(pageNum){
 		$hr('.outline').addClass('open-inner-page');
 		$hr('#suspicion-'+pageNum).removeClass('open-inner-page');
 		$hr('#suspicion-'+pageNum).find('.se-section').addClass('se-diabled');
+		foldNavi(pageNum);
+	}
+	function closeAndOpenPage(pastNum, curNum){
+		$hr('#suspicion-'+pastNum).removeClass('open-inner-page');
+		$hr('#suspicion-'+pastNum).find('.se-section').addClass('se-diabled');
+		foldNavi(pastNum);
+		$hr('#suspicion-'+curNum).addClass('open-inner-page');
+		$hr('#suspicion-'+curNum).find('.se-section').removeClass('se-diabled');
+		unfoldNavi(curNum);
+		adjustImages();
+		$hr().animate({ scrollTop: 0 }, 500);
+
+	}
+	function unfoldNavi(pageNum){
+		var $navi = $hr('#suspicion-'+pageNum).find('.navigation');
+		$navi.find('li').each(function(){
+			if($(this).find('.num').text() == pageNum){
+				$(this).addClass('selected');
+				$(this).parents('.part').removeClass('folded');
+				return false;
+			}
+		});
+	}
+	function foldNavi(pageNum){
+		var $navi = $hr('#suspicion-'+pageNum).find('.navigation');
+		$navi.find('.selected').removeClass('selected');
+		$navi.find('.part').addClass('folded');
 	}
 	function adjustImages(){
 		$hr('.medium img').each(function(){
@@ -124,7 +163,15 @@
 	}
 	function mediaSize(media){
 		if(media.length == 0) return '0';
-		else return media.length + (media[0].size == 's=b' ? '-big' : '-small');
+		/*
+		else {
+			var size = '';
+			for(var i = 0, len = media.length; i < len; i++){
+				size += (media[i].size == 's=b' ? '' : '-small')
+			}
+			return media.length + (media[0].size == 's=b' ? '-big' : '-small');
+		}
+		*/
 	}
 	function htmlDialogue(dialogue, witData, gallery){
 		var html = '';

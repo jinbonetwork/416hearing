@@ -233,7 +233,7 @@
 		& > .header {
 			.se-background { background-color: #1a1a1a; }
 			.se-title { color: #ffffff; }
-			max-width: 42.5em; //680px
+			position: relative;
 			margin: 8% 8% 3em 8%;
 			.go-back-outline {
 				display: inline-block;
@@ -242,9 +242,14 @@
 				margin-bottom: 1em;
 				cursor: pointer;
 			}
+			.part-title, .title, .background, .witnesses {
+				max-width: 42.5em;
+				margin-left: auto; margin-right: auto;
+			}
 			.part-title {
 				padding-bottom: 1em;
 				border-bottom: solid 2px #ffffff;
+				margin: 0 auto;
 			}
 			.title {
 				margin-top: 1em;
@@ -268,10 +273,14 @@
 			.
 		}// header
 		& > .content {
+			@max-width:  32.5em;
 			.se-background { background-color: #ffffff; }
 			.se-title { color: #1a1a1a; }
-			max-width: 32.5em; //520px
+			position: relative;
 			margin: 0 8% 3em 8%;
+			.abstract, .dialogue, .conclusion, .etc {
+				max-width: 32.5em;
+			}
 			.abstract {
 				& > .header { margin-bottom: 1em; }
 				& > .content { margin-bottom: 1em; }
@@ -345,30 +354,48 @@
 			}
 			.navigation {
 				width: 19em;
+				margin-top: 3em;
 				.part {
 					@bgcolor: #dfe5ea;
-					&.unfolded { background-color: @bgcolor; }
+					background-color: @bgcolor;
+					&:last-child {
+						& > .header {
+							border-bottom: solid 2px @bgcolor;
+						}
+					}
+					&.folded {
+						background-color: transparent;
+						.arrow i {
+							transform: rotateX(180deg); -webkit-transform: rotateX(180deg);
+							//transition: transform 1s; -webkit-transition: -webkit-transform 1s;
+						};
+						ul {
+							height: 0;
+							//transition: height 1s; -webkit-transition: height 1s;
+						};
+					}
 					& > .header {
 						@height: 4.5em;
 						overflow: hidden;
 						position: relative;
 						height: @height;
 						padding: 1em 3em 0 0.5em;
-						border: solid 2px @bgcolor;
-						border-left: 0; border-right: 0;
+						border-top: solid 2px @bgcolor;
+						cursor: pointer;
 						.sub {
 							display: block;
 						}
 						.arrow {
 							padding: 0 1em 0 1em;
-							i.arrow-off { display: none; }
 							position: absolute; top: 0; right: 0;
 							line-height: @height;
 						}
 					}
-					ul { padding: 0 0.5em 0.5em 0; }
+					ul { overflow: hidden; }
 					li {
 						&:after { content: ''; display: block; clear: both; }
+						&:last-child { margin-bottom: 0.5em; }
+						&.selected .item { background-color: #7657c5; }
 						span.num {
 							display: inline-block;
 							float: left;
@@ -381,7 +408,6 @@
 								line-height: 1.5em;
 							}
 						}
-
 					}
 				}
 			}// navigation
@@ -401,7 +427,7 @@
 
 // 패딩, 마진 ////
 @media screen and (min-width: 560px) {
-	#page-hearing section {
+	#page-hearing section.inner-page {
 		.media .medi-with-cap {
 			margin-bottom: 2em;
 		}
@@ -443,33 +469,54 @@
 		}
 	}
 }
+@media screen and (min-width: 1024px) {
+	#page-hearing section.inner-page {
+		& > .header, & > .content {
+			margin-left: 80px; margin-right: 70px;
+			.navigation {
+				margin-top: 0;
+			}
+		}
+	}
+}
 
 // '위혹 + 숫자'를 두 줄로 ////
 @media screen and (min-width: 768px) {
-	#page-hearing {
-		section.inner-page {
-			& > .header {
-				.title {
+	#page-hearing section.inner-page {
+		& > .header {
+			.title {
+				position: relative;
+			}
+			.title-num-wrapper {
+				position: absolute; top: 0; left: 0;
+				height: 100%; width: 4.5em;
+				span { line-height: 1.1em; }
+				& > .wrapper {
 					position: relative;
-				}
-				.title-num-wrapper {
-					position: absolute; top: 0; left: 0;
-					height: 100%; width: 4.5em;
-					span { line-height: 1.1em; }
-					& > .wrapper {
-						position: relative;
-						width: 100%; height: 100%;
-						span:last-child {
-							position: absolute; bottom: 0; right: 0;
-						}
+					width: 100%; height: 100%;
+					span:last-child {
+						position: absolute; bottom: 0; right: 0;
 					}
 				}
-				.title-wrapper {
-					display: block;
-					margin-left: 5.5em;
-					span { line-height: 1.1em; }
-				}
+			}
+			.title-wrapper {
+				display: block;
+				margin-left: 5.5em;
+				span { line-height: 1.1em; }
 			}
 		}
+	}
+}
+
+// 네비게이션과 '의혹전체보기' 버튼을 오늘쪽으로 ////
+@media screen and (min-width: 1024px) {
+	#page-hearing section.inner-page > .header .go-back-outline {
+		position: absolute;
+		top: 0; right: 0;
+	}
+	#page-hearing section.inner-page > .content .navigation {
+		position: absolute;
+		top: 0; right: 0;
+		margin-top: 0;
 	}
 }
