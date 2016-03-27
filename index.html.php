@@ -70,8 +70,8 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 <body>
 	<!-- navigation -->
 	<nav class="pages-nav">
-		<div class="pages-nav__item"><a class="link link--page" href="#page-hearing">1차 청문회</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-teaser">2차 청문회</a></div>
+		<div class="pages-nav__item"><a class="link link--page" href="#page-hearing">1차 청문회</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-journal">416가족의 발자취</a></div>
 	</nav>
 	<!-- /navigation-->
@@ -81,13 +81,13 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	</section>
 	<!-- pages stack -->
 	<div class="pages-stack">
-		<div class="page se-container" id="page-hearing">
-			<!--div style="padding: 20%; font-size: 100px; text-align: center;">준비중</div-->
-			<?php echo file_get_contents(dirname(__FILE__).'/hearing/index.html'); ?>
-		</div>
 		<div class="page se-container<?php print ( ( defined("__EDIT_MODE__") && __EDIT_MODE__ == true ) ? " is-admin" : "" ); ?>" id="page-teaser">
 			<?php $live = file_get_contents(dirname(__FILE__)."/data/live/live.html");
 			echo str_replace("[%=live%]",$live,file_get_contents(dirname(__FILE__).'/teaser/index.html')); ?>
+		</div>
+		<div class="page se-container" id="page-hearing">
+			<!--div style="padding: 20%; font-size: 100px; text-align: center;">준비중</div-->
+			<?php echo file_get_contents(dirname(__FILE__).'/hearing/index.html'); ?>
 		</div>
 		<div class="page se-container" id="page-journal">
 			<?php echo file_get_contents(dirname(__FILE__).'/journal/index.html'); ?>
