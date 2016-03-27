@@ -74,6 +74,7 @@
 		unfoldNavi(pageNum);
 		adjustImages();
 		if($hr().scrollTop() > 0) $hr().animate({ scrollTop: 0 }, 500);
+		$hr().trigger('refresh');
 	}
 	function closePage(pageNum){
 		$hr('.outline').addClass('open-inner-page');
@@ -81,6 +82,7 @@
 		$hr('#suspicion-'+pageNum).find('.se-section').addClass('se-diabled');
 		foldNavi(pageNum);
 		if($hr().scrollTop() > 0) $hr().animate({ scrollTop: 0 }, 500);
+		$hr().trigger('refresh');
 	}
 	function closeAndOpenPage(pastNum, curNum){
 		$hr('#suspicion-'+pastNum).removeClass('open-inner-page');
@@ -91,6 +93,7 @@
 		unfoldNavi(curNum);
 		adjustImages();
 		if($hr().scrollTop() > 0) $hr().animate({ scrollTop: 0 }, 500);
+		$hr().trigger('refresh');
 	}
 	function unfoldNavi(pageNum){
 		$hr('#suspicion-'+pageNum).find('.navigation').each(function(){

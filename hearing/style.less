@@ -342,6 +342,7 @@
 					color: #999999;
 					font-size: 0.875em; //14px
 				}
+				li { cursor: pointer; }
 				li span.num {
 					font-family: @font-mont;
 					font-size: 2.25em; //36px
@@ -357,7 +358,6 @@
 				.arrow i { color: #7657c5 }
 			}
 		}// content
-
 	}//section.inner-page
 
 	// 텍스트 스타일 이외의 모든 것 ////
@@ -736,7 +736,7 @@
 	}
 }
 
-// 네비게이션과 '의혹전체보기' 버튼을 오늘쪽으로 ////
+// 네비게이션과 '의혹전체보기' 버튼을 오른쪽으로 ////
 @media screen and (min-width: 560px) {
 	#page-hearing section.inner-page > .content .navigation {
 		width: 19em;
@@ -755,6 +755,31 @@
 		}
 	}
 }
+
+// 제목을 왼쪽으로 ////
+@media screen and (min-width: 1280px) {
+	#page-hearing section.inner-page {
+		.article-title {
+			float: left;
+			width: 20em;
+			text-align: right;
+			margin-left: -22em;
+			padding-top: 0.5em;
+			position: relative;
+			&:before {
+				position: absolute;
+				right: 0; top: 0;
+			}
+		}
+		& > .header .title-num-wrapper {
+			left: -7em;
+		}
+		& > .header .title-wrapper {
+			margin-left: 0;
+		}
+	}
+}
+
 
 // 글자 크기 ////
 @media screen and (min-width: 425px) {}

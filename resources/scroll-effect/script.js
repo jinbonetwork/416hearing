@@ -3,15 +3,13 @@
 	// 센션의 높이가 화면보다는 크다고 가정한다.
 
 	var g_preScrTop = 0;
+
+	$('.se-container').on('refresh', function(){
+		initialize($(this));
+	});
 	$('.se-container').on('ready', function(){
 		//initialize ////
-		var bgColor = $(this).find('.se-background').first().css('background-color');
-		var color =  $(this).find('.se-title').first().css('color');
-		$(this).css('background-color', bgColor);
-		$(this).find('.se-bgcolor').css('background-color', bgColor);
-		$(this).find('.se-bg-bd-t-r').css({'border-top-color': bgColor, 'border-right-color': bgColor});
-		$(this).find('.se-color').css('color', color);
-		$('.out-se-color').css('color', color);
+		initialize($(this));
 
 		//scroll ////
 		$(this).scroll(function(){
@@ -65,4 +63,13 @@
 			g_preScrTop = scrTop;
 		});// scroll()
 	});
+	function initialize($container){
+		var bgColor = $container.find('.se-background').first().css('background-color');
+		var color = $container.find('.se-title').first().css('color');
+		$container.css('background-color', bgColor);
+		$container.find('.se-bgcolor').css('background-color', bgColor);
+		$container.find('.se-bg-bd-t-r').css({'border-top-color': bgColor, 'border-right-color': bgColor});
+		$container.find('.se-color').css('color', color);
+		$('.out-se-color').css('color', color);
+	}
 })(jQuery);
