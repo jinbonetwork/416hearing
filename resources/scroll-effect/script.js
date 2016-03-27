@@ -23,6 +23,7 @@
 			// 배경색 변환 ////
 			var $thisSect;
 			$contain.find('.se-section').each(function(index){
+				if($(this).hasClass('se-diabled')) return;
 				var offset = $(this).offset();
 				var top = offset.top;
 				var bottom = top + $(this).outerHeight(true);
@@ -46,6 +47,7 @@
 
 			// 타이틀 고정 ////
 			$contain.find('.se-section').each(function(index){
+				if($(this).hasClass('se-diabled')) return;
 				var offset = $(this).offset();
 				var top = offset.top;
 				var bottom = top + $(this).outerHeight(true);

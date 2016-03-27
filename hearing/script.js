@@ -3,7 +3,7 @@
 		var parts;
 		var suspicions;
 		var witnesses;
-		var partMap = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2];
+		var partMap = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2];
 		$.ajax({
 			url: 'data/suspicions.json', dataType: 'json',
 			success: function(json){ suspicions = json; },
@@ -21,8 +21,7 @@
 		});
 		$hr().on('json-load', function(){
 			if(parts !== undefined && suspicions !== undefined && witnesses != undefined){
-				//var navigation = htmlNavigation(parts, partMap, suspicions);
-				var navigation = '';
+				var navigation = htmlNavigation(parts, partMap, suspicions);
 				for(var i = 0, leni = suspicions.length; i < leni; i++) {
 					$hr('.sections').append(makeHtml(i, parts, suspicions[i], witnesses, partMap, navigation));
 				}
@@ -30,19 +29,29 @@
 				$(window).resize(function(){ adjustImages(); });
 				$hr('.medium img').load(function(){ adjustOneImage($(this)); });
 
+				$hr('.se-section').addClass('se-diabled');
 				// 의혹 페이지로 이동 ////
-				//$hr('.outline').removeClass('open-inner-page');
-				//$hr('#suspicion-12').addClass('open-inner-page');
-
+				openPage(12);
+				/*
 				$hr('.outline li').click(function(){
 					var num = $(this).attr('data-num');
-					$hr('.outline').removeClass('open-inner-page');
-					$hr('#suspicion-'+num).addClass('open-inner-page');
-					adjustImages()
+					openPage(12);
 				});
+				*/
 			}
 		});
 	});
+	function openPage(pageNum){
+		$hr('.outline').removeClass('open-inner-page');
+		$hr('#suspicion-'+pageNum).addClass('open-inner-page');
+		$hr('#suspicion-'+pageNum).find('.se-section').removeClass('se-diabled');
+		adjustImages();
+	}
+	function closePage(pageNum){
+		$hr('.outline').addClass('open-inner-page');
+		$hr('#suspicion-'+pageNum).removeClass('open-inner-page');
+		$hr('#suspicion-'+pageNum).find('.se-section').addClass('se-diabled');
+	}
 	function adjustImages(){
 		$hr('.medium img').each(function(){
 			adjustOneImage($(this));
@@ -68,17 +77,21 @@
 		}
 	}
 	function htmlNavigation(parts, partMap, suspicions){
-		var template =  _.template($hr('#navigation-template').html());
-		//var tplSuspicions =
+		var template = _.template($hr('#navigation-template').html());
+		var tplSuspicions = _.template($hr('#nav-suspicion-template').html());
 		var html = '';
-		for(var i = 0, len = parts.length; i < len; i++){
+		for(var i = 0, leni = parts.length; i < leni; i++){
+			var susp = '';
+			for(var j = 0, lenj = partMap.length; j < lenj; j++){
+				if(partMap[j] == i) susp += tplSuspicions({ num: j+1, item: suspicions[j].title });
+			}
 			html += template({
-				partNum: i + 1,
 				title: parts[i].title,
-				subtitle: parts[i].sub_title
-				//suspicions:
+				subtitle: parts[i].sub_title,
+				supicions: susp
 			});
 		}
+		return html;
 	}
 	function makeHtml(sectNum, parts, section, witnesses, partMap, navigation){
 		var tplSection = _.template($hr('#section-template').html());
@@ -155,7 +168,7 @@
 		for(var i = 0, len = witNames.length; i < len; i++){
 			var name = witNames[i];
 			if(!witData[name]) witData[name] = { organ: '', photo: ''};
-			html += template({ name: name, organ: witData[name].organShort, photo: witData[name].photo });
+			html += template({ name: name, organ: witData[name].organ, photo: witData[name].photo });
 		}
 		return html;
 	}

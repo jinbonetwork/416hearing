@@ -115,7 +115,29 @@
 				color: #dfe5ea;
 				a { color: #6d92c4; }
 			}
+			.navigation {
+				font-family: @font-noto;
+				.title .main { color: #4d4d4d; }
+				.title .sub {
+					color: #999999;
+					font-size: 0.875em; //14px
+				}
+				li span.num {
+					font-family: @font-mont;
+					font-size: 2.25em; //36px
+					line-height: 1.2em;
+					color: #7657c5;
+				}
+				li .item span {
+					color: #4d4d4d;
+					font-size: 0.875em; //14px
+					line-height: 1.1em;
+				}
+				li.selected .item span { color: #ffffff; }
+				.arrow i { color: #7657c5 }
+			}
 		}// content
+
 	}//section.inner-page
 
 	// 텍스트 스타일 이외의 모든 것 ////
@@ -320,6 +342,48 @@
 					padding-bottom: 0.5em;
 				}
 			}
+			.navigation {
+				width: 19em;
+				.part {
+					@bgcolor: #dfe5ea;
+					&.unfolded { background-color: @bgcolor; }
+					& > .header {
+						@height: 4.5em;
+						overflow: hidden;
+						position: relative;
+						height: @height;
+						padding: 1em 3em 0 0.5em;
+						border: solid 2px @bgcolor;
+						border-left: 0; border-right: 0;
+						.sub {
+							display: block;
+						}
+						.arrow {
+							padding: 0 1em 0 1em;
+							i.arrow-off { display: none; }
+							position: absolute; top: 0; right: 0;
+							line-height: @height;
+						}
+					}
+					ul { padding: 0 0.5em 0.5em 0; }
+					li {
+						&:after { content: ''; display: block; clear: both; }
+						span.num {
+							display: inline-block;
+							float: left;
+						}
+						.item {
+							margin-left: 3em;
+							margin-top: 0.3em;
+							span {
+								display: inline-block;
+								line-height: 1.5em;
+							}
+						}
+
+					}
+				}
+			}// navigation
 		}
 	}// section
 }
