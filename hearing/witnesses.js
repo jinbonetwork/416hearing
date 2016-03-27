@@ -88,11 +88,18 @@
 				var Obj = jQuery('.witness-container');
 				if(jQuery(window).width() >= 1680) {
 					var pos = element.offset();
+					var w = ( parseInt( ( jQuery(window).width() - 680 ) / 2 ) - 15 );
+					var t = (pos.top - 10);
+					h = Math.min( 700, ( jQuery(window).height() - t ) );
+					if( h < 500) {
+						h = 500;
+						t = ( jQuery(window).height() - h );
+					}
 					Obj.find('.witness-summary').css({
 						'left': 0,
-						'top': (pos.top - 10) + 'px',
-						'width':  ( parseInt( ( jQuery(window).width() - 680 ) / 2 ) - 15 ) + 'px',
-						'height': '700px'
+						'top': t + 'px',
+						'width':  w + 'px',
+						'height': h + 'px'
 					});
 					Obj.find('.witness-container-background').hide();
 				} else {
