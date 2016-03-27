@@ -1,31 +1,44 @@
 <div class="outline inner-page open-inner-page">
-	<div class="header">
+	<div class="header se-section">
+		<div class="se-background"></div>
+		<div class="se-title"></div>
+		<div class="wrapper">
+			<div class="title">
+				<div class="title-part-1"><span>416세월호참사 특별조사위원회</span></div>
+				<div class="title-part-2"><span>1차 청무회</span></div>
+			</div>
+			<div class="buttons">
+				<div class="go-why"><span>세월호는 왜</spn></div>
+				<div class="down-timeline"><span>타임라인 다운받기</span></div>
+			</div>
+		</div>
 	</div>
-	<ul>
-		<li data-num="1">의혹 1</li>
-		<li data-num="2">의혹 2</li>
-		<li data-num="3">의혹 3</li>
-		<li data-num="4">의혹 4</li>
-		<li data-num="5">의혹 5</li>
-		<li data-num="6">의혹 6</li>
-		<li data-num="7">의혹 7</li>
-		<li data-num="8">의혹 8</li>
-		<li data-num="9">의혹 9</li>
-		<li data-num="10">의혹 10</li>
-		<li data-num="11">의혹 11</li>
-		<li data-num="12">의혹 12</li>
-		<li data-num="13">의혹 13</li>
-		<li data-num="14">의혹 14</li>
-	</ul>
+	<div class="content se-section">
+		<div class="se-background"></div>
+		<div class="se-title"></div>
+	</div>
 </div>
 <div class="sections">
 </div>
 
 <script type="text/template" id="outline-template">
 	<div class="part">
-		<div class="part-title"><%= partTitle %></div>
-		<ul class="items"><%= items %></ul>
+		<div class="header">
+			<span class="part-num">part <%= partNum %></span>
+			<div class="title">
+				<span class="main"><%= title %></span>
+				<span class="sub">- <%= subtitle %></span>
+			</div>
+		</div>
+		<ul><%= supicions %></ul>
 	</div>
+</script>
+
+<script type="text/template" id="outline-suspicion-template">
+	<li data-num="<%= num %>">
+		<span class="num"><span>의혹 </span><span><%= num %></span></span>
+		<div class="item"><span><%= item %></span></div>
+	</li>
 </script>
 
 <script type="text/template" id="section-template">

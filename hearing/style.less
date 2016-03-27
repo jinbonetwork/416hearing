@@ -1,6 +1,229 @@
 #page-hearing {
 	font-size: 16px; //기본 글자 크기. 모든 글자 크기를 이를 기준으로 em으로 설정한다.
+}
 
+//1차 청문회 첫 페이지
+#page-hearing {
+	// 텍스트 스타일에 관한 것들 ////
+	 .outline {
+		 font-family: @font-noto;
+		 & > .header {
+			 .title-part-1 span {
+				 font-size: 1.2em;
+				 color: #7657c5;
+				 line-height: 1em;
+				 margin-left: 0.3333em;
+			 }
+			 .title-part-2 span {
+				 font-size: 3.5em;
+				 color: #1a1a1a;
+				 line-height: 1em;
+			 }
+			 .buttons div span {
+				color: #ffffff;
+			}
+		 }
+		 & > .content {
+			 .part-num { color: #808080; }
+			 .title .main {
+				 color: #ffffff;
+				 //font-size: 2em;
+			 }
+			 .title .sub {
+				 color: #0be4db;
+				 //font-size: 1.5em;
+			 }
+			 li .num span:first-child {
+				 color: #1a1a1a;
+			 }
+			 li .num span:last-child {
+				 //font-size: 1.1875;
+				 color: #1a1a1a;
+			 }
+			 li .item span {
+				 color: #ffffff;
+				 //font-size: 1.125em;
+			 }
+		 }
+	 }
+
+	 // 그 외의 모든 것 ////
+	 .outline {
+		background-color: #1a1a1a;
+		& > .header {
+			.se-background { background-color: #1a1a1a; }
+   		 	.se-title { color: #808080; }
+			padding-top: 7em;
+			padding-bottom: 7em;
+			text-align: center;
+			background-color: #ffffff;
+			.wrapper {
+				display: inline-block;
+				transform: rotateZ(-30deg);
+			}
+			.title {
+				.title-part-1 {
+					display: block;
+					transform: skewX(30deg);
+				}
+				.title-part-2 {
+					display: block;
+					transform: skewX(-30deg);
+				}
+			}
+			.buttons {
+				display: block;
+				overflow: hidden;
+				transform: skewX(30deg);
+				div {
+					float: left;
+					background-color: #7657c5;
+					padding: 0 0.5em;
+				}
+				.go-why { margin-right: 1em; }
+			}
+		}
+		& > .content {
+			.se-background { background-color: #1a1a1a; }
+   		 	.se-title { color: #808080; }
+			&:after {
+				content: ''; display: block; clear: both;
+			}
+			.part {
+				background-color: #1a1a1a;
+				padding: 1em;
+				.title .sub {
+					display: block;
+					margin-bottom: 1em;
+				}
+				li { cursor: pointer; }
+				li .num { background-color: #0be4db; }
+				li .item { margin-bottom: 1em; }
+			}
+		}
+	 }
+}
+@media screen and (min-width: 560px) {
+	#page-hearing .outline {
+		& > .header {
+			@magnify: 1.5;
+			padding-top: 5em * @magnify;
+			padding-bottom: 5em * @magnify;
+			.title-part-1 span {
+				font-size: 1.2em * @magnify;
+				margin-left: 0.3333em * @magnify;
+			}
+			.title-part-2 span {
+				font-size: 3.5em * @magnify;
+			}
+			.buttons div span {
+				font-size: 1em * @magnify;
+			}
+		}
+		& > .content .part {
+			&:last-child { padding-bottom: 2em; }
+			padding: 2em 2em 0 2em;
+		}
+	}
+}
+@media screen and (min-width: 768px) {
+	#page-hearing .outline {
+		& > .header {
+			@magnify: 2;
+			padding-top: 5em * @magnify;
+			padding-bottom: 5em * @magnify;
+			.title-part-1 span {
+				font-size: 1.2em * @magnify;
+				margin-left: 0.3333em * @magnify;
+			}
+			.title-part-2 span {
+				font-size: 3.5em * @magnify;
+			}
+			.buttons div span {
+				font-size: 0.7em * @magnify;
+			}
+		}
+		& > .content .part {
+			padding-left: 70px;
+			padding-right: 70px;
+		}
+	}
+}
+@media screen and (min-width: 1024px) {
+	#page-hearing .outline {
+		& > .header {
+			@magnify: 2.5;
+			padding-top: 5em * @magnify;
+			padding-bottom: 5em * @magnify;
+			.title-part-1 span {
+				font-size: 1.2em * @magnify;
+				margin-left: 0.3333em * @magnify;
+			}
+			.title-part-2 span {
+				font-size: 3.5em * @magnify;
+			}
+			.buttons div span {
+				font-size: 0.7em * @magnify;
+			}
+		}
+		& > .content .part {
+			width: 50%;
+			float: left;
+			padding-left: 80px;
+			padding-right: 1em;
+			padding-bottom: 2em;
+			& + .part {
+				padding-left: 1em;
+				padding-right: 80px;
+			}
+			& + .part + .part {
+				float: none;
+				padding-left: 80px;
+			}
+		}
+	}
+}
+@media screen and (min-width: 1280px) {
+	#page-hearing .outline {
+		& > .header {
+			@magnify: 3;
+			padding-top: 5em * @magnify;
+			padding-bottom: 5em * @magnify;
+			.title-part-1 span {
+				font-size: 1.2em * @magnify;
+				margin-left: 0.3333em * @magnify;
+			}
+			.title-part-2 span {
+				font-size: 3.5em * @magnify;
+			}
+			.buttons div span {
+				font-size: 0.7em * @magnify;
+			}
+		}
+		& > .content {
+			padding-left: 4em;
+			padding-right: 4em;
+		}
+		& > .content .part {
+			width: 33.33%;
+			padding-left: 0;
+			padding-right: 1em;
+			& + .part {
+				padding-left: 1em;
+				padding-right: 1em;
+			}
+			& + .part + .part {
+				float: left;
+				padding-left: 1em;
+				padding-right: 0;
+			}
+		}
+	}
+}
+@media screen and (min-width: 1680px) {}
+
+//의혹 페이지 ////
+#page-hearing {
 	// 텍스트 스타일에 관한 것들 ////
 	section.inner-page {
 		.article-title span {

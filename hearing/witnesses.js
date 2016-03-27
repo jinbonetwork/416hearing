@@ -139,6 +139,11 @@
 				});
 				Obj.find('.witness-suspicions dd.witness-suspicion-data').click(function(e) {
 					var id = jQuery(this).attr('data-id');
+					var preId = jQuery('#page-hearing .navigation').find('.selected').first().find('.num').text();
+					jQuery(this).parents('.witness-container').find('i.fa-close').click();
+					jQuery('#page-hearing #suspicion-'+preId+' .navigation.navi-right li').each(function(){
+						if($(this).find('.num').text() == id){ $(this).click(); return false; }
+					})
 				});
 			},
 			error( jqXHR, textStatus, errorThrown ) {

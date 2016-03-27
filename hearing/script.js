@@ -21,6 +21,7 @@
 		});
 		$hr().on('json-load', function(){
 			if(parts !== undefined && suspicions !== undefined && witnesses != undefined){
+				$hr('.outline .content').append(htmlOutline(parts, partMap, suspicions));
 				var navigation = htmlNavigation(parts, partMap, suspicions);
 				for(var i = 0, leni = suspicions.length; i < leni; i++) {
 					$hr('.sections').append(makeHtml(i, parts, suspicions[i], witnesses, partMap, navigation));
@@ -32,13 +33,12 @@
 					if(!$(this).attr('data-name')) $(this).closest('.answer').hide();
 				});
 
-
+				$hr('.se-section').addClass('se-diabled');
 				$hr().trigger('ready');
 				$(window).resize(function(){ adjustImages(); });
 				$hr('.medium img').load(function(){ adjustOneImage($(this)); });
 
 				// 의혹 페이지로 이동 ////
-				$hr('.se-section').addClass('se-diabled');
 				$hr('.outline li').click(function(){
 					openPage($(this).attr('data-num'));
 				});
@@ -72,12 +72,14 @@
 		$hr('#suspicion-'+pageNum).find('.se-section').removeClass('se-diabled');
 		unfoldNavi(pageNum);
 		adjustImages();
+		if($hr().scrollTop() > 0) $hr().animate({ scrollTop: 0 }, 500);
 	}
 	function closePage(pageNum){
 		$hr('.outline').addClass('open-inner-page');
 		$hr('#suspicion-'+pageNum).removeClass('open-inner-page');
 		$hr('#suspicion-'+pageNum).find('.se-section').addClass('se-diabled');
 		foldNavi(pageNum);
+		if($hr().scrollTop() > 0) $hr().animate({ scrollTop: 0 }, 500);
 	}
 	function closeAndOpenPage(pastNum, curNum){
 		$hr('#suspicion-'+pastNum).removeClass('open-inner-page');
@@ -87,8 +89,7 @@
 		$hr('#suspicion-'+curNum).find('.se-section').removeClass('se-diabled');
 		unfoldNavi(curNum);
 		adjustImages();
-		$hr().animate({ scrollTop: 0 }, 1000);
-
+		if($hr().scrollTop() > 0) $hr().animate({ scrollTop: 0 }, 500);
 	}
 	function unfoldNavi(pageNum){
 		$hr('#suspicion-'+pageNum).find('.navigation').each(function(){
@@ -130,6 +131,24 @@
 			$image.css({ width: nW+1, height: nH+1 });
 			$image.css({ 'margin-top': (wrapHeight-nH)/2, 'margin-left': 0 });
 		}
+	}
+	function htmlOutline(parts, partMap, suspicions){
+		var template = _.template($hr('#outline-template').html());
+		var tplSuspicions = _.template($hr('#outline-suspicion-template').html());
+		var html = '';
+		for(var i = 0, leni = parts.length; i < leni; i++){
+			var susp = '';
+			for(var j = 0, lenj = partMap.length; j < lenj; j++){
+				if(partMap[j] == i) susp += tplSuspicions({ num: j+1, item: suspicions[j].title });
+			}
+			html += template({
+				partNum: i + 1,
+				title: parts[i].title,
+				subtitle: parts[i].sub_title,
+				supicions: susp
+			});
+		}
+		return html;
 	}
 	function htmlNavigation(parts, partMap, suspicions){
 		var template = _.template($hr('#navigation-template').html());
