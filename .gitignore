@@ -2,4 +2,4 @@
 config/db.config.php
 data/docs/*
 data/images/*
-data/live
+data/live*
