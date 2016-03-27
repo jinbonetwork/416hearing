@@ -31,13 +31,13 @@
 
 				$hr('.se-section').addClass('se-diabled');
 				// 의혹 페이지로 이동 ////
-				openPage(12);
-				/*
+				//openPage(12);
+
 				$hr('.outline li').click(function(){
 					var num = $(this).attr('data-num');
-					openPage(12);
+					openPage(num);
 				});
-				*/
+
 			}
 		});
 	});
