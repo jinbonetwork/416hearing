@@ -37,7 +37,6 @@
 					var num = $(this).attr('data-num');
 					openPage(num);
 				});
-
 			}
 		});
 	});
@@ -136,7 +135,7 @@
 				qMedia: htmlMedia(qna.qMedia, gallery+'q'),
 				photo: witData[qna.aName] ? witData[qna.aName].photo : '',
 				aName: qna.aName,
-				aOrgan: witData[qna.aName] ? witData[qna.aName].organShort: '',
+				aOrgan: witData[qna.aName] ? witData[qna.aName].organ: '',
 				answer: paragraphs(qna.aContent),
 				aMediaSize:  mediaSize(qna.aMedia),
 				aMedia: htmlMedia(qna.aMedia, gallery+'a')
