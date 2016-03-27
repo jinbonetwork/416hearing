@@ -118,6 +118,7 @@
 					jQuery(this).parents('.witness-container').remove();
 				});
 				Obj.find('.witness-suspicions dd.witness-suspicion-data').click(function(e) {
+					var id = jQuery(this).attr('data-id');
 				});
 			},
 			error( jqXHR, textStatus, errorThrown ) {

@@ -25,6 +25,14 @@
 				for(var i = 0, leni = suspicions.length; i < leni; i++) {
 					$hr('.sections').append(makeHtml(i, parts, suspicions[i], witnesses, partMap, navigation));
 				}
+				$hr('.etc').each(function(){
+					if($(this).find('.media.size-0').length && $(this).find('.links.num-0').length) $(this).hide();
+				});
+				$hr('.witness-photo').each(function(){
+					if(!$(this).attr('data-name')) $(this).closest('.answer').hide();
+				});
+
+
 				$hr().trigger('ready');
 				$(window).resize(function(){ adjustImages(); });
 				$hr('.medium img').load(function(){ adjustOneImage($(this)); });
@@ -79,23 +87,25 @@
 		$hr('#suspicion-'+curNum).find('.se-section').removeClass('se-diabled');
 		unfoldNavi(curNum);
 		adjustImages();
-		$hr().animate({ scrollTop: 0 }, 500);
+		$hr().animate({ scrollTop: 0 }, 1000);
 
 	}
 	function unfoldNavi(pageNum){
-		var $navi = $hr('#suspicion-'+pageNum).find('.navigation');
-		$navi.find('li').each(function(){
-			if($(this).find('.num').text() == pageNum){
-				$(this).addClass('selected');
-				$(this).parents('.part').removeClass('folded');
-				return false;
-			}
+		$hr('#suspicion-'+pageNum).find('.navigation').each(function(){
+			$(this).find('li').each(function(){
+				if($(this).find('.num').text() == pageNum){
+					$(this).addClass('selected');
+					$(this).parents('.part').removeClass('folded');
+					return false;
+				}
+			});
 		});
 	}
 	function foldNavi(pageNum){
-		var $navi = $hr('#suspicion-'+pageNum).find('.navigation');
-		$navi.find('.selected').removeClass('selected');
-		$navi.find('.part').addClass('folded');
+		$hr('#suspicion-'+pageNum).find('.navigation').each(function(){
+			$(this).find('.selected').removeClass('selected');
+			$(this).find('.part').addClass('folded');
+		});
 	}
 	function adjustImages(){
 		$hr('.medium img').each(function(){
@@ -161,21 +171,15 @@
 			concMedia: htmlMedia(section.conclusion.media, 'hr'+sectNum+'md'),
 			etcMediaSize: mediaSize(section.etc.media),
 			etcMedia: htmlMedia(section.etc.media, 'hr'+sectNum+'et'),
+			etcLinkNum: section.etc.content.length,
 			etcLinks: htmlEtc(section.etc.content),
 			navigation: navigation
 		});
 	}
 	function mediaSize(media){
 		if(media.length == 0) return '0';
-		/*
-		else {
-			var size = '';
-			for(var i = 0, len = media.length; i < len; i++){
-				size += (media[i].size == 's=b' ? '' : '-small')
-			}
-			return media.length + (media[0].size == 's=b' ? '-big' : '-small');
-		}
-		*/
+		else return media.length + (media[0].size == 's=b' ? '-big' : '-small');
+
 	}
 	function htmlDialogue(dialogue, witData, gallery){
 		var html = '';
