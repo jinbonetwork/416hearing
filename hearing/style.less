@@ -20,7 +20,7 @@
 			}
 		}
 		.media {
-			&.size-1-big span.icon i { font-size: 5em; }
+			//&.size-1-big span.icon i { font-size: 5em; }
 			span.icon i { font-size: 3em; }
 			span.title { font-family: @font-noto; }
 			.caption {
@@ -34,6 +34,11 @@
 			font-family: @font-noto;
 			a:link, a:active, a:visited, a:hover {
 				color: #6d92c4;
+			}
+			.go-back-outline span {
+				font-family: @font-noto;
+				font-size: 0.875em;
+				color: #ffffff;
 			}
 			.part-num {
 				font-size: 1.063em; //17px
@@ -113,7 +118,7 @@
 		}// content
 	}//section.inner-page
 
-	// 텍스트 스파일 이외의 모든 것 ////
+	// 텍스트 스타일 이외의 모든 것 ////
 	.inner-page { display: none; }
 	.open-inner-page { display: block; }
 	section.inner-page {
@@ -123,11 +128,14 @@
 			box-shadow: 0 -0.4em 0 rgba(118, 87, 197, 0.4) inset
 		}
 		.media {
+			&:after { content: ''; display: block; clear: both; }
 			&.size-0 { display: none; }
+			/*
 			&.size-1-big .medium > .wrapper span.icon {
 				margin-top: -2.5em;
 				margin-left: -2.5em;
 			}
+			*/
 			.medi-with-cap { margin-bottom: 1em; }
 			.medium-wrapper {
 				position: relative;
@@ -163,7 +171,6 @@
 							margin-left: -1.5em;
 						}
 						span.title {
-							display: none;
 							position: absolute;
 							top: 0; left: 0;
 							z-index: 3;
@@ -206,6 +213,12 @@
 			.se-title { color: #ffffff; }
 			max-width: 42.5em; //680px
 			margin: 8% 8% 3em 8%;
+			.go-back-outline {
+				display: inline-block;
+				padding: 0.5em;
+				background-color: #7657c5;
+				margin-bottom: 1em;
+			}
 			.part-title {
 				padding-bottom: 1em;
 				border-bottom: solid 2px #ffffff;
@@ -234,7 +247,7 @@
 		& > .content {
 			.se-background { background-color: #ffffff; }
 			.se-title { color: #1a1a1a; }
-			max-width: 42.5em; //680px
+			max-width: 32.5em; //520px
 			margin: 0 8% 3em 8%;
 			.abstract {
 				& > .header { margin-bottom: 1em; }

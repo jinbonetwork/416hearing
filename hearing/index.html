@@ -39,6 +39,9 @@
 		<div class="header se-section">
 			<div class="se-background"></div>
 			<div class="se-title"></div>
+			<div class="go-back-outline">
+				<span>의혹 전체보기</span>
+			</div>
 			<div class="part-title">
 				<div class="part-num">part <%= partNum %></div>
 				<div class="part-main-title"><%= partMainTitle %></div>
@@ -61,7 +64,7 @@
 				<div class="header article-title"><span>관련증인</span></div>
 				<ul class="list"><%= witness %></ul>
 			</div>
-		</div>
+		</div><!-- header -->
 		<div class="content se-section">
 			<div class="se-background"></div>
 			<div class="se-title"></div>
@@ -85,8 +88,31 @@
 				<div class="media size-<%= etcMediaSize %>"><%= etcMedia %></div>
 				<ul class="links"><%= etcLinks %></ul>
 			</div>
+		</div> <!--content -->
+		<div class="navigation">
+			<%= navigation %>
 		</div>
 	</section>
+</script>
+
+<script type="text/template" id="navigation-template">
+	<div class="part<%= partNum %>">
+		<div class="header">
+			<div class="title">
+				<span class="main"><%= title %></span>
+				<span class="sub"><%= subtitle %></span>
+			</div>
+			<div class="arrow">
+				<i class="arrow-down arrow-on fa fa-chevron-down"></i>
+				<i class="arrow-up arrow-off fa fa-chevron-up"></i>
+			</div>
+		</div>
+		<ul><%= supicions %></ul>
+	</div>
+</script>
+
+<script type="text/template" id="nav-suspicion-template">
+	<li><span class="num"><%= num %></span></li>
 </script>
 
 <script type="text/template" id="etc-link-tempate">
