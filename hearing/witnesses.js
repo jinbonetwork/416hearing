@@ -1,5 +1,5 @@
 	function makeWitness(name,json) {
-		console.log(json);
+		console.log(name);
 		var witnessesTpl = _.template($('#witnesses-summary-template').html());
 		var witnessesProfileTpl = _.template($('#witnesses-summary-profile-template').html());
 		var witnessesSusTpl = _.template($('#witnesses-summary-suspicions-template').html());
@@ -10,7 +10,7 @@
 		var position = "";
 		if(typeof json.position !== 'undefined' && json.position.length > 0) {
 			for(var i=0; i<json.position.length; i++) {
-				position = (i ? ", " : "") + json.position[i];
+				position += (i ? ", " : "") + json.position[i];
 			}
 		}
 		var photo = '';
@@ -34,12 +34,12 @@
 		});
 
 		var suspicions_markup = "";
-		if(typeof json.suspitions !== 'undefined' && json.suspitions.length > 0) {
+		if(typeof json.suspicions !== 'undefined' && json.suspicions.length > 0) {
 			var suspicions_item_markup = "";
-			for(var i=0; i<json.suspitions.length; i++) {
+			for(var i=0; i<json.suspicions.length; i++) {
 				suspicions_item_markup += witnessesSusItemTpl({
-					index: json.suspitions[i].id,
-					subject: json.suspitions[i].title
+					index: json.suspicions[i].id,
+					subject: json.suspicions[i].title
 				});
 			}
 			suspicions_markup = witnessesSusTpl({
@@ -87,7 +87,7 @@
 			complete: function() {
 				var Obj = jQuery('.witness-container');
 				if(jQuery(window).width() >= 1680) {
-					var pos = element.parents('.witness-photo').offset();
+					var pos = element.offset();
 					Obj.find('.witness-summary').css({
 						'left': 0,
 						'top': (pos.top - 10) + 'px',

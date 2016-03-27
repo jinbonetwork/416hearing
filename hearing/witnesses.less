@@ -8,9 +8,11 @@
 		border: 1px solid #7657c5;
 		.witness-summary-inner {
 			position: relative;
-			h.witness-title {
+			height: 100%;
+			width: 100%;
+			h4.witness-title {
 				position: absolute;
-				top: -10px;
+				top: -30px;
 				left: 15px;
 				color: #fff;
 				font-weight: bold;
@@ -20,11 +22,12 @@
 			i.fa-close {
 				position: absolute;
 				z-index: 9999999;
-				right: 15px;
+				right: 25px;
 				top: 15px;
 				color: #7657c5;
 				font-weight: bold;
 				font-weight: 16px;
+				cursor: pointer;
 			}
 			.witness-summary-box {
 				width: 100%;
@@ -32,9 +35,10 @@
 				line-height: 1.3em;
 				overflow-y: auto;
 				.witness-profile {
-					padding: 25px;
+					padding: 50px 25px 25px 25px;
 					background: #fff;
 					*zoom; 1;
+					color: #4d4d4d;
 					img.witness-profile-photo {
 						width: 40%;
 						float: left;
@@ -42,13 +46,18 @@
 						margin-bottom: 25px;
 					}
 					h4.witness-name {
-						float: left;
+						margin: 0 0 15px 0;
+						padding: 0;
+						font-size: 1.35em;
+						font-weight: bold;
 					}
-					.witness-position {
-						float: left;
+					.witness-positions {
+						padding: 0 0 25px 0;
+						color: #7657c5;
+						font-size: 0.85em;
 					}
 					.itness-description {
-						float: left;
+						font-size: 0.9em;
 					}
 				}
 				.witness-profile:after {
@@ -62,24 +71,31 @@
 					background: #f8f8f8;
 					dt.witness-suspicions-title {
 						margin: 0;
-						padding: 0 0 5px 0;
+						padding: 0 0 15px 0;
+						font-size: 1.3em;
+						font-weight: bold;
 						color:#7657c5;
 					}
 					dd.witness-suspicion-data {
 						position: relative;
 						margin: 0;
-						padding: 0 10px 30px;
+						padding: 0 0 15px 30px;
 						label {
 							position: absolute;
 							left: 0;
 							top: 0;
 							color: #7657c5;
+							font-weight: bold;
+							font-size: 1.15em;
 							text-align: right;
 							width: 20px;
 						}
 						span.witness-suspicion-title {
 							color: #4d4d4d;
 							padding: 1px;
+							font-weight: bold;
+							font-size: 0.9em;
+							cursor: pointer;
 						}
 						span.witness-suspicion-title:hover {
 							background: #7657c5;
@@ -94,18 +110,22 @@
 					background: #fff;
 					dt.witness-timeline-title {
 						margin: 0;
-						padding: 0 0 5px 0;
+						padding: 0 0 20px 0;
+						font-size: 1.2em;
+						font-weight: bold;
 						color:#7657c5;
 					}
 					dd.witness-timeline-data {
-						border-right: 1px solid #7657c5;
+						border-left: 1px solid #6d92c4;
 						position: relative;
-						padding: 0 0 15px 165px;
+						margin: 0;
+						padding: 0 0 18px 165px;
+						font-size: 0.85em;
 						i.fa-circle {
 							position: absolute;
 							top: 0;
-							left: -5px;
-							color: #7657c5;
+							left: -6px;
+							color: #6d92c4;
 						}
 						label.witness-timeline-time {
 							position: absolute;
@@ -113,9 +133,20 @@
 							left: 20px;
 							width: 125px;
 							font-weight: bold;
+							line-height: 1.0em;
 						}
 					}
 				}
+			}
+			.witness-summary-box::-webkit-scrollbar {
+				width: 10px;
+			}
+			.witness-summary-box::-webkit-scrollbar-track {
+				background-color: #fff;
+			}
+			.witness-summary-box::-webkit-scrollbar-thumb {
+				background-color: #7657c5;
+				border-radius: 5px;
 			}
 		}
 	}
