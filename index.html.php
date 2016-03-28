@@ -28,11 +28,11 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<link rel="stylesheet" type="text/css" href="contrib/bareunbatang/style.css">
 	<link rel="stylesheet" type="text/css" href="contrib/montserrat-master/css/montserrat.css">
 	<link rel="stylesheet" href="contrib/fancybox/2.1.5/source/jquery.fancybox.css">
+	<link rel="shortcut icon" type="image/x-icon" href="./resources/favicon.ico">
 <?php if(defined("__EDIT_MODE__") && __EDIT_MODE__ == true) {?>
 	<link rel="stylesheet" href="contrib/medium-editor/dist/css/medium-editor.min.css">
 	<link rel="stylesheet" href="contrib/medium-editor/dist/css/themes/bootstrap.min.css">
 	<link rel="stylesheet" href="contrib/spectrum/spectrum.css">
-	<link rel="icon" type="image/png" href="./data/images/favicon.ico">
 <?php }?>
 	<?php
 	less(array(
