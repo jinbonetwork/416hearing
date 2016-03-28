@@ -315,7 +315,8 @@
 				}
 				.answer-wrapper p {
 					font-family:@font-batang;
-					font-size: 1.375em; //22px
+					//font-size: 1.375em; //22px
+					font-size: 1.1em;
 					line-height: 1.4em;
 				}
 				li:nth-child(odd) .answer-wrapper p {
@@ -538,7 +539,8 @@
 						}
 						.answer-wrapper {
 							border: solid @border-width #7657c5;
-							padding: 1.5em;
+							//padding: 1.5em;
+							padding: 1em;
 						}
 					}
 				}
@@ -780,6 +782,15 @@
 	}
 }
 
+// 답변 ////
+@media screen and (min-width: 560px) {
+	#page-hearing section.inner-page > .content .dialogue .answer-wrapper p {
+		font-size: 1.375em; //22px
+	}
+	#page-hearing section.inner-page > .content .dialogue .answer .speech-bubble .answer-wrapper {
+		padding: 1.5em;
+	}
+}
 
 // 글자 크기 ////
 @media screen and (min-width: 425px) {}
