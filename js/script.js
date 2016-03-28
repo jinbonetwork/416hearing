@@ -22,6 +22,7 @@
 			}
 			g_preScrTop = scrTop;
 		});
+		*/
 
 		//fancy box ////
 		$(".gallery").fancybox({
