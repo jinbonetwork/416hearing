@@ -544,6 +544,9 @@
 						}
 					}
 				}
+				li:nth-child(odd) {
+					.answer-wrapper { background-color: #ffffff; }
+				}
 				li:nth-child(even) {
 					@bgcolor: #7657c5;
 					.nipple:nth-child(2) { border-top-color: @bgcolor !important; border-right-color: @bgcolor !important; }
@@ -779,13 +782,21 @@
 		& > .header .title-wrapper {
 			margin-left: 0;
 		}
+		.content .dialogue .answer {
+			.witness-photo {
+				margin-left: -6em;
+			}
+			.speech-bubble {
+				margin-left: 0;
+			}
+		}
 	}
 }
 
 // 답변 ////
 @media screen and (min-width: 560px) {
 	#page-hearing section.inner-page > .content .dialogue .answer-wrapper p {
-		font-size: 1.375em; //22px
+		font-size: 1.2em;
 	}
 	#page-hearing section.inner-page > .content .dialogue .answer .speech-bubble .answer-wrapper {
 		padding: 1.5em;
