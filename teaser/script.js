@@ -129,7 +129,7 @@ function opinion_make(json) {
 }
 
 function live_save() {
-	var params = 'mode=save&content='+jQuery('.page.is-admin .live>.editor').html();
+	var params = 'mode=save&content='+encodeURIComponent(jQuery('.page.is-admin .live>.editor').html());
 	var url = location.href.replace(/\/edit(\/)?$/,'')+'/teaser/live.php';
 
 	jQuery.ajax({
