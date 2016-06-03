@@ -85,6 +85,6 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<script src="hearing/witnesses.js"></script>
 	<script src="hearing/script.js"></script>
 	<script src="resources/scroll-effect/script.js"></script>
-<script type="text/javascript" src="_style_b.js"></script></body>
+</body>
 
 </html>

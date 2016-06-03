@@ -1,3 +1,5 @@
+@import "../css/variables.less";
+
 #page-hearing {
 	font-size: 16px; //기본 글자 크기. 모든 글자 크기를 이를 기준으로 em으로 설정한다.
 }
@@ -7,6 +9,7 @@
 	// 텍스트 스타일에 관한 것들 ////
 	 .outline {
 		 font-family: @font-noto;
+		 font-weight: @font-weight;
 		 & > .header {
 			 .title-part-1 span {
 				 font-size: 1.2em;
@@ -228,12 +231,14 @@
 	section.inner-page {
 		.article-title span {
 			font-family: @font-noto;
+			font-weight: @font-weight;
 			font-size: 1.125em; //18px
 			color: #7657c5;
 		}
 		.witness-photo {
 			span.name {
 				font-family: @font-noto;
+				font-weight: @font-weight;
 				color: #6d92c4;
 			}
 			span.organ {
@@ -244,21 +249,21 @@
 		}
 		.media {
 			span.icon i { font-size: 3em; }
-			span.title { font-family: @font-noto; }
+			span.title { font-family: @font-noto; font-weight: @font-weight; }
 			.caption {
-				font-family: @font-noto;
+				font-family: @font-noto; font-weight: @font-weight;
 				font-size: 0.938em; //15px
 				color: #808080;
 			}
 			a:link, a:active, a:visited, a:hover { color: #6d92c4; }
 		}
 		& > .header {
-			font-family: @font-noto;
+			font-family: @font-noto; font-weight: @font-weight;
 			a:link, a:active, a:visited, a:hover {
 				color: #6d92c4;
 			}
 			.go-back-outline span {
-				font-family: @font-noto;
+				font-family: @font-noto; font-weight: @font-weight;
 				font-size: 0.875em;
 				color: #ffffff;
 			}
@@ -309,7 +314,7 @@
 					color: #7657c5;
 				}
 				.question-wrapper p {
-					font-family: @font-noto;
+					font-family: @font-noto; font-weight: @font-weight;
 					line-height: 1.4em;
 					color: #808080;
 				}
@@ -332,12 +337,12 @@
 				color: #808080;
 			}
 			.etc .links li {
-				font-family: @font-noto;
+				font-family: @font-noto; font-weight: @font-weight;
 				color: #dfe5ea;
 				a { color: #6d92c4; }
 			}
 			.navigation {
-				font-family: @font-noto;
+				font-family: @font-noto; font-weight: @font-weight;
 				.title .main { color: #4d4d4d; }
 				.title .sub {
 					color: #999999;
@@ -485,7 +490,6 @@
 					margin-bottom: 1em;
 				}
 			}
-			.
 		}// header
 		& > .content {
 			@max-width:  32.5em;
