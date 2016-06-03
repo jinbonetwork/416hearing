@@ -3,10 +3,10 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-	entry: __dirname + '/_style.js',
+	entry: __dirname + '/bundle.dev.js',
 	output: {
 		path: __dirname,
-		filename: '_style_b.js'
+		filename: 'bundle.js'
 	},
 	module: {
 		loaders: [
@@ -18,11 +18,11 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: __dirname + '/_index.html.php',
+			template: __dirname + '/index.dev.html.php',
 			filename: __dirname + '/index.html.php'
 		}),
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.optimize.UglifyJsPlugin(),
-		new ExtractTextPlugin('style.css')
+		new ExtractTextPlugin('bundle.css')
 	]
 }

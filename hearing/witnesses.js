@@ -1,3 +1,5 @@
+var _ = require('../contrib/underscore/underscore-min.js');
+
 	function makeWitness(name,json) {
 		var witnessesTpl = _.template($('#witnesses-summary-template').html());
 		var witnessesProfileTpl = _.template($('#witnesses-summary-profile-template').html());
@@ -146,8 +148,10 @@
 					})
 				});
 			},
-			error( jqXHR, textStatus, errorThrown ) {
+			error: function( jqXHR, textStatus, errorThrown ) {
 				console.log(jqXHR.responseText);
 			}
 		});
 	}
+
+	module.exports = getWitness;

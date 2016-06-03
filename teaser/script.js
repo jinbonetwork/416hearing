@@ -1,4 +1,7 @@
-function check_opinion_submit(TheForm) {
+var _ = require('../contrib/underscore/underscore-min.js');
+
+$('form#opinion-form').submit(function(){
+	var TheForm = this;
 	if(TheForm.memo.value == '') {
 		jQuery('#opinion-memo-alert-box').show().text('질문내용을 입력하세요');
 		TheForm.memo.focus();
@@ -38,7 +41,7 @@ function check_opinion_submit(TheForm) {
 	});
 
 	return false;
-}
+});
 
 function go_opinion(page, scroll) {
 	var url = jQuery('form#opinion-form').attr('action') + '?page=' + page;

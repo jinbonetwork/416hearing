@@ -14,7 +14,6 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<link rel="stylesheet" href="contrib/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/PageStackNavigation-custom/demo.css" />
 	<link rel="stylesheet" type="text/css" href="css/PageStackNavigation-custom/component.css" />
-	<!--<link rel="stylesheet" type="text/css" href="contrib/notosans/2015.06.15/css/style.css">-->
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/earlyaccess/notosanskr.css">
 	<link rel="stylesheet" type="text/css" href="contrib/bareunbatang/style.css">
 	<link rel="stylesheet" type="text/css" href="contrib/montserrat-master/css/montserrat.css">
@@ -26,7 +25,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<link rel="stylesheet" href="contrib/spectrum/spectrum.css">
 <?php }?>
 	<script src="contrib/jquery/jquery-2.2.1.min.js"></script>
-	<script src="contrib/underscore/underscore-min.js"></script>
+	<!--<script src="contrib/underscore/underscore-min.js"></script>-->
 	<script src="contrib/PageStackNavigation/js/modernizr-custom.js"></script>
 	<script src="contrib/fancybox/2.1.5/source/jquery.fancybox.pack.js"></script>
 <?php if(defined("__EDIT_MODE__") && __EDIT_MODE__ == true) {?>
@@ -47,7 +46,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<meta name="twitter:creator" content="세월호 청문회">
 	<meta name="twitter:image:src" content="http://www.taogi.net/416hearing/data/images/og_image.png">
 	<meta name="twitter:domain" content="http://www.taogi.net/416hearing">
-</head>
+<link href="bundle.css" rel="stylesheet"></head>
 
 <body>
 	<!-- navigation -->
@@ -68,7 +67,6 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 			echo str_replace("[%=live%]",$live,file_get_contents(dirname(__FILE__).'/teaser/index.html')); ?>
 		</div>
 		<div class="page se-container" id="page-hearing">
-			<!--div style="padding: 20%; font-size: 100px; text-align: center;">준비중</div-->
 			<?php echo file_get_contents(dirname(__FILE__).'/hearing/index.html'); ?>
 		</div>
 		<div class="page se-container" id="page-journal">
@@ -79,12 +77,6 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<button class="menu-button"><span><i class="fa fa-bars out-se-color"></i></span></button>
 	<script src="contrib/PageStackNavigation/js/classie.js"></script>
 	<script src="js/PageStackNavigation-custom/main.js"></script>
-	<script src="js/script.js"></script>
-	<script src="journal/script.js"></script>
-	<script src="teaser/script.js"></script>
-	<script src="hearing/witnesses.js"></script>
-	<script src="hearing/script.js"></script>
-	<script src="resources/scroll-effect/script.js"></script>
-<script type="text/javascript" src="_style_b.js"></script></body>
+<script type="text/javascript" src="bundle.js"></script></body>
 
 </html>

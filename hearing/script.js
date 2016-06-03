@@ -1,3 +1,6 @@
+var _ = require('../contrib/underscore/underscore-min.js');
+var getWitness = require('./witnesses.js');
+
 (function($){
 	$(document).ready(function(){
 		var parts;

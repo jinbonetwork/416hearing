@@ -1,3 +1,5 @@
+var _ = require('../contrib/underscore/underscore-min.js');
+
 (function($){
 	$(document).ready(function(){
 		$.ajax({

@@ -1,6 +1,6 @@
 (function($){
-	var g_preScrTop = 0;
-	var isMenuOpen = false;
+	//var g_preScrTop = 0;
+	//var isMenuOpen = false;
 
 	$(document).ready(function(){
 		$('.menu-button').click();
