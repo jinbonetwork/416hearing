@@ -8,40 +8,21 @@ var _ = require('../contrib/underscore/underscore-min.js');
 				makeHtml(sections);
 			},
 			complete: function(){
-				$jn().trigger('ready');
-				$(window).resize(function(){
-					adjustImages();
+				$jn().scrEffectOfTitle({
+					title: '.sect-name',
+					position: 'right'
 				});
-				$jn('.medium img').load(function(){
-					adjustOneImage($(this));
+				$jn().scrEffectOfBgcolor({
+					background: '#ffffff #ffffff #1a1a1a #f2f2f2 #1a1a1a #dfe5ea'
+				},{
+					element: {
+						background: 'article .date'
+					}
 				});
+				$jn('.medium img').extraStyle({ fitted: 'yes' }, '', 'outerrect');
 			}
 		});
 	});
-	function adjustImages(){
-		$jn('.medium img').each(function(){
-			adjustOneImage($(this));
-		});
-	}
-	function adjustOneImage($image){
-		var width = $image.width();
-		var height = $image.height();
-		var wrapWidth = $image.parents('.wrapper').width();
-		var wrapHeight = $image.parents('.wrapper').height();
-		var ratio = wrapWidth / width;
-		if(height * ratio < wrapHeight){
-			ratio = wrapHeight / height;
-			var nH = height * ratio;
-			var nW = width * ratio;
-			$image.css({ width: nW+1, height: nH+1 });
-			$image.css({ 'margin-left': (wrapWidth-nW)/2, 'margin-top': 0 });
-		} else {
-			var nH = height * ratio;
-			var nW = width * ratio;
-			$image.css({ width: nW+1, height: nH+1 });
-			$image.css({ 'margin-top': (wrapHeight-nH)/2, 'margin-left': 0 });
-		}
-	}
 	function makeHtml(sections){
 		var tplSection = _.template($jn('#section-template').html());
 		var tplArticle = _.template($jn('#article-template').html());

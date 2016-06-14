@@ -25,7 +25,6 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<link rel="stylesheet" href="contrib/spectrum/spectrum.css">
 <?php }?>
 	<script src="contrib/jquery/jquery-2.2.1.min.js"></script>
-	<!--<script src="contrib/underscore/underscore-min.js"></script>-->
 	<script src="contrib/PageStackNavigation/js/modernizr-custom.js"></script>
 	<script src="contrib/fancybox/2.1.5/source/jquery.fancybox.pack.js"></script>
 <?php if(defined("__EDIT_MODE__") && __EDIT_MODE__ == true) {?>
@@ -46,7 +45,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<meta name="twitter:creator" content="세월호 청문회">
 	<meta name="twitter:image:src" content="http://www.taogi.net/416hearing/data/images/og_image.png">
 	<meta name="twitter:domain" content="http://www.taogi.net/416hearing">
-<link href="bundle.css" rel="stylesheet"></head>
+</head>
 
 <body>
 	<!-- navigation -->
@@ -62,9 +61,13 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	</section>
 	<!-- pages stack -->
 	<div class="pages-stack">
+		<!--
 		<div class="page se-container<?php print ( ( defined("__EDIT_MODE__") && __EDIT_MODE__ == true ) ? " is-admin" : "" ); ?>" id="page-teaser">
 			<?php $live = file_get_contents(dirname(__FILE__)."/data/live/live.html");
 			echo str_replace("[%=live%]",$live,file_get_contents(dirname(__FILE__).'/teaser/index.html')); ?>
+		</div>
+		-->
+		<div class="page" id="page-teaser">
 		</div>
 		<div class="page se-container" id="page-hearing">
 			<?php echo file_get_contents(dirname(__FILE__).'/hearing/index.html'); ?>

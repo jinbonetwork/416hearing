@@ -3,9 +3,9 @@ var getWitness = require('./witnesses.js');
 
 (function($){
 	$(document).ready(function(){
-		var parts;
-		var suspicions;
-		var witnesses;
+		var parts = undefined;
+		var suspicions = undefined;
+		var witnesses = undefined;
 		var partMap = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2];
 		$.ajax({
 			url: 'data/suspicions.json', dataType: 'json',
@@ -23,7 +23,7 @@ var getWitness = require('./witnesses.js');
 			complete: function(){ $hr().trigger('json-load'); }
 		});
 		$hr().on('json-load', function(){
-			if(parts !== undefined && suspicions !== undefined && witnesses != undefined){
+			if(parts !== undefined && suspicions !== undefined && witnesses !== undefined){
 				$hr('.outline .content').append(htmlOutline(parts, partMap, suspicions));
 				var navigation = htmlNavigation(parts, partMap, suspicions);
 				for(var i = 0, leni = suspicions.length; i < leni; i++) {
@@ -36,10 +36,22 @@ var getWitness = require('./witnesses.js');
 					if(!$(this).attr('data-name')) $(this).closest('.answer').hide();
 				});
 
-				$hr('.se-section').addClass('se-diabled');
-				$hr().trigger('ready');
-				$(window).resize(function(){ adjustImages(); });
-				$hr('.medium img').load(function(){ adjustOneImage($(this)); });
+				//스크롤 효과 ////
+				$hr('.outline').scrEffectOfBgcolor({
+					background: '#ffffff #1a1a1a'
+				});
+				$hr('section').scrEffectOfBgcolor({
+					background: '#1a1a1a #ffffff'
+				});
+				$hr('section').scrEffectOfTitle({
+					title: '.fixed-element',
+					position: 'right',
+					active: 1024,
+					option: 'wait'
+				});
+
+				//이미지 크롭 ////
+				$hr('.medium img').extraStyle({ fitted: 'yes' }, 'wait');
 
 				// 의혹 페이지로 이동 ////
 				$hr('.outline li').click(function(){
@@ -48,21 +60,29 @@ var getWitness = require('./witnesses.js');
 				$hr('.go-back-outline').click(function(){
 					var num = $(this).parents('section').attr('id').replace(/suspicion\-/, '');
 					closePage(num);
+					$hr('.outline').trigger('scroll');
 				});
 
 				// 네비게이션 동작 ////
 				$hr('.navigation .header').click(function(){
 					if($(this).parents('.part').hasClass('folded')){
-						$(this).parents('.navigation').find('.part').addClass('folded');
+						$(this).parents('.navigation').find('.part:not(.folded)').addClass('folded').children('ul').animate({height: 0}, 500);
 						$(this).parents('.part').removeClass('folded');
+						var height = $(this).siblings('ul').css('height', '').height();
+						$(this).siblings('ul').height(0);
+						$(this).siblings('ul').animate({height: height}, 500);
+
 					} else {
 						$(this).parents('.part').addClass('folded');
+						$(this).siblings('ul').animate({height: 0}, 500);
 					}
 				});
 				$hr('.navigation li').click(function(){
 					var pastNum = $(this).parents('.navigation').find('.selected').find('.num').text();
 					closeAndOpenPage(pastNum, $(this).find('.num').text());
 				});
+
+				//증인 정보 표시 ////
 				$hr('.witness-photo').click(function(e) {
 					var name = jQuery(this).attr('data-name');
 					getWitness(name,jQuery(this));
@@ -73,30 +93,17 @@ var getWitness = require('./witnesses.js');
 	function openPage(pageNum){
 		$hr('.outline').removeClass('open-inner-page');
 		$hr('#suspicion-'+pageNum).addClass('open-inner-page');
-		$hr('#suspicion-'+pageNum).find('.se-section').removeClass('se-diabled');
 		unfoldNavi(pageNum);
-		adjustImages();
-		if($hr().scrollTop() > 0) $hr().animate({ scrollTop: 0 }, 500);
-		$hr().trigger('refresh');
 	}
 	function closePage(pageNum){
 		$hr('.outline').addClass('open-inner-page');
 		$hr('#suspicion-'+pageNum).removeClass('open-inner-page');
-		$hr('#suspicion-'+pageNum).find('.se-section').addClass('se-diabled');
 		foldNavi(pageNum);
-		if($hr().scrollTop() > 0) $hr().animate({ scrollTop: 0 }, 500);
-		$hr().trigger('refresh');
 	}
 	function closeAndOpenPage(pastNum, curNum){
 		$hr('#suspicion-'+pastNum).removeClass('open-inner-page');
-		$hr('#suspicion-'+pastNum).find('.se-section').addClass('se-diabled');
-		foldNavi(pastNum);
 		$hr('#suspicion-'+curNum).addClass('open-inner-page');
-		$hr('#suspicion-'+curNum).find('.se-section').removeClass('se-diabled');
 		unfoldNavi(curNum);
-		adjustImages();
-		if($hr().scrollTop() > 0) $hr().animate({ scrollTop: 0 }, 500);
-		$hr().trigger('refresh');
 	}
 	function unfoldNavi(pageNum){
 		$hr('#suspicion-'+pageNum).find('.navigation').each(function(){
@@ -108,36 +115,19 @@ var getWitness = require('./witnesses.js');
 				}
 			});
 		});
+		if(!$hr('#suspicion-'+pageNum).hasClass('visited-page')){
+			$hr('#suspicion-'+pageNum).addClass('visited-page');
+			$hr('#suspicion-'+pageNum+' .medium img').trigger('refresh-fitting-image');
+			$hr('#suspicion-'+pageNum).scroll();
+		} else {
+			$hr('#suspicion-'+pageNum).animate({scrollTop: 0}, 300);
+		}
 	}
 	function foldNavi(pageNum){
 		$hr('#suspicion-'+pageNum).find('.navigation').each(function(){
 			$(this).find('.selected').removeClass('selected');
 			$(this).find('.part').addClass('folded');
 		});
-	}
-	function adjustImages(){
-		$hr('.medium img').each(function(){
-			adjustOneImage($(this));
-		});
-	}
-	function adjustOneImage($image){
-		var width = $image.width();
-		var height = $image.height();
-		var wrapWidth = $image.parents('.wrapper').width();
-		var wrapHeight = $image.parents('.wrapper').height();
-		var ratio = wrapWidth / width;
-		if(height * ratio < wrapHeight){
-			ratio = wrapHeight / height;
-			var nH = height * ratio;
-			var nW = width * ratio;
-			$image.css({ width: nW+1, height: nH+1 });
-			$image.css({ 'margin-left': (wrapWidth-nW)/2, 'margin-top': 0 });
-		} else {
-			var nH = height * ratio;
-			var nW = width * ratio;
-			$image.css({ width: nW+1, height: nH+1 });
-			$image.css({ 'margin-top': (wrapHeight-nH)/2, 'margin-left': 0 });
-		}
 	}
 	function htmlOutline(parts, partMap, suspicions){
 		var template = _.template($hr('#outline-template').html());
@@ -274,7 +264,7 @@ var getWitness = require('./witnesses.js');
 		return html;
 	}
 	function $hr(selector){
-		if(selector) return $('#page-hearing').find(selector);
+		if(selector) return $('#page-hearing '+selector);
 		else return $('#page-hearing');
 	}
 })(jQuery);

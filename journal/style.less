@@ -7,19 +7,19 @@
 	////////
 	font-size: @font-size-m;
 	section:nth-of-type(2) {
-		.section(@color, @color-strong, #ffffff);
+		.section(@color, @color-strong);
 	}
 	section:nth-of-type(3) {
-		.section(#ffffff, #0be4db, #1a1a1a);
+		.section(#ffffff, #0be4db);
 	}
 	section:nth-of-type(4) {
-		.section(@color, #97d5ac, #f2f2f2);
+		.section(@color, #97d5ac);
 	}
 	section:nth-of-type(5) {
-		.section(#ffffff, #ffb0a9, #1a1a1a);
+		.section(#ffffff, #ffb0a9);
 	}
 	section:nth-of-type(6) {
-		.section(@color, #7657c5, #dfe5ea);
+		.section(@color, #7657c5);
 	}
 	section.title {
 		padding: 8% 8% 20% 8%;
@@ -111,7 +111,7 @@
 		}
 		section:nth-of-type(n+2) {
 			padding-right: 200px;
-			.sect-name span {
+			.sect-name {
 				font-size: 1.7em; //챕터 제목
 			}
 			article.important .title span { //핵심사건 제목
@@ -137,7 +137,7 @@
 		section:nth-of-type(n+2) {
 			padding-left: 80px;
 			padding-right: 21em;
-			.sect-name span {
+			.sect-name {
 				font-size: 3em; //챕터 제목
 			}
 			article .media .medium > .wrapper a {
@@ -160,7 +160,7 @@
 		}
 		section:nth-of-type(n+2) {
 			padding-right: 27em;
-			.sect-name span {
+			.sect-name {
 				font-size: 4.24em; //챕터 제목
 			}
 			article {
@@ -191,29 +191,28 @@
 	}
 }
 
-.section(@color-main, @color-extra, @bgcolor) {
+.section(@color-main, @color-extra) {
 	color: @color-main;
 	padding: 0 8%;
 	article:last-of-type > .wrapper {
 		padding-bottom: 5em;
 	}
-	.se-background {
-		background-color: @bgcolor;
-	}
 	.sect-name {
-		margin-top: -3em;
-		color: @color-extra;
-		transform: rotateZ(30deg); -wekit-transform: rotateZ(30deg);
-		transform-origin: 0 0; -webkit-transform-origin: 0 0;
+		margin-left: 0.6699em;
 		span {
-			display: block;
+			display: inline-block;
 			font-family: @font-noto;
 			font-weight: @font-weight;
-			font-size: 1.3em;
+			color: @color-extra;
 			line-height: 1.1em;
-			transform: skewX(-30deg); -webkit-transform: skewX(-30deg);
-			transform-origin: 0 0; -webkit-transform-origin: 0 0;
+			width: 5em;
+			text-align: right;
+			transform: rotateZ(30deg) skewX(-30deg); //-webkit-transform: rotateZ(30deg) skewX(-30deg);
+			transform-origin: 0 0; //-webkit-transform-origin: center;
 		}
+	}
+	.articles {
+		overflow: hidden;
 	}
 	article {
 		margin-top: 1em;

@@ -46,16 +46,14 @@
 		 }
 	 }
 
-	 // 그 외의 모든 것 ////
-	 .outline {
-		background-color: #1a1a1a;
+	// 그 외의 모든 것 ////
+	overflow: hidden;
+	.outline {
+		height: 100vh;
 		& > .header {
-			.se-background { background-color: #1a1a1a; }
-   		 	.se-title { color: #808080; }
 			padding-top: 7em;
 			padding-bottom: 7em;
 			text-align: center;
-			background-color: #ffffff;
 			.wrapper {
 				display: inline-block;
 				transform: rotateZ(-30deg);
@@ -87,13 +85,10 @@
 			}
 		}
 		& > .content {
-			.se-background { background-color: #1a1a1a; }
-   		 	.se-title { color: #808080; }
 			&:after {
 				content: ''; display: block; clear: both;
 			}
 			.part {
-				background-color: #1a1a1a;
 				padding: 1em;
 				.title .sub {
 					display: block;
@@ -227,6 +222,10 @@
 
 //의혹 페이지 ////
 #page-hearing {
+	.sections {
+		overflow: hidden;
+	}
+
 	// 텍스트 스타일에 관한 것들 ////
 	section.inner-page {
 		.article-title span {
@@ -370,6 +369,7 @@
 	.inner-page { display: none; }
 	.open-inner-page { display: block; }
 	section.inner-page {
+		height: 100vh;
 		p { text-align: justify; }
 		b {
 			text-decoration: none;
@@ -457,10 +457,11 @@
 			margin: 8% 8% 3em 8%;
 			.go-back-outline {
 				display: inline-block;
+				width: 7em;
 				padding: 0.5em;
 				background-color: #7657c5;
-				margin-bottom: 1em;
 				cursor: pointer;
+				text-align: center;
 			}
 			.part-title, .title, .background, .witnesses {
 				max-width: 42.5em;
@@ -492,13 +493,11 @@
 			}
 		}// header
 		& > .content {
-			@max-width:  32.5em;
-			.se-background { background-color: #ffffff; }
-			.se-title { color: #1a1a1a; }
 			position: relative;
 			margin: 0 8% 3em 8%;
 			.abstract, .dialogue, .conclusion, .etc {
-				max-width: 32.5em;
+				max-width: 42.5em;
+				margin-left: auto; margin-right: auto;
 			}
 			.abstract {
 				& > .header { margin-bottom: 1em; }
@@ -572,36 +571,35 @@
 				.links li {
 					margin-left: 1em;
 					border-bottom: solid 1px #dfe5ea;
-					padding-bottom: 0.5em;
+					padding-bottom: 0.3em;
+					margin-bottom:0.5em;
 				}
 			}
 			.navigation {
-				&.navi-right { display: none; }
+				max-width: 42.5em;
 				margin-top: 3em;
+				margin-left: auto; margin-right: auto;
 				.part {
+					width: 19em;
 					@bgcolor: #dfe5ea;
 					background-color: @bgcolor;
 					&:last-child {
 						& > .header {
-							border-bottom: solid 2px @bgcolor;
+							border-bottom: solid 4px @bgcolor;
 						}
 					}
 					&.folded {
 						background-color: transparent;
 						.arrow i {
-							transform: rotateX(180deg); -webkit-transform: rotateX(180deg);
-							//transition: transform 1s; -webkit-transition: -webkit-transform 1s;
+							transform: rotateX(180deg);
 						};
-						ul {
-							height: 0;
-							//transition: height 1s; -webkit-transition: height 1s;
-						};
+						ul { height: 0; };
 					}
 					& > .header {
 						overflow: hidden;
 						position: relative;
 						padding: 1em 3em 0.5em 0.5em;
-						border-top: solid 2px @bgcolor;
+						border-top: solid 4px @bgcolor;
 						cursor: pointer;
 						.sub {
 							display: block;
@@ -610,9 +608,15 @@
 							padding: 0 1em 0 1em;
 							position: absolute; top: 0; right: 0;
 							line-height: 4.5em;
+							i {
+								transition: transform 1s;
+							}
 						}
 					}
-					ul { overflow: hidden; }
+					ul {
+						overflow: hidden;
+						//transition: height 0.5s;
+					}
 					li {
 						&:after { content: ''; display: block; clear: both; }
 						&:last-child { margin-bottom: 0.5em; }
@@ -701,23 +705,28 @@
 }
 @media screen and (min-width: 1024px) {
 	#page-hearing section.inner-page {
-		& > .header, & > .content {
+		& > .header {
 			margin-left: 80px; margin-right: 70px;
-			.navigation {
-				margin-top: 0;
+		}
+		& > .content {
+			margin-left: 80px; margin-right: 70px;
+			.abstract, .dialogue, .conclusion, .etc {
+				max-width: 32.5em;
+				margin-left: 0; margin-right: 0;
 			}
+
 		}
 	}
 }
 @media screen and (min-width: 1280px) {
-	#page-hearing section.inner-page {
+	#page-hearing section.inner-page > .content {
 		.abstract, .dialogue, .conclusion, .etc {
 			margin-left: 20%;
 		}
 	}
 }
 
-// '위혹 + 숫자'를 두 줄로 ////
+// '의혹 + 숫자'를 두 줄로 ////
 @media screen and (min-width: 768px) {
 	#page-hearing section.inner-page {
 		& > .header {
@@ -747,23 +756,22 @@
 
 // 네비게이션과 '의혹전체보기' 버튼을 오른쪽으로 ////
 @media screen and (min-width: 560px) {
-	#page-hearing section.inner-page > .content .navigation {
-		width: 19em;
-	}
-}
-@media screen and (min-width: 768px) {
 	#page-hearing section.inner-page > .header .go-back-outline {
 		float: right;
 	}
+}
+@media screen and (min-width: 1024px) {
 	#page-hearing section.inner-page > .content {
-		.navigation.navi-bottom { display: none; }
-		.navigation.navi-right {
-			display: block;
+		.navigation {
+			max-width: 19em;
 			float: right;
-			margin: 0 0 1em 1em;
+			margin-top: 0;
+			margin-left: 0; margin-right: 0;
 		}
 	}
 }
+
+
 
 // 제목을 왼쪽으로 ////
 @media screen and (min-width: 1280px) {

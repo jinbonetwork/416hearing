@@ -1,7 +1,5 @@
 <div class="outline inner-page open-inner-page">
-	<div class="header se-section">
-		<div class="se-background"></div>
-		<div class="se-title"></div>
+	<div class="header">
 		<div class="wrapper">
 			<div class="title">
 				<div class="title-part-1"><span>416세월호참사 특별조사위원회</span></div>
@@ -20,9 +18,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="content se-section">
-		<div class="se-background"></div>
-		<div class="se-title"></div>
+	<div class="content">
 	</div>
 </div>
 <div class="sections">
@@ -50,10 +46,8 @@
 
 <script type="text/template" id="section-template">
 	<section id="suspicion-<%= section %>" class="inner-page">
-		<div class="header se-section">
-			<div class="se-background"></div>
-			<div class="se-title"></div>
-			<div class="go-back-outline">
+		<div class="header">
+			<div class="go-back-outline fixed-element">
 				<span>의혹 전체보기</span>
 			</div>
 			<div class="part-title">
@@ -79,12 +73,7 @@
 				<ul class="list"><%= witness %></ul>
 			</div>
 		</div><!-- header -->
-		<div class="content se-section">
-			<div class="se-background"></div>
-			<div class="se-title"></div>
-			<div class="navigation navi-right">
-				<%= navigation %>
-			</div>
+		<div class="content">
 			<div class="abstract">
 				<div class="header article-title"><span>청문회 주요내용</span></div>
 				<div class="content"><%= abstract %></div>
@@ -98,16 +87,16 @@
 				<div class="header article-title"><span>청문회를 마치고</span></div>
 				<div class="conclusion-wrapper"><%= conclusion %></div>
 				<div class="media size-<%= concMediaSize %>"><%= concMedia %></div>
-
 			</div>
 			<div class="etc">
 				<div class="header article-title"><span>함께 보기</span></div>
 				<div class="media size-<%= etcMediaSize %>"><%= etcMedia %></div>
 				<ul class="links num-<%= etcLinkNum %>"><%= etcLinks %></ul>
 			</div>
-			<div class="navigation navi-bottom">
+			<div class="navigation fixed-element">
 				<%= navigation %>
 			</div>
+
 		</div> <!--content -->
 	</section>
 </script>
