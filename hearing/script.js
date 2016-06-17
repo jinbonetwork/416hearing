@@ -38,16 +38,34 @@ var getWitness = require('./witnesses.js');
 
 				//스크롤 효과 ////
 				$hr('.outline').scrEffectOfBgcolor({
-					background: '#ffffff #1a1a1a'
+					background: '#ffffff #1a1a1a',
+					after: function($contain, bgcolor, bgcIndex){
+						var colors = ['#1a1a1a', '#ffffff'];
+						$('button.menu-button i').stop().animate({color: colors[bgcIndex]}, 1000);
+					}
 				});
 				$hr('section').scrEffectOfBgcolor({
-					background: '#1a1a1a #ffffff'
+					background: '#1a1a1a #ffffff',
+					after: function($contain, bgcolor, bgcIndex){
+						var colors = ['#ffffff', '#1a1a1a'];
+						$('button.menu-button i').stop().animate({color: colors[bgcIndex]}, 1000);
+					}
 				});
 				$hr('section').scrEffectOfTitle({
 					title: '.fixed-element',
 					position: 'right',
 					active: 1024,
-					option: 'wait'
+					after: function($contain){
+						var $partTitle = $contain.find('.header .part-title');
+						if($partTitle.length){
+							var right = $partTitle.offset().left + $partTitle.outerWidth();
+							var $goOutline = $contain.find('.header .go-back-outline');
+							$goOutline.css('margin-left', '');
+							if(right > $goOutline.offset().left){
+								$goOutline.css('margin-left', right - $goOutline.offset().left + 15);
+							}
+						}
+					}
 				});
 
 				//이미지 크롭 ////
@@ -60,7 +78,6 @@ var getWitness = require('./witnesses.js');
 				$hr('.go-back-outline').click(function(){
 					var num = $(this).parents('section').attr('id').replace(/suspicion\-/, '');
 					closePage(num);
-					$hr('.outline').trigger('scroll');
 				});
 
 				// 네비게이션 동작 ////
@@ -70,11 +87,11 @@ var getWitness = require('./witnesses.js');
 						$(this).parents('.part').removeClass('folded');
 						var height = $(this).siblings('ul').css('height', '').height();
 						$(this).siblings('ul').height(0);
-						$(this).siblings('ul').animate({height: height}, 500);
+						$(this).siblings('ul').stop().animate({height: height}, 500);
 
 					} else {
 						$(this).parents('.part').addClass('folded');
-						$(this).siblings('ul').animate({height: 0}, 500);
+						$(this).siblings('ul').stop().animate({height: 0}, 500);
 					}
 				});
 				$hr('.navigation li').click(function(){
@@ -99,6 +116,7 @@ var getWitness = require('./witnesses.js');
 		$hr('.outline').addClass('open-inner-page');
 		$hr('#suspicion-'+pageNum).removeClass('open-inner-page');
 		foldNavi(pageNum);
+		$hr('.outline').trigger('refresh-scroll-effect-bgcolor').trigger('refresh-scroll-effect-title');
 	}
 	function closeAndOpenPage(pastNum, curNum){
 		$hr('#suspicion-'+pastNum).removeClass('open-inner-page');
@@ -118,9 +136,10 @@ var getWitness = require('./witnesses.js');
 		if(!$hr('#suspicion-'+pageNum).hasClass('visited-page')){
 			$hr('#suspicion-'+pageNum).addClass('visited-page');
 			$hr('#suspicion-'+pageNum+' .medium img').trigger('refresh-fitting-image');
-			$hr('#suspicion-'+pageNum).scroll();
+			$hr('#suspicion-'+pageNum).trigger('refresh-scroll-effect-bgcolor').trigger('refresh-scroll-effect-title');
 		} else {
-			$hr('#suspicion-'+pageNum).animate({scrollTop: 0}, 300);
+			$hr('#suspicion-'+pageNum).scrollTop(0);
+			$hr('#suspicion-'+pageNum).trigger('refresh-scroll-effect-bgcolor').trigger('refresh-scroll-effect-title');
 		}
 	}
 	function foldNavi(pageNum){

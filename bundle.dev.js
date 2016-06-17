@@ -4,12 +4,12 @@ require('./teaser/style.less');
 require('./hearing/style.less');
 require('./hearing/witnesses.less');
 
-require('./contrib/scroll-bgcolor.js');
-require('./contrib/scroll-title.js');
-//require('./contrib/scroll-effect.min.js');
-require('./contrib/static-style.js');
-require('./contrib/resp-style.js');
-//require('./contrib/extra-style.min.js');
+require('../../my-project/scroll-effect/app/scroll-bgcolor.js');
+require('../../my-project/scroll-effect/app/scroll-title.js');
+
+require('../../my-project/extra-style/app/static-style.js');
+require('../../my-project/extra-style/app/resp-style.js');
+
 require('./js/script.js');
 require('./journal/script.js');
 //require('./teaser/script.js');

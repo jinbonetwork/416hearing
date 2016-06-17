@@ -16,7 +16,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<link rel="stylesheet" type="text/css" href="css/PageStackNavigation-custom/component.css" />
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/earlyaccess/notosanskr.css">
 	<link rel="stylesheet" type="text/css" href="contrib/bareunbatang/style.css">
-	<link rel="stylesheet" type="text/css" href="contrib/montserrat-master/css/montserrat.css">
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="contrib/fancybox/2.1.5/source/jquery.fancybox.css">
 	<link rel="shortcut icon" type="image/x-icon" href="./resources/favicon.ico">
 <?php if(defined("__EDIT_MODE__") && __EDIT_MODE__ == true) {?>
@@ -25,6 +25,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<link rel="stylesheet" href="contrib/spectrum/spectrum.css">
 <?php }?>
 	<script src="contrib/jquery/jquery-2.2.1.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="contrib/PageStackNavigation/js/modernizr-custom.js"></script>
 	<script src="contrib/fancybox/2.1.5/source/jquery.fancybox.pack.js"></script>
 <?php if(defined("__EDIT_MODE__") && __EDIT_MODE__ == true) {?>
@@ -62,9 +63,9 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<!-- pages stack -->
 	<div class="pages-stack">
 		<!--
-		<div class="page se-container<?php print ( ( defined("__EDIT_MODE__") && __EDIT_MODE__ == true ) ? " is-admin" : "" ); ?>" id="page-teaser">
-			<?php $live = file_get_contents(dirname(__FILE__)."/data/live/live.html");
-			echo str_replace("[%=live%]",$live,file_get_contents(dirname(__FILE__).'/teaser/index.html')); ?>
+		<div class="page se-container<?php //print ( ( defined("__EDIT_MODE__") && __EDIT_MODE__ == true ) ? " is-admin" : "" ); ?>" id="page-teaser">
+			<?php //$live = file_get_contents(dirname(__FILE__)."/data/live/live.html");
+			//echo str_replace("[%=live%]",$live,file_get_contents(dirname(__FILE__).'/teaser/index.html')); ?>
 		</div>
 		-->
 		<div class="page" id="page-teaser">

@@ -13,10 +13,12 @@ var _ = require('../contrib/underscore/underscore-min.js');
 					position: 'right'
 				});
 				$jn().scrEffectOfBgcolor({
-					background: '#ffffff #ffffff #1a1a1a #f2f2f2 #1a1a1a #dfe5ea'
-				},{
-					element: {
-						background: 'article .date'
+					background: '#ffffff #ffffff #1a1a1a #f2f2f2 #1a1a1a #dfe5ea',
+					section: 'section',
+					after: function($contain, bgcolor, bgcIndex){
+						var colors = ['#4d4d4d', '#6d92c4', '#0be4db', '#97d5ac', '#ffb0a9', '#7657c5'];
+						$('button.menu-button i').stop().animate({'color': colors[bgcIndex]}, 1000);
+						$contain.find('article .date').stop().animate({'background-color': bgcolor}, 1000);
 					}
 				});
 				$jn('.medium img').extraStyle({ fitted: 'yes' }, '', 'outerrect');
