@@ -1,0 +1,200 @@
+@import "../css/variables.less";
+
+.witness-container {
+	font-size: 16px;
+	font-family: @font-noto; font-weight: @font-weight;
+	.witness-summary {
+		position: fixed;
+		z-index: 999999;
+		left: 0;
+		top: 0;
+		border: 1px solid #7657c5;
+		background-color: #f8f8f8;
+		.witness-summary-inner {
+			position: relative;
+			height: 100%;
+			width: 100%;
+			padding-top: 40px;
+			background-color: #ffffff;
+			h4.witness-title {
+				position: absolute;
+				top: -30px;
+				left: 15px;
+				color: #fff;
+				font-weight: bold;
+				padding: 7px;
+				background: #7657c5;
+			}
+			i.fa-close {
+				position: absolute;
+				z-index: 9999999;
+				right: 25px;
+				top: 15px;
+				color: #7657c5;
+				font-weight: bold;
+				font-weight: 16px;
+				cursor: pointer;
+			}
+			.witness-summary-box {
+				width: 100%;
+				height: 100%;
+				line-height: 1.3em;
+				-webkit-overflow-scrolling: touch;
+				overflow-y: auto;
+				.witness-profile {
+					padding: 50px 25px 25px 25px;
+					background: #fff;
+					*zoom: 1;
+					color: #4d4d4d;
+					img.witness-profile-photo {
+						width: 40%;
+						float: left;
+						margin-right: 25px;
+						margin-bottom: 25px;
+					}
+					h4.witness-name {
+						margin: 0 0 15px 0;
+						padding: 0;
+						font-size: 1.35em;
+						font-weight: bold;
+					}
+					.witness-positions {
+						padding: 0 0 25px 0;
+						color: #7657c5;
+						font-size: 0.85em;
+					}
+					.witness-description {
+						font-family: @font-batang;
+						font-size: 0.9em;
+					}
+				}
+				.witness-profile:after {
+					clear: both;
+					content: ' ';
+					display: block;
+				}
+				dl.witness-suspicions {
+					margin: 0;
+					padding: 25px;
+					background: #f8f8f8;
+					dt.witness-suspicions-title {
+						margin: 0;
+						padding: 0 0 15px 0;
+						font-size: 1.3em;
+						font-weight: bold;
+						color:#7657c5;
+					}
+					dd.witness-suspicion-data {
+						position: relative;
+						margin: 0;
+						padding: 0 0 15px 30px;
+						label {
+							position: absolute;
+							left: 0;
+							top: 0;
+							color: #7657c5;
+							font-weight: bold;
+							font-size: 1.15em;
+							text-align: right;
+							width: 20px;
+						}
+						span.witness-suspicion-title {
+							color: #4d4d4d;
+							padding: 1px;
+							font-weight: bold;
+							font-size: 0.9em;
+							cursor: pointer;
+						}
+						span.witness-suspicion-title:hover {
+							background: #7657c5;
+							color: #fff;
+						}
+					}
+				}
+				dl.witness-timeline {
+					padding: 25px;
+					margin: 0;
+					color: #4d4d4d;
+					background: #fff;
+					dt.witness-timeline-title {
+						margin: 0;
+						padding: 0 0 20px 0;
+						font-size: 1.2em;
+						font-weight: bold;
+						color:#7657c5;
+					}
+					dd.witness-timeline-data {
+						border-left: 1px solid #6d92c4;
+						position: relative;
+						margin: 0;
+						padding: 0 0 18px 105px;
+						font-size: 0.85em;
+						i.fa-circle {
+							position: absolute;
+							top: 0;
+							left: -6px;
+							color: #6d92c4;
+						}
+						label.witness-timeline-time {
+							position: absolute;
+							top: 0;
+							left: 20px;
+							width: 65px;
+							font-family: @font-mont;
+							line-height: 1.0em;
+						}
+					}
+				}
+			}
+			.witness-summary-box::-webkit-scrollbar {
+				width: 10px;
+			}
+			.witness-summary-box.no-scroll::-webkit-scrollbar {
+				width: 0;
+			}
+			.witness-summary-box::-webkit-scrollbar-track {
+				background-color: #fff;
+			}
+			.witness-summary-box::-webkit-scrollbar-thumb {
+				background-color: #7657c5;
+				border-radius: 5px;
+			}
+		}
+	}
+	.witness-container-background {
+		position: fixed;
+		z-index: 999998;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background: #000;
+		opacity: 0.6;
+	}
+}
+#media screen and (min-width: 480px) {
+	dd.witness-timeline-data {
+		padding: 0 0 18px 125px;
+		font-size: 0.85em;
+	}
+	label.witness-timeline-time {
+		width: 85px;
+	}
+}
+#media screen and (min-width: 640px) {
+	dd.witness-timeline-data {
+		padding: 0 0 18px 165px;
+		font-size: 0.85em;
+	}
+	label.witness-timeline-time {
+		width: 125px;
+	}
+}
+@media screen and (min-width: 1680px) {
+	.witness-summary {
+		position: absolute !important;
+	}
+	.witness-container-background {
+		display: none;
+	}
+}

@@ -60,8 +60,8 @@ function go_opinion(page, scroll) {
 		complete: function() {
 			if(scroll){
 				var wrapOffset = jQuery('#opinion-items-wrap').offset();
-				var scrTop = jQuery('#page-teaser').scrollTop();
-				jQuery('#page-teaser').animate({ scrollTop: scrTop + wrapOffset.top }, 400);
+				var scrTop = jQuery('#page-2nd-hearing').scrollTop();
+				jQuery('#page-2nd-hearing').animate({ scrollTop: scrTop + wrapOffset.top }, 400);
 			}
 
 			opinion_init_click_event();

@@ -51,7 +51,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 <body>
 	<!-- navigation -->
 	<nav class="pages-nav">
-		<div class="pages-nav__item"><a class="link link--page" href="#page-teaser">2차 청문회</a></div>
+		<div class="pages-nav__item"><a class="link link--page" href="#page-2nd-hearing">2차 청문회</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-hearing">1차 청문회</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-journal">416가족의 발자취</a></div>
 	</nav>
@@ -63,22 +63,23 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<!-- pages stack -->
 	<div class="pages-stack">
 		<!--
-		<div class="page se-container<?php //print ( ( defined("__EDIT_MODE__") && __EDIT_MODE__ == true ) ? " is-admin" : "" ); ?>" id="page-teaser">
+		<div class="page se-container<?php //print ( ( defined("__EDIT_MODE__") && __EDIT_MODE__ == true ) ? " is-admin" : "" ); ?>" id="page-2nd-hearing">
 			<?php //$live = file_get_contents(dirname(__FILE__)."/data/live/live.html");
-			//echo str_replace("[%=live%]",$live,file_get_contents(dirname(__FILE__).'/teaser/index.html')); ?>
+			//echo str_replace("[%=live%]",$live,file_get_contents(dirname(__FILE__).'/2nd-hearing/index.html')); ?>
 		</div>
 		-->
-		<div class="page" id="page-teaser">
+		<div class="page" id="page-2nd-hearing">
+			<?php echo file_get_contents(dirname(__FILE__).'/2nd-hearing/index.html'); ?>
 		</div>
-		<div class="page se-container" id="page-hearing">
+		<div class="page" id="page-hearing">
 			<?php echo file_get_contents(dirname(__FILE__).'/hearing/index.html'); ?>
 		</div>
-		<div class="page se-container" id="page-journal">
+		<div class="page" id="page-journal">
 			<?php echo file_get_contents(dirname(__FILE__).'/journal/index.html'); ?>
 		</div>
 	</div>
 	<!-- /pages-stack -->
-	<button class="menu-button"><span><i class="fa fa-bars out-se-color"></i></span></button>
+	<button class="menu-button"><span><i class="fa fa-bars"></i></span></button>
 	<script src="contrib/PageStackNavigation/js/classie.js"></script>
 	<script src="js/PageStackNavigation-custom/main.js"></script>
 </body>

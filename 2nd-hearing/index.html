@@ -1,0 +1,224 @@
+<div class="outline inner-page open-inner-page">
+	<div class="header">
+		<div class="wrapper">
+			<div class="title">
+				<div class="title-part-1"><span>416세월호참사 특별조사위원회</span></div>
+				<div class="title-part-2"><span>1차 청문회</span></div>
+			</div>
+			<div class="buttons">
+				<div class="go-why">
+					<a href="http://taogi.net/why-sewolho/" target="_blank"><span>세월호는 왜</span></a>
+				</div>
+				<div class="down-abstract">
+					<a href="data/1st_hearing/docs/151222_청문회_주요내용_정리.pdf" target="_blank"><span>요약본 다운받기</span></a>
+				</div>
+				<div class="down-timetable">
+					<a href="data/1st_hearing/docs/160326_1차_청문회_일정표.pdf" target="_blank"><span>일정표</span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="content">
+	</div>
+</div>
+<div class="sections">
+</div>
+
+<script type="text/template" id="outline-template">
+	<div class="part">
+		<div class="header">
+			<span class="part-num">part <%= partNum %></span>
+			<div class="title">
+				<span class="main"><%= title %></span>
+				<span class="sub">- <%= subtitle %></span>
+			</div>
+		</div>
+		<ul><%= supicions %></ul>
+	</div>
+</script>
+
+<script type="text/template" id="outline-suspicion-template">
+	<li data-num="<%= num %>">
+		<span class="num"><span>의혹 </span><span><%= num %></span></span>
+		<div class="item"><span><%= item %></span></div>
+	</li>
+</script>
+
+<script type="text/template" id="section-template">
+	<section id="suspicion-<%= section %>" class="inner-page">
+		<div class="header">
+			<div class="go-back-outline fixed-element">
+				<span>의혹 전체보기</span>
+			</div>
+			<div class="part-title">
+				<div class="part-num">part <%= partNum %></div>
+				<div class="part-main-title"><%= partMainTitle %></div>
+				<div class="part-subtitle">- <%= partSubtitle %></div>
+			</div>
+			<div class="title">
+				<span class="title-num-wrapper">
+					<div class="wrapper">
+						<span>의혹</span>
+						<span class="title-num"><%= titleNum %></span>
+					</div>
+				</span>
+				<span class="title-wrapper"><span><%= title %></span></span>
+			</div>
+			<div class="background">
+				<div class="media size-<%= bgMediaSize %>"><%= bgMedia %></div>
+				<p><%= background %></p>
+			</div>
+			<div class="witnesses">
+				<div class="header article-title"><span>관련증인</span></div>
+				<ul class="list"><%= witness %></ul>
+			</div>
+		</div><!-- header -->
+		<div class="content">
+			<div class="abstract">
+				<div class="header article-title"><span>청문회 주요내용</span></div>
+				<div class="content"><%= abstract %></div>
+				<div class="media size-<%= abMediaSize %>"><%= abMedia %></div>
+			</div>
+			<div class="dialogue">
+				<div class="header article-title"><span>그들의 한마디</span></div>
+				<ul class="list"><%= dialogue %></ul>
+			</div>
+			<div class="conclusion">
+				<div class="header article-title"><span>청문회를 마치고</span></div>
+				<div class="conclusion-wrapper"><%= conclusion %></div>
+				<div class="media size-<%= concMediaSize %>"><%= concMedia %></div>
+			</div>
+			<div class="etc">
+				<div class="header article-title"><span>함께 보기</span></div>
+				<div class="media size-<%= etcMediaSize %>"><%= etcMedia %></div>
+				<ul class="links num-<%= etcLinkNum %>"><%= etcLinks %></ul>
+			</div>
+			<div class="navigation fixed-element">
+				<%= navigation %>
+			</div>
+
+		</div> <!--content -->
+	</section>
+</script>
+
+<script type="text/template" id="navigation-template">
+	<div class="part folded">
+		<div class="header">
+			<div class="title">
+				<span class="main"><%= title %></span>
+				<span class="sub">- <%= subtitle %></span>
+			</div>
+			<div class="arrow">
+				<i class="fa fa-chevron-up"></i>
+			</div>
+		</div>
+		<ul><%= supicions %></ul>
+	</div>
+</script>
+
+<script type="text/template" id="nav-suspicion-template">
+	<li>
+		<span class="num"><%= num %></span>
+		<div class="item"><span><%= item %></span></div>
+	</li>
+</script>
+
+<script type="text/template" id="etc-link-tempate">
+	<i class="fa fa-circle"></i><li><%= etclink %></span></li>
+</script>
+
+<script type="text/template" id="medium-template">
+	<div class="medi-with-cap">
+		<div class="medium-wrapper"><%= medium %></div>
+		<div class="caption"><%= caption %></div>
+	</div>
+</script>
+
+<script type="text/template" id="witnesses-template">
+	<li class="witness-photo" data-name="<%= name %>">
+		<div class="photo-wrap">
+			<img src="<%= photo %>" data-name="<%= name %>">
+		</div>
+		<span class="name"><%= name %></span>
+		<span class="organ"><%= organ %></span>
+	</li>
+</script>
+
+<script type="text/template" id="dialogue-template">
+	<li>
+		<div class="question">
+			<span class="name"><%= qName %>:</span>
+			<div class="question-wrapper"><%= question %></div>
+			<div class="media size-<%= qMediaSize %>"><%= qMedia %></div>
+		</div>
+		<div class="answer">
+			<div class="witness-photo" data-name="<%= aName %>">
+				<div class="photo-wrap">
+					<img src="<%= photo %>" data-name="<%= aName %>">
+				</div>
+				<span class="name"><%= aName %></span>
+				<span class="organ"><%= aOrgan %></span>
+			</div>
+			<div class="speech-bubble">
+				<div class="nipple"></div>
+				<div class="nipple se-bg-bd-t-r"></div>
+				<div class="answer-wrapper">
+					<%= answer %>
+				</div>
+			</div>
+			<div class="media size-<%= aMediaSize %>"><%= aMedia %></div>
+		</div>
+	</li>
+</script>
+
+<script type="text/template" id="witnesses-summary-template">
+	<div class="witness-summary">
+		<div class="witness-summary-inner">
+			<h4 class="witness-title">증인</h4>
+			<div class="witness-summary-box">
+				<%= profile %>
+				<%= suspicions %>
+				<%= timeline %>
+			</div>
+			<i class="fa fa-close"></i>
+		</div>
+	</div>
+</script>
+
+<script type="text/template" id="witnesses-summary-profile-template">
+	<div class="witness-profile">
+		<img class="witness-profile-photo <%= photoExistClass %>" src="<%= photo %>" />
+		<h4 class="witness-name"><%= name %></h4>
+		<div class="witness-positions"><%= positions %></div>
+		<p class="witness-description"><%= description %></p>
+	</div>
+</script>
+
+<script type="text/template" id="witnesses-summary-suspicions-template">
+	<dl class="witness-suspicions">
+		<dt class="witness-suspicions-title">관련의혹</dt>
+		<%= suspicions %>
+	</dl>
+</script>
+
+<script type="text/template" id="witnesses-summary-suspicion-item-template">
+		<dd class="witness-suspicion-data" data-id="<%= index %>">
+			<label><%= index %></label>
+			<span class="witness-suspicion-title" data-id="<%= index %>"><%= subject %></span>
+		</dd>
+</script>
+
+<script type="text/template" id="witnesses-summary-timeline-template">
+	<dl class="witness-timeline">
+		<dt class="witness-timeline-title">참사 전후 증인의 행적</dt>
+		<%= timeline %>
+	</dl>
+</script>
+
+<script type="text/template" id="witnesses-summary-timeline-item-template">
+		<dd class="witness-timeline-data">
+			<i class="fa fa-circle"></i>
+			<label class="witness-timeline-time"><%= time %></label>
+			<div class="witness-timeline-item"><%= content %></div>
+		</dd>
+</script>

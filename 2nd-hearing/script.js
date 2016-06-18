@@ -6,19 +6,19 @@ var getWitness = require('./witnesses.js');
 		var parts = undefined;
 		var suspicions = undefined;
 		var witnesses = undefined;
-		var partMap = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2];
+		var partMap = [0];
 		$.ajax({
-			url: 'data/1st_hearing/suspicions.json', dataType: 'json',
+			url: 'data/2nd_hearing/suspicions.json', dataType: 'json',
 			success: function(json){ suspicions = json; },
 			complete: function(){ $hr().trigger('json-load'); }
 		});
 		$.ajax({
-			url: 'data/1st_hearing/parts.json', dataType: 'json',
+			url: 'data/2nd_hearing/parts.json', dataType: 'json',
 			success: function(json){ parts = json; },
 			complete: function(){ $hr().trigger('json-load'); }
 		});
 		$.ajax({
-			url: 'data/1st_hearing/witnesses.json', dataType: 'json',
+			url: 'data/2nd_hearing/witnesses.json', dataType: 'json',
 			success: function(json){ witnesses = json; },
 			complete: function(){ $hr().trigger('json-load'); }
 		});
@@ -285,7 +285,7 @@ var getWitness = require('./witnesses.js');
 		return html;
 	}
 	function $hr(selector){
-		if(selector) return $('#page-hearing').find(selector);
-		else return $('#page-hearing');
+		if(selector) return $('#page-2nd-hearing').find(selector);
+		else return $('#page-2nd-hearing');
 	}
 })(jQuery);

@@ -10,7 +10,8 @@ var _ = require('../contrib/underscore/underscore-min.js');
 			complete: function(){
 				$jn().scrEffectOfTitle({
 					title: '.sect-name',
-					position: 'right'
+					position: 'right',
+					section: 'section'
 				});
 				$jn().scrEffectOfBgcolor({
 					background: '#ffffff #ffffff #1a1a1a #f2f2f2 #1a1a1a #dfe5ea',
@@ -19,12 +20,19 @@ var _ = require('../contrib/underscore/underscore-min.js');
 						var colors = ['#4d4d4d', '#6d92c4', '#0be4db', '#97d5ac', '#ffb0a9', '#7657c5'];
 						$('button.menu-button i').stop().animate({'color': colors[bgcIndex]}, 1000);
 						$contain.find('article .date').stop().animate({'background-color': bgcolor}, 1000);
+						changeTextColor(bgcIndex);
 					}
 				});
 				$jn('.medium img').extraStyle({ fitted: 'yes' }, '', 'outerrect');
 			}
 		});
 	});
+	function changeTextColor(index){ if(index !== 0){
+		var colors = ['#e0e0e0', '#4d4d4d'];
+		$jn('section:nth-child('+(index+1)+')').find('.title span, .content span').css('color', '');
+		$jn('section:nth-child('+index+')').find('.title span, .content span').css('color', colors[index%2]);
+		$jn('section:nth-child('+(index+2)+')').find('.title span, .content span').css('color', colors[index%2]);
+	}}
 	function makeHtml(sections){
 		var tplSection = _.template($jn('#section-template').html());
 		var tplArticle = _.template($jn('#article-template').html());
