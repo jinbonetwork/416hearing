@@ -1,20 +1,13 @@
 <div class="outline inner-page open-inner-page">
 	<div class="header">
+		<div class="video-wrap" data-src = "https://www.youtube.com/embed/o8qSMU4xwvo?rel=0&amp;controls=0&amp;showinfo=0">
+			<iframe width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+		</div>
 		<div class="wrapper">
 			<div class="title">
 				<div class="title-part-1"><span>416세월호참사 특별조사위원회</span></div>
-				<div class="title-part-2"><span>1차 청문회</span></div>
-			</div>
-			<div class="buttons">
-				<div class="go-why">
-					<a href="http://taogi.net/why-sewolho/" target="_blank"><span>세월호는 왜</span></a>
-				</div>
-				<div class="down-abstract">
-					<a href="data/1st_hearing/docs/151222_청문회_주요내용_정리.pdf" target="_blank"><span>요약본 다운받기</span></a>
-				</div>
-				<div class="down-timetable">
-					<a href="data/1st_hearing/docs/160326_1차_청문회_일정표.pdf" target="_blank"><span>일정표</span></a>
-				</div>
+				<div class="title-part-2"><span>2차 청문회</span></div>
+				<div class="title-part-3"><span>예고된 참사: 세월호 비극은<br>일어날 수 밖에 없었다</span></div>
 			</div>
 		</div>
 	</div>
@@ -30,7 +23,6 @@
 			<span class="part-num">part <%= partNum %></span>
 			<div class="title">
 				<span class="main"><%= title %></span>
-				<span class="sub">- <%= subtitle %></span>
 			</div>
 		</div>
 		<ul><%= supicions %></ul>
@@ -76,51 +68,19 @@
 		<div class="content">
 			<div class="abstract">
 				<div class="header article-title"><span>청문회 주요내용</span></div>
-				<div class="content"><%= abstract %></div>
-				<div class="media size-<%= abMediaSize %>"><%= abMedia %></div>
+				<ul class="list"><%= abstract %></ul>
 			</div>
 			<div class="dialogue">
 				<div class="header article-title"><span>그들의 한마디</span></div>
 				<ul class="list"><%= dialogue %></ul>
-			</div>
-			<div class="conclusion">
-				<div class="header article-title"><span>청문회를 마치고</span></div>
-				<div class="conclusion-wrapper"><%= conclusion %></div>
-				<div class="media size-<%= concMediaSize %>"><%= concMedia %></div>
 			</div>
 			<div class="etc">
 				<div class="header article-title"><span>함께 보기</span></div>
 				<div class="media size-<%= etcMediaSize %>"><%= etcMedia %></div>
 				<ul class="links num-<%= etcLinkNum %>"><%= etcLinks %></ul>
 			</div>
-			<div class="navigation fixed-element">
-				<%= navigation %>
-			</div>
-
 		</div> <!--content -->
 	</section>
-</script>
-
-<script type="text/template" id="navigation-template">
-	<div class="part folded">
-		<div class="header">
-			<div class="title">
-				<span class="main"><%= title %></span>
-				<span class="sub">- <%= subtitle %></span>
-			</div>
-			<div class="arrow">
-				<i class="fa fa-chevron-up"></i>
-			</div>
-		</div>
-		<ul><%= supicions %></ul>
-	</div>
-</script>
-
-<script type="text/template" id="nav-suspicion-template">
-	<li>
-		<span class="num"><%= num %></span>
-		<div class="item"><span><%= item %></span></div>
-	</li>
 </script>
 
 <script type="text/template" id="etc-link-tempate">
@@ -134,6 +94,30 @@
 	</div>
 </script>
 
+<script type="text/template" id="abs-image-template">
+	<a class="gallery" rel="gallery<%= gallery %>" href="<%= url %>">
+		<img src="<%= url %>" alt="<%= title %>">
+	</a>
+</script>
+<script type="text/template" id="abs-video-template">
+	<a class="gallery fancybox.iframe" rel="gallery<%= gallery %>" href="https://www.youtube.com/embed/<%= url %>">
+		<span class="icon"><i class="fa fa-play"></i></span>
+		<img src="http://img.youtube.com/vi/<%= url %>/0.jpg" alt="<%= title %>">
+	</a>
+</script>
+<script type="text/template" id="abs-doc-template">
+	<a target="_blank" href="<%= url %>">
+		<span class="icon"><i class="fa fa-file"></i></span>
+		<span class="title"><%= title %></span>
+	</a>
+</script>
+<script type="text/template" id="abs-audio-template">
+	<a class="audio-gallery" rel="gallery<%= gallery %>" href="<%= imgurl %>">
+		<img src="<%= imgurl %>" alt="<%= title %>">
+		<audio><source src="<%= audiourl %>" type="audio/mpeg"></audio>
+	</a>
+</script>
+
 <script type="text/template" id="witnesses-template">
 	<li class="witness-photo" data-name="<%= name %>">
 		<div class="photo-wrap">
@@ -144,12 +128,22 @@
 	</li>
 </script>
 
+<script type="text/template" id="abstract-template">
+	<li>
+		<div class="abstract-media-wrap">
+			<ul class="abstract-media"><%= abstractMedia %></ul>
+		</div>
+		<p><%= abstract %></p>
+	</li>
+</script>
+
 <script type="text/template" id="dialogue-template">
 	<li>
+		<div class="subject"><%= subject %></div>
+		<div class="video"><%= video %></div>
 		<div class="question">
 			<span class="name"><%= qName %>:</span>
 			<div class="question-wrapper"><%= question %></div>
-			<div class="media size-<%= qMediaSize %>"><%= qMedia %></div>
 		</div>
 		<div class="answer">
 			<div class="witness-photo" data-name="<%= aName %>">
@@ -162,13 +156,15 @@
 			<div class="speech-bubble">
 				<div class="nipple"></div>
 				<div class="nipple se-bg-bd-t-r"></div>
-				<div class="answer-wrapper">
-					<%= answer %>
-				</div>
+				<div class="answer-wrapper"><%= answer %></div>
 			</div>
-			<div class="media size-<%= aMediaSize %>"><%= aMedia %></div>
 		</div>
 	</li>
+</script>
+<script type="text/template" id="dialogue-video-tempate">
+	<div class="video-wrap">
+		<iframe width="320" height="240" src="https://www.youtube.com/embed/<%= videoUrl %>?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+	</div>
 </script>
 
 <script type="text/template" id="witnesses-summary-template">

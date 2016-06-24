@@ -16,18 +16,21 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<link rel="stylesheet" type="text/css" href="css/PageStackNavigation-custom/component.css" />
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/earlyaccess/notosanskr.css">
 	<link rel="stylesheet" type="text/css" href="contrib/bareunbatang/style.css">
-	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
 	<link rel="stylesheet" href="contrib/fancybox/2.1.5/source/jquery.fancybox.css">
 	<link rel="shortcut icon" type="image/x-icon" href="./resources/favicon.ico">
+	<link rel="stylesheet" href="./contrib/pgwslideshow/pgwslideshow.min.css">
 <?php if(defined("__EDIT_MODE__") && __EDIT_MODE__ == true) {?>
 	<link rel="stylesheet" href="contrib/medium-editor/dist/css/medium-editor.min.css">
 	<link rel="stylesheet" href="contrib/medium-editor/dist/css/themes/bootstrap.min.css">
 	<link rel="stylesheet" href="contrib/spectrum/spectrum.css">
 <?php }?>
+
 	<script src="contrib/jquery/jquery-2.2.1.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="contrib/PageStackNavigation/js/modernizr-custom.js"></script>
 	<script src="contrib/fancybox/2.1.5/source/jquery.fancybox.pack.js"></script>
+	<script src="./contrib/pgwslideshow/pgwslideshow.min.js"></script>
 <?php if(defined("__EDIT_MODE__") && __EDIT_MODE__ == true) {?>
 	<script src="contrib/medium-editor/dist/js/medium-editor.min.js"></script>
 	<script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>

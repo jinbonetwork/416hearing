@@ -18,7 +18,7 @@ function makeWitness(name,json) {
 	var photoExistClass = 'hidden';
 	if(typeof json.photo !== 'undefined' && json.photo) {
 		var photoExistClass = '';
-		var photo = json.photo;
+		var photo = 'data/2nd_hearing/images/'+json.photo;
 	}
 	var description = '';
 	if(typeof json.descript !== 'undefined' && json.descript) {
@@ -71,7 +71,7 @@ function makeWitness(name,json) {
 }
 
 function getWitness(name,element) {
-	var url = "./hearing/witnesses.php";
+	var url = "./2nd-hearing/witnesses.php";
 	var params = { name: name };
 
 	jQuery.ajax({
@@ -143,7 +143,7 @@ function getWitness(name,element) {
 				var id = jQuery(this).attr('data-id');
 				var preId = jQuery('#page-2nd-hearing .navigation').find('.selected').first().find('.num').text();
 				jQuery(this).parents('.witness-container').find('i.fa-close').click();
-				jQuery('#page-2nd-hearing #suspicion-'+preId+' .navigation.navi-right li').each(function(){
+				jQuery('#page-2nd-hearing #suspicion-'+preId+' .navigation li').each(function(){
 					if(jQuery(this).find('.num').text() == id){ jQuery(this).click(); return false; }
 				})
 			});

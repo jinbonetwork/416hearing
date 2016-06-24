@@ -1,26 +1,26 @@
 {
-    "이재율": {
-        "organ": "안전행정부",
+    "이상길": {
+        "organ": "(주)GCSC",
         "position": [
-            "안전행정부 중앙재난안전대책 총괄조정관"
+            "(주)GCSC 대표이사"
         ],
-        "photo": "./data/1st_hearing/images/ljy.png",
+        "photo": "lsg.gif",
         "descript": " 안전행정부 중앙재난안전대책 총괄조정관\n비상단계에 실무반 업무를 총괄하고, 중앙본부장 및 중앙대책본부의 차장을 보좌\n신문위원으로부터 2014년 4월 17일 브리핑 상황보고서 작성자를 알려줄 것을 요청받음  \n",
         "suspicions": [
-            12
+            1
         ],
         "etc": null
     },
-    "박상욱": {
-        "organ": "해양경찰",
+    "강상보": {
+        "organ": "해양수산부",
         "position": [
-            "목포해양경찰서 123정 승조원 (경장)"
+            "해양수산부 제주 VTS 센터장"
         ],
-        "photo": "./data/1st_hearing/images/psw.png",
+        "photo": "ksb.gif",
         "descript": " 목포해양경찰서 123정 승조원 (경장)\n참사 당시 123정 승조원으로 초동 구조 활동을 실시\n세월호 조타실에 진입하여 선원을 구조했지만 인적사항은 확인하지 않음 \n세월호 선원과 함께 의문의 검은 물체를 가지고 바다에 뛰어들었음\n",
         "suspicions": [
-            5,
-            6
+            2,
+            3
         ],
         "etc": "세월호 조타실 진입",
         "timeline": [
@@ -61,18 +61,17 @@
             }
         ]
     },
-    "이주영": {
+    "김형준": {
         "organ": "해양수산부",
         "position": [
-            "해양수산부 장관",
-            "중앙사고수습본부 본부장"
+            "해양수산부 진도연안 VTS 센터장"
         ],
-        "photo": "./data/1st_hearing/images/ljyoung.png",
+        "photo": "khj.gif",
         "descript": " 전 해양수산부 장관, 중앙사고수습본부 본부장\n참사 당시 중앙사고수습본부의 업무 총괄\n참사 초기 민간 잠수사 작업 지원 및 의료지원이 미흡했으며 2014년 7월 해고 통보를 승인\n구조 인력 과장 상황보고서 작성에 대해 표면적으로 인정 \n",
         "suspicions": [
-            9,
-            11,
-            12
+            1,
+            2,
+            3
         ],
         "etc": null,
         "timeline": [
@@ -133,94 +132,94 @@
             }
         ]
     },
-    "배병준": {
-        "organ": "보건복지부",
+    "조기정": {
+        "organ": "(주)GMT",
         "position": [
-            "보건복지부 노인정책관"
+            "(주)GMT 연구소장"
         ],
-        "photo": "./data/1st_hearing/images/bbj.png",
+        "photo": "jgj.png",
         "descript": " 보건복지부 노인정책관\n참사 당시 사고수습대책본부 발족, 긴급복지지원에 관해 진술\n",
         "suspicions": [
-            13
+            4
         ],
         "etc": null
     },
-    "이재두": {
-        "organ": "해양경찰",
+    "임병준": {
+        "organ": "해양수산부",
         "position": [
-            "목포해양경찰서 3009함장 (경정)"
+            "해양수산부 해사안전관리과 주무관"
         ],
-        "photo": "",
+        "photo": "lbj.gif",
         "descript": " 목포해양경찰서 3009함장 (경정)\n참사 당시 목포 서장과 함께 3009함에 탑승\n목포서장으로부터 구조장비 준비 및 사고해역으로 전속 이동을 지시받음\n목포서장의 구체적인 구조 지시 여부에 대한 질문에는 회피\n",
         "suspicions": [],
         "etc": null
     },
-    "이영찬": {
-        "organ": "보건복지부",
+    "강혜성": {
+        "organ": "세월호",
         "position": [
-            "보건복지부 차관"
+            "세월호 여객영업부 직원"
         ],
-        "photo": "./data/1st_hearing/images/lyc.png",
+        "photo": "lyc.png",
         "descript": " 보건복지부 차관\n유가족 심리치유에 대한 지원 미비했음\n민간잠수사에 대한 의료지원이 부족했음\n",
         "suspicions": [
-            13
+            5
         ],
         "etc": null
     },
-    "장진홍": {
-        "organ": "해군",
+    "조준기": {
+        "organ": "세월호",
         "position": [
-            "해군작전사령부해난구조대장"
+            "세월호 조타수"
         ],
-        "photo": "./data/1st_hearing/images/jjh.png",
+        "photo": "jjh.png",
         "descript": " 해군작전사령부해난구조대장\n참사 당시 현장에 출동한 최고위직책\n4월 17일에 수중수색 작업에 구조인력 투입\n참사 이후 민간잠수사에게 의료 지원을 제공하지 않음 \n",
         "suspicions": [
-            13
+            6
         ],
         "etc": null
     },
-    "고영주": {
-        "organ": "해양경찰",
+    "허용범": {
+        "organ": "합동수사본수",
         "position": [
-            "제주지방해양경찰청 항공단 B-513호 기장"
+            "합동수사본부 전문가 자문단 단장"
         ],
-        "photo": "./data/1st_hearing/images/kyj.png",
+        "photo": "kyj.png",
         "descript": " 제주지방해양경찰청 항공단 B-513호 기장\n참사 당시 9시 32분 현장에 도착\n승객을 바구니에 태워서 구조했으며, 추가 구조 헬기 요청\n선내 진입 및 퇴선 방송을 하지 않음\n\n",
         "suspicions": [
             2
         ],
         "etc": null
     },
-    "박종철": {
-        "organ": "해양경찰",
+    "임남균": {
+        "organ": "목포해양대",
         "position": [
-            "해양경찰청 경비안전국 수색구조과장"
+            "목포해양대 교수"
         ],
-        "photo": "./data/1st_hearing/images/pjc.png",
+        "photo": "pjc.png",
         "descript": " 해양경찰청 경비안전국 수색구조과장\n청문회 때 참사 현장에 크레인 동원 계약에 대한 질문을 받음\n중앙본부 차원에서 크레인을 동원했다고 대답\n",
         "suspicions": [],
         "etc": null
     },
-    "참고인 3": {
-        "organ": "희생자 가족",
-        "position": [],
-        "photo": "./data/1st_hearing/images/testifier.png",
+    "이준석": {
+        "organ": "세월호",
+        "position": ["세월호 선장"],
+        "photo": "testifier.png",
         "descript": "",
         "suspicions": [],
         "etc": null
     },
-    "참고인 4": {
-        "organ": "희생자 가족",
-        "position": [],
-        "photo": "./data/1st_hearing/images/testifier.png",
+    "강원식": {
+        "organ": "세월호",
+        "position": ["세월호 1등 항해사"],
+        "photo": "testifier.png",
         "descript": "",
         "suspicions": [],
         "etc": null
     },
-    "참고인 2": {
-        "organ": "민간 잠수사",
-        "position": [],
-        "photo": "./data/1st_hearing/images/testifier.png",
+    "김영호": {
+        "organ": "세월호",
+        "position": ["세월호 2등 항해사"],
+        "photo": "testifier.png",
         "descript": " 참사 수습에 참여했던 민간 잠수사\n",
         "suspicions": [],
         "etc": "",
@@ -252,22 +251,22 @@
             }
         ]
     },
-    "최상환": {
-        "organ": "해양경찰",
+    "연영진": {
+        "organ": "해양수산부",
         "position": [
-            "해양경찰청 차장"
+            "현 해양수산부 세월호인양추진단 단장"
         ],
-        "photo": "./data/1st_hearing/images/csh.png",
+        "photo": "csh.png",
         "descript": " 해양경찰청 차장\n참사 당시 구난업체 언딘과의 수중수색 계약 유착 관계 혐의로 기소됨\n이후 차장 직에서 해임\n",
         "suspicions": [],
         "etc": null
     },
-    "조형곤": {
-        "organ": "해양경찰",
+    "이철조": {
+        "organ": "해양수산부",
         "position": [
-            "목포해양경찰서 경비구난과 상황담당관 (경감)"
+            "전 해양수산부 세월호인양추진단 부단장"
         ],
-        "photo": "./data/1st_hearing/images/jhg.png",
+        "photo": "jhg.png",
         "descript": " 목포해양경찰서 경비구난과 상황담당관 (경감)\n참사 당시 목포서에서 서장을 보좌하고 상황지휘 업무를 담당\n진도 VTS와 세월호 교신 사실을 서해청에 보고하지 않음\n적극적인 구조 지시가 없었음\n",
         "suspicions": [
             6,
@@ -276,22 +275,22 @@
         ],
         "etc": "감봉 1개월"
     },
-    "이경옥": {
-        "organ": "안전행정부",
+    "김현태": {
+        "organ": "해양수산부",
         "position": [
-            "안전행정부 중앙재난안전대책 본부 차장"
+            "현 해양수산부 세월호인양추진단 부단장"
         ],
-        "photo": "./data/1st_hearing/images/lko.png",
+        "photo": "lko.png",
         "descript": " 안전행정부 중앙재난안전대책 본부 차장\n중대본 본부장을 보좌하고 본부장 사고 시 직무를 대행\n2014년 4월 17일 브리핑에서 구조된 인원을 파악하지 못함 \n",
         "suspicions": [
             12
         ],
         "etc": null
     },
-    "김종인": {
-        "organ": "해양경찰",
+    "박준권": {
+        "organ": "해양수산부",
         "position": [
-            "목포해양경찰서 123정 부장 (경위)"
+            "전 해양수산부 선체처리기술검토TF 단장"
         ],
         "photo": "",
         "descript": " 목포해양경찰서 123정 부장 (경위)\n참사 당시 123정 부정장\n어선에서 수신하지 않는 주파수로 구조 협조 요청을 함\n세월호에 승선했지만 퇴선조치를 취하지 않음\n",
@@ -303,7 +302,7 @@
         "position": [
             "전남소방본부 소방본부장"
         ],
-        "photo": "./data/1st_hearing/images/pcw.png",
+        "photo": "pcw.png",
         "descript": " 전남소방본부 소방본부장\n참사 당시 10시 5분에 참사 현장으로 가던 광주소방헬기를 호출해 탑승\n10시 37분 참사 해역 상공에 도착\n",
         "suspicions": [],
         "etc": null
@@ -314,7 +313,7 @@
             "해양경찰청장 (치안총감)",
             "중앙구조본부장"
         ],
-        "photo": "./data/1st_hearing/images/ksg.png",
+        "photo": "ksg.png",
         "descript": " 해양경찰청장 (치안총감), 중앙구조본부장\n참사 당시 중앙구조본부장이었지만 현장 지휘 및 통제 보다는 보고에 집중\n유가족에게 잠수 인력 500명 투입 보고\n김경일에게 퇴선 방송 허위 기자회견을 지시\n",
         "suspicions": [
             1,
@@ -404,7 +403,7 @@
         "position": [
             "해양경찰청 경비안전국장 (치안감)"
         ],
-        "photo": "./data/1st_hearing/images/lcj.png",
+        "photo": "lcj.png",
         "descript": " 해양경찰청 경비안전국장 (치안감)\n참사 당시 중앙구조본부 상황반장임 \n해경청장의 현장 상황보고 수신과 관련된 진술을 번복함\n당시 서해상황담당관과의 교신 내용에서 구조 그림 연출 언급\n",
         "suspicions": [
             1,
@@ -421,7 +420,7 @@
             "해양수산부 중앙사고수습본부 총괄팀장",
             "상황실장"
         ],
-        "photo": "./data/1st_hearing/images/uyj.png",
+        "photo": "uyj.png",
         "descript": " 해양수산부 중앙사고수습본부 총괄팀장, 상황실장\n참사 당시 재난 및 안전관리 업무 총괄 및 중앙사고수습 본부 상황실 업무를 관장\n구조 인력을 과장한 상황 보고서 관련 질문에 회피성 대답\n",
         "suspicions": [
             9
@@ -433,7 +432,7 @@
         "position": [
             "서해지방해양경찰청 항공단 B-512호 기장"
         ],
-        "photo": "./data/1st_hearing/images/kjj.png",
+        "photo": "kjj.png",
         "descript": " 서해지방해양경찰청 항공단 B-512호 기장\n참사 당시 9시 45분 현장에 도착\n승객을 바구니에 태워서 구조\n선내 진입 및 퇴선 방송을 하지 않음\n",
         "suspicions": [
             2
@@ -455,7 +454,7 @@
         "position": [
             "해양수산부 중앙사고수습본부 상황반장"
         ],
-        "photo": "./data/1st_hearing/images/lhc.png",
+        "photo": "lhc.png",
         "descript": " 해양수산부 중앙사고수습본부 상황반장\n선박사고대응매뉴얼이 8년간 방치되었다는 점, 실질적인 선박사고 대응 훈련이 이루어지지 않았다는 점이 신문을 통해 드러남\n",
         "suspicions": [
             13
@@ -468,7 +467,7 @@
             "목포해양경찰서장 (총경)",
             "지역구조 본부장"
         ],
-        "photo": "./data/1st_hearing/images/kmh.png",
+        "photo": "kmh.png",
         "descript": " 목포해양경찰서장 (총경), 지역구조 본부장으로 사고현장의 실질적 책임자\n참사 당시 지역구조본부장이었으며 참사 해역으로 이동\n세월호와 교신하여 구조 지시를 내리지 않았음\n123정의 구조 지시 이행 여부를 확인하지 않았음\n",
         "suspicions": [
             1,
@@ -554,7 +553,7 @@
         "position": [
             "목포해양경찰서 123정 정장 (경위)"
         ],
-        "photo": "./data/1st_hearing/images/kki.png",
+        "photo": "kki.png",
         "descript": " 목포해양경찰서 123정 정장 (경위)\n참사 당시 구조 현장 지휘관이었으나 구조활동 지휘, 퇴선 조치에 소흘했음 \n퇴선 방송을 하지 않았음에도 불구하고 퇴선 방송 허위 기자회견을 함\n대법원에서 징역 3년 형을 선고 받음\n",
         "suspicions": [
             1,
@@ -692,7 +691,7 @@
         "position": [
             "서해지방해양경찰청 상황담당관 (총경)"
         ],
-        "photo": "./data/1st_hearing/images/yys.png",
+        "photo": "yys.png",
         "descript": " 서해지방해양경찰청 상황담당관 (총경)\n참사 당시 구조 활동 상황 지휘, 통제 업무 및 청장 보좌 담당\n세월호 사무처리 업무에 치중하여 초동 대응에 소흘함\n특히 목포서에 상황 보고를 적극적으로 지시하지 않음\n",
         "suspicions": [
             2,
@@ -713,7 +712,7 @@
     "참고인 1": {
         "organ": "민간 잠수사",
         "position": [],
-        "photo": "./data/1st_hearing/images/testifier.png",
+        "photo": "testifier.png",
         "descript": " 참사 수습에 참여했던 민간 잠수사\n",
         "suspicions": [],
         "etc": "",
@@ -764,7 +763,7 @@
             "서해지방해양경찰청장 (치안감)",
             "광역구조본부장"
         ],
-        "photo": "./data/1st_hearing/images/ksh.png",
+        "photo": "ksh.png",
         "descript": " 서해지방해양경찰청장 (치안감), 광역구조본부장\n참사 당시 광역구조본부장\n123정에게 선내진입을 지시하지 않음\n출동 중이던 헬기에 탑승하여 헬기의 구조 활동이 지연됨\n",
         "suspicions": [
             1,
@@ -833,7 +832,7 @@
         "position": [
             "전라남도 도지사"
         ],
-        "photo": "./data/1st_hearing/images/pjy.png",
+        "photo": "pjy.png",
         "descript": " 전남도지사\n참사 당시 지역재난안전대책 본부장으로 현장으로 가던 소방헬기를 10시 53분에 탑승하여 사고해역으로 출발\n11시 30분 참사 현장 상공에 도착\n진도체육관을 유가족 숙소로 선택\n",
         "suspicions": [],
         "etc": null

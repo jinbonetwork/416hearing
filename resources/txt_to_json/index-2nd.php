@@ -1,8 +1,9 @@
 <?php
 class TxtToJson {
 	function __construct(){
+		$this->tempMedia = array();
 		$suspicions = array();
-		for($i = 1; $i <= 1; $i++){
+		for($i = 1; $i <= 6; $i++){
 			$txt = @file_get_contents('txts/2nd-suspicion/'.$i.'.txt');
 			if($txt) array_push($suspicions, $this->convert($txt));
 			else array_push($suspicions, array());
@@ -38,9 +39,8 @@ class TxtToJson {
 			'title' => '',
 			'background' => array('media'=>array(), 'content'=>array()),
 			'witnesses'=> array(),
-			'abstract' => array('media'=>array(), 'content'=>array()),
+			'abstract' => array(),
 			'dialogue' => array(),
-			'conclusion' => array('media'=>array(), 'content'=>array()),
 			'etc' =>array('media'=>array(), 'content'=>array())
 		);
 		$curIndex = -1;
@@ -63,9 +63,9 @@ class TxtToJson {
 				} else if($curLevel == 2 && $dialogueStart){
 					$dialIdx_i++; $dialIdx_j = -1;
 					$array['dialogue'][$dialIdx_i] = array(
-						'subject'=>$line,
-						'qName'=>'', 'qContent'=>array(), 'qMedia'=>array(),
-						'aName'=>'', 'aContent'=>array(), 'aMedia'=>array()
+						'subject'=>$line, 'video'=> '',
+						'qName'=>'', 'qContent'=>array(),
+						'aName'=>'', 'aContent'=>array()
 					);
 				} else if($curLevel == 2 && !$dialogueStart && $curIndex > 1) { //함께 보기
 					$array['etc'] = $this->put($array['etc'], $line);
@@ -90,23 +90,21 @@ class TxtToJson {
 					$witnesses = explode(',', $line);
 					foreach($witnesses as $witness) array_push($array['witnesses'], trim($witness));
 				} else if($curLevel == 1 && $curIndex == 3){ //청문회 주요내용
-					$array['abstract'] = $this->put($array['abstract'], $line);
-				} else if($curLevel == 1 && $curIndex > 4) { // 청문회를 마치고
-					$array['conclusion'] = $this->put($array['conclusion'], $line);
+					$array['abstract'] = $this->putAbstract($array['abstract'], $line);
+				} else if($curLevel == 1 && !$dialogueStart && $curIndex > 1){ //함께 보기
+					$array['etc'] =  $this->put($array['etc'], $line);
 				} else if($curLevel == 4 && $dialogueStart){
 					$key;
 					$value;
-					if(preg_match('/\[(.+)\|(.+)\|(.+)\]/', $line, $match)){
-						$medium = array('url'=>$this->url(trim($match[1])), 'size'=>trim($match[2]), 'caption'=>trim($match[3]));
-						if($dialIdx_j == 0) $key = 'qMedia';
-						else if($dialIdx_j == 1) $key = 'aMedia';
-						$value = $medium;
+					if(preg_match('/\[(.+)\]/', $line, $match)){
+						$array['dialogue'][$dialIdx_i]['video'] = $this->url(trim($match[1]));
 					} else {
 						if($dialIdx_j == 0) $key = 'qContent';
 						else if($dialIdx_j == 1) $key = 'aContent';
 						$value = $line;
+						array_push($array['dialogue'][$dialIdx_i][$key], $value);
 					}
-					array_push($array['dialogue'][$dialIdx_i][$key], $value);
+
 				}
 			}
 		}// foreach
@@ -118,6 +116,20 @@ class TxtToJson {
 			array_push($array['media'], $medium);
 		} else {
 			array_push($array['content'], $data);
+		}
+		return $array;
+	}
+	private function putAbstract($array, $data){
+		if(preg_match('/\[(.+)\|(.+)\|(.+)\]/', $data, $match)){
+			$medium = array('url'=>$this->url(trim($match[1])), 'size'=>trim($match[2]), 'caption'=>trim($match[3]));
+			array_push($this->tempMedia, $medium);
+		} else {
+			array_push($array, array('content'=>$data, 'media'=>array()));
+			$lastIndex = count($array)-1;
+			foreach($this->tempMedia as $tempMedium){
+				array_push($array[$lastIndex]['media'], $tempMedium);
+			}
+			$this->tempMedia = array();
 		}
 		return $array;
 	}

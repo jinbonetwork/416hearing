@@ -1,37 +1,64 @@
 (function($){
 	$(document).ready(function(){
-		$('.menu-button').click();
-
+		$('button.menu-button').trigger('click');
+		$('.menu-button').click(function(){
+			var $activePage = $('.page').not('.page--inactive');
+			if($(this).hasClass('menu-button--open')){
+				if($activePage.is('#page-journal')) $activePage.trigger('deactivate-scroll-effect');
+				else $activePage.find('.open-inner-page').trigger('deactivate-scroll-effect');
+			} else {
+				var intv = setInterval(function(){
+					if(!$('.pages-stack').hasClass('pages-stack--open')){
+						clearInterval(intv);
+						if($activePage.is('#page-journal')) $activePage.trigger('activate-scroll-effect');
+						else $activePage.find('.open-inner-page').trigger('activate-scroll-effect');
+					}
+				}, 200);
+			}
+		});
+		$('.page').click(function(){
+			var $page = $(this);
+			if($('.pages-stack').hasClass('pages-stack--open')){
+				var intv = setInterval(function(){ if(!$('.pages-stack').hasClass('pages-stack--open')){
+					clearInterval(intv);
+					if($page.is('#page-journal')) $page.trigger('activate-scroll-effect');
+					else $page.find('.open-inner-page').trigger('activate-scroll-effect');
+				}}, 200);
+			}
+		})
 		$('.pages-nav__item:nth-child(1)').click(function(){
 			var intv = setInterval(function(){
-				if(!$('#page-2nd-hearing').hasClass('page--inactive')){
+				if(!$('.pages-stack').hasClass('pages-stack--open')){
 					clearInterval(intv);
-					$('#page-2nd-hearing .open-inner-page').trigger('refresh-scroll-effect-bgcolor').trigger('refresh-scroll-effect-title');
+					var $openPage = $('#page-2nd-hearing .open-inner-page');
+					if($openPage.hasClass('outline')){
+						var src = $openPage.find('.header .video-wrap').attr('data-src')+'&autoplay=1';
+						$openPage.find('.header iframe').attr('src', src);
+					}
+					$openPage.trigger('activate-scroll-effect');
 				}
-			}, 100);
+			}, 200);
 		});
 		$('.pages-nav__item:nth-child(2)').click(function(){
+			var $content = $('#page-hearing .open-inner-page .content');
+			if(!$content.hasClass('applied-resp-grid')) $content.addClass('applied-resp-grid').trigger('refresh-resp-grid');
 			var intv = setInterval(function(){
-				if(!$('#page-hearing').hasClass('page--inactive')){
+				if(!$('.pages-stack').hasClass('pages-stack--open')){
 					clearInterval(intv);
-					$('#page-hearing .open-inner-page').trigger('refresh-scroll-effect-bgcolor').trigger('refresh-scroll-effect-title');
+					$('#page-hearing .open-inner-page').trigger('activate-scroll-effect');
 				}
-			}, 100);
+			}, 200);
 		});
 		$('.pages-nav__item:nth-child(3)').click(function(){
 			var intv = setInterval(function(){
-				if(!$('#page-journal').hasClass('page--inactive')){
+				if(!$('.pages-stack').hasClass('pages-stack--open')){
 					clearInterval(intv);
-					$('#page-journal').trigger('refresh-scroll-effect-bgcolor').trigger('refresh-scroll-effect-title');
+					$('#page-journal').trigger('activate-scroll-effect');
 				}
-			}, 100);
-
+			}, 200);
 		});
 
 		//fancy box ////
-		$(".gallery").fancybox({
-			openEffect: 'none',
-			closeEffect: 'none'
-		});
+		$(".gallery").fancybox({ padding: 0 });
 	});
 })(jQuery);

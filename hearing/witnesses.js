@@ -143,7 +143,7 @@ function getWitness(name,element) {
 				var id = jQuery(this).attr('data-id');
 				var preId = jQuery('#page-hearing .navigation').find('.selected').first().find('.num').text();
 				jQuery(this).parents('.witness-container').find('i.fa-close').click();
-				jQuery('#page-hearing #suspicion-'+preId+' .navigation.navi-right li').each(function(){
+				jQuery('#page-hearing #suspicion-'+preId+' .navigation li').each(function(){
 					if(jQuery(this).find('.num').text() == id){ jQuery(this).click(); return false; }
 				})
 			});

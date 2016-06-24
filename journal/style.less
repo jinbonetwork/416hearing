@@ -88,13 +88,27 @@
 		.media-num(4px);
 	}
 }
+@media screen and (max-width: 559px) {
+	#page-journal {
+		section:nth-of-type(n+2) {
+			.sect-name {
+				/*
+				position: absolute;
+				top: 0;
+				right: 0;
+				*/
+			}
+		}
+	}
+}
 @media screen and (min-width: 560px) {
 	#page-journal {
 		font-size: @font-size-w; //설명문
 		section:nth-of-type(n+2) {
 			padding: 0 9.5em 0 70px;
 			.sect-name {
-				margin-top: 0;
+				top: 0;
+				right: 0;
 			}
 		}
 	}
@@ -199,10 +213,13 @@
 	}
 	.sect-name {
 		margin-left: 0.6699em;
+		position: absolute;
+		top: -2.5em;
+		right: 0;
 		span {
-			display: inline-block;
-			font-family: @font-noto;
-			font-weight: @font-weight;
+			display: block;
+			font-family: @font-noto; font-weight: @font-weight;
+			font-size: 1.3em;
 			color: @color-extra;
 			line-height: 1.1em;
 			width: 5em;

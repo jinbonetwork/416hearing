@@ -5,3 +5,4 @@ data/images/*
 data/live*
 data/live/live.html
 node_modules/
+contrib/copy.sh
