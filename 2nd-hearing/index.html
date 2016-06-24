@@ -37,50 +37,48 @@
 </script>
 
 <script type="text/template" id="section-template">
-	<section id="suspicion-<%= section %>" class="inner-page">
-		<div class="header">
-			<div class="go-back-outline fixed-element">
-				<span>의혹 전체보기</span>
-			</div>
-			<div class="part-title">
-				<div class="part-num">part <%= partNum %></div>
-				<div class="part-main-title"><%= partMainTitle %></div>
-				<div class="part-subtitle">- <%= partSubtitle %></div>
-			</div>
-			<div class="title">
-				<span class="title-num-wrapper">
-					<div class="wrapper">
-						<span>의혹</span>
-						<span class="title-num"><%= titleNum %></span>
-					</div>
-				</span>
-				<span class="title-wrapper"><span><%= title %></span></span>
-			</div>
-			<div class="background">
-				<div class="media size-<%= bgMediaSize %>"><%= bgMedia %></div>
-				<p><%= background %></p>
-			</div>
-			<div class="witnesses">
-				<div class="header article-title"><span>관련증인</span></div>
-				<ul class="list"><%= witness %></ul>
-			</div>
-		</div><!-- header -->
-		<div class="content">
-			<div class="abstract">
-				<div class="header article-title"><span>청문회 주요내용</span></div>
-				<ul class="list"><%= abstract %></ul>
-			</div>
-			<div class="dialogue">
-				<div class="header article-title"><span>그들의 한마디</span></div>
-				<ul class="list"><%= dialogue %></ul>
-			</div>
-			<div class="etc">
-				<div class="header article-title"><span>함께 보기</span></div>
-				<div class="media size-<%= etcMediaSize %>"><%= etcMedia %></div>
-				<ul class="links num-<%= etcLinkNum %>"><%= etcLinks %></ul>
-			</div>
-		</div> <!--content -->
-	</section>
+	<div class="header">
+		<div class="go-back-outline fixed-element">
+			<span>의혹 전체보기</span>
+		</div>
+		<div class="part-title">
+			<div class="part-num">part <%= partNum %></div>
+			<div class="part-main-title"><%= partMainTitle %></div>
+			<div class="part-subtitle">- <%= partSubtitle %></div>
+		</div>
+		<div class="title">
+			<span class="title-num-wrapper">
+				<div class="wrapper">
+					<span>의혹</span>
+					<span class="title-num"><%= titleNum %></span>
+				</div>
+			</span>
+			<span class="title-wrapper"><span><%= title %></span></span>
+		</div>
+		<div class="background">
+			<div class="media size-<%= bgMediaSize %>"><%= bgMedia %></div>
+			<p><%= background %></p>
+		</div>
+		<div class="witnesses">
+			<div class="header article-title"><span>관련증인</span></div>
+			<ul class="list"><%= witness %></ul>
+		</div>
+	</div><!-- header -->
+	<div class="content">
+		<div class="abstract">
+			<div class="header article-title"><span>청문회 주요내용</span></div>
+			<ul class="list"><%= abstract %></ul>
+		</div>
+		<div class="dialogue">
+			<div class="header article-title"><span>그들의 한마디</span></div>
+			<ul class="list"><%= dialogue %></ul>
+		</div>
+		<div class="etc">
+			<div class="header article-title"><span>함께 보기</span></div>
+			<div class="media size-<%= etcMediaSize %>"><%= etcMedia %></div>
+			<ul class="links num-<%= etcLinkNum %>"><%= etcLinks %></ul>
+		</div>
+	</div> <!--content -->
 </script>
 
 <script type="text/template" id="etc-link-tempate">
