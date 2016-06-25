@@ -120,7 +120,7 @@ var getWitness = require('./witnesses.js');
 					'padding-top': '0 72 max',
 					'padding-left': '15 72 max'
 				});
-				//스크롤 효과 ////
+				// 스크롤 효과 ////
 				$hr2('#suspicion-'+index).scrEffectOfBgcolor({
 					background: '#1a1a1a #ffffff',
 					option: 'wait',
@@ -159,6 +159,11 @@ var getWitness = require('./witnesses.js');
 				$(window).trigger('resize'); //'주요내용'의 슬라이드를 위해서 windiw.resieze를 트리거.
 				$hr2('#suspicion-'+index).addClass('visited-page');
 				$hr2('#suspicion-'+index).find('.medium img').extraStyle({ fitted: 'yes' });
+				// 스크롤 스냅 ////
+				$hr2('#suspicion-'+index).scrollSnap({
+					section: '.content .abstract ul.list > li, .content .dialogue',
+					active: 1024
+				});
 			}); // on:append-section
 
 			$(window).resize(function(){
@@ -333,5 +338,33 @@ var getWitness = require('./witnesses.js');
 	function $hr2(selector){
 		if(selector) return $('#page-2nd-hearing').find(selector);
 		else return $('#page-2nd-hearing');
+	}
+	$.fn.scrollSnap = function(arg){
+		if(arg === undefined) arg = {};
+		if(arg.section === undefined) arg.section = 'div';
+		if(arg.active === undefined) arg.active = 0;
+		var $container = $(this); if($container.length == 0){ console.error('ERROR: .scrollSanp()'); return; }
+		var isSnapping = false;
+		var preScrTop = 0;
+		var scrDir = 'down';
+		$container.scroll(function(event){ if(window.innerWidth >= arg.active){
+			if(isSnapping){
+				event.preventDefault();
+			} else {
+				var scrTop = $container.scrollTop();
+				if(preScrTop < scrTop) scrDir = 'down'; else scrDir = 'up';
+				preScrTop = scrTop;
+				var $sections = $container.find(arg.section);
+				for(var index = 0, len = $sections.length; index < len; index++){
+					var top = $sections.eq(index).offset().top;
+					if(scrDir === 'down' && index === 0 && 0 < top && top < $(window).height()/20){
+						isSnapping = true; break;
+					} else if(scrDir === 'down' && $sections.eq(index-1).offset().top < -5 && 0 < top){
+						isSnapping = true; break;
+					}
+				}
+				if(isSnapping) $container.animate({ scrollTop: (scrTop+top) }, 600, 'easeOutBounce', function(){ isSnapping = false; });
+			}
+		}});
 	}
 })(jQuery);
