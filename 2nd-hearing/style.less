@@ -479,15 +479,26 @@
 					}
 				}
 				.answer {
-					.witness-photo { float: left; }
+					& > .witness-photo {
+						max-width: none;
+						display: block;
+						.name {
+							text-align: left;
+							margin-left: 78px;
+						}
+						.photo-wrap {float: left; }
+						&:after { content: ''; display: block; clear: both; }
+					}
 					.speech-bubble {
+						margin-top: 20px;
 						margin-bottom: 1em;
 						&:after { content: ''; display: block; clear: both; }
-						margin-left: 5.5em;
 						position: relative;
 						@nipple-size: 16px;
 						@border-width: 1px;
-						.nipple:first-child {
+						.nipple-left { display: none; }
+						.nipple-top { display: block; }
+						.nipple-border.nipple-left {
 							margin-top: 2em;
 							position: absolute;
 							top: 0; left: @border-width - @nipple-size;
@@ -496,7 +507,7 @@
 							border-bottom: solid @nipple-size/2 transparent;
 							border-left: solid @nipple-size/2 transparent;
 						}
-						.nipple:nth-child(2) {
+						.nipple-bg.nipple-left {
 							margin-top: 2em;
 							position: absolute;
 							top: @border-width; left: 3*@border-width - @nipple-size;
@@ -505,9 +516,26 @@
 							border-bottom: solid @nipple-size/2 transparent;
 							border-left: solid @nipple-size/2 transparent;
 						}
+						.nipple-border.nipple-top {
+							margin-left: 2em;
+							position: absolute;
+							top: @border-width - @nipple-size; left: 0;
+							border-top: solid @nipple-size/2 transparent;
+							border-right: solid @nipple-size/2 transparent;
+							border-bottom: solid @nipple-size/2 #7657c5;
+							border-left: solid @nipple-size/2 #7657c5;
+						}
+						.nipple-bg.nipple-top {
+							margin-left: 2em;
+							position: absolute;
+							top: 3*@border-width - @nipple-size; left: @border-width;
+							border-top: solid @nipple-size/2 transparent;
+							border-right: solid @nipple-size/2 transparent;
+							border-bottom: solid @nipple-size/2 #ffffff;
+							border-left: solid @nipple-size/2 #ffffff;
+						}
 						.answer-wrapper {
 							border: solid @border-width #7657c5;
-							//padding: 1.5em;
 							padding: 1em;
 						}
 					}
@@ -517,7 +545,8 @@
 				}
 				li:nth-child(even) {
 					@bgcolor: #7657c5;
-					.nipple:nth-child(2) { border-top-color: @bgcolor !important; border-right-color: @bgcolor !important; }
+					.nipple-bg.nipple-left { border-top-color: @bgcolor !important; border-right-color: @bgcolor !important; }
+					.nipple-bg.nipple-top { border-bottom-color: @bgcolor !important; border-left-color: @bgcolor !important; }
 					.answer-wrapper { background-color: @bgcolor; }
 				}
 			}// dialogue
@@ -645,11 +674,25 @@
 // '그들의 한마디' ////
 @media screen and (min-width: 560px) {
 	#page-2nd-hearing section.inner-page > .content .dialogue {
-		.answer-wrapper p {
-			font-size: 1.2em;
+		.answer {
+			& > .witness-photo {
+				float: left;
+				max-width: 78px;
+				.photo-wrap { float: none; }
+				.name {
+					text-align: left;
+					margin-left: 0;
+				}
+			}
+			.speech-bubble { margin-left: 5.5em; }
+			.speech-bubble .nipple-top { display: none; }
+			.speech-bubble .nipple-left { display: block; }
 		}
 		.answer .speech-bubble .answer-wrapper {
 			padding: 1.5em;
+		}
+		.answer-wrapper p {
+			font-size: 1.2em;
 		}
 	}
 }

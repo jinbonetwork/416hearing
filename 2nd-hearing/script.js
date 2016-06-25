@@ -138,7 +138,7 @@ var getWitness = require('./witnesses.js');
 						$(this).empty().append($slideshow.find('.ps-list > ul > li.'+elt+' > span > a'));
 					});
 				});
-				$hr2('#suspicion-'+index).find('.ps-caption a').removeAttr('href');
+				$hr2('#suspicion-'+index).find('.ps-caption a').click(function(event){ event.preventDefault(); })
 				$hr2('#suspicion-'+index).find('.audio-gallery').fancybox({
 					padding: 0,
 					afterLoad: function(current, previous){
