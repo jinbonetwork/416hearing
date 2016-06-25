@@ -27,6 +27,8 @@
 			}
 		})
 		$('.pages-nav__item:nth-child(1)').click(function(){
+			var $content = $('#page-2nd-hearing .open-inner-page .content');
+			if(!$content.hasClass('applied-resp-grid')) $content.addClass('applied-resp-grid').trigger('refresh-grid');
 			var intv = setInterval(function(){
 				if(!$('.pages-stack').hasClass('pages-stack--open')){
 					clearInterval(intv);
@@ -41,7 +43,7 @@
 		});
 		$('.pages-nav__item:nth-child(2)').click(function(){
 			var $content = $('#page-hearing .open-inner-page .content');
-			if(!$content.hasClass('applied-resp-grid')) $content.addClass('applied-resp-grid').trigger('refresh-resp-grid');
+			if(!$content.hasClass('applied-resp-grid')) $content.addClass('applied-resp-grid').trigger('refresh-grid');
 			var intv = setInterval(function(){
 				if(!$('.pages-stack').hasClass('pages-stack--open')){
 					clearInterval(intv);

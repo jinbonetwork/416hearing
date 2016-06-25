@@ -131,9 +131,10 @@ var getWitness = require('./witnesses.js');
 		unfoldNavi(pageNum);
 	}
 	function closePage(pageNum){
-		$hr('.outline').addClass('open-inner-page').trigger('activate-scroll-effect');
 		$hr('#suspicion-'+pageNum).removeClass('open-inner-page').trigger('deactivate-scroll-effect');
 		foldNavi(pageNum);
+		$hr('.outline').addClass('open-inner-page').trigger('activate-scroll-effect');
+		$hr('.outline .content').trigger('refresh-grid');
 	}
 	function closeAndOpenPage(pastNum, curNum){
 		$hr('#suspicion-'+pastNum).removeClass('open-inner-page').trigger('deactivate-scroll-effect');
@@ -144,7 +145,7 @@ var getWitness = require('./witnesses.js');
 		$hr('#suspicion-'+pageNum).addClass('open-inner-page').trigger('activate-scroll-effect');
 		if(!$hr('#suspicion-'+pageNum).hasClass('visited-page')){
 			$hr('#suspicion-'+pageNum).addClass('visited-page');
-			$hr('#suspicion-'+pageNum+' .medium img').trigger('refresh-fitting-image');
+			$hr('#suspicion-'+pageNum+' .medium img').trigger('refresh-style');
 		} else {
 			$hr('#suspicion-'+pageNum).scrollTop(0);
 		}

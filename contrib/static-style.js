@@ -19,7 +19,7 @@
 		setResize($target, $target, 'width', option, getDim);
 		if(option !== 'wait') setHeight();
 		$target.on('resize', setHeight);
-		$target.on('refresh-set-ratio', setHeight);
+		$target.on('refresh-style', setHeight);
 		if(option !== 'resize') $(window).resize(setHeight);
 
 		function setHeight(){
@@ -33,7 +33,7 @@
 
 		if(option !== 'wait') $target.on('load', fitAndCrop);
 		$target.on('resize', fitAndCrop);
-		$target.on('refresh-fitting-image', fitAndCrop);
+		$target.on('refresh-style', fitAndCrop);
 		if(option !== 'resize') $(window).resize(fitAndCrop);
 
 		function fitAndCrop(){

@@ -32,7 +32,7 @@
 <script type="text/template" id="outline-suspicion-template">
 	<li data-num="<%= num %>">
 		<span class="num"><span>의혹 </span><span><%= num %></span></span>
-		<div class="item"><span><%= item %></span></div>
+		<div class="item"><span data-hover="<%= item %>"><%= item %></span></div>
 	</li>
 </script>
 
@@ -44,7 +44,6 @@
 		<div class="part-title">
 			<div class="part-num">part <%= partNum %></div>
 			<div class="part-main-title"><%= partMainTitle %></div>
-			<div class="part-subtitle">- <%= partSubtitle %></div>
 		</div>
 		<div class="title">
 			<span class="title-num-wrapper">
@@ -99,7 +98,7 @@
 </script>
 <script type="text/template" id="abs-video-template">
 	<a class="gallery fancybox.iframe" rel="gallery<%= gallery %>" href="https://www.youtube.com/embed/<%= url %>">
-		<span class="icon"><i class="fa fa-play"></i></span>
+		<div class="play-icon"><i class="fa fa-play"></i></div>
 		<img src="http://img.youtube.com/vi/<%= url %>/0.jpg" alt="<%= title %>">
 	</a>
 </script>
@@ -111,6 +110,7 @@
 </script>
 <script type="text/template" id="abs-audio-template">
 	<a class="audio-gallery" rel="gallery<%= gallery %>" href="<%= imgurl %>">
+		<div class="play-icon"><i class="fa fa-play"></i></div>
 		<img src="<%= imgurl %>" alt="<%= title %>">
 		<audio><source src="<%= audiourl %>" type="audio/mpeg"></audio>
 	</a>

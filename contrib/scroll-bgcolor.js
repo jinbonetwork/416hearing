@@ -48,7 +48,7 @@
 	Container.prototype.scrollTop = function(){
 		return this.$wrapper.scrollTop();
 	}
-	Container.prototype.changeColor = function(arg, all){
+	Container.prototype.changeColor = function(arg, all){ if(this.$self.is(':visible')){
 		var contain = this;
 		var index = 0;
 		var $sect, top, bottom;
@@ -71,11 +71,11 @@
 			contain.$self.stop().animate({'background-color': arg.background[index]}, arg.transition);
 			if(arg.after) arg.after(contain.$self, arg.background[index], index);
 		}
-	}
-	Container.prototype.changeColorFirst = function(arg){
+	}}
+	Container.prototype.changeColorFirst = function(arg){ if(this.$self.is(':visible')){
 		this.$self.css({'background-color': arg.background[0]});
 		if(arg.after) arg.after(this.$self, arg.background[0], 0);
-	}
+	}}
 	function convArg(arg){
 		arg.background = arg.background.split(' ');
 		arg.transition = (arg.transition ? arg.transition * 1000 : 1000);

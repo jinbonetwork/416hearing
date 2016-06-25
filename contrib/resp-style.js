@@ -32,10 +32,9 @@
 		$(target).each(function(){
 			var $target = $(this);
 			var style = new Style(arg);
-			$target.css(style.css());
-			$(window).resize(function(){
-				$target.css(style.css());
-			});
+			if($target.is(':visible')) $target.css(style.css());
+			$(window).resize(function(){ if($target.is(':visible')) $target.css(style.css()); });
+			$target.on('refresh-style', function(){ if($target.is(':visible')) $target.css(style.css()); });
 		});
 	}}
 	$.fn.respGrid = function(arg, getDimOption){
@@ -50,9 +49,9 @@
 			$target.children('div').addClass('es').addClass('es-cell').css({float: 'left', overflow: 'hidden'});
 			if($target.is('.es.es-cell')) $target.addClass('es-nested');
 			var grid = new Grid(arg, $target.children('.es.es-cell').length, getDimOption);
-			grid.adjust($target);
+			if($target.is(':visible')) grid.adjust($target);
 			$(window).resize(function(){ grid.adjust($target); });
-			$target.on('refresh-resp-grid', function(){ grid.adjust($target); });
+			$target.on('refresh-grid', function(){ grid.adjust($target); });
 			$(window).on('es-changeScrollbar', function(){ grid.adjust($target, false); });
 		});
 	}}
@@ -241,14 +240,14 @@
 		var this_bp = { bp: undefined, bpi: 0, ww: 0 };
 		var this_current = { columns: 0, ratio: 0, gutter: 0 , cells: new Array(numCell) };
 		this.getDim = undefined;
-		this.adjust = function($target, cell){
+		this.adjust = function($target, cell){ if($target.is(':visible')){
 			if(cell === undefined || cell){
 				this.calcCurrent(this_data, this_bp, this_current);
 				this.adjustCell(this_current, $target);
 			} else {
 				this.adjustCellWidth(this_current, $target);
 			}
-		}
+		}}
 		//initialize ////
 		if(arg){
 			if(getDimOption === undefined) getDimOption = 'clientrect';

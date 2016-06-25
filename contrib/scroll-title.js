@@ -79,7 +79,7 @@
 	Container.prototype.removeStyle = function(arg){
 		this.sects.children(arg.title).css({ position: '', top: '', bottom: '', left: '', right: '' });
 	}
-	Container.prototype.fixTitle = function(arg, all){
+	Container.prototype.fixTitle = function(arg, all){ if(this.$self.is(':visible')){
 		var origin = this.getOrigin();
 		var $section, $title, tLeft, sectWidth, where;
 		var start, min, max, increment;
@@ -125,7 +125,7 @@
 			}
 		}
 		if(arg.after) arg.after(this.$self);
-	}
+	}}
 	Container.prototype.whereIsTheSection = function($section, $title, origin){
 		var sOfs = $section.offset();
 		sOfs.bottom = sOfs.top + $section.outerHeight();

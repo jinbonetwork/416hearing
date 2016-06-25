@@ -29,140 +29,171 @@ var getWitness = require('./witnesses.js');
 			success: function(json){ witnesses = json; },
 			complete: function(){ $hr2().trigger('json-load'); }
 		});
-		$hr2().on('json-load', function(){
-			if(parts !== undefined && suspicions !== undefined && witnesses !== undefined){
-				$hr2('.outline .content').append(htmlOutline(parts, partMap, suspicions));
-				$hr2('.outline .video-wrap').extraStyle({
-					ratio: (360/640)
+		$hr2().on('json-load', function(){ if(parts && suspicions && witnesses){
+			$hr2('.outline .content').append(htmlOutline(parts, partMap, suspicions));
+			$hr2('.outline .video-wrap').extraStyle({
+				ratio: (360/640)
+			});
+			// 첫 페이지 반응형 처리////
+			var outlineBreakPoint = '320 1024';
+			$hr2('.outline > .header .title-part-1 span').respStyle({
+				'breakpoint': outlineBreakPoint,
+				'font-size': '1 2 em max'
+			});
+			$hr2('.outline > .header .title-part-2 span').respStyle({
+				'breakpoint': outlineBreakPoint,
+				'font-size': '3 6 em max'
+			});
+			$hr2('.outline > .header .title-part-3 span').respStyle({
+				'breakpoint': outlineBreakPoint,
+				'font-size': '1.2 2.4 em max'
+			});
+			$hr2('.outline > .header').respStyle({
+				'breakpoint': outlineBreakPoint,
+				'padding-top': '3 5 em max',
+				'padding-bottom': '3 5 em max'
+			});
+			$hr2('.outline > .header .video-wrap').respStyle({
+				'breakpoint': outlineBreakPoint,
+				'margin-bottom': '3 7 em max'
+			});
+			$hr2('.outline .content').respGrid({
+				breakpoint: '320 768',
+				columns: '1 2',
+				ratio: 'auto',
+				gutter: '0 ='
+			}, 'computed');
+			$(window).trigger('es-setScrollbarEvent');
+
+			//스크롤 효과 ////
+			$hr2('.outline').scrEffectOfBgcolor({
+				background: '#ffffff #1a1a1a',
+				option: 'wait',
+				after: function($contain, bgcolor, bgcIndex){
+					var colors = ['#1a1a1a', '#ffffff'];
+					$('button.menu-button i').stop().animate({color: colors[bgcIndex]}, 1000);
+					if(bgcIndex === 0){
+						$hr2('.outline .content').find('.item span, .title span.main').css('color', '#6e6e6e');
+						$hr2('.outline .content .part:first-child:after').css('border-color', '#1a1a1a');
+					} else {
+						$hr2('.outline .content').find('.item span, .title span.main').css('color', '');
+					}
+				}
+			});
+			$hr2('.outline').trigger('deactivate-scroll-effect');
+			// 의혹 페이지로 이동 ////
+			$hr2('.outline li').click(function(){
+				openPage($(this).attr('data-num'));
+				$hr2('.outline .header iframe').attr('src', $hr2('.outline .header .video-wrap').attr('data-src'));
+			});
+
+			for(var i = 1, leni = partMap.length; i <= leni; i++){
+				$hr2('.sections').append('<section id="suspicion-'+i+'" class="inner-page"></section>');
+			}
+			$hr2().on('append-section', function(event, index){
+				$hr2('#suspicion-'+index).append(makeHtml(index-1, parts, suspicions[index-1], witnesses, partMap));
+				// 데이터가 없는 요소를 숨기거나 삭제 ////
+				$hr2('#suspicion-'+index).find('.etc').each(function(){
+					if($(this).find('.links.num-0').length) $(this).hide();
+				});
+				$hr2('#suspicion-'+index).find('.witness-photo').each(function(){
+					if(!$(this).attr('data-name')) $(this).closest('.answer').hide();
+				});
+				$hr2('#suspicion-'+index).find('.abstract-media-wrap').each(function(){
+					if($(this).find('ul li').length < 1) $(this).remove();
+				});
+				// 첫 페이지로 이동 ////
+				$hr2('#suspicion-'+index).find('.go-back-outline').click(function(){
+					var num = $(this).parents('section').attr('id').replace(/suspicion\-/, '');
+					closePage(num);
+					$hr2('.outline .header iframe').attr('src', $hr2('.outline .header .video-wrap').attr('data-src')+'&autoplay=1');
+				});
+				//증인 정보 표시 ////
+				$hr2('#suspicion-'+index).find('.witness-photo').click(function(e) {
+					var name = $(this).attr('data-name');
+					getWitness(name, $(this));
 				});
 				//스크롤 효과 ////
-				$hr2('.outline').scrEffectOfBgcolor({
-					background: '#ffffff #1a1a1a',
+				$hr2('#suspicion-'+index).scrEffectOfBgcolor({
+					background: '#1a1a1a #ffffff',
 					option: 'wait',
 					after: function($contain, bgcolor, bgcIndex){
-						var colors = ['#1a1a1a', '#ffffff'];
+						var colors = ['#ffffff', '#1a1a1a'];
 						$('button.menu-button i').stop().animate({color: colors[bgcIndex]}, 1000);
-						//$hr2('.outline .header .title-part-2 span').css('color', colors[bgcIndex]);
-						//$hr2('.outline .content').find('.item span, .title span.main').css('color', colors[bgcIndex]);
 					}
 				});
-				$hr2('.outline').trigger('deactivate-scroll-effect');
-				// 의혹 페이지로 이동 ////
-				$hr2('.outline li').click(function(){
-					openPage($(this).attr('data-num'));
-					$hr2('.outline .header iframe').attr('src', $hr2('.outline .header .video-wrap').attr('data-src'));
+				$hr2('#suspicion-'+index).scrEffectOfTitle({
+					title: '.fixed-element',
+					position: 'right',
+					option: 'wait',
+					active: 1024,
+					after: function($contain){
+						var $partTitle = $contain.find('.header .part-title');
+						if($partTitle.length){
+							var right = $partTitle.offset().left + $partTitle.outerWidth();
+							var $goOutline = $contain.find('.header .go-back-outline');
+							$goOutline.css('margin-left', '');
+							if(right > $goOutline.offset().left){
+								$goOutline.css('margin-left', right - $goOutline.offset().left + 15);
+							}
+						}
+					}
 				});
-
-				for(var i = 1, leni = partMap.length; i <= leni; i++){
-					$hr2('.sections').append('<section id="suspicion-'+i+'" class="inner-page"></section>');
-				}
-				$hr2().on('append-section', function(event, index){
-					$hr2('#suspicion-'+index).append(makeHtml(index-1, parts, suspicions[index-1], witnesses, partMap));
-					// 데이터가 없는 요소를 숨기거나 삭제 ////
-					$hr2('#suspicion-'+index).find('.etc').each(function(){
-						if($(this).find('.links.num-0').length) $(this).hide();
+				// '주요 내용'의 이미지를 슬라이드로 ////
+				$hr2('#suspicion-'+index).find('.abstract-media').pgwSlideshow({ displayList: false });
+				$hr2('#suspicion-'+index).find('.abstract-media-wrap .pgwSlideshow').each(function(){
+					var $slideshow = $(this);
+					$slideshow.find('.ps-current > ul > li').each(function(){
+						var elt = $(this).attr('class');
+						$(this).empty().append($slideshow.find('.ps-list > ul > li.'+elt+' > span > a'));
 					});
-					$hr2('#suspicion-'+index).find('.witness-photo').each(function(){
-						if(!$(this).attr('data-name')) $(this).closest('.answer').hide();
-					});
-					$hr2('#suspicion-'+index).find('.abstract-media-wrap').each(function(){
-						if($(this).find('ul li').length < 1) $(this).remove();
-					});
-					// 첫 페이지로 이동 ////
-					$hr2('#suspicion-'+index).find('.go-back-outline').click(function(){
-						var num = $(this).parents('section').attr('id').replace(/suspicion\-/, '');
-						closePage(num);
-						$hr2('.outline .header iframe').attr('src', $hr2('.outline .header .video-wrap').attr('data-src')+'&autoplay=1');
-					});
-					//증인 정보 표시 ////
-					$hr2('#suspicion-'+index).find('.witness-photo').click(function(e) {
-						var name = $(this).attr('data-name');
-						getWitness(name, $(this));
-					});
-					//스크롤 효과 ////
-					$hr2('#suspicion-'+index).scrEffectOfBgcolor({
-						background: '#1a1a1a #ffffff',
-						option: 'wait',
-						after: function($contain, bgcolor, bgcIndex){
-							var colors = ['#ffffff', '#1a1a1a'];
-							$('button.menu-button i').stop().animate({color: colors[bgcIndex]}, 1000);
-						}
-					});
-					$hr2('#suspicion-'+index).scrEffectOfTitle({
-						title: '.fixed-element',
-						position: 'right',
-						option: 'wait',
-						active: 1024,
-						after: function($contain){
-							var $partTitle = $contain.find('.header .part-title');
-							if($partTitle.length){
-								var right = $partTitle.offset().left + $partTitle.outerWidth();
-								var $goOutline = $contain.find('.header .go-back-outline');
-								$goOutline.css('margin-left', '');
-								if(right > $goOutline.offset().left){
-									$goOutline.css('margin-left', right - $goOutline.offset().left + 15);
-								}
-							}
-						}
-					});
-					// '주요 내용'의 이미지를 슬라이드로 ////
-					$hr2('#suspicion-'+index).find('.abstract-media').pgwSlideshow({ displayList: false });
-					$hr2('#suspicion-'+index).find('.abstract-media-wrap .pgwSlideshow').each(function(){
-						var $slideshow = $(this);
-						$slideshow.find('.ps-current > ul > li').each(function(){
-							var elt = $(this).attr('class');
-							$(this).empty().append($slideshow.find('.ps-list > ul > li.'+elt+' > span > a'));
-						});
-					});
-					$hr2('#suspicion-'+index).find('.audio-gallery').fancybox({
-						padding: 0,
-						afterLoad: function(current, previous){
-							if(previous){
-								var $audio = $hr2('#suspicion-'+index).find('.audio-gallery').eq(previous.index).find('audio');
-								$audio.get(0).pause();
-								$audio.get(0).currentTime = 0;
-							}
-							$hr2('#suspicion-'+index).find('.audio-gallery').eq(current.index).find('audio').get(0).play();
-						},
-						afterClose: function(){
-							var $audio = $hr2('#suspicion-'+index).find('.audio-gallery').eq(this.index).find('audio');
+				});
+				$hr2('#suspicion-'+index).find('.ps-caption a').removeAttr('href');
+				$hr2('#suspicion-'+index).find('.audio-gallery').fancybox({
+					padding: 0,
+					afterLoad: function(current, previous){
+						if(previous){
+							var $audio = $hr2('#suspicion-'+index).find('.audio-gallery').eq(previous.index).find('audio');
 							$audio.get(0).pause();
 							$audio.get(0).currentTime = 0;
 						}
-					});
-					$(window).trigger('resize'); //'주요내용'의 슬라이드를 위해서.
-					$hr2('#suspicion-'+index).addClass('visited-page');
-					$hr2('#suspicion-'+index).find('.medium img').extraStyle({ fitted: 'yes' });
-				});
-
-				$(window).resize(function(){
-					var $absMediaWrap = $hr2('.sections section.open-inner-page .abstract-media-wrap');
-					if($absMediaWrap.length){
-						var amwWidth = $absMediaWrap.width();
-						$absMediaWrap.find('.ps-current li > a > img').outerHeight(amwWidth * 3/4);
+						$hr2('#suspicion-'+index).find('.audio-gallery').eq(current.index).find('audio').get(0).play();
+					},
+					afterClose: function(){
+						var $audio = $hr2('#suspicion-'+index).find('.audio-gallery').eq(this.index).find('audio');
+						$audio.get(0).pause();
+						$audio.get(0).currentTime = 0;
 					}
 				});
+				// ////
+				$(window).trigger('resize'); //'주요내용'의 슬라이드를 위해서 windiw.resieze를 트리거.
+				$hr2('#suspicion-'+index).addClass('visited-page');
+				$hr2('#suspicion-'+index).find('.medium img').extraStyle({ fitted: 'yes' });
+			}); // on:append-section
 
-			}
-		});
-	});
+			$(window).resize(function(){
+				var $absMediaWrap = $hr2('.sections section.open-inner-page .abstract-media-wrap');
+				if($absMediaWrap.length){
+					var amwWidth = $absMediaWrap.width();
+					$absMediaWrap.find('.ps-current li > a > img').outerHeight(amwWidth * 3/4);
+					$absMediaWrap.find('.play-icon i').css('font-size', amwWidth * 3/4 * 0.2);
+				}
+			});
+		}});// on:json-load,
+	});//document.ready
 	function openPage(pageNum){
 		$hr2('.outline').removeClass('open-inner-page').trigger('deactivate-scroll-effect');
 		openAndActivatePage(pageNum);
 	}
 	function closePage(pageNum){
-		$hr2('.outline').addClass('open-inner-page').trigger('activate-scroll-effect');
 		$hr2('#suspicion-'+pageNum).removeClass('open-inner-page').trigger('deactivate-scroll-effect');
+		$hr2('.outline').addClass('open-inner-page').trigger('activate-scroll-effect');
+		$hr2('.outline .content').trigger('refresh-grid');
 	}
 	function openAndActivatePage(pageNum){
 		$hr2('#suspicion-'+pageNum).addClass('open-inner-page');
 		if(!$hr2('#suspicion-'+pageNum).hasClass('visited-page')){
 			$hr2().trigger('append-section', pageNum);
-			/*
-			$(window).trigger('resize'); //'주요내용'의 슬라이드를 위해서.
-			$hr2('#suspicion-'+pageNum).addClass('visited-page');
-			$hr2('#suspicion-'+pageNum+' .medium img').trigger('refresh-fitting-image');
-			*/
 		} else {
 			$hr2('#suspicion-'+pageNum).scrollTop(0);
 		}
@@ -192,7 +223,6 @@ var getWitness = require('./witnesses.js');
 			section: sectNum + 1,
 			partNum: partMap[sectNum] + 1,
 			partMainTitle: parts[partMap[sectNum]].title,
-			partSubtitle: parts[partMap[sectNum]].sub_title,
 			titleNum: sectNum + 1,
 			title: section.title,
 			bgMediaSize: mediaSize(section.background.media),
