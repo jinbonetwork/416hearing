@@ -240,8 +240,7 @@
 		& > .content {
 			.abstract .list p {
 				font-family: @font-batang;
-				line-height: 1.8em;
-				font-size: 1.063em;
+				line-height: 1.7em;
 				color: #808080;
 			}
 			.abstract-media-wrap {
@@ -254,6 +253,11 @@
 				}
 			}
 			.dialogue {
+				.subject span {
+					font-family: @font-noto; font-weight: @font-weight;
+					font-size: 1.125em;
+					color: #f7a4a4
+				}
 				.question span.name {
 					font-family: @font-batang;
 					line-height: 1.4em;
@@ -356,6 +360,7 @@
 		}// .media
 		.witness-photo {
 			display: inline-block;
+			max-width: 78px;
 			.photo-wrap {
 				width: 4em; height: 4em;
 				border-radius: 4em;
@@ -392,13 +397,12 @@
 				text-align: center;
 			}
 			.part-title, .title, .background, .witnesses {
-				max-width: 42.5em;
+				max-width: 680px;
 				margin-left: auto; margin-right: auto;
 			}
 			.part-title {
 				padding-bottom: 1em;
 				border-bottom: solid 2px #ffffff;
-				margin: 0 auto;
 				.part-main-title b {
 					box-shadow: none;
 				}
@@ -428,13 +432,17 @@
 			max-width: 1500px;
 			margin: 0 8% 3em 8%;
 			.dialogue, .conclusion, .etc {
-				max-width: 42.5em;
+				max-width: 680px;
 				margin-left: auto; margin-right: auto;
 			}
 			.abstract {
 				& > .header { margin-bottom: 1em; }
 				& > .list { margin-bottom: 1em; }
 				& > .list li { margin-bottom: 1em; }
+				& > .list li p {
+					margin-left: auto; margin-right: auto;
+					max-width: 680px;
+				}
 				.abstract-media-wrap {
 					margin-bottom: 1em;
 					.ps-prev { z-index: 2; }
@@ -454,6 +462,15 @@
 			.dialogue {
 				margin-bottom: 1em;
 				& > .header { margin-bottom: 1em; }
+				.subject {
+					margin-bottom: 1em;
+				}
+				.video .video-wrap {
+					width: 320px;
+					height: 200px;
+					max-width: 100%;
+					margin-bottom: 1em;
+				}
 				.question {
 					.question-wrapper { margin-bottom: 1em; }
 					.name {
@@ -532,16 +549,11 @@
 	#page-2nd-hearing .media.size-2-small .medi-with-cap {
 		width: 50%;
 		float: left;
-		&:nth-of-type(1) { .medium, .caption { padding-right: 7px; } }
-		&:nth-of-type(2) { .medium, .caption { padding-left: 7px; } }
+		&:nth-of-type(1) { .medium, .caption { padding-right: 5%; } }
+		&:nth-of-type(2) { .medium, .caption { padding-left: 5%; } }
 	}
 	#page-2nd-hearing .media.size-1-small .medi-with-cap {
 		width: 50%;
-	}
-}
-@media screen and (min-width: 768px) {
-	#page-2nd-hearing .media.size-1-small {
-		// ??
 	}
 }
 
@@ -566,7 +578,7 @@
 		& > .content .abstract {
 			margin-bottom: 3em;
 		}
-		& > .content .abstract li {
+		& > .content .abstract .list li {
 			margin-bottom: 2em;
 		}
 		& > .content .abstract > .header {
@@ -598,34 +610,98 @@
 			margin-left: 80px; margin-right: 70px;
 		}
 		& > .content {
-			margin-left: 80px; margin-right: 70px;
+			margin-left: 80px; margin-right: 160px;
 			.dialogue, .conclusion, .etc {
-				max-width: 32.5em;
 				margin-left: 0; margin-right: 0;
 			}
 
 		}
 	}
 }
-@media screen and (min-width: 1280px) {
-	#page-2nd-hearing section.inner-page > .content {
-		.abstract, .dialogue, .conclusion, .etc {
-			margin-left: 20%;
+
+// '주요 내용 ' ////
+@media screen and (min-width: 1024px) {
+	#page-2nd-hearing section.inner-page > .content .abstract {
+		max-width: 1433px;
+		margin-left: auto;
+		margin-right: auto;
+		.article-title {
+			display: none;
+		}
+		.list li:after {
+			content: ''; display: block; clear: both;
+		}
+		.list li p {
+			margin-left: 60%;
+		}
+		.abstract-media-wrap {
+			width: 60%;
+			float: left;
+			margin-right: 0; margin-bottom: 0;
 		}
 	}
 }
 
-// '주요 내용 레이아웃' ////
-@media screen and (min-width: 720px) {
-	#page-2nd-hearing section.inner-page > .content .abstract {
-		.list li:after {
+// '그들의 한마디' ////
+@media screen and (min-width: 560px) {
+	#page-2nd-hearing section.inner-page > .content .dialogue {
+		.answer-wrapper p {
+			font-size: 1.2em;
+		}
+		.answer .speech-bubble .answer-wrapper {
+			padding: 1.5em;
+		}
+	}
+}
+@media screen and (min-width: 620px) {
+	#page-2nd-hearing section.inner-page > .content .dialogue {
+		li:after {
 			content: ''; display: block; clear: both;
 		}
-		.abstract-media-wrap {
-			width: 70%;
-			float: left;
-			margin-right: 1em;
+		.video {
+			float: right;
+			margin-left: 1em;
 		}
+		.answer { clear: both; }
+	}
+}
+@media screen and (min-width: 1024px) {
+	#page-2nd-hearing section.inner-page > .content .dialogue {
+		max-width: 800px;
+		margin-left: auto; margin-right: auto;
+		.video {
+			margin-left: 0;
+		}
+		.answer {
+			clear: none;
+		}
+		.question, .answer {
+			margin-right: 335px;
+		}
+	}
+}
+
+//함께 보기 ////
+@media screen and (min-width: 1024px) {
+	#page-2nd-hearing section.inner-page > .content .etc {
+		max-width: 800px;
+		margin-left: auto; margin-right: auto;
+	}
+}
+
+
+// '의혹전체보기' 버튼 ////
+@media screen and (min-width: 560px) {
+	#page-2nd-hearing section.inner-page > .header .go-back-outline {
+		float: right;
+	}
+}
+@media screen and (min-width: 1024px) {
+	#page-2nd-hearing section.inner-page > .header .go-back-outline {
+		float: none;
+		position: fixed;
+		top: 81px;
+		right: 40px;
 	}
 }
 
@@ -657,13 +733,6 @@
 	}
 }
 
-// '의혹전체보기' 버튼을 오른쪽으로 ////
-@media screen and (min-width: 560px) {
-	#page-2nd-hearing section.inner-page > .header .go-back-outline {
-		float: right;
-	}
-}
-
 // 제목을 왼쪽으로 ////
 @media screen and (min-width: 1280px) {
 	#page-2nd-hearing section.inner-page {
@@ -671,7 +740,7 @@
 			float: left;
 			width: 20em;
 			text-align: right;
-			margin-left: -22em;
+			margin-left: -21em;
 			padding-top: 0.5em;
 			position: relative;
 			&:before {
@@ -693,16 +762,6 @@
 				margin-left: 0;
 			}
 		}
-	}
-}
-
-// 답변 ////
-@media screen and (min-width: 560px) {
-	#page-2nd-hearing section.inner-page > .content .dialogue .answer-wrapper p {
-		font-size: 1.2em;
-	}
-	#page-2nd-hearing section.inner-page > .content .dialogue .answer .speech-bubble .answer-wrapper {
-		padding: 1.5em;
 	}
 }
 
