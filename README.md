@@ -25,6 +25,7 @@
   * `/2nd-hearing/script.js`
 
 ## 참고
+* 2차 청문회 첫페이지 동영상 경로를 수정하려면 `/2nd-hearing/index.html`에서 `<div class="video-wrap" data-src=""></div>`을 찾아 `data-src`의 값을 수정한다.
 * `less`나 `js`를 추가할 때는 `bundle.dev.js`에 파일 경로를 추가한다.
 * `less`파일을 작성할 때 `-webkit-` 등의 접두어를 붙일 필요가 없다. 시스템이 붙여준다.
 * `index.html.php`를 수정하고자 할 때는, `index.html.php` 대신에 `index.html.dev.php`를 수정한다. `index.html.php`는 `npm start`나 `npm run build`에 의해 생성되는 파일이다.
