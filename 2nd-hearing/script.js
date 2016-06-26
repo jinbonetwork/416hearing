@@ -87,6 +87,7 @@ var getWitness = require('./witnesses.js');
 				$hr2('.outline .header iframe').attr('src', $hr2('.outline .header .video-wrap').attr('data-src'));
 			});
 
+			// ////
 			for(var i = 1, leni = partMap.length; i <= leni; i++){
 				$hr2('.sections').append('<section id="suspicion-'+i+'" class="inner-page"></section>');
 			}
@@ -99,9 +100,11 @@ var getWitness = require('./witnesses.js');
 				$hr2('#suspicion-'+index).find('.witness-photo').each(function(){
 					if(!$(this).attr('data-name')) $(this).closest('.answer').hide();
 				});
+				/*
 				$hr2('#suspicion-'+index).find('.abstract-media-wrap').each(function(){
 					if($(this).find('ul li').length < 1) $(this).remove();
 				});
+				*/
 				// 첫 페이지로 이동 ////
 				$hr2('#suspicion-'+index).find('.go-back-outline').click(function(){
 					var num = $(this).parents('section').attr('id').replace(/suspicion\-/, '');
@@ -130,15 +133,10 @@ var getWitness = require('./witnesses.js');
 					}
 				});
 				// '주요 내용'의 이미지를 슬라이드로 ////
-				$hr2('#suspicion-'+index).find('.abstract-media').pgwSlideshow({ displayList: false });
-				$hr2('#suspicion-'+index).find('.abstract-media-wrap .pgwSlideshow').each(function(){
-					var $slideshow = $(this);
-					$slideshow.find('.ps-current > ul > li').each(function(){
-						var elt = $(this).attr('class');
-						$(this).empty().append($slideshow.find('.ps-list > ul > li.'+elt+' > span > a'));
-					});
+				$hr2('#suspicion-'+index).find('.abstract-media').slideshow({
+					ratio: 35/43,
+					gutter: '0'
 				});
-				$hr2('#suspicion-'+index).find('.ps-caption a').click(function(event){ event.preventDefault(); })
 				$hr2('#suspicion-'+index).find('.audio-gallery').fancybox({
 					padding: 0,
 					afterLoad: function(current, previous){
@@ -193,6 +191,7 @@ var getWitness = require('./witnesses.js');
 			$hr2('#suspicion-'+pageNum).scrollTop(0);
 		}
 		$hr2('#suspicion-'+pageNum).trigger('activate-scroll-effect');
+		$hr2('#suspicion-'+pageNum).find('.abstract-media').trigger('refresh-slideshow');
 	}
 	function htmlOutline(parts, partMap, suspicions){
 		var template = _.template($hr2('#outline-template').html());
@@ -367,4 +366,82 @@ var getWitness = require('./witnesses.js');
 			}
 		}});
 	}
+	$.fn.slideshow = function(arg){
+		if(arg === undefined) arg = {};
+		if(arg.section === undefined) arg.section = 'li';
+		if(arg.ratio === undefined) arg.ratio = 3/4;
+		if(arg.gutter === undefined) arg.gutter = '5%';
+		if(arg.bgcolor === undefined) arg.bgcolor = '#4d4d4d';
+		if(arg.captbgcolor === undefined) arg.captbgcolor = '#4d4d4d';
+
+		$(this).each(function(){
+			slideshow($(this));
+		});
+		function slideshow($contain){
+			var index = 0;
+			var $sections = $contain.children(arg.section);
+			var $mainWrap = $('<div class="slideshow-wrap"></div>').appendTo($contain).append($sections);
+			var $leftWrap = $('<div class="left"><div class="prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></div></div>').insertBefore($mainWrap);
+			var $rightWrap = $('<div class="right"><div class="next"><i class="fa fa-chevron-right" aria-hidden="true"></i></div></div').insertAfter($mainWrap);
+
+			$contain.css({ height: $contain.width() * arg.ratio, overflow: 'hidden', position: 'relative' });
+			$leftWrap.css({ width: arg.gutter, height: '100%', float: 'left' });
+			$rightWrap.css({ width: arg.gutter, height: '100%', float: 'left' });
+			var mainWidth = $contain.width() - $leftWrap.width() - $rightWrap.width() - 1;
+			$mainWrap.css({ position: 'relative', width: mainWidth, height: '100%', float: 'left' });
+			$sections.css({ position: 'absolute', top: 0, left: 0, diasplay: 'block',
+				width: '100%', height: '100%', overflow: 'hidden', 'background-color': arg.bgcolor
+			});
+			$sections.children('a').css({ diasplay: 'block', width: '100%', height: '100%', overflow: 'hidden' });
+			$sections.find('img').innerFit();
+			$sections.find('img').each(function(){ if($(this).attr('alt')){
+				var $caption = $('<div class="caption"><span>'+$(this).attr('alt')+'</span></div>').insertAfter($(this));
+				$caption.css({ position: 'absolute', bottom: 0, left: 0, width: '100%', height: 'auto', opacity: 0.7, 'background-color': arg.captbgcolor });
+				$caption.find('span').css({ 'padding-left': '1em', 'line-height': '2em' });
+			}});
+
+			var $prev = $leftWrap.children('.prev'), $next = $rightWrap.children('.next');
+			$prev.css({ position: 'absolute', 'z-index': '10', height: '10%', width: 'auto', top: '45%', left: 0, cursor: 'pointer' });
+			$next.css({ position: 'absolute', 'z-index': '10', height: '10%', width: 'auto', top: '45%', right: 0, cursor: 'pointer' });
+			$prev.children().css({ 'font-size': $prev.height() });
+			$next.children().css({ 'font-size': $next.height() });
+
+			$sections.not(':first-child').css({ left: $contain.width() });
+			$next.click(function(){
+				var next = ( index < $sections.length-1 ? index+1 : 0 );
+				$sections.eq(index).finish().animate({ left: -1*$contain.width() }, 1000, 'easeOutQuint');
+				$sections.eq(next).css({ left: $contain.width() }).finish().animate({ left: 0 }, 1000, 'easeOutQuint');
+				index = next;
+			});
+			$prev.click(function(){
+				var prev = ( index > 0 ? index-1 : $sections.length-1 );
+				$sections.eq(index).finish().animate({ left: $contain.width() }, 1000, 'easeOutQuint');
+				$sections.eq(prev).css({ left: -1*$contain.width() }).finish().animate({ left: 0 }, 1000, 'easeOutQuint');
+				index = prev;
+			});
+
+			$contain.on('refresh-slideshow', refresh)
+			$(window).resize(refresh);
+			function refresh(){ if($contain.is(':visible')){
+				$contain.css({ height: $contain.width() * arg.ratio });
+				$mainWrap.css({ width: $contain.width() - $leftWrap.width() - $rightWrap.width() - 1 });
+				$sections.find('img').innerFit(true);
+				$sections.not(':eq('+index+')').css({ left: $contain.width() });
+			}}
+		}//slideshow
+	}
+	$.fn.innerFit = function(refresh){ $(this).each(function(){
+		var $img = $(this);
+		if(!refresh) $img.load(fit); else fit();
+		function fit(){
+			var $parent = $img.parent();
+			$img.css({ width: '100%', height: '', 'margin-left': '', 'margin-top': '' });
+			if($img.height() > $parent.height()){
+				var width = $img.css({ width: '', height: $parent.height() }).width();
+				$img.css({ 'margin-left': ($parent.width() - width)/2 });
+			} else {
+				$img.css({ 'margin-top': ($parent.height() - $img.height())/2 });
+			}
+		}
+	});}
 })(jQuery);

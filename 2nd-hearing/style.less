@@ -248,8 +248,10 @@
 					font-size: 3em;
 					color: #6d92c4;
 				}
-				.ps-caption a b {
+				.caption span {
 					font-family: @font-noto; font-weight: @font-weight;
+					font-size: 1em;
+					color: #ffffff;
 				}
 			}
 			.dialogue {
@@ -302,9 +304,6 @@
 		b {
 			text-decoration: none;
 			box-shadow: 0 -0.4em 0 rgba(118, 87, 197, 0.4) inset
-		}
-		.ps-caption a b {
-			box-shadow: none;
 		}
 		.media {
 			&:after { content: ''; display: block; clear: both; }
@@ -445,7 +444,6 @@
 				}
 				.abstract-media-wrap {
 					margin-bottom: 1em;
-					.ps-prev { z-index: 2; }
 					a.gallery, a.audio-gallery {
 						position: relative;
 						display: block;
