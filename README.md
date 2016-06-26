@@ -5,12 +5,24 @@
 * 개발할 때: `npm start`
 * 배포할 때: `npm run build`
 
-## 2차 청문회 페이지 관련 파일
-* 코드: `/2nd-hearing`
-  * 증인관련: `/2nd-hearing/widtnesses.*`
-* 데이터: `/data/2nd_hearing`
-  * 증인정보: `/data/2nd_hearing/witnesses.json`
-  * 증인프로필사진이 있는 곳: `/data/2nd_hearing/images`
+## 2차 청문회 페이지 증인 관련 파일
+* 마크업: `/2nd-hearing/index.html`
+* 스타일: `/2nd-hearing/widtnesses.less`
+* 스크립트: `/2nd-hearing/widtnesses.js`
+* 증인정보: `/data/2nd_hearing/witnesses.json`
+* 증인프로필사진이 있는 곳: `/data/2nd_hearing/images`
+
+## 그 밖의 관련 파일
+* 스타일
+  * `/css/style.less`
+  * `/css/variables.less`
+  * `/2nd-hearing/style.less`
+* 마크업
+  * `/index.dev.html.php`
+  * `/2nd-hearing/index.html`
+* 스크립트
+  * `/js/script.js`
+  * `/2nd-hearing/script.js`
 
 ## 참고
 * `less`나 `js`를 추가할 때는 `bundle.dev.js`에 파일 경로를 추가한다.

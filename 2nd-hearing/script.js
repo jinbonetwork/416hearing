@@ -255,7 +255,7 @@ var getWitness = require('./witnesses.js');
 				video: (qna.video ? dlgVideoTmpl({ videoUrl: qna.video }) : ''),
 				qName: qna.qName,
 				question: paragraphs(qna.qContent),
-				photo: witData[qna.aName] ? witData[qna.aName].photo : '',
+				photo: witData[qna.aName] ? g_path.image+witData[qna.aName].photo : '',
 				aName: qna.aName,
 				aOrgan: witData[qna.aName] ? witData[qna.aName].organ: '',
 				answer: paragraphs(qna.aContent)
