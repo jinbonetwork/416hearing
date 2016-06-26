@@ -49,7 +49,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<meta name="twitter:creator" content="세월호 청문회">
 	<meta name="twitter:image:src" content="http://www.taogi.net/416hearing/data/images/og_image.png">
 	<meta name="twitter:domain" content="http://www.taogi.net/416hearing">
-</head>
+<link href="bundle.css" rel="stylesheet"></head>
 
 <body>
 	<!-- navigation -->

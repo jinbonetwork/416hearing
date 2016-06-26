@@ -100,11 +100,6 @@ var getWitness = require('./witnesses.js');
 				$hr2('#suspicion-'+index).find('.witness-photo').each(function(){
 					if(!$(this).attr('data-name')) $(this).closest('.answer').hide();
 				});
-				/*
-				$hr2('#suspicion-'+index).find('.abstract-media-wrap').each(function(){
-					if($(this).find('ul li').length < 1) $(this).remove();
-				});
-				*/
 				// 첫 페이지로 이동 ////
 				$hr2('#suspicion-'+index).find('.go-back-outline').click(function(){
 					var num = $(this).parents('section').attr('id').replace(/suspicion\-/, '');
@@ -182,6 +177,7 @@ var getWitness = require('./witnesses.js');
 		$hr2('#suspicion-'+pageNum).removeClass('open-inner-page').trigger('deactivate-scroll-effect');
 		$hr2('.outline').addClass('open-inner-page').trigger('activate-scroll-effect');
 		$hr2('.outline .content').trigger('refresh-grid');
+		$hr2('.outline .video-wrap').trigger('refresh-style');
 	}
 	function openAndActivatePage(pageNum){
 		$hr2('#suspicion-'+pageNum).addClass('open-inner-page');
@@ -378,6 +374,7 @@ var getWitness = require('./witnesses.js');
 			slideshow($(this));
 		});
 		function slideshow($contain){
+			var containRatio = arg.ratio;
 			var index = 0;
 			var $sections = $contain.children(arg.section);
 			var $mainWrap = $('<div class="slideshow-wrap"></div>').appendTo($contain).append($sections);
@@ -385,6 +382,7 @@ var getWitness = require('./witnesses.js');
 			var $rightWrap = $('<div class="right"><div class="next"><i class="fa fa-chevron-right" aria-hidden="true"></i></div></div').insertAfter($mainWrap);
 
 			$contain.css({ height: $contain.width() * arg.ratio, overflow: 'hidden', position: 'relative' });
+			$contain.css({ overflow: 'hidden', position: 'relative' });
 			$leftWrap.css({ width: arg.gutter, height: '100%', float: 'left' });
 			$rightWrap.css({ width: arg.gutter, height: '100%', float: 'left' });
 			var mainWidth = $contain.width() - $leftWrap.width() - $rightWrap.width() - 1;
@@ -393,55 +391,82 @@ var getWitness = require('./witnesses.js');
 				width: '100%', height: '100%', overflow: 'hidden', 'background-color': arg.bgcolor
 			});
 			$sections.children('a').css({ diasplay: 'block', width: '100%', height: '100%', overflow: 'hidden' });
-			$sections.find('img').innerFit();
+			$sections.find('img').innerFit({
+				afterLoad: function(){
+					var maxHeight = 0;
+					$sections.find('img').each(function(){
+						if($(this).height() > maxHeight) maxHeight = $(this).height() ;
+					});
+					if($contain.height() > maxHeight){
+						$contain.css({ height: maxHeight });
+						$sections.find('img').trigger('refresh-image-fit');
+						containRatio = maxHeight / $contain.width();
+					}
+				}
+			});
 			$sections.find('img').each(function(){ if($(this).attr('alt')){
 				var $caption = $('<div class="caption"><span>'+$(this).attr('alt')+'</span></div>').insertAfter($(this));
 				$caption.css({ position: 'absolute', bottom: 0, left: 0, width: '100%', height: 'auto', opacity: 0.7, 'background-color': arg.captbgcolor });
 				$caption.find('span').css({ 'padding-left': '1em', 'line-height': '2em' });
 			}});
 
-			var $prev = $leftWrap.children('.prev'), $next = $rightWrap.children('.next');
-			$prev.css({ position: 'absolute', 'z-index': '10', height: '10%', width: 'auto', top: '45%', left: 0, cursor: 'pointer' });
-			$next.css({ position: 'absolute', 'z-index': '10', height: '10%', width: 'auto', top: '45%', right: 0, cursor: 'pointer' });
-			$prev.children().css({ 'font-size': $prev.height() });
-			$next.children().css({ 'font-size': $next.height() });
+			if($sections.length > 1){
+				var $prev = $leftWrap.children('.prev'), $next = $rightWrap.children('.next');
+				$prev.css({ position: 'absolute', 'z-index': '10', height: '10%', width: 'auto', top: '45%', left: 0, cursor: 'pointer' });
+				$next.css({ position: 'absolute', 'z-index': '10', height: '10%', width: 'auto', top: '45%', right: 0, cursor: 'pointer' });
+				$prev.children().css({ 'font-size': $prev.height() });
+				$next.children().css({ 'font-size': $next.height() });
 
-			$sections.not(':first-child').css({ left: $contain.width() });
-			$next.click(function(){
-				var next = ( index < $sections.length-1 ? index+1 : 0 );
-				$sections.eq(index).finish().animate({ left: -1*$contain.width() }, 1000, 'easeOutQuint');
-				$sections.eq(next).css({ left: $contain.width() }).finish().animate({ left: 0 }, 1000, 'easeOutQuint');
-				index = next;
-			});
-			$prev.click(function(){
-				var prev = ( index > 0 ? index-1 : $sections.length-1 );
-				$sections.eq(index).finish().animate({ left: $contain.width() }, 1000, 'easeOutQuint');
-				$sections.eq(prev).css({ left: -1*$contain.width() }).finish().animate({ left: 0 }, 1000, 'easeOutQuint');
-				index = prev;
-			});
+				var isChanging = false;
+				$sections.not(':eq(0)').css({ left: $contain.width() });
+				$next.click(function(){ if(isChanging === false){
+					isChanging = true;
+					var next = ( index < $sections.length-1 ? index+1 : 0 );
+					$sections.eq(index).finish().animate({ left: -1*$contain.width() }, 1000, 'easeOutQuint');
+					$sections.eq(next).css({ left: $contain.width() }).finish().animate({ left: 0 }, 1000, 'easeOutQuint', function(){ isChanging = false; });
+					index = next;
+				}});
+				$prev.click(function(){if(isChanging === false){
+					isChanging = true;
+					var prev = ( index > 0 ? index-1 : $sections.length-1 );
+					$sections.eq(index).finish().animate({ left: $contain.width() }, 1000, 'easeOutQuint');
+					$sections.eq(prev).css({ left: -1*$contain.width() }).finish().animate({ left: 0 }, 1000, 'easeOutQuint', function(){ isChanging = false; });
+					index = prev;
+				}});
+			}
 
-			$contain.on('refresh-slideshow', refresh)
+			$contain.on('refresh-slideshow', refresh);
 			$(window).resize(refresh);
 			function refresh(){ if($contain.is(':visible')){
-				$contain.css({ height: $contain.width() * arg.ratio });
+				$contain.css({ height: $contain.width()*containRatio });
 				$mainWrap.css({ width: $contain.width() - $leftWrap.width() - $rightWrap.width() - 1 });
-				$sections.find('img').innerFit(true);
+				$sections.find('img').trigger('refresh-image-fit');
 				$sections.not(':eq('+index+')').css({ left: $contain.width() });
 			}}
 		}//slideshow
 	}
-	$.fn.innerFit = function(refresh){ $(this).each(function(){
-		var $img = $(this);
-		if(!refresh) $img.load(fit); else fit();
-		function fit(){
-			var $parent = $img.parent();
-			$img.css({ width: '100%', height: '', 'margin-left': '', 'margin-top': '' });
-			if($img.height() > $parent.height()){
-				var width = $img.css({ width: '', height: $parent.height() }).width();
-				$img.css({ 'margin-left': ($parent.width() - width)/2 });
-			} else {
-				$img.css({ 'margin-top': ($parent.height() - $img.height())/2 });
+	$.fn.innerFit = function(arg){
+		if(arg === undefined) arg = {};
+		var numOfLoad = 0;
+		var numOfImages = $(this).length;
+		$(this).each(function(){
+			var $img = $(this);
+			$img.load(fit);
+			$img.on('refresh-image-fit', fit);
+			function fit(event){
+				var $parent = $img.parent();
+				$img.css({ width: '100%', height: '', 'margin-left': '', 'margin-top': '' });
+				if($img.height() > $parent.height()){
+					var width = $img.css({ width: '', height: $parent.height() }).width();
+					$img.css({ 'margin-left': ($parent.width() - width)/2 });
+				} else {
+					$img.css({ 'margin-top': ($parent.height() - $img.height())/2 });
+				}
+				if(event.type == 'load'){
+					numOfLoad++;
+					if(numOfLoad == numOfImages && arg.afterLoad) arg.afterLoad();
+				}
 			}
 		}
-	});}
+	);}
 })(jQuery);
