@@ -7,6 +7,5 @@ data/live/live.html
 node_modules/
 contrib/copy.sh
 ./bundle.css
-./bundle.dev.js
 ./bundle.js
 ./index.html.php
