@@ -32,7 +32,14 @@
 <script type="text/template" id="outline-suspicion-template">
 	<li data-num="<%= num %>">
 		<span class="num"><span>의혹 </span><span><%= num %></span></span>
-		<div class="item"><span data-hover="<%= item %>"><%= item %></span></div>
+		<div class="item">
+			<div class="item-wrap">
+				<span><%= item %></span>
+				<div class="hover-text">
+					<div class="hover-text-wrap"><span><%= item %></span></div>
+				</div>
+			</div>
+		</div>
 	</li>
 </script>
 

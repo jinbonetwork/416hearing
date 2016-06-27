@@ -64,7 +64,8 @@ var getWitness = require('./witnesses.js');
 				gutter: '0 ='
 			}, 'computed');
 			$(window).trigger('es-setScrollbarEvent');
-
+			// ////
+			$hr2('.outline .content .item .hover-text-wrap').addClass('refresh').sameSizeWithParent('.item-wrap');
 			//스크롤 효과 ////
 			$hr2('.outline').scrEffectOfBgcolor({
 				background: '#ffffff #1a1a1a',
@@ -73,10 +74,9 @@ var getWitness = require('./witnesses.js');
 					var colors = ['#1a1a1a', '#ffffff'];
 					$('button.menu-button i').stop().animate({color: colors[bgcIndex]}, 1000);
 					if(bgcIndex === 0){
-						$hr2('.outline .content').find('.item span, .title span.main').css('color', '#6e6e6e');
-						$hr2('.outline .content .part:first-child:after').css('border-color', '#1a1a1a');
+						$hr2('.outline .content').find('.item-wrap > span, .title > span').css('color', '#6e6e6e');
 					} else {
-						$hr2('.outline .content').find('.item span, .title span.main').css('color', '');
+						$hr2('.outline .content').find('.item-wrap > span, .title > span').css('color', '');
 					}
 				}
 			});
@@ -178,6 +178,7 @@ var getWitness = require('./witnesses.js');
 		$hr2('.outline').addClass('open-inner-page').trigger('activate-scroll-effect');
 		$hr2('.outline .content').trigger('refresh-grid');
 		$hr2('.outline .video-wrap').trigger('refresh-style');
+		$hr2('outline').find('.refresh').tirgger('refresh');
 	}
 	function openAndActivatePage(pageNum){
 		$hr2('#suspicion-'+pageNum).addClass('open-inner-page');
@@ -469,4 +470,20 @@ var getWitness = require('./witnesses.js');
 			}
 		}
 	);}
+	$.fn.sameSizeWithParent = function(selector){ if(selector && $.type(selector) === 'string'){
+		$(this).each(function(){
+			var $target = $(this);
+			var $parent = $target.parents(selector);
+			setSize();
+			$target.on('refresh', setSize);
+			$(window).resize(setSize);
+			function setSize(event){ if(event) console.log('refresh');
+				if($parent.is(':visible') && $target.is(':visible')){
+					var rect = $parent.get(0).getBoundingClientRect();
+					$target.outerWidth(rect.width);
+					$target.outerHeight(rect.height);
+				}
+			}
+		});
+	}}
 })(jQuery);

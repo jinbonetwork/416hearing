@@ -41,25 +41,11 @@
 			li .num span:last-child {
 				color: #ffffff;
 			}
-			li .item { overflow: hidden; }
 			li .item span {
 				font-size: 1.125em;
-				color: #ffffff;
-				position: relative;
-				display: inline-block;
-				&:before{
-					content: attr(data-hover);
-					color: #0be4db;
-					overflow: hidden;
-					position: absolute;
-					top: 0;
-					left: 0;
-					max-width: 0;
-					transition: max-width 0.5s;
-				}
-				&:hover:before {
-					max-width: 100%;
-				}
+			}
+			li .item .hover-text span {
+				color: #0be4db;
 			}
 		}
 	}
@@ -69,8 +55,6 @@
 	.outline {
 		height: 100vh;
 		& > .header {
-			//padding-top: 3em;
-			//padding-bottom: 3em;
 			text-align: center;
 			.wrapper {
 				display: inline-block;
@@ -125,7 +109,18 @@
 					float: left;
 					background-color: #7657c5;
 				}
-				li .item { margin-left: 3.1em; }
+				li .item {
+					margin-left: 3.1em;
+					.item-wrap { position: relative; display: inline-block; }
+					.item-wrap:hover .hover-text { width: 100%; }
+					.hover-text {
+						position: absolute;
+						top:0; left: 0;
+						overflow: hidden;
+						width: 0;
+						transition: width 0.5s;
+					}
+				}
 			}
 		}
 	 }

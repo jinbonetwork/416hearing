@@ -36,6 +36,7 @@
 					if($openPage.hasClass('outline')){
 						var src = $openPage.find('.header .video-wrap').attr('data-src')+'&autoplay=1';
 						$openPage.find('.header iframe').attr('src', src);
+						$openPage.find('.refresh').trigger('refresh');
 					}
 					$openPage.trigger('activate-scroll-effect');
 				}
