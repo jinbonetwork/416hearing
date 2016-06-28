@@ -61,8 +61,8 @@
 			bottom = top + $sect.outerHeight(true);
 			if((contain.scrdir > 0 && bottom / wrapHeight > 0.5) || (contain.scrdir < 0 && top / wrapHeight < 0.5)){
 				index = i; break;
-			} else if(top == 0){
-				index = 0; break;
+			} else if(top === 0 && i == 0){
+				index = i; break;
 			}
 		}
 		if(contain.index !== index || all === 'all'){
