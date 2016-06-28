@@ -6,6 +6,6 @@ data/live*
 data/live/live.html
 node_modules/
 contrib/copy.sh
-./bundle.css
-./bundle.js
-./index.html.php
+bundle.css
+bundle.js
+index.html.php
