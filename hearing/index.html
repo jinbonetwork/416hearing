@@ -178,6 +178,7 @@
 			<div class="witness-summary-box">
 				<%= profile %>
 				<%= suspicions %>
+				<%= cards %>
 				<%= timeline %>
 			</div>
 			<i class="fa fa-close"></i>
@@ -206,6 +207,24 @@
 			<label><%= index %></label>
 			<span class="witness-suspicion-title" data-id="<%= index %>"><%= subject %></span>
 		</dd>
+</script>
+
+<script type="text/template" id="witnesses-summary-card-template">
+	<dl class="witness-card">
+		<dt class="witness-card-title">카드뉴스</dt>
+		<dd class="witness-card-container">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<%= cardlist %>
+				</div>
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
+		</dd>
+	</dl>
+</script>
+<script type="text/template" id="witnesses-summary-card-item-template">
+					<div class="swiper-slide"><%= card %></div>
 </script>
 
 <script type="text/template" id="witnesses-summary-timeline-template">

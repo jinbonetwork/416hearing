@@ -149,7 +149,6 @@ var getWitness = require('./witnesses.js');
 					}
 				});
 				// ////
-				$(window).trigger('resize'); //'주요내용'의 슬라이드를 위해서 windiw.resieze를 트리거.
 				$hr2('#suspicion-'+index).addClass('visited-page');
 				$hr2('#suspicion-'+index).find('.medium img').extraStyle({ fitted: 'yes' });
 				// 스크롤 스냅 ////
