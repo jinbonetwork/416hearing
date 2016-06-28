@@ -23,6 +23,14 @@
             6
         ],
         "etc": "세월호 조타실 진입",
+		"card": [
+			"./data/1st_hearing/images/psw/profile.png",
+			"./data/1st_hearing/images/psw/02.png",
+			"./data/1st_hearing/images/psw/03.png",
+			"./data/1st_hearing/images/psw/04.png",
+			"./data/1st_hearing/images/psw/06.png",
+			"./data/1st_hearing/images/psw/07.png"
+		],
         "timeline": [
             {
                 "time": "2014.4.16 8:58 am",
@@ -75,6 +83,19 @@
             12
         ],
         "etc": null,
+		"card": [
+			"./data/1st_hearing/images/ljy/profile.png",
+			"./data/1st_hearing/images/ljy/01.png",
+			"./data/1st_hearing/images/ljy/02.png",
+			"./data/1st_hearing/images/ljy/03.png",
+			"./data/1st_hearing/images/ljy/04.png",
+			"./data/1st_hearing/images/ljy/05.png",
+			"./data/1st_hearing/images/ljy/06.png",
+			"./data/1st_hearing/images/ljy/07.png",
+			"./data/1st_hearing/images/ljy/08.png",
+			"./data/1st_hearing/images/ljy/09.png",
+			"./data/1st_hearing/images/ljy/10.png"
+		],
         "timeline": [
             {
                 "time": "2014.4.16 9:29 am",
@@ -326,6 +347,20 @@
             12
         ],
         "etc": "퇴직(2014.11.18)",
+		"card": [
+			"./data/1st_hearing/images/ksg/profile.png",
+			"./data/1st_hearing/images/ksg/01.png",
+			"./data/1st_hearing/images/ksg/02.png",
+			"./data/1st_hearing/images/ksg/03.png",
+			"./data/1st_hearing/images/ksg/04.png",
+			"./data/1st_hearing/images/ksg/05.png",
+			"./data/1st_hearing/images/ksg/06.png",
+			"./data/1st_hearing/images/ksg/07.png",
+			"./data/1st_hearing/images/ksg/08.png",
+			"./data/1st_hearing/images/ksg/09.png",
+			"./data/1st_hearing/images/ksg/10.png",
+			"./data/1st_hearing/images/ksg/11.png"
+		],
         "timeline": [
             {
                 "time": "2014.4.16 9:05 am",
@@ -476,6 +511,18 @@
             12
         ],
         "etc": "강등, 참사 당시  3009함에 탑승했음",
+		"card": [
+			"./data/1st_hearing/images/kmh/profile.png",
+			"./data/1st_hearing/images/kmh/01.png",
+			"./data/1st_hearing/images/kmh/02.png",
+			"./data/1st_hearing/images/kmh/03.png",
+			"./data/1st_hearing/images/kmh/04.png",
+			"./data/1st_hearing/images/kmh/05.png",
+			"./data/1st_hearing/images/kmh/06.png",
+			"./data/1st_hearing/images/kmh/07.png",
+			"./data/1st_hearing/images/kmh/08.png",
+			"./data/1st_hearing/images/kmh/09.png"
+		],
         "timeline": [
             {
                 "time": "2014.4.15 6:00 am",
@@ -798,6 +845,16 @@
             12
         ],
         "etc": "해임",
+		"card": [
+			"./data/1st_hearing/images/ksh/profile.png",
+			"./data/1st_hearing/images/ksh/01.png",
+			"./data/1st_hearing/images/ksh/02.png",
+			"./data/1st_hearing/images/ksh/03.png",
+			"./data/1st_hearing/images/ksh/04.png",
+			"./data/1st_hearing/images/ksh/05.png",
+			"./data/1st_hearing/images/ksh/06.png",
+			"./data/1st_hearing/images/ksh/07.png"
+		],
         "timeline": [
             {
                 "time": "2014.4.16 9:05 am",

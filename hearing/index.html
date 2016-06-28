@@ -211,25 +211,21 @@
 
 <script type="text/template" id="witnesses-summary-card-template">
 	<dl class="witness-card">
-		<dt class="witness-card-title">카드뉴스</dt>
-		<dd class="witness-card-container">
-			<div class="swiper-container">
-				<div class="swiper-wrapper">
-					<%= cardlist %>
-				</div>
-				<div class="swiper-button-prev"></div>
-				<div class="swiper-button-next"></div>
-			</div>
+		<dt class="witness-card-title">참사 전후 증인의 주요 행적</dt>
+		<dd class="witness-card-data">
+			<ul class="pgwSlideshow">
+				<%= cardlist %>
+			</ul>
 		</dd>
 	</dl>
 </script>
 <script type="text/template" id="witnesses-summary-card-item-template">
-					<div class="swiper-slide"><%= card %></div>
+					<li><%= card %></li>
 </script>
 
 <script type="text/template" id="witnesses-summary-timeline-template">
 	<dl class="witness-timeline">
-		<dt class="witness-timeline-title">참사 전후 증인의 행적</dt>
+		<dt class="witness-timeline-title">전체 행적 타입라인</dt>
 		<%= timeline %>
 	</dl>
 </script>
