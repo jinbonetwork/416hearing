@@ -5,6 +5,8 @@ function makeWitness(name,json) {
 	var witnessesProfileTpl = _.template(jQuery('#witnesses-summary-profile-template').html());
 	var witnessesSusTpl = _.template(jQuery('#witnesses-summary-suspicions-template').html());
 	var witnessesSusItemTpl = _.template(jQuery('#witnesses-summary-suspicion-item-template').html());
+	var witnessesCardTpl = _.template(jQuery('#witnesses-summary-card-template').html());
+	var witnessesCardItemTpl = _.template(jQuery('#witnesses-summary-card-item-template').html());
 	var witnessesTimelineTpl = _.template(jQuery('#witnesses-summary-timeline-template').html());
 	var witnessesTimelineItemTpl = _.template(jQuery('#witnesses-summary-timeline-item-template').html());
 
@@ -47,6 +49,19 @@ function makeWitness(name,json) {
 			suspicions: suspicions_item_markup
 		});
 	}
+	var card_markup = '';
+	if(typeof json.card !== 'undefined' && json.card.length > 0) {
+		var card_item_markup = '';
+		for(var i=0; i<json.card.length; i++) {
+			card_item_markup += witnessesCardItemTpl({
+				card: '<img src="'+json.card[i]+'">'
+			});
+		}
+		card_markup = witnessesCardTpl({
+			cardlist: card_item_markup
+		});
+	}
+
 	var timeline_markup = '';
 	if(typeof json.timeline !== 'undefined' && json.timeline.length > 0) {
 		var timeline_item_markup = '';
@@ -64,6 +79,7 @@ function makeWitness(name,json) {
 	var markup = witnessesTpl({
 		profile: profile_markup,
 		suspicions: suspicions_markup,
+		cards: card_markup,
 		timeline: timeline_markup
 	});
 

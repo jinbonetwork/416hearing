@@ -82,8 +82,6 @@ function makeWitness(name,json) {
 		cards: card_markup,
 		timeline: timeline_markup
 	});
-	console.log('test');
-	console.log(markup);
 
 	return markup;
 }
@@ -145,6 +143,7 @@ function getWitness(name,element) {
 					'height' : h + 'px'
 				});
 			}
+			Obj.find('.pgwSlideshow').pgwSlideshow();
 			Obj.keydown(function(event) {
 				var code = event.charCode || event.keyCode;
 				if(code == 27) {
