@@ -1,6 +1,6 @@
 var _ = require('../contrib/underscore/underscore-min.js');
 var getWitness = require('./witnesses.js');
-
+/*gitignore test*/
 (function($){
 	var g_path = {
 		root: 'data/2nd_hearing/',
@@ -476,7 +476,7 @@ var getWitness = require('./witnesses.js');
 			setSize();
 			$target.on('refresh', setSize);
 			$(window).resize(setSize);
-			function setSize(event){ if(event) console.log('refresh');
+			function setSize(event){
 				if($parent.is(':visible') && $target.is(':visible')){
 					var rect = $parent.get(0).getBoundingClientRect();
 					$target.outerWidth(rect.width);
