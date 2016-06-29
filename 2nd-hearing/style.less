@@ -100,6 +100,7 @@
 					display: block;
 					margin-bottom: 1em;
 				}
+				.tilted-border-line { display: none; }
 				li {
 					&:after { content: ''; display: block; clear: both; }
 					cursor: pointer;
@@ -137,18 +138,19 @@
 				position: relative;
 				padding-bottom: 10vw;
 			}
-			.part:first-child:after {
-				content: '';
+			@percentOfWidth: 20%;
+			.part:first-child .tilted-border-line {
 				position: absolute;
 				top: 0; right: 0;
 				display: block;
+				width: @percentOfWidth;
 				height: 100%;
 				border-right: solid 2px #ffffff;
-				transform: rotateZ(5deg);
+				transform: skewX(0deg);
 				transform-origin: 0 0;
 			}
 			.part:last-child {
-				padding-left: 5%;
+				padding-left: @percentOfWidth / 2;
 				padding-bottom: 10vw;
 			}
 		}

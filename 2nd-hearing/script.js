@@ -63,9 +63,11 @@ var getWitness = require('./witnesses.js');
 				gutter: '0 ='
 			}, 'computed');
 			$(window).trigger('es-setScrollbarEvent');
-			// ////
+			// 첫 페이지의 기울어진 경계선을 위한 ////
+			$hr2('.outline .content .part:eq(0) .tilted-border-line').addClass('refresh').tiltBorderLine();
+			// 첫 페이지 의혹 제목의 hover 효과를 위한 ////
 			$hr2('.outline .content .item .hover-text-wrap').addClass('refresh').sameSizeWithParent('.item-wrap');
-			//스크롤 효과 ////
+			//첫 페이지 스크롤 효과 ////
 			$hr2('.outline').scrEffectOfBgcolor({
 				background: '#ffffff #1a1a1a',
 				after: function($contain, bgcolor, bgcIndex){
@@ -73,8 +75,10 @@ var getWitness = require('./witnesses.js');
 					$('button.menu-button i').stop().animate({color: colors[bgcIndex]}, 1000);
 					if(bgcIndex === 0){
 						$hr2('.outline .content').find('.item-wrap > span, .title > span').css('color', '#6e6e6e');
+						$hr2('.outline .content .tilted-border-line').stop().animate({'border-color': '#6e6e6e'}, 1000);
 					} else {
 						$hr2('.outline .content').find('.item-wrap > span, .title > span').css('color', '');
+						$hr2('.outline .content .tilted-border-line').stop().animate({'border-color': ''}, 1000);
 					}
 				}
 			});
@@ -483,4 +487,17 @@ var getWitness = require('./witnesses.js');
 			}
 		});
 	}}
+	$.fn.tiltBorderLine = function(){
+		$(this).each(function(){
+			var $target = $(this);
+			tiltBorderLine($target);
+			$target.on('refresh', function(){ tiltBorderLine($target); });
+			$(window).resize(function(){ tiltBorderLine($target); })
+		});
+		function tiltBorderLine($target){ if($target.is(':visible')){
+			$target.css('transform', '');
+			var deg = Math.atan($target.outerWidth() / $target.outerHeight()) * 180 / Math.PI;
+			$target.css('transform', 'skewX(-'+deg+'deg)');
+		}}
+	}
 })(jQuery);
