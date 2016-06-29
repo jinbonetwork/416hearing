@@ -1,6 +1,5 @@
 var _ = require('../contrib/underscore/underscore-min.js');
 var getWitness = require('./witnesses.js');
-/*gitignore test --++--*/
 (function($){
 	var g_path = {
 		root: 'data/2nd_hearing/',
