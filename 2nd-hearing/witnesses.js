@@ -158,13 +158,16 @@ function getWitness(name,element) {
 			});
 			Obj.find('.witness-suspicions dd.witness-suspicion-data').click(function(e) {
 				var id = jQuery(this).attr('data-id');
-				console.log(id);
-				console.log(jQuery('#page-2nd-hearing .applied-resp-grid .part li[data-num="'+id+'"]'));
-				jQuery(this).parents('.witness-container').find('i.fa-close').click();
-				jQuery('#page-2nd-hearing .applied-resp-grid .part li[data-num="'+id+'"]').click();
-//				jQuery('#page-2nd-hearing #suspicion-'+preId+' .navigation li').each(function(){
-//					if(jQuery(this).find('.num').text() == id){ jQuery(this).click(); return false; }
-//				})
+				var preId = jQuery('#page-2nd-hearing .sections .inner-page.open-inner-page').attr('id').replace(/suspicion\-/i,"");
+				if(id != preId) {
+					jQuery(this).parents('.witness-container').find('i.fa-close').click();
+					jQuery('#page-2nd-hearing #suspicion-'+preId).removeClass('open-inner-page').trigger('deactivate-scroll-effect');
+					jQuery('#page-2nd-hearing .outline').addClass('open-inner-page').trigger('activate-scroll-effect');
+					jQuery('#page-2nd-hearing .outline .content').trigger('refresh-grid');
+					jQuery('#page-2nd-hearing .outline .video-wrap').trigger('refresh-style');
+//					jQuery('#page-2nd-hearing .outline').find('.refresh').tirgger('refresh');
+					jQuery('#page-2nd-hearing .outline li[data-num="'+id+'"]').click();
+				}
 			});
 		},
 		error: function( jqXHR, textStatus, errorThrown ) {
