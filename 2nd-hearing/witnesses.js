@@ -120,7 +120,7 @@ function getWitness(name,element) {
 				});
 				var n_h = 0;
 				Obj.find('.witness-summary-box').children().each(function() {
-					n_h += jQuery(this).outerHeight();
+					n_h += parseInt(jQuery(this).outerHeight());
 				});
 				if(n_h < h) {
 					var t = (pos.top - 10);
@@ -165,7 +165,8 @@ function getWitness(name,element) {
 					jQuery('#page-2nd-hearing .outline').addClass('open-inner-page').trigger('activate-scroll-effect');
 					jQuery('#page-2nd-hearing .outline .content').trigger('refresh-grid');
 					jQuery('#page-2nd-hearing .outline .video-wrap').trigger('refresh-style');
-//					jQuery('#page-2nd-hearing .outline').find('.refresh').tirgger('refresh');
+					if( jQuery('#page-2nd-hearing .outline').find('.refresh').length > 0 )
+						jQuery('#page-2nd-hearing .outline').find('.refresh').trigger('refresh');
 					jQuery('#page-2nd-hearing .outline li[data-num="'+id+'"]').click();
 				}
 			});

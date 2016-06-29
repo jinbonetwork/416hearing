@@ -180,7 +180,7 @@ var getWitness = require('./witnesses.js');
 		$hr2('.outline').addClass('open-inner-page').trigger('activate-scroll-effect');
 		$hr2('.outline .content').trigger('refresh-grid');
 		$hr2('.outline .video-wrap').trigger('refresh-style');
-		$hr2('.outline').find('.refresh').tirgger('refresh');
+		$hr2('.outline').find('.refresh').trigger('refresh');
 	}
 	function openAndActivatePage(pageNum){
 		$hr2('#suspicion-'+pageNum).addClass('open-inner-page');

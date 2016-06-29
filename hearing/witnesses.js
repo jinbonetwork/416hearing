@@ -120,7 +120,7 @@ function getWitness(name,element) {
 				});
 				var n_h = 0;
 				Obj.find('.witness-summary-box').children().each(function() {
-					n_h += jQuery(this).outerHeight();
+					n_h += parseInt(jQuery(this).outerHeight());
 				});
 				if(n_h < h) {
 					var t = (pos.top - 10);
