@@ -164,7 +164,23 @@
         "suspicions": [
             5
         ],
-        "etc": null
+        "etc": null,
+		"card": [
+			"./data/2nd_hearing/images/khs/profile.png",
+			"./data/2nd_hearing/images/khs/01.png",
+			"./data/2nd_hearing/images/khs/02.png",
+			"./data/2nd_hearing/images/khs/03.png",
+			"./data/2nd_hearing/images/khs/04.png",
+			"./data/2nd_hearing/images/khs/05.png",
+			"./data/2nd_hearing/images/khs/06.png",
+			"./data/2nd_hearing/images/khs/07.png",
+			"./data/2nd_hearing/images/khs/08.png",
+			"./data/2nd_hearing/images/khs/09.png",
+			"./data/2nd_hearing/images/khs/10.png",
+			"./data/2nd_hearing/images/khs/11.png",
+			"./data/2nd_hearing/images/khs/12.png",
+			"./data/2nd_hearing/images/khs/13.png"
+		]
     },
     "조준기": {
         "organ": "세월호",
@@ -176,7 +192,22 @@
         "suspicions": [
             6
         ],
-        "etc": null
+        "etc": null,
+		"card": [
+			"./data/2nd_hearing/images/jjk/profile.png",
+			"./data/2nd_hearing/images/jjk/01.png",
+			"./data/2nd_hearing/images/jjk/02.png",
+			"./data/2nd_hearing/images/jjk/03.png",
+			"./data/2nd_hearing/images/jjk/04.png",
+			"./data/2nd_hearing/images/jjk/05.png",
+			"./data/2nd_hearing/images/jjk/06.png",
+			"./data/2nd_hearing/images/jjk/07.png",
+			"./data/2nd_hearing/images/jjk/08.png",
+			"./data/2nd_hearing/images/jjk/09.png",
+			"./data/2nd_hearing/images/jjk/10.png",
+			"./data/2nd_hearing/images/jjk/11.png",
+			"./data/2nd_hearing/images/jjk/12.png"
+		]
     },
     "허용범": {
         "organ": "합동수사본수",
@@ -206,7 +237,22 @@
         "photo": "testifier.png",
         "descript": "",
         "suspicions": [],
-        "etc": null
+        "etc": null,
+		"card": [
+			"./data/2nd_hearing/images/ljs/profile.png",
+			"./data/2nd_hearing/images/ljs/01.png",
+			"./data/2nd_hearing/images/ljs/02.png",
+			"./data/2nd_hearing/images/ljs/03.png",
+			"./data/2nd_hearing/images/ljs/04.png",
+			"./data/2nd_hearing/images/ljs/05.png",
+			"./data/2nd_hearing/images/ljs/06.png",
+			"./data/2nd_hearing/images/ljs/07.png",
+			"./data/2nd_hearing/images/ljs/08.png",
+			"./data/2nd_hearing/images/ljs/09.png",
+			"./data/2nd_hearing/images/ljs/10.png",
+			"./data/2nd_hearing/images/ljs/11.png",
+			"./data/2nd_hearing/images/ljs/12.png"
+		]
     },
     "강원식": {
         "organ": "세월호",
@@ -214,7 +260,24 @@
         "photo": "testifier.png",
         "descript": "",
         "suspicions": [],
-        "etc": null
+        "etc": null,
+		"card": [
+			"./data/2nd_hearing/images/kys/profile.png",
+			"./data/2nd_hearing/images/kys/01.png",
+			"./data/2nd_hearing/images/kys/02.png",
+			"./data/2nd_hearing/images/kys/03.png",
+			"./data/2nd_hearing/images/kys/04.png",
+			"./data/2nd_hearing/images/kys/05.png",
+			"./data/2nd_hearing/images/kys/06.png",
+			"./data/2nd_hearing/images/kys/07.png",
+			"./data/2nd_hearing/images/kys/08.png",
+			"./data/2nd_hearing/images/kys/09.png",
+			"./data/2nd_hearing/images/kys/10.png",
+			"./data/2nd_hearing/images/kys/11.png",
+			"./data/2nd_hearing/images/kys/12.png",
+			"./data/2nd_hearing/images/kys/13.png",
+			"./data/2nd_hearing/images/kys/14.png"
+		]
     },
     "김영호": {
         "organ": "세월호",
@@ -223,6 +286,21 @@
         "descript": " 참사 수습에 참여했던 민간 잠수사\n",
         "suspicions": [],
         "etc": "",
+		"card": [
+			"./data/2nd_hearing/images/kyh/profile.png",
+			"./data/2nd_hearing/images/kyh/01.png",
+			"./data/2nd_hearing/images/kyh/02.png",
+			"./data/2nd_hearing/images/kyh/03.png",
+			"./data/2nd_hearing/images/kyh/04.png",
+			"./data/2nd_hearing/images/kyh/05.png",
+			"./data/2nd_hearing/images/kyh/06.png",
+			"./data/2nd_hearing/images/kyh/07.png",
+			"./data/2nd_hearing/images/kyh/08.png",
+			"./data/2nd_hearing/images/kyh/09.png",
+			"./data/2nd_hearing/images/kyh/10.png",
+			"./data/2nd_hearing/images/kyh/11.png",
+			"./data/2nd_hearing/images/kyh/12.png"
+		],
         "timeline": [
             {
                 "time": "2014.4.17 2:00 pm",

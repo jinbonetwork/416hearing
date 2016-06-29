@@ -143,6 +143,7 @@ function getWitness(name,element) {
 					'height' : h + 'px'
 				});
 			}
+			Obj.find('.pgwSlideshow').pgwSlideshow();
 			Obj.keydown(function(event) {
 				var code = event.charCode || event.keyCode;
 				if(code == 27) {
@@ -157,11 +158,13 @@ function getWitness(name,element) {
 			});
 			Obj.find('.witness-suspicions dd.witness-suspicion-data').click(function(e) {
 				var id = jQuery(this).attr('data-id');
-				var preId = jQuery('#page-2nd-hearing .navigation').find('.selected').first().find('.num').text();
+				console.log(id);
+				console.log(jQuery('#page-2nd-hearing .applied-resp-grid .part li[data-num="'+id+'"]'));
 				jQuery(this).parents('.witness-container').find('i.fa-close').click();
-				jQuery('#page-2nd-hearing #suspicion-'+preId+' .navigation li').each(function(){
-					if(jQuery(this).find('.num').text() == id){ jQuery(this).click(); return false; }
-				})
+				jQuery('#page-2nd-hearing .applied-resp-grid .part li[data-num="'+id+'"]').click();
+//				jQuery('#page-2nd-hearing #suspicion-'+preId+' .navigation li').each(function(){
+//					if(jQuery(this).find('.num').text() == id){ jQuery(this).click(); return false; }
+//				})
 			});
 		},
 		error: function( jqXHR, textStatus, errorThrown ) {

@@ -1,7 +1,6 @@
 *.swp
 config/db.config.php
 data/docs/*
-data/images/*
 data/live*
 data/live/live.html
 node_modules/
