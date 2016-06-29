@@ -12,15 +12,18 @@
 			contain.changeColorFirst(arg);
 			contain.$wrapper.on('scroll', function(){
 				var scrtop = contain.$self.scrollTop();
-				if(scrtop > contain.scrtop) contain.scrdir = 1; else contain.scrdir = -1;
+				//if(scrtop > contain.scrtop) contain.scrdir = 1;
+				//else if(scrtop < contain.scrtop) contain.scrdir = -1;
+				//else contain.scrdir = 0;
+				contain.scrdir = scrtop - contain.scrtop;
 				contain.scrtop = scrtop;
 				if(contain.active) contain.changeColor(arg);
 			});
-			$(window).resize(function(){ if(contain.active){ contain.changeColor(arg, 'all'); }});
-			contain.$self.on('refresh-scroll-effect', function(){ if(contain.active){ contain.changeColor(arg, 'all'); } });
+			$(window).resize(function(){ if(contain.active){ contain.changeColor(arg, 'force'); }});
+			contain.$self.on('refresh-scroll-effect', function(){ if(contain.active){ contain.changeColor(arg, 'force'); } });
 			contain.$self.on('activate-scroll-effect', function(){
 				contain.active = true;
-				contain.changeColor(arg, 'all');
+				contain.changeColor(arg, 'force');
 			});
 			contain.$self.on('deactivate-scroll-effect', function(){
 				contain.active = false;
@@ -33,7 +36,7 @@
 		this.index = 0;
 		this.active = true;
 		this.scrtop = 0;
-		this.scrdir = 1;
+		this.scrdir = 0;
 		if(!$contain.is('body')){
 			this.$wrapper = $contain;
 			this.getOrigin = this.offsetTop;
@@ -48,34 +51,34 @@
 	Container.prototype.scrollTop = function(){
 		return this.$wrapper.scrollTop();
 	}
-	Container.prototype.changeColor = function(arg, all){ if(this.$self.is(':visible')){
+	Container.prototype.changeColor = function(arg, force){ if(this.$self.is(':visible')){
 		var contain = this;
-		var index = 0;
-		var $sect, top, bottom;
 		var origin = contain.getOrigin(), wrapHeight = contain.$wrapper.outerHeight();
-		var startIdx = (all !== 'all' ? contain.index : 0);
-		var increment = (all !== 'all' ? contain.scrdir : 1);
-		for(var i = startIdx; 0 <= i && i < contain.sects.length; i += increment){
-			$sect = $(contain.sects[i]);
-			top = $sect.offset().top - origin;
-			bottom = top + $sect.outerHeight(true);
-			if((contain.scrdir > 0 && bottom / wrapHeight > 0.5) || (contain.scrdir < 0 && top / wrapHeight < 0.5)){
-				index = i; break;
-			} else if(top === 0 && i == 0){
-				index = i; break;
-			}
+		var index = contain.index;
+		if(contain.scrdir > 0 && index < contain.sects.length - 1){
+			var i = index + 1;
+			var $sect = $(contain.sects[i]);
+			var top = $sect.offset().top - origin;
+			var bottom = top + $sect.outerHeight(true);
+			if(top <= 0.5*wrapHeight || (i == contain.sects.length - 1 && Math.round(bottom) == Math.round(wrapHeight))) index++;
+		} else if(contain.scrdir < 0 && index > 0){
+			var i = index - 1;
+			var $sect = $(contain.sects[i]);
+			var top = $sect.offset().top - origin;
+			var bottom = top + $sect.outerHeight(true);
+			if(bottom >= 0.5*wrapHeight || (i == 0 && top == 0)) index--;
 		}
-		if(contain.index !== index || all === 'all'){
+		if(contain.index !== index || force){
 			if(arg.before) arg.before(contain.$self, arg.background[contain.index], contain.index);
 			contain.index = index;
 			contain.$self.stop().animate({'background-color': arg.background[index]}, arg.transition);
 			if(arg.after) arg.after(contain.$self, arg.background[index], index);
 		}
 	}}
-	Container.prototype.changeColorFirst = function(arg){ if(this.$self.is(':visible')){
+	Container.prototype.changeColorFirst = function(arg){
 		this.$self.css({'background-color': arg.background[0]});
 		if(arg.after) arg.after(this.$self, arg.background[0], 0);
-	}}
+	}
 	function convArg(arg){
 		arg.background = arg.background.split(' ');
 		arg.transition = (arg.transition ? arg.transition * 1000 : 1000);
