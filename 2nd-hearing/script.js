@@ -68,7 +68,6 @@ var getWitness = require('./witnesses.js');
 			//스크롤 효과 ////
 			$hr2('.outline').scrEffectOfBgcolor({
 				background: '#ffffff #1a1a1a',
-				option: 'wait',
 				after: function($contain, bgcolor, bgcIndex){
 					var colors = ['#1a1a1a', '#ffffff'];
 					$('button.menu-button i').stop().animate({color: colors[bgcIndex]}, 1000);
