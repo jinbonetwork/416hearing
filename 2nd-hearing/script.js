@@ -330,7 +330,9 @@ var getWitness = require('./witnesses.js');
 			else if(media[i].url.match(/\.mp3/)) type = 'audio';
 			else type = 'video';
 			var tplMedium = _.template($hr2('#abs-'+type+'-template').html());
-			if(type !== 'audio'){
+			if(type == 'video') {
+				html += '<li>'+tplMedium({ url: g_path[type]+media[i].url, gallery: gallery, title: media[i].caption, t_url: g_path[type]+media[i].url.replace(/\?.*$/,'') })+'</li>';
+			} else if(type !== 'audio'){
 				html += '<li>'+tplMedium({ url: g_path[type]+media[i].url, gallery: gallery, title: media[i].caption })+'</li>';
 			} else {
 				html += '<li>'+tplMedium({
