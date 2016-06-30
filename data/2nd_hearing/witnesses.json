@@ -1,4 +1,13 @@
 {
+	    "참고인 5": {
+			"organ": "희생자 가족",
+			"position": [],
+			"photo": "./data/1st_hearing/images/testifier.png",
+			"descript": "",
+			"suspicions": [],
+			"etc": null
+		},
+
     "이상길": {
         "organ": "(주)GCSC",
         "position": [

@@ -27,13 +27,16 @@
 		}
 		& > .content {
 			.part-num { color: #808080; }
-			.title .main {
-				font-size: 1.125em;
+			.title {
+				font-size: 1.8em;
 				color: #ffffff;
-			}
-			.title b {
+				line-height: 1.1;
+				min-height: 90px;
+			
+				b {
 				color: #7657c5;
 				font-weight: 900;
+				}
 			}
 			li .num span:first-child {
 				color: #ffffff;
@@ -81,7 +84,7 @@
 			.video-wrap {
 				margin: 0 auto 3em auto;
 				width: 76vw;
-				max-width: 1280*0.76px;
+				max-width: 1680*0.76px;
 			}
 		}
 		& > .content {
@@ -111,7 +114,7 @@
 					background-color: #7657c5;
 				}
 				li .item {
-					margin-left: 3.1em;
+					margin-left: 3.4em;
 					.item-wrap { position: relative; display: inline-block; }
 					.item-wrap:hover .hover-text { width: 100%; }
 					.hover-text {
@@ -131,7 +134,10 @@
 }
 @media screen and (min-width: 768px) {
 	#page-2nd-hearing .outline {
-		& > .content {
+		.header .wrapper {
+				padding: 5em 1em;
+			}
+		& >	.content {
 			padding-bottom: 0;
 			max-width: 900px;
 			.part:first-child {
@@ -422,6 +428,7 @@
 				li {
 					margin-right: 1em;
 					margin-bottom: 1em;
+					vertical-align: top;
 				}
 			}
 		}// header
@@ -434,7 +441,7 @@
 			.abstract {
 				& > .header { margin-bottom: 1em; }
 				& > .list { margin-bottom: 1em; }
-				& > .list li { margin-bottom: 1em; }
+				& > .list li { margin-bottom: 2em; }
 				& > .list li p {
 					margin-left: auto; margin-right: auto;
 					max-width: 680px;
@@ -458,7 +465,7 @@
 				margin-bottom: 1em;
 				& > .header { margin-bottom: 1em; }
 				.subject {
-					margin-bottom: 1em;
+					margin-bottom: 1.4em;
 				}
 				.video .video-wrap {
 					width: 320px;
@@ -588,7 +595,7 @@
 			margin-bottom: 2em;
 		}
 		& > .header, & > .content {
-			margin-left: 70px; margin-right: 70px;
+			margin-left: 70px; margin-right: 70px; margin-bottom: 4em;
 		}
 		& > .header {
 			margin-bottom: 6em;
@@ -603,7 +610,7 @@
 			margin-bottom: 3em;
 		}
 		& > .content .abstract .list li {
-			margin-bottom: 2em;
+			margin-bottom: 8em;
 		}
 		& > .content .abstract > .header {
 			margin-bottom: 2em;
@@ -615,7 +622,7 @@
 			margin-bottom: 3em;
 		}
 		& > .content .dialogue  li {
-			margin-bottom: 2em;
+			margin-bottom: 4em;
 		}
 		& > .content .conclusion {
 			margin-bottom: 3em;
@@ -714,7 +721,7 @@
 			clear: none;
 		}
 		.question, .answer {
-			margin-right: 335px;
+			margin-right: 355px;
 		}
 	}
 }
@@ -738,8 +745,8 @@
 	#page-2nd-hearing section.inner-page > .header .go-back-outline {
 		float: none;
 		position: fixed;
-		top: 81px;
-		right: 40px;
+		top: 30px;
+		right: 30px;
 	}
 }
 
