@@ -96,6 +96,7 @@ function getWitness(name,element) {
 		dataType: 'json',
 		method: 'GET',
 		success: function(json) {
+			jQuery('.witness-container').remove();
 			var markup = makeWitness(name,json);
 			var Obj = jQuery('<div class="witness-container">'+markup+'<div class="witness-container-background"></div></div>');
 			jQuery('.witness-summary-wrapper').remove();
