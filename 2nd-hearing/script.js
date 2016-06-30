@@ -167,10 +167,10 @@ var getWitness = require('./witnesses.js');
 				$hr2('#suspicion-'+index).addClass('visited-page');
 				$hr2('#suspicion-'+index).find('.medium img').extraStyle({ fitted: 'yes' });
 				// 스크롤 스냅 ////
-				$hr2('#suspicion-'+index).scrollSnap({
+/*				$hr2('#suspicion-'+index).scrollSnap({
 					section: '.content .abstract ul.list > li, .content .dialogue',
 					active: 1024
-				});
+				}); */
 			}); // on:append-section
 
 			$(window).resize(function(){
