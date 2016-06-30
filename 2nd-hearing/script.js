@@ -261,19 +261,29 @@ var getWitness = require('./witnesses.js');
 	function htmlDialogue(dialogue, witData, gallery){
 		var html = '';
 		var template = _.template($hr2('#dialogue-template').html());
+		var qa_template = _.template($hr2('#dialogue-qa-template').html());
 		var dlgVideoTmpl = _.template($hr2('#dialogue-video-tempate').html());
 		for(var i = 0, len = dialogue.length; i < len; i++){
 			var qna = dialogue[i];
+			var qna_content = '';
+			if( typeof(qna.content) != 'undefined' && qna.content.length > 0) {
+				for(var j=0; j < qna.content.length; j++) {
+					var qna_content_item = qna.content[j];
+					qna_content += qa_template({
+						qName: qna_content_item.qName,
+						question: qna_content_item.qContent,
+						photo: witData[qna_content_item.aName] ? g_path.image+witData[qna_content_item.aName].photo : '',
+						aName: qna_content_item.aName,
+						aOrgan: witData[qna_content_item.aName] ? witData[qna_content_item.aName].organ: '',
+						answer: qna_content_item.aContent
+					});
+				}
+			}
 			html += template({
 				subject: qna.subject,
 				video: '',
 				video: (qna.video ? dlgVideoTmpl({ videoUrl: qna.video }) : ''),
-				qName: qna.qName,
-				question: paragraphs(qna.qContent),
-				photo: witData[qna.aName] ? g_path.image+witData[qna.aName].photo : '',
-				aName: qna.aName,
-				aOrgan: witData[qna.aName] ? witData[qna.aName].organ: '',
-				answer: paragraphs(qna.aContent)
+				qna_content: qna_content
 			});
 		}
 		return html;

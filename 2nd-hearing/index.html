@@ -148,6 +148,11 @@
 	<li>
 		<div class="subject"><span><%= subject %></span></div>
 		<div class="video"><%= video %></div>
+		<%= qna_content %>
+	</li>
+</script>
+<script type="text/template" id="dialogue-qa-template">
+	<div class="qa-wrapper">
 		<div class="question">
 			<span class="name"><%= qName %>:</span>
 			<div class="question-wrapper"><%= question %></div>
@@ -168,7 +173,7 @@
 				<div class="answer-wrapper"><%= answer %></div>
 			</div>
 		</div>
-	</li>
+	</div>
 </script>
 <script type="text/template" id="dialogue-video-tempate">
 	<div class="video-wrap">
