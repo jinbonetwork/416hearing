@@ -95,7 +95,8 @@ var getWitness = require('./witnesses.js');
 			if($('.pages-stack').hasClass('pages-stack--open') == false){
 				$hr2('.outline').trigger('activate-scroll-effect');
 				var $openPage = $('#page-2nd-hearing .outline');
-				var src = $openPage.find('.header .video-wrap').attr('data-src')+'&autoplay=1';
+//				var src = $openPage.find('.header .video-wrap').attr('data-src')+'&autoplay=1';
+				var src = $openPage.find('.header .video-wrap').attr('data-src');
 				$openPage.find('.header iframe').attr('src', src);
 				$(window).resize();
 			}
@@ -117,7 +118,8 @@ var getWitness = require('./witnesses.js');
 				$hr2('#suspicion-'+index).find('.go-back-outline').click(function(){
 					var num = $(this).parents('section').attr('id').replace(/suspicion\-/, '');
 					closePage(num);
-					$hr2('.outline .header iframe').attr('src', $hr2('.outline .header .video-wrap').attr('data-src')+'&autoplay=1');
+//					$hr2('.outline .header iframe').attr('src', $hr2('.outline .header .video-wrap').attr('data-src')+'&autoplay=1');
+					$hr2('.outline .header iframe').attr('src', $hr2('.outline .header .video-wrap').attr('data-src'));
 				});
 				//증인 정보 표시 ////
 				$hr2('#suspicion-'+index).find('.witness-photo').click(function(e) {
