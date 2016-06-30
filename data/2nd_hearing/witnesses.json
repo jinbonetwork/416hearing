@@ -2,7 +2,7 @@
 	    "참고인 5": {
 			"organ": "희생자 가족",
 			"position": [],
-			"photo": "./data/1st_hearing/images/testifier.png",
+			"photo": "testifier.png",
 			"descript": "",
 			"suspicions": [],
 			"etc": null
@@ -152,7 +152,7 @@
     "이준석": {
         "organ": "세월호",
         "position": ["세월호 선장"],
-        "photo": "testifier.png",
+        "photo": "ljs.png",
         "descript": "청해진해운 소속 세월호 선장\n참사 당시 세월호 운항을 총괄\n세월호가 기울었던 참사 당시 승객들에 대한 구호조치를 이행하지 않음\n대법에서 살인죄가 인정되어 무기징역 선고 받음\n제 2차 청문회 때 퇴선조치에 대한 진술을 번복",
         "suspicions": [
 			2
