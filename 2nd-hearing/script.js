@@ -31,9 +31,11 @@ var getWitness = require('./witnesses.js');
 		});
 		$hr2().on('json-load', function(){ if(parts && suspicions && witnesses){
 			$hr2('.outline .content').append(htmlOutline(parts, partMap, suspicions));
+			//첫 페이지 비디오 ////
 			$hr2('.outline .video-wrap').extraStyle({
 				ratio: (360/640)
 			});
+			$hr2('.header iframe').attr('src', $hr2('.header .video-wrap').attr('data-src'));
 			// 첫 페이지 반응형 처리////
 			var outlineBreakPoint = '320 1024';
 			$hr2('.outline > .header .title-part-1 span').respStyle({
@@ -89,6 +91,14 @@ var getWitness = require('./witnesses.js');
 				openPage($(this).attr('data-num'));
 				$hr2('.outline .header iframe').attr('src', $hr2('.outline .header .video-wrap').attr('data-src'));
 			});
+
+			if($('.pages-stack').hasClass('pages-stack--open') == false){
+				$hr2('.outline').trigger('activate-scroll-effect');
+				var $openPage = $('#page-2nd-hearing .outline');
+				var src = $openPage.find('.header .video-wrap').attr('data-src')+'&autoplay=1';
+				$openPage.find('.header iframe').attr('src', src);
+				$(window).resize();
+			}
 
 			// ////
 			for(var i = 1, leni = partMap.length; i <= leni; i++){
