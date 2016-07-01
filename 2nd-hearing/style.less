@@ -1,528 +1,816 @@
-var _ = require('../contrib/underscore/underscore-min.js');
-var getWitness = require('./witnesses.js');
+@import "../css/variables.less";
 
-(function($){
-	var g_path = {
-		root: 'data/2nd_hearing/',
-		image: 'data/2nd_hearing/images/',
-		doc: 'data/2nd_hearing/docs/',
-		audio: 'data/2nd_hearing/audio/',
-		video: ''
+#page-2nd-hearing {
+	font-size: 16px; //기본 글자 크기. 모든 글자 크기를 이를 기준으로 em으로 설정한다.
+}
+
+//2차 청문회 첫 페이지
+#page-2nd-hearing {
+	// 텍스트 스타일에 관한 것들 ////
+	 .outline {
+		 font-family: @font-noto;
+		 font-weight: @font-weight;
+		 & > .header {
+			.title-part-1 span {
+				color: #6e6e6e;
+				line-height: 1em;
+				margin-left: 0.3333em;
+			}
+			.title-part-2 span {
+				color: #6e6e6e;
+				line-height: 1em;
+			}
+			.title-part-3 span {
+				color: #0be4db;
+				line-height: 1em;
+			}
+		}
+		& > .content {
+			.part-num { color: #808080; }
+			.title {
+				font-size: 1.8em;
+				color: #ffffff;
+				line-height: 1.1;
+				min-height: 90px;
+
+				b {
+				color: #7657c5;
+				font-weight: 900;
+				}
+			}
+			li .num span:first-child {
+				color: #ffffff;
+			}
+			li .num span:last-child {
+				color: #ffffff;
+			}
+			li .item span {
+				font-size: 1.125em;
+			}
+			li .item .hover-text span {
+				color: #0be4db;
+			}
+		}
 	}
-	$(document).ready(function(){
-		var parts = undefined;
-		var suspicions = undefined;
-		var witnesses = undefined;
-		var partMap = [0, 0, 0, 1, 1, 1];
-		$.ajax({
-			url: g_path.root+'suspicions.json', dataType: 'json',
-			success: function(json){ suspicions = json; },
-			complete: function(){ $hr2().trigger('json-load'); }
-		});
-		$.ajax({
-			url: g_path.root+'parts.json', dataType: 'json',
-			success: function(json){ parts = json; },
-			complete: function(){ $hr2().trigger('json-load'); }
-		});
-		$.ajax({
-			url: g_path.root+'witnesses.json', dataType: 'json',
-			success: function(json){ witnesses = json; },
-			complete: function(){ $hr2().trigger('json-load'); }
-		});
-		$hr2().on('json-load', function(){ if(parts && suspicions && witnesses){
-			$hr2('.outline .content').append(htmlOutline(parts, partMap, suspicions));
-			//첫 페이지 비디오 ////
-			$hr2('.outline .video-wrap').extraStyle({
-				ratio: (360/640)
-			});
-			$hr2('.header iframe').attr('src', $hr2('.header .video-wrap').attr('data-src'));
-			// 첫 페이지 반응형 처리////
-			var outlineBreakPoint = '320 1024';
-			$hr2('.outline > .header .title-part-1 span').respStyle({
-				'breakpoint': outlineBreakPoint,
-				'font-size': '1 2 em max'
-			});
-			$hr2('.outline > .header .title-part-2 span').respStyle({
-				'breakpoint': outlineBreakPoint,
-				'font-size': '3 6 em max'
-			});
-			$hr2('.outline > .header .title-part-3 span').respStyle({
-				'breakpoint': outlineBreakPoint,
-				'font-size': '1.2 2.4 em max'
-			});
-			$hr2('.outline > .header').respStyle({
-				'breakpoint': outlineBreakPoint,
-				'padding-top': '3 5 em max',
-				'padding-bottom': '3 5 em max'
-			});
-			$hr2('.outline > .header .video-wrap').respStyle({
-				'breakpoint': outlineBreakPoint,
-				'margin-bottom': '3 7 em max'
-			});
-			$hr2('.outline .content').respGrid({
-				breakpoint: '320 768',
-				columns: '1 2',
-				ratio: 'auto',
-				gutter: '0 ='
-			}, 'computed');
-			$(window).trigger('es-setScrollbarEvent');
-			// 첫 페이지의 기울어진 경계선을 위한 ////
-			$hr2('.outline .content .part:eq(0) .tilted-border-line').addClass('refresh').tiltBorderLine();
-			// 첫 페이지 의혹 제목의 hover 효과를 위한 ////
-			$hr2('.outline .content .item .hover-text-wrap').addClass('refresh').sameSizeWithParent('.item-wrap');
-			//첫 페이지 스크롤 효과 ////
-			$hr2('.outline').scrEffectOfBgcolor({
-				background: '#ffffff #1a1a1a',
-				after: function($contain, bgcolor, bgcIndex){
-					var colors = ['#1a1a1a', '#ffffff'];
-					$('button.menu-button i').stop().animate({color: colors[bgcIndex]}, 1000);
-					if(bgcIndex === 0){
-						$hr2('.outline .content').find('.item-wrap > span, .title > span').css('color', '#6e6e6e');
-						$hr2('.outline .content .tilted-border-line').stop().animate({'border-color': '#6e6e6e'}, 1000);
-					} else {
-						$hr2('.outline .content').find('.item-wrap > span, .title > span').css('color', '');
-						$hr2('.outline .content .tilted-border-line').stop().animate({'border-color': ''}, 1000);
+
+	// 그 외의 모든 것 ////
+	overflow: hidden;
+	.outline {
+		height: 100vh;
+		& > .header {
+			text-align: center;
+			.wrapper {
+				display: inline-block;
+				transform: rotateZ(-30deg);
+			}
+			.title {
+				.title-part-1 {
+					display: block;
+					transform: skewX(30deg);
+				}
+				.title-part-2 {
+					display: block;
+					transform: skewX(-30deg);
+				}
+				.title-part-3 {
+					display: block;
+					transform: skewX(30deg);
+					text-align: left;
+					span {
+						display: block;
 					}
 				}
-			});
-			$hr2('.outline').trigger('deactivate-scroll-effect');
-			// 의혹 페이지로 이동 ////
-			$hr2('.outline li').click(function(){
-				openPage($(this).attr('data-num'));
-				$hr2('.outline .header iframe').attr('src', $hr2('.outline .header .video-wrap').attr('data-src'));
-			});
-
-			if($('.pages-stack').hasClass('pages-stack--open') == false){
-				$hr2('.outline').trigger('activate-scroll-effect');
-				var $openPage = $('#page-2nd-hearing .outline');
-//				var src = $openPage.find('.header .video-wrap').attr('data-src')+'&autoplay=1';
-				var src = $openPage.find('.header .video-wrap').attr('data-src');
-				$openPage.find('.header iframe').attr('src', src);
-				$(window).resize();
 			}
-
-			// ////
-			for(var i = 1, leni = partMap.length; i <= leni; i++){
-				$hr2('.sections').append('<section id="suspicion-'+i+'" class="inner-page"></section>');
+			.video-wrap {
+				margin: 0 auto 3em auto;
+				width: 76vw;
+				max-width: 1680*0.76px;
 			}
-			$hr2().on('append-section', function(event, index){
-				$hr2('#suspicion-'+index).append(makeHtml(index-1, parts, suspicions[index-1], witnesses, partMap));
-				// 데이터가 없는 요소를 숨기거나 삭제 ////
-				$hr2('#suspicion-'+index).find('.etc').each(function(){
-					if($(this).find('.links.num-0').length) $(this).hide();
-				});
-				$hr2('#suspicion-'+index).find('.witness-photo').each(function(){
-					if(!$(this).attr('data-name')) $(this).closest('.answer').hide();
-				});
-				// 첫 페이지로 이동 ////
-				$hr2('#suspicion-'+index).find('.go-back-outline').click(function(){
-					var num = $(this).parents('section').attr('id').replace(/suspicion\-/, '');
-					closePage(num);
-//					$hr2('.outline .header iframe').attr('src', $hr2('.outline .header .video-wrap').attr('data-src')+'&autoplay=1');
-					$hr2('.outline .header iframe').attr('src', $hr2('.outline .header .video-wrap').attr('data-src'));
-				});
-				//증인 정보 표시 ////
-				$hr2('#suspicion-'+index).find('.witness-photo').click(function(e) {
-					var name = $(this).attr('data-name');
-					getWitness(name, $(this));
-				});
-				// 반응형 처리 ////
-				var bpOfAbstract = '1024 1680';
-				$hr2('#suspicion-'+index).find('.abstract .list p').respStyle({
-					breakpoint: bpOfAbstract,
-					'padding-top': '0 72 max',
-					'padding-left': '15 72 max'
-				});
-				// 스크롤 효과 ////
-				$hr2('#suspicion-'+index).scrEffectOfBgcolor({
-					background: '#1a1a1a #ffffff',
-					option: 'wait',
-					after: function($contain, bgcolor, bgcIndex){
-						var colors = ['#ffffff', '#1a1a1a'];
-						$('button.menu-button i').stop().animate({color: colors[bgcIndex]}, 1000);
+		}
+		& > .content {
+			padding-top: 5vw;
+			padding-bottom: 10vw;
+			width: 80%;
+			max-width: 500px;
+			margin-left: auto;
+			margin-right: auto;
+			&:after {
+				content: ''; display: block; clear: both;
+			}
+			.part {
+				&:first-child { padding-bottom: 1em; }
+				.title {
+					display: block;
+					margin-bottom: 1em;
+				}
+				.tilted-border-line { display: none; }
+				li {
+					&:after { content: ''; display: block; clear: both; }
+					cursor: pointer;
+					margin-bottom: 1em;
+				}
+				li .num {
+					float: left;
+					background-color: #7657c5;
+				}
+				li .item {
+					margin-left: 3.4em;
+					.item-wrap { position: relative; display: inline-block; }
+					.item-wrap:hover .hover-text { width: 100%; }
+					.hover-text {
+						position: absolute;
+						top:0; left: 0;
+						overflow: hidden;
+						width: 0;
+						transition: width 0.5s;
 					}
-				});
-				// '주요 내용'의 이미지를 슬라이드로 ////
-				$hr2('#suspicion-'+index).find('.abstract-media').slideshow({
-					ratio: 35/43,
-					gutter: '0'
-				});
-				$hr2('#suspicion-'+index).find('.audio-gallery').fancybox({
-					padding: 0,
-					afterLoad: function(current, previous){
-						if(previous){
-							var $audio = $hr2('#suspicion-'+index).find('.audio-gallery').eq(previous.index).find('audio');
-							$audio.get(0).pause();
-							$audio.get(0).currentTime = 0;
+					.hover-text span {
+						box-shadow: 0 -2px #0be4db inset;
+					}
+				}
+			}
+		}
+	 }
+}
+@media screen and (min-width: 768px) {
+	#page-2nd-hearing .outline {
+		.header .wrapper {
+				padding: 5em 1em;
+			}
+		& >	.content {
+			padding-bottom: 0;
+			max-width: 900px;
+			.part:first-child {
+				position: relative;
+				padding-bottom: 10vw;
+			}
+			.part:first-child .tilted-border-line {
+				position: absolute;
+				top: 0; right: 0;
+				display: block;
+				width: 20%;
+				height: 100%;
+				border-right: solid 2px #ffffff;
+				transform: skewX(0deg);
+				transform-origin: 0 0;
+			}
+			.part:last-child {
+				padding-left: 10%;
+				padding-bottom: 10vw;
+			}
+		}
+	}
+}
+
+//의혹 페이지 ////
+#page-2nd-hearing {
+	.sections {
+		overflow: hidden;
+	}
+
+	// 텍스트 스타일에 관한 것들 ////
+	section.inner-page {
+		.article-title span {
+			font-family: @font-noto;
+			font-weight: @font-weight;
+			font-size: 1.125em; //18px
+			color: #7657c5;
+		}
+		.witness-photo {
+			span.name {
+				font-family: @font-noto;
+				font-weight: @font-weight;
+				color: #6d92c4;
+			}
+			span.organ {
+				font-family: @font-batang;
+				font-size: 0.875em; //14px;
+				color: #808080;
+			}
+		}
+		.media {
+			span.icon i { font-size: 3em; }
+			span.title { font-family: @font-noto; font-weight: @font-weight; }
+			.caption {
+				font-family: @font-noto; font-weight: @font-weight;
+				font-size: 0.938em; //15px
+				color: #808080;
+			}
+			a:link, a:active, a:visited, a:hover { color: #6d92c4; }
+		}
+		& > .header {
+			font-family: @font-noto; font-weight: @font-weight;
+			a:link, a:active, a:visited, a:hover {
+				color: #6d92c4;
+			}
+			.go-back-outline span {
+				font-family: @font-noto; font-weight: @font-weight;
+				font-size: 0.875em;
+				color: #ffffff;
+			}
+			.part-num {
+				font-size: 1.063em; //17px
+				color: #808080;
+			}
+			.part-main-title {
+				font-size: 2.25em; //36px
+				color: #ffffff;
+				b {
+					color: #7657c5;
+					font-weight: 900;
+				}
+			}
+			.title-num-wrapper {
+				color: #1a1a1a;
+				span:first-child {
+					font-size: 1.313em; //21px
+				}
+				span:last-child {
+					font-family: @font-mont;
+					font-size: 1.625em; //26px
+				}
+			}
+			.title-wrapper span {
+				font-size: 1.458em; //23px
+				line-height: 1.1em;
+				color: #ffffff;
+			}
+			.background p {
+				font-family: @font-batang;
+				font-size: 1.063em; //17px
+				line-height: 1.8em;
+				color: #ffffff;
+			}
+		}//.header
+		& > .content {
+			.abstract .list p {
+				font-family: @font-batang;
+				line-height: 1.7em;
+				color: #808080;
+			}
+			.abstract-media-wrap {
+				.play-icon i {
+					font-size: 3em;
+					color: #6d92c4;
+				}
+				.caption span {
+					font-family: @font-noto; font-weight: @font-weight;
+					font-size: 1em;
+					color: #ffffff;
+				}
+			}
+			.dialogue {
+				.subject span {
+					font-family: @font-noto; font-weight: @font-weight;
+					font-size: 1.125em;
+					color: #f7a4a4
+				}
+				.question span.name {
+					font-family: @font-batang;
+					line-height: 1.4em;
+					color: #7657c5;
+				}
+				.question-wrapper {
+					font-family: @font-noto; font-weight: @font-weight;
+					line-height: 1.4em;
+					color: #808080;
+				}
+				.answer-wrapper {
+					font-family:@font-batang;
+					font-size: 1.2em;
+					line-height: 1.4em;
+				}
+				li:nth-child(odd) .answer-wrapper {
+					color: #7657c5;
+				}
+				li:nth-child(even) .answer-wrapper {
+					color: #ffffff;
+				}
+			}
+			.conclusion .conclusion-wrapper {
+				font-family: @font-batang;
+				line-height: 1.8em;
+				color: #808080;
+			}
+			.etc .links li {
+				font-family: @font-noto; font-weight: @font-weight;
+				color: #dfe5ea;
+				a { color: #6d92c4; }
+			}
+		}// content
+	}//section.inner-page
+
+	// 텍스트 스타일 이외의 모든 것 ////
+	.inner-page { display: none; }
+	.open-inner-page { display: block; }
+	section.inner-page {
+		height: 100vh;
+		p { text-align: justify; }
+		b {
+			text-decoration: none;
+			box-shadow: 0 -0.4em 0 rgba(118, 87, 197, 0.4) inset
+		}
+		.media {
+			&:after { content: ''; display: block; clear: both; }
+			&.size-0 { display: none; }
+			.medi-with-cap { margin-bottom: 1em; }
+			.medium-wrapper {
+				position: relative;
+				padding-bottom: 50%;
+				margin-bottom: 0.5em;
+			}
+			.medium {
+				position: absolute;
+				top: 0; left: 0;
+				width: 100%; height: 100%;
+				& > .wrapper {
+					width: 100%; height: 100%;
+					overflow: hidden;
+					background-color: #808080;
+					img {
+						filter: grayscale(100%); -webkit-filter: grayscale(100%);
+						transition: 2s filter ease-in-out; -webkit-transition: 2s -webkit-filter ease-in-out;
+					}
+					a {
+						&:active, &:hover {
+							img { filter: grayscale(0); -webkit-filter: grayscale(0); }
 						}
-						$hr2('#suspicion-'+index).find('.audio-gallery').eq(current.index).find('audio').get(0).play();
-					},
-					afterClose: function(){
-						var $audio = $hr2('#suspicion-'+index).find('.audio-gallery').eq(this.index).find('audio');
-						$audio.get(0).pause();
-						$audio.get(0).currentTime = 0;
-					}
-				});
-				// ////
-				$hr2('#suspicion-'+index).addClass('visited-page');
-				$hr2('#suspicion-'+index).find('.medium img').extraStyle({ fitted: 'yes' });
-				// 스크롤 스냅 ////
-/*				$hr2('#suspicion-'+index).scrollSnap({
-					section: '.content .abstract ul.list > li, .content .dialogue',
-					active: 1024
-				}); */
-			}); // on:append-section
-
-			$(window).resize(function(){
-				var $absMediaWrap = $hr2('.sections section.open-inner-page .abstract-media-wrap');
-				if($absMediaWrap.length){
-					var amwWidth = $absMediaWrap.width();
-					$absMediaWrap.find('.ps-current li > a > img').outerHeight(amwWidth * 35/43);
-					$absMediaWrap.find('.play-icon i').css('font-size', amwWidth * 35/43 * 0.2);
-				}
-			});
-		}});// on:json-load,
-	});//document.ready
-	function openPage(pageNum){
-		$hr2('.outline').removeClass('open-inner-page').trigger('deactivate-scroll-effect');
-		openAndActivatePage(pageNum);
-	}
-	function closePage(pageNum){
-		$hr2('#suspicion-'+pageNum).removeClass('open-inner-page').trigger('deactivate-scroll-effect');
-		$hr2('.outline').addClass('open-inner-page').trigger('activate-scroll-effect');
-		$hr2('.outline .content').trigger('refresh-grid');
-		$hr2('.outline .video-wrap').trigger('refresh-style');
-		$hr2('.outline').find('.refresh').trigger('refresh');
-	}
-	function openAndActivatePage(pageNum){
-		$hr2('#suspicion-'+pageNum).addClass('open-inner-page');
-		if(!$hr2('#suspicion-'+pageNum).hasClass('visited-page')){
-			$hr2().trigger('append-section', pageNum);
-		} else {
-			$hr2('#suspicion-'+pageNum).scrollTop(0);
-		}
-		$hr2('#suspicion-'+pageNum).trigger('activate-scroll-effect');
-		$hr2('#suspicion-'+pageNum).find('.abstract-media').trigger('refresh-slideshow');
-	}
-	function htmlOutline(parts, partMap, suspicions){
-		var template = _.template($hr2('#outline-template').html());
-		var tplSuspicions = _.template($hr2('#outline-suspicion-template').html());
-		var html = '';
-		for(var i = 0, leni = parts.length; i < leni; i++){
-			var susp = '';
-			for(var j = 0, lenj = partMap.length; j < lenj; j++){
-				if(partMap[j] == i) susp += tplSuspicions({ num: j+1, item: suspicions[j].title });
-			}
-			html += template({
-				partNum: i + 1,
-				title: parts[i].title,
-				supicions: susp
-			});
-		}
-		return html;
-	}
-	function makeHtml(sectNum, parts, section, witnesses, partMap){
-		var tplSection = _.template($hr2('#section-template').html());
-		if(_.isEmpty(section)) return;
-		return tplSection({
-			section: sectNum + 1,
-			partNum: partMap[sectNum] + 1,
-			partMainTitle: parts[partMap[sectNum]].title,
-			titleNum: sectNum + 1,
-			title: section.title,
-			bgMediaSize: mediaSize(section.background.media),
-			bgMedia: htmlMedia(section.background.media, 'hr2'+sectNum+'bg'),
-			background: section.background.content,
-			witness: htmlWitnesses(section.witnesses, witnesses),
-			abstract: htmlAbstract(section.abstract, 'hr2'+sectNum+'ab'),
-			dialogue: htmlDialogue(section.dialogue, witnesses, 'hr2'+sectNum+'da'),
-			etcMediaSize: mediaSize(section.etc.media),
-			etcMedia: htmlMedia(section.etc.media, 'hr2'+sectNum+'etc'),
-			etcLinkNum: section.etc.content.length,
-			etcLinks: htmlEtc(section.etc.content)
-		});
-	}
-	function mediaSize(media){
-		if(media.length == 0) return '0';
-		else return media.length + (media[0].size == 's=b' ? '-big' : '-small');
-	}
-	function htmlAbstract(abstract, gallery){
-		var html = '';
-		var template = _.template($hr2('#abstract-template').html());
-		for(var i = 0, len = abstract.length; i < len; i++){
-			var abs = abstract[i];
-			html += template({
-				abstractMedia: (abs.media.length ? htmlAbsMedia(abs.media, gallery+'p'+i) : ''),
-				abstract: abs.content
-			});
-		}
-		return html;
-	}
-	function htmlDialogue(dialogue, witData, gallery){
-		var html = '';
-		var template = _.template($hr2('#dialogue-template').html());
-		var qa_template = _.template($hr2('#dialogue-qa-template').html());
-		var dlgVideoTmpl = _.template($hr2('#dialogue-video-tempate').html());
-		for(var i = 0, len = dialogue.length; i < len; i++){
-			var qna = dialogue[i];
-			var qna_content = '';
-			if( typeof(qna.content) != 'undefined' && qna.content.length > 0) {
-				for(var j=0; j < qna.content.length; j++) {
-					var qna_content_item = qna.content[j];
-					qna_content += qa_template({
-						qName: qna_content_item.qName,
-						question: qna_content_item.qContent,
-						photo: witData[qna_content_item.aName] ? g_path.image+witData[qna_content_item.aName].photo : '',
-						aName: qna_content_item.aName,
-						aOrgan: witData[qna_content_item.aName] ? witData[qna_content_item.aName].organ: '',
-						answer: qna_content_item.aContent
-					});
+						display: block;
+						width: 100%;
+						height: 100%;
+						position: relative;
+						span.icon {
+							position: absolute;
+							z-index: 2;
+							top: 50%;
+							left: 50%;
+							margin-top: -1.5em;
+							margin-left: -1.5em;
+						}
+						span.title {
+							position: absolute;
+							top: 0; left: 0;
+							z-index: 3;
+							width: 100%;
+							height: 100%;
+							padding: 10px;
+							overflow: hidden;
+							color: #ffffff;
+							opacity: 0.7;
+						}
+					}// a
+				}// .wrapper
+			}// .medium
+		}// .media
+		.witness-photo {
+			display: inline-block;
+			max-width: 78px;
+			.photo-wrap {
+				width: 4em; height: 4em;
+				border-radius: 4em;
+				border: solid 2px #808080;
+				overflow: hidden;
+				cursor: pointer;
+				img {
+					width: 125%; margin: 0 0 0 -0.3em; //이 값들은 실제 사진을 가지고 조절한다.
+					filter: grayscale(100%); -webkit-filter: grayscale(100%);
 				}
 			}
-			html += template({
-				subject: qna.subject,
-				video: '',
-				video: (qna.video ? dlgVideoTmpl({ videoUrl: qna.video }) : ''),
-				qna_content: qna_content
-			});
-		}
-		return html;
-	}
-	function htmlEtc(contents){
-		if(!contents.length) return '';
-		var html = '';
-		var template = _.template($hr2('#etc-link-tempate').html());
-		for(var i = 0, len = contents.length; i < len; i++){
-			html += template({ etclink: contents[i] });
-		}
-		return html;
-	}
-	function paragraphs(contents){
-		if(!contents.length) return '';
-		var html = '';
-		for(var i = 0, len = contents.length; i < len; i++){
-			html += '<p>' + contents[i] + '</p>';
-		}
-		return html;
-	}
-	function htmlWitnesses(witNames, witData){
-		if(!witNames.length) return '';
-		var html = '';
-		var template = _.template($hr2('#witnesses-template').html())
-		for(var i = 0, len = witNames.length; i < len; i++){
-			var name = witNames[i];
-			if(!witData[name]) witData[name] = { organ: '', photo: ''};
-			html += template({ name: name, organ: witData[name].organ, photo: g_path.image+witData[name].photo });
-		}
-		return html;
-	}
-	function htmlMedia(media, gallery){
-		if(!media.length) return '';
-		var html = '';
-		var template = _.template($hr2('#medium-template').html());
-		for(var i = 0, len = media.length; i < len; i++){
-			var type;
-			if(media[i].url.match(/\.(png|jpg|svg|gif)/)) type = 'image';
-			else if(media[i].url.match(/\.(hwp|pdf|docx)/)) type = 'doc';
-			else type = 'video';
-			var tplMedium = _.template($('#page-journal').find('#'+type+'-template').html());
-			html += template({
-				medium: tplMedium({ url: g_path[type]+media[i].url, gallery: gallery, title: media[i].url }),
-				caption: media[i].caption
-			});
-		}
-		return html;
-	}
-	function htmlAbsMedia(media, gallery){ if(media.length){
-		var html = '';
-		for(var i = 0, len = media.length; i < len; i++){
-			var type;
-			if(media[i].url.match(/\.(png|jpg|svg|gif)/)) type = 'image';
-			else if(media[i].url.match(/\.(hwp|pdf|docx)/)) type = 'doc';
-			else if(media[i].url.match(/\.mp3/)) type = 'audio';
-			else type = 'video';
-			var tplMedium = _.template($hr2('#abs-'+type+'-template').html());
-			if(type == 'video') {
-				html += '<li>'+tplMedium({ url: g_path[type]+media[i].url, gallery: gallery, title: media[i].caption, t_url: g_path[type]+media[i].url.replace(/\?.*$/,'') })+'</li>';
-			} else if(type !== 'audio'){
-				html += '<li>'+tplMedium({ url: g_path[type]+media[i].url, gallery: gallery, title: media[i].caption })+'</li>';
-			} else {
-				html += '<li>'+tplMedium({
-					audiourl: g_path.audio+media[i].url,
-					imgurl: g_path.image+media[i].image,
-					gallery: gallery,
-					title: media[i].caption
-				})+'</li>';
+			span {
+				display: block;
+				text-align: center;
 			}
 		}
-		return html;
-	}}
-	function $hr2(selector){
-		if(selector) return $('#page-2nd-hearing').find(selector);
-		else return $('#page-2nd-hearing');
-	}
-	$.fn.scrollSnap = function(arg){
-		if(arg === undefined) arg = {};
-		if(arg.section === undefined) arg.section = 'div';
-		if(arg.active === undefined) arg.active = 0;
-		var $container = $(this); if($container.length == 0){ console.error('ERROR: .scrollSanp()'); return; }
-		var isSnapping = false;
-		var preScrTop = 0;
-		var scrDir = 'down';
-		$container.scroll(function(event){ if(window.innerWidth >= arg.active){
-			if(isSnapping){
-				event.preventDefault();
-			} else {
-				var scrTop = $container.scrollTop();
-				if(preScrTop < scrTop) scrDir = 'down'; else scrDir = 'up';
-				preScrTop = scrTop;
-				var $sections = $container.find(arg.section);
-				for(var index = 0, len = $sections.length; index < len; index++){
-					var top = $sections.eq(index).offset().top;
-					if(scrDir === 'down' && index === 0 && 0 < top && top < $(window).height()/20){
-						isSnapping = true; break;
-					} else if(scrDir === 'down' && $sections.eq(index-1).offset().top < -5 && 0 < top){
-						isSnapping = true; break;
+		.article-title:before {
+			content: ''; display: block;
+			width: 5.875em; height: 0.3em;
+			margin-bottom: 0.3em;
+			background-color: #0be4db;
+		}
+		& > .header {
+			.se-background { background-color: #1a1a1a; }
+			.se-title { color: #ffffff; }
+			position: relative;
+			margin: 8% 8% 3em 8%;
+			.go-back-outline {
+				display: inline-block;
+				width: 7em;
+				padding: 0.5em;
+				background-color: #0be4db;
+				cursor: pointer;
+				text-align: center;
+			}
+			.part-title, .title, .background, .witnesses {
+				max-width: 680px;
+				margin-left: auto; margin-right: auto;
+			}
+			.part-title {
+				padding-bottom: 1em;
+				border-bottom: solid 2px #ffffff;
+				.part-main-title b {
+					box-shadow: none;
+				}
+			}
+			.title {
+				margin-top: 1em;
+				margin-bottom: 1em;
+				.title-num-wrapper {
+					display: inline-block;
+					margin-right: 0.5em;
+					background-color: #0be4db;
+				}
+			}
+			.background {
+				margin-bottom: 1em;
+			}
+			.witnesses {
+				& > .header { margin-bottom: 1em; }
+				li {
+					margin-right: 1em;
+					margin-bottom: 1em;
+					vertical-align: top;
+				}
+			}
+		}// header
+		& > .content {
+			position: relative;
+			.dialogue, .conclusion, .etc {
+				max-width: 680px;
+				margin-left: auto; margin-right: auto;
+			}
+			.abstract {
+				& > .header { margin-bottom: 1em; }
+				& > .list { margin-bottom: 1em; }
+				& > .list li { margin-bottom: 2em; }
+				& > .list li p {
+					margin-left: auto; margin-right: auto;
+					max-width: 680px;
+				}
+				.abstract-media-wrap {
+					margin-bottom: 1em;
+					a.gallery, a.audio-gallery {
+						position: relative;
+						display: block;
+						width: 100%; height: 100%;
+						.play-icon {
+							position: absolute;
+							z-index: 2;
+							top: 40%; left: 40%;
+							width: 20%; height: 20%;
+						}
+					}//a.gallery
+				}//.abstract-media-wrap
+			}//.abstract
+			.dialogue {
+				margin-bottom: 1em;
+				& > .header { margin-bottom: 1em; }
+				.subject {
+					margin-bottom: 1.4em;
+				}
+				.video .video-wrap {
+					width: 320px;
+					height: 200px;
+					max-width: 100%;
+					margin-bottom: 1em;
+				}
+				.question {
+					.question-wrapper { margin-bottom: 1em; }
+					.name {
+						float: left;
+						padding-right: 0.5em;
 					}
 				}
-				if(isSnapping) $container.animate({ scrollTop: (scrTop+top) }, 600, 'easeOutBounce', function(){ isSnapping = false; });
-			}
-		}});
-	}
-	$.fn.slideshow = function(arg){
-		if(arg === undefined) arg = {};
-		if(arg.section === undefined) arg.section = 'li';
-		if(arg.ratio === undefined) arg.ratio = 3/4;
-		if(arg.gutter === undefined) arg.gutter = '5%';
-		if(arg.bgcolor === undefined) arg.bgcolor = '#4d4d4d';
-		if(arg.captbgcolor === undefined) arg.captbgcolor = '#4d4d4d';
-
-		$(this).each(function(){
-			slideshow($(this));
-		});
-		function slideshow($contain){
-			var containRatio = arg.ratio;
-			var index = 0;
-			var $sections = $contain.children(arg.section);
-			var $mainWrap = $('<div class="slideshow-wrap"></div>').appendTo($contain).append($sections);
-			var $leftWrap = $('<div class="left"><div class="prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></div></div>').insertBefore($mainWrap);
-			var $rightWrap = $('<div class="right"><div class="next"><i class="fa fa-chevron-right" aria-hidden="true"></i></div></div').insertAfter($mainWrap);
-
-			$contain.css({ height: $contain.width() * arg.ratio, overflow: 'hidden', position: 'relative' });
-			$contain.css({ overflow: 'hidden', position: 'relative' });
-			$leftWrap.css({ width: arg.gutter, height: '100%', float: 'left' });
-			$rightWrap.css({ width: arg.gutter, height: '100%', float: 'left' });
-			var mainWidth = $contain.width() - $leftWrap.width() - $rightWrap.width() - 1;
-			$mainWrap.css({ position: 'relative', width: mainWidth, height: '100%', float: 'left' });
-			$sections.css({ position: 'absolute', top: 0, left: 0, diasplay: 'block',
-				width: '100%', height: '100%', overflow: 'hidden', 'background-color': arg.bgcolor
-			});
-			$sections.children('a').css({ diasplay: 'block', width: '100%', height: '100%', overflow: 'hidden' });
-			$sections.find('img').innerFit({
-				afterLoad: function(){
-					var maxHeight = 0;
-					$sections.find('img').each(function(){
-						if($(this).height() > maxHeight) maxHeight = $(this).height() ;
-					});
-					if($contain.height() > maxHeight){
-						$contain.css({ height: maxHeight });
-						$sections.find('img').trigger('refresh-image-fit');
-						containRatio = maxHeight / $contain.width();
+				.answer {
+					& > .witness-photo {
+						max-width: none;
+						display: block;
+						.name {
+							text-align: center;
+							margin-left: 78px;
+						}
+						.photo-wrap {float: left; }
+						&:after { content: ''; display: block; clear: both; }
+					}
+					.speech-bubble {
+						margin-top: 20px;
+						margin-bottom: 1em;
+						&:after { content: ''; display: block; clear: both; }
+						position: relative;
+						@nipple-size: 16px;
+						@border-width: 1px;
+						.nipple-left { display: none; }
+						.nipple-top { display: block; }
+						.nipple-border.nipple-left {
+							margin-top: 2em;
+							position: absolute;
+							top: 0; left: @border-width - @nipple-size;
+							border-top: solid @nipple-size/2 #7657c5;
+							border-right: solid @nipple-size/2 #7657c5;
+							border-bottom: solid @nipple-size/2 transparent;
+							border-left: solid @nipple-size/2 transparent;
+						}
+						.nipple-bg.nipple-left {
+							margin-top: 2em;
+							position: absolute;
+							top: @border-width; left: 3*@border-width - @nipple-size;
+							border-top: solid @nipple-size/2 #ffffff;
+							border-right: solid @nipple-size/2 #ffffff;
+							border-bottom: solid @nipple-size/2 transparent;
+							border-left: solid @nipple-size/2 transparent;
+						}
+						.nipple-border.nipple-top {
+							margin-left: 2em;
+							position: absolute;
+							top: @border-width - @nipple-size; left: 0;
+							border-top: solid @nipple-size/2 transparent;
+							border-right: solid @nipple-size/2 transparent;
+							border-bottom: solid @nipple-size/2 #7657c5;
+							border-left: solid @nipple-size/2 #7657c5;
+						}
+						.nipple-bg.nipple-top {
+							margin-left: 2em;
+							position: absolute;
+							top: 3*@border-width - @nipple-size; left: @border-width;
+							border-top: solid @nipple-size/2 transparent;
+							border-right: solid @nipple-size/2 transparent;
+							border-bottom: solid @nipple-size/2 #ffffff;
+							border-left: solid @nipple-size/2 #ffffff;
+						}
+						.answer-wrapper {
+							border: solid @border-width #7657c5;
+							padding: 1em;
+						}
 					}
 				}
-			});
-			$sections.find('img').each(function(){ if($(this).attr('alt')){
-				var $caption = $('<div class="caption"><span>'+$(this).attr('alt')+'</span></div>').insertAfter($(this));
-				$caption.css({ position: 'absolute', bottom: 0, left: 0, width: '100%', height: 'auto', opacity: 0.7, 'background-color': arg.captbgcolor });
-				$caption.find('span').css({ 'padding-left': '1em', 'line-height': '2em' });
-			}});
-
-			if($sections.length > 1){
-				var $prev = $leftWrap.children('.prev'), $next = $rightWrap.children('.next');
-				$prev.css({ position: 'absolute', 'z-index': '10', height: '10%', width: 'auto', top: '45%', left: 0, cursor: 'pointer' });
-				$next.css({ position: 'absolute', 'z-index': '10', height: '10%', width: 'auto', top: '45%', right: 0, cursor: 'pointer' });
-				$prev.children().css({ 'font-size': $prev.height() });
-				$next.children().css({ 'font-size': $next.height() });
-
-				var isChanging = false;
-				$sections.not(':eq(0)').css({ left: $contain.width() });
-				$next.click(function(){ if(isChanging === false){
-					isChanging = true;
-					var next = ( index < $sections.length-1 ? index+1 : 0 );
-					$sections.eq(index).finish().animate({ left: -1*$contain.width() }, 1000, 'easeOutQuint');
-					$sections.eq(next).css({ left: $contain.width() }).finish().animate({ left: 0 }, 1000, 'easeOutQuint', function(){ isChanging = false; });
-					index = next;
-				}});
-				$prev.click(function(){if(isChanging === false){
-					isChanging = true;
-					var prev = ( index > 0 ? index-1 : $sections.length-1 );
-					$sections.eq(index).finish().animate({ left: $contain.width() }, 1000, 'easeOutQuint');
-					$sections.eq(prev).css({ left: -1*$contain.width() }).finish().animate({ left: 0 }, 1000, 'easeOutQuint', function(){ isChanging = false; });
-					index = prev;
-				}});
-			}
-
-			$contain.on('refresh-slideshow', refresh);
-			$(window).resize(refresh);
-			function refresh(){ if($contain.is(':visible')){
-				$contain.css({ height: $contain.width()*containRatio });
-				$mainWrap.css({ width: $contain.width() - $leftWrap.width() - $rightWrap.width() - 1 });
-				$sections.find('img').trigger('refresh-image-fit');
-				$sections.not(':eq('+index+')').css({ left: $contain.width() });
-			}}
-		}//slideshow
-	}
-	$.fn.innerFit = function(arg){
-		if(arg === undefined) arg = {};
-		var numOfLoad = 0;
-		var numOfImages = $(this).length;
-		$(this).each(function(){
-			var $img = $(this);
-			$img.load(fit);
-			$img.on('refresh-image-fit', fit);
-			function fit(event){
-				var $parent = $img.parent();
-				$img.css({ width: '100%', height: '', 'margin-left': '', 'margin-top': '' });
-				if($img.height() > $parent.height()){
-					var width = $img.css({ width: '', height: $parent.height() }).width();
-					$img.css({ 'margin-left': ($parent.width() - width)/2 });
-				} else {
-					$img.css({ 'margin-top': ($parent.height() - $img.height())/2 });
+				li:nth-child(odd) {
+					.answer-wrapper { background-color: #ffffff; }
 				}
-				if(event.type == 'load'){
-					numOfLoad++;
-					if(numOfLoad == numOfImages && arg.afterLoad) arg.afterLoad();
+				li:nth-child(even) {
+					@bgcolor: #7657c5;
+					.nipple-bg.nipple-left { border-top-color: @bgcolor !important; border-right-color: @bgcolor !important; }
+					.nipple-bg.nipple-top { border-bottom-color: @bgcolor !important; border-left-color: @bgcolor !important; }
+					.answer-wrapper { background-color: @bgcolor; }
+				}
+			}// dialogue
+			.conclusion {
+				& > .header { margin-bottom: 1em; }
+				.conclusion-wrapper { margin-bottom: 1em; }
+			}
+			.etc {
+				& > .header { margin-bottom: 1em; }
+				.links i {
+					float: left;
+					font-size: 0.625em; //10px;
+					color: #b3b3b3;
+					line-height: 2.5em;
+				}
+				.links li {
+					margin-left: 1em;
+					border-bottom: solid 1px #dfe5ea;
+					padding-bottom: 0.3em;
+					margin-bottom:0.5em;
 				}
 			}
 		}
-	);}
-	$.fn.sameSizeWithParent = function(selector){ if(selector && $.type(selector) === 'string'){
-		$(this).each(function(){
-			var $target = $(this);
-			var $parent = $target.parents(selector);
-			setSize();
-			$target.on('refresh', setSize);
-			$(window).resize(setSize);
-			function setSize(event){
-				if($parent.is(':visible') && $target.is(':visible')){
-					var rect = $parent.get(0).getBoundingClientRect();
-					$target.outerWidth(rect.width);
-					$target.outerHeight(rect.height);
+	}// section
+}
+
+// 미디어 배치 ////
+@media screen and (min-width: 560px) {
+	#page-2nd-hearing .media.size-2-small .medi-with-cap {
+		width: 50%;
+		float: left;
+		&:nth-of-type(1) { .medium, .caption { padding-right: 5%; } }
+		&:nth-of-type(2) { .medium, .caption { padding-left: 5%; } }
+	}
+	#page-2nd-hearing .media.size-1-small .medi-with-cap {
+		width: 50%;
+	}
+}
+
+// 패딩, 마진 ////
+@media screen and (min-width: 560px) {
+	#page-2nd-hearing section.inner-page {
+		.media .medi-with-cap {
+			margin-bottom: 2em;
+		}
+		& > .header, & > .content {
+			margin-left: 70px; margin-right: 70px; margin-bottom: 4em;
+		}
+		& > .header {
+			margin-bottom: 6em;
+		}
+		& > .header .title {
+			margin-bottom: 2em;
+		}
+		& > .header .background {
+			margin-bottom: 3em;
+		}
+		& > .content .abstract {
+			margin-bottom: 3em;
+		}
+		& > .content .abstract .list li {
+			margin-bottom: 8em;
+		}
+		& > .content .abstract > .header {
+			margin-bottom: 2em;
+		}
+		& > .content .dialogue > .header {
+			margin-bottom: 2em;
+		}
+		& > .content .dialogue {
+			margin-bottom: 3em;
+		}
+		& > .content .dialogue  li {
+			margin-bottom: 4em;
+		}
+		& > .content .conclusion {
+			margin-bottom: 3em;
+		}
+		& > .content .conclusion > .header {
+			margin-bottom: 2em;
+		}
+		& > .content .etc > .header {
+			margin-bottom: 2em;
+		}
+	}
+}
+@media screen and (min-width: 1024px) {
+	#page-2nd-hearing section.inner-page {
+		& > .header {
+			margin-left: 80px; margin-right: 70px;
+		}
+		& > .content {
+			margin-left: 80px; margin-right: 160px;
+			.dialogue, .conclusion, .etc {
+				margin-left: 0; margin-right: 0;
+			}
+
+		}
+	}
+}
+
+// '주요 내용 ' ////
+@media screen and (min-width: 1024px) {
+	#page-2nd-hearing section.inner-page > .content .abstract {
+		max-width: 1433px;
+		margin-left: auto;
+		margin-right: auto;
+		.article-title {
+			display: none;
+		}
+		.list li:after {
+			content: ''; display: block; clear: both;
+		}
+		.list li p {
+			margin-left: 60%;
+		}
+		.abstract-media-wrap {
+			width: 60%;
+			float: left;
+			margin-right: 0; margin-bottom: 0;
+		}
+	}
+}
+
+// '그들의 한마디' ////
+@media screen and (min-width: 560px) {
+	#page-2nd-hearing section.inner-page > .content .dialogue {
+		.answer {
+			& > .witness-photo {
+				float: left;
+				max-width: 78px;
+				.photo-wrap { float: none; }
+				.name {
+					text-align: left;
+					margin-left: 0;
 				}
 			}
-		});
-	}}
-	$.fn.tiltBorderLine = function(){
-		$(this).each(function(){
-			var $target = $(this);
-			tiltBorderLine($target);
-			$target.on('refresh', function(){ tiltBorderLine($target); });
-			$(window).resize(function(){ tiltBorderLine($target); })
-		});
-		function tiltBorderLine($target){ if($target.is(':visible')){
-			$target.css('transform', '');
-			var deg = Math.atan($target.outerWidth() / $target.outerHeight()) * 180 / Math.PI;
-			$target.css('transform', 'skewX(-'+deg+'deg)');
-		}}
+			.speech-bubble { margin-left: 5.5em; }
+			.speech-bubble .nipple-top { display: none; }
+			.speech-bubble .nipple-left { display: block; }
+		}
+		.answer .speech-bubble .answer-wrapper {
+			padding: 1.5em;
+		}
 	}
-})(jQuery);
+}
+@media screen and (min-width: 620px) {
+	#page-2nd-hearing section.inner-page > .content .dialogue {
+		li:after {
+			content: ''; display: block; clear: both;
+		}
+		.video {
+			float: right;
+			margin-left: 1em;
+		}
+		.answer { clear: both; }
+	}
+}
+@media screen and (min-width: 1024px) {
+	#page-2nd-hearing section.inner-page > .content .dialogue {
+		max-width: 800px;
+		margin-left: auto; margin-right: auto;
+		.video {
+			margin-left: 0;
+		}
+		.answer {
+			clear: none;
+		}
+		.qa-wrapper {
+			margin-right: 355px;
+		}
+	}
+}
+
+//함께 보기 ////
+@media screen and (min-width: 1024px) {
+	#page-2nd-hearing section.inner-page > .content .etc {
+		max-width: 800px;
+		margin-left: auto; margin-right: auto;
+	}
+}
+
+
+// '의혹전체보기' 버튼 ////
+@media screen and (min-width: 560px) {
+	#page-2nd-hearing section.inner-page > .header .go-back-outline {
+		float: right;
+	}
+}
+@media screen and (min-width: 1024px) {
+	#page-2nd-hearing section.inner-page > .header .go-back-outline {
+		float: none;
+		position: fixed;
+		top: 30px;
+		right: 30px;
+	}
+}
+
+// '의혹 + 숫자'를 두 줄로 ////
+@media screen and (min-width: 768px) {
+	#page-2nd-hearing section.inner-page {
+		& > .header {
+			.title {
+				position: relative;
+			}
+			.title-num-wrapper {
+				position: absolute; top: 0; left: 0;
+				height: 100%; width: 4.5em;
+				span { line-height: 1.1em; }
+				& > .wrapper {
+					position: relative;
+					width: 100%; height: 100%;
+					span:last-child {
+						position: absolute; bottom: 0; right: 0;
+					}
+				}
+			}
+			.title-wrapper {
+				display: block;
+				margin-left: 5.5em;
+				span { line-height: 1.1em; }
+			}
+		}
+	}
+}
+
+// 제목을 왼쪽으로 ////
+@media screen and (min-width: 1280px) {
+	#page-2nd-hearing section.inner-page {
+		.article-title {
+			float: left;
+			width: 20em;
+			text-align: right;
+			margin-left: -21em;
+			padding-top: 0.5em;
+			position: relative;
+			&:before {
+				position: absolute;
+				right: 0; top: 0;
+			}
+		}
+		& > .header .title-num-wrapper {
+			left: -7em;
+		}
+		& > .header .title-wrapper {
+			margin-left: 0;
+		}
+		.content .dialogue .answer {
+			.witness-photo {
+				margin-left: -6em;
+			}
+			.speech-bubble {
+				margin-left: 0;
+			}
+		}
+	}
+}
+
+// 글자 크기 ////
+@media screen and (min-width: 425px) {}
+@media screen and (min-width: 560px) {}
+@media screen and (min-width: 768px) {}
+@media screen and (min-width: 1024px) {}
+@media screen and (min-width: 1280px) {}
+@media screen and (min-width: 1680px) {}
