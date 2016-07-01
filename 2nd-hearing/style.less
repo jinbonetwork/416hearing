@@ -28,14 +28,11 @@
 		& > .content {
 			.part-num { color: #808080; }
 			.title {
-				font-size: 1.8em;
+				font-size: 1.2em;
 				color: #ffffff;
-				line-height: 1.1;
-				min-height: 90px;
-
 				b {
-				color: #7657c5;
-				font-weight: 900;
+					color: #7657c5;
+					font-weight: 900;
 				}
 			}
 			li .num span:first-child {
@@ -135,11 +132,18 @@
 @media screen and (min-width: 768px) {
 	#page-2nd-hearing .outline {
 		.header .wrapper {
-				padding: 5em 1em;
-			}
+			padding: 5em 1em;
+		}
 		& >	.content {
 			padding-bottom: 0;
 			max-width: 900px;
+			.title {
+				min-height: 90px;
+				span.main {
+					font-size: 1.5em;
+					line-height: 1.1em;
+				}
+			}
 			.part:first-child {
 				position: relative;
 				padding-bottom: 10vw;
@@ -243,6 +247,7 @@
 			}
 		}//.header
 		& > .content {
+			margin: 8% 8% 3em 8%;
 			.abstract .list p {
 				font-family: @font-batang;
 				line-height: 1.7em;
@@ -367,6 +372,7 @@
 			max-width: 78px;
 			.photo-wrap {
 				width: 4em; height: 4em;
+				margin-left: auto; margin-right: auto;
 				border-radius: 4em;
 				border: solid 2px #808080;
 				overflow: hidden;
@@ -484,11 +490,13 @@
 					& > .witness-photo {
 						max-width: none;
 						display: block;
-						.name {
+						.photo-wrap { float: left; }
+						.name-organ-wrap {
 							text-align: center;
 							margin-left: 78px;
+							padding-top: 1em;
+							max-width: 78px;
 						}
-						.photo-wrap {float: left; }
 						&:after { content: ''; display: block; clear: both; }
 					}
 					.speech-bubble {
@@ -615,11 +623,11 @@
 		& > .content .abstract > .header {
 			margin-bottom: 2em;
 		}
-		& > .content .dialogue > .header {
-			margin-bottom: 2em;
-		}
 		& > .content .dialogue {
 			margin-bottom: 3em;
+		}
+		& > .content .dialogue > .header {
+			margin-bottom: 2em;
 		}
 		& > .content .dialogue  li {
 			margin-bottom: 4em;
@@ -681,9 +689,11 @@
 				float: left;
 				max-width: 78px;
 				.photo-wrap { float: none; }
-				.name {
+				.name-organ-wrap {
 					text-align: left;
 					margin-left: 0;
+					padding-top: 0;
+					.name, .organ { text-align: left; }
 				}
 			}
 			.speech-bubble { margin-left: 5.5em; }
@@ -806,11 +816,3 @@
 		}
 	}
 }
-
-// 글자 크기 ////
-@media screen and (min-width: 425px) {}
-@media screen and (min-width: 560px) {}
-@media screen and (min-width: 768px) {}
-@media screen and (min-width: 1024px) {}
-@media screen and (min-width: 1280px) {}
-@media screen and (min-width: 1680px) {}

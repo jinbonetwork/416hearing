@@ -270,7 +270,7 @@ var getWitness = require('./witnesses.js');
 				for(var j=0; j < qna.content.length; j++) {
 					var qna_content_item = qna.content[j];
 					qna_content += qa_template({
-						qName: qna_content_item.qName,
+						qName: (qna_content_item.qName ? qna_content_item.qName+':' : ''),
 						question: qna_content_item.qContent,
 						photo: witData[qna_content_item.aName] ? g_path.image+witData[qna_content_item.aName].photo : '',
 						aName: qna_content_item.aName,

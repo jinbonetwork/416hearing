@@ -154,7 +154,7 @@
 <script type="text/template" id="dialogue-qa-template">
 	<div class="qa-wrapper">
 		<div class="question">
-			<span class="name"><%= qName %>:</span>
+			<span class="name"><%= qName %></span>
 			<div class="question-wrapper"><%= question %></div>
 		</div>
 		<div class="answer">
@@ -162,8 +162,10 @@
 				<div class="photo-wrap">
 					<img src="<%= photo %>" data-name="<%= aName %>">
 				</div>
-				<span class="name"><%= aName %></span>
-				<span class="organ"><%= aOrgan %></span>
+				<div class="name-organ-wrap">
+					<span class="name"><%= aName %></span>
+					<span class="organ"><%= aOrgan %></span>
+				</div>
 			</div>
 			<div class="speech-bubble">
 				<div class="nipple-border nipple-top"></div>
