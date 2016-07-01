@@ -1,6 +1,5 @@
 var _ = require('../contrib/underscore/underscore-min.js');
 var getWitness = require('./witnesses.js');
-
 (function($){
 	var g_path = {
 		root: 'data/2nd_hearing/',
@@ -162,23 +161,18 @@ var getWitness = require('./witnesses.js');
 					}
 				});
 				// ////
-				$hr2('#suspicion-'+index).addClass('visited-page');
 				$hr2('#suspicion-'+index).find('.medium img').extraStyle({ fitted: 'yes' });
+				// 섹션 별로 화면에 꽉 차게 ////
+				//$hr2('#suspicion-'+index).children('.header').paddingHeightAuto({ active: 1024 });
+				$hr2('#suspicion-'+index).find('.section-header, .content .abstract ul.list > li').paddingHeightAuto({ active: 1024 });
 				// 스크롤 스냅 ////
 				$hr2('#suspicion-'+index).scrollSnap({
-					section: '.content .abstract ul.list > li, .content .dialogue',
+					section: '.section-header, .content .abstract ul.list > li, .content .dialogue',
 					active: 1024
 				});
+				// ////
+				$hr2('#suspicion-'+index).addClass('visited-page');
 			}); // on:append-section
-
-			$(window).resize(function(){
-				var $absMediaWrap = $hr2('.sections section.open-inner-page .abstract-media-wrap');
-				if($absMediaWrap.length){
-					var amwWidth = $absMediaWrap.width();
-					$absMediaWrap.find('.ps-current li > a > img').outerHeight(amwWidth * 35/43);
-					$absMediaWrap.find('.play-icon i').css('font-size', amwWidth * 35/43 * 0.2);
-				}
-			});
 		}});// on:json-load,
 	});//document.ready
 	function openPage(pageNum){
@@ -355,23 +349,30 @@ var getWitness = require('./witnesses.js');
 		var isSnapping = false;
 		var preScrTop = 0;
 		var scrDir = 'down';
-		$container.scroll(function(event){ if(window.innerWidth >= arg.active){
-			if(isSnapping){
-				event.preventDefault();
-			} else {
-				var scrTop = $container.scrollTop();
-				if(preScrTop < scrTop) scrDir = 'down'; else scrDir = 'up';
-				preScrTop = scrTop;
-				var $sections = $container.find(arg.section);
-				for(var index = 0, len = $sections.length; index < len; index++){
-					var top = $sections.eq(index).offset().top;
-					if(scrDir === 'down' && index === 0 && 0 < top && top < $(window).height()/20){
-						isSnapping = true; break;
-					} else if(scrDir === 'down' && $sections.eq(index-1).offset().top < -5 && 0 < top){
-						isSnapping = true; break;
+		$container.scroll(function(event){ if(window.innerWidth >= arg.active && isSnapping == false){
+			var scrTop = $container.scrollTop();
+			if(preScrTop < scrTop) scrDir = 'down'; else scrDir = 'up';
+			preScrTop = scrTop;
+			var $sections = $container.find(arg.section);
+			if(scrDir === 'down'){
+				for(var index = 0, len = $sections.length; index < len-1; index++){
+					var top1 = $sections.eq(index).offset().top;
+					var top2 = $sections.eq(index+1).offset().top;
+					if(top1 < -5 && top2 > 5){
+						$container.stop().animate({ scrollTop: scrTop + top2 }, 1000, 'easeOutQuint');
+						break;
 					}
 				}
-				if(isSnapping) $container.animate({ scrollTop: (scrTop+top) }, 600, 'easeOutBounce', function(){ isSnapping = false; });
+			} else {
+				for(var index = 1, len = $sections.length; index < len-1; index++){
+					var wh = $(window).height();
+					var top1 = $sections.eq(index).offset().top;
+					var top2 = $sections.eq(index-1).offset().top;
+					if(top1 > 5 &&  top2 < -5){
+						//$container.stop('scrollTop').animate({ scrollTop: scrTop + top2 }, 1000, 'easeOutQuint');
+						break;
+					}
+				}
 			}
 		}});
 	}
@@ -509,6 +510,20 @@ var getWitness = require('./witnesses.js');
 			$target.css('transform', '');
 			var deg = Math.atan($target.outerWidth() / $target.outerHeight()) * 180 / Math.PI;
 			$target.css('transform', 'skewX(-'+deg+'deg)');
+		}}
+	}
+	$.fn.paddingHeightAuto = function(arg){
+		if(arg === undefined) arg = { active: 0 };
+		$(this).each(function(){
+			var $target = $(this);
+			paddingHeightAuto($target);
+			$target.on('refresh', function(){ paddingHeightAuto($target); });
+			$(window).on('resize', function(){ paddingHeightAuto($target); });
+		});
+		function paddingHeightAuto($target){ if($target.is(':visible') && window.innerWidth >= arg.active){
+			var padding = ($(window).height() - $target.height()) / 2;
+			$target.outerHeight($(window).height());
+			$target.css({ 'padding-top': padding, 'padding-bottom': padding, 'margin-top': 0, 'margin-bottom': 0 });
 		}}
 	}
 })(jQuery);
