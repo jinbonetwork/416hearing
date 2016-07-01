@@ -27,11 +27,15 @@
 		 }
 		 & > .content {
 			 .part-num { color: #808080; }
-			 .title .main {
-				 color: #ffffff;
-			 }
-			 .title .sub {
-				 color: #0be4db;
+			 .title {
+			 	padding-bottom: 15px;
+			 	.main {
+					 color: #ffffff;
+					 font-size: 1.8em;
+				 }
+			 	.sub {
+					 color: #0be4db;
+				}
 			 }
 			 li .num span:first-child {
 				 color: #1a1a1a;
@@ -97,10 +101,23 @@
 					display: block;
 					margin-bottom: 1em;
 				}
-				li { cursor: pointer; }
-				li .num { background-color: #0be4db; }
-				li .item { margin-bottom: 1em; }
-				li .item span:hover { background-color: #7657c5; }
+				li {
+					position: relative;
+					z-index: 1;
+					cursor: pointer;
+					.num {
+						position: absolute;
+						z-index: 2;
+						top: 5px;
+						left: 0;
+						background-color: #0be4db;
+					}
+					.item {
+						padding-left: 70px;
+						margin-bottom: 1em;
+					}
+					.item span:hover { background-color: #7657c5; }
+				}
 			}
 		}
 	 }
