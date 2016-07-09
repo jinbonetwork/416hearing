@@ -24,6 +24,31 @@
   * `/js/script.js`
   * `/2nd-hearing/script.js`
 
+## permalink 구조
+* 1차 청문회: `#hearing1`
+  * 의혹 1 :  `#hearing1-1`
+  * 의혹 2 :  `#hearing1-2`
+  * 의혹 3 :  `#hearing1-3`
+  * 의혹 4 :  `#hearing1-4`
+  * 의혹 5 :  `#hearing1-5`
+  * 의혹 6 :  `#hearing1-6`
+  * 의혹 7 :  `#hearing1-7`
+  * 의혹 8 :  `#hearing1-8`
+  * 의혹 9 :  `#hearing1-9`
+  * 의혹10 :  `#hearing1-10`
+  * 의혹11 :  `#hearing1-11`
+  * 의혹12 :  `#hearing1-12`
+  * 의혹13 :  `#hearing1-13`
+  * 의혹14 :  `#hearing1-14`
+* 2차 청문회: `#hearing2`
+  * 의혹 1 :  `#hearing2-1`
+  * 의혹 2 :  `#hearing2-2`
+  * 의혹 3 :  `#hearing2-3`
+  * 의혹 4 :  `#hearing2-4`
+  * 의혹 5 :  `#hearing2-5`
+  * 의혹 6 :  `#hearing2-6`
+* 416가족의 발자취: `#journal`
+
 ## 참고
 * 2차 청문회 첫페이지 동영상 경로를 수정하려면 `/2nd-hearing/index.html`에서 `<div class="video-wrap" data-src=""></div>`을 찾아 `data-src`의 값을 수정한다.
 * `less`나 `js`를 추가할 때는 `bundle.dev.js`에 파일 경로를 추가한다.

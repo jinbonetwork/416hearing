@@ -1,8 +1,9 @@
 (function($){
 	$.fn.scrEffectOfTitle = function(arg){
+		var self = this;
 		var selector = this.selector;
-		if($(selector).length) scrEffectOfTitle(selector, arg);
-		else $(document).ready(function(){ scrEffectOfTitle(selector, arg); });
+		if($(selector).length) scrEffectOfTitle(this, arg);
+		else $(document).ready(function(){ scrEffectOfTitle(self, arg); });
 	}
 	function scrEffectOfTitle(selector, arg){
 		if(arg === undefined) arg = {};

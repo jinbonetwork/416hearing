@@ -82,6 +82,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 		</div>
 	</div>
 	<!-- /pages-stack -->
+	<?php echo file_get_contents(dirname(__FILE__).'/witnesses/witnesses.html'); ?>
 	<button class="menu-button"><span><i class="fa fa-bars"></i></span></button>
 	<script src="contrib/PageStackNavigation/js/classie.js"></script>
 	<script src="js/PageStackNavigation-custom/main.js"></script>

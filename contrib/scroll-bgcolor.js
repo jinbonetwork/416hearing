@@ -1,8 +1,9 @@
 (function($){
 	$.fn.scrEffectOfBgcolor = function(arg){
+		var self = this;
 		var selector = this.selector;
-		if($(selector).length) scrEffectOfBgcolor(selector, arg);
-		else $(document).ready(function(){ scrEffectOfBgcolor(selector, arg); });
+		if($(selector).length) scrEffectOfBgcolor(this, arg);
+		else $(document).ready(function(){ scrEffectOfBgcolor(self, arg); });
 	}
 	function scrEffectOfBgcolor(selector, arg){ if(arg){
 		convArg(arg);

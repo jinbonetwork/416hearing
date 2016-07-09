@@ -51,6 +51,22 @@
 	function init() {
 		buildStack();
 		initEvents();
+
+		var controller = parseUrlHash();
+		if(controller.page) {
+			toggleMenu();
+			switch(controller.page) {
+				case 'hearing1':
+					openPage('page-hearing');
+					break;
+				case 'hearing2':
+					openPage('page-2nd-hearing');
+					break;
+				case 'journal':
+					openPage('page-journal');
+					break;
+			}
+		}
 	}
 
 	function buildStack() {
@@ -193,6 +209,20 @@
 			buildStack();
 			isMenuOpen = false;
 		});
+		if(id) {
+			var handler = jQuery('#'+id).data('handler');
+			if(typeof(handler) === 'undefined') {
+				var intv = setInterval(function() {
+					handler = jQuery('#'+id).data('handler');
+					if(handler !== 'undefined') {
+						clearInterval(intv);
+						handler.activate();
+					}
+				}, 100);
+			} else {
+				handler.activate();
+			}
+		}
 	}
 
 	// gets the current stack pages indexes. If any of them is the excludePage then this one is not part of the returned array
@@ -217,6 +247,20 @@
 
 		return idxs;
 
+	}
+
+	function parseUrlHash() {
+		var obj = {};
+		if(window.location.hash) {
+			var hash = window.location.hash.substr(1).split('-');
+			obj.page = (hash.length > 0 ? hash[0] : '');
+			obj.section = (hash.length > 1 ? hash[1] : 0);
+		} else {
+			obj.page = '';
+			obj.section = 0;
+		}
+
+		return obj;
 	}
 
 	init();
