@@ -1,20 +1,23 @@
 (function($){
 	$.fn.extraStyle = function(arg, option, getDimOption){
+		var self = this;
 		var target = this.selector;
-		if($(target).length) extraStyle(target, arg, option, getDimOption);
-		else $(document).ready(function(){ extraStyle(target, arg, option, getDimOption); });
+		if($(target).length) extraStyle(this, arg, option, getDimOption);
+		else $(document).ready(function(){ extraStyle(self, arg, option, getDimOption); });
 	}
-	function extraStyle(target, arg, option, getDimOption){if(target && arg){
-		if(getDimOption === undefined) getDimOption = 'clientrect';
-		$(target).each(function(){
-			var $target = $(this);
-			for(var prop in arg){
-				if(prop === 'ratio') ratio($target, arg[prop], option, getDimFuncs[getDimOption]);
-				else if(prop === 'fitted') fitted($target, arg[prop], option, getDimFuncs[getDimOption]);
-				else $target.css(prop, arg[prop]);
-			}
-		});
-	}}
+	function extraStyle(target, arg, option, getDimOption){
+		if(target && arg){
+			if(getDimOption === undefined) getDimOption = 'clientrect';
+			$(target).each(function(){
+				var $target = $(this);
+				for(var prop in arg){
+					if(prop === 'ratio') ratio($target, arg[prop], option, getDimFuncs[getDimOption]);
+					else if(prop === 'fitted') fitted($target, arg[prop], option, getDimFuncs[getDimOption]);
+					else $target.css(prop, arg[prop]);
+				}
+			});
+		}
+	}
 	function ratio($target, value, option, getDim){
 		setResize($target, $target, 'width', option, getDim);
 		if(option !== 'wait') setHeight();
@@ -26,36 +29,38 @@
 			$target.outerHeight(getDim($target).width * value);
 		}
 	}
-	function fitted($target, value, option, getDim){ if($target.is('img') && value === 'yes'){
-		$target.parent().css('overflow', 'hidden');
-		$target.css('width', '100%');
-		setResize($target.parent(), $target, 'all', option, getDim);
+	function fitted($target, value, option, getDim){
+		if($target.is('img') && value === 'yes') {
+			$target.parent().css('overflow', 'hidden');
+			$target.css('width', '100%');
+			setResize($target.parent(), $target, 'all', option, getDim);
 
-		if(option !== 'wait') $target.on('load', fitAndCrop);
-		$target.on('resize', fitAndCrop);
-		$target.on('refresh-style', fitAndCrop);
-		if(option !== 'resize') $(window).resize(fitAndCrop);
+			if(option !== 'wait') $target.on('load', fitAndCrop);
+			$target.on('resize', fitAndCrop);
+			$target.on('refresh-style', fitAndCrop);
+			if(option !== 'resize') $(window).resize(fitAndCrop);
 
-		function fitAndCrop(){
-			$target.css({ 'width': '', 'height': '', 'margin-left': '', 'margin-top': '' });
-			var dim = getDim($target), parDim = getDim($target.parent());
-			var width = dim.width, height = dim.height;
-			var wrapWidth = parDim.width, wrapHeight = parDim.height;
-			var ratio = wrapWidth / width;
-			if(height * ratio < wrapHeight){
-				ratio = wrapHeight / height;
-				var nH = height * ratio;
-				var nW = width * ratio;
-				$target.css({ width: nW, height: nH });
-				$target.css({ 'margin-left': (wrapWidth-nW)/2, 'margin-top': 0 });
-			} else {
-				var nH = height * ratio;
-				var nW = width * ratio;
-				$target.css({ width: nW, height: nH });
-				$target.css({ 'margin-top': (wrapHeight-nH)/2, 'margin-left': 0 });
+			function fitAndCrop(){
+				$target.css({ 'width': '', 'height': '', 'margin-left': '', 'margin-top': '' });
+				var dim = getDim($target), parDim = getDim($target.parent());
+				var width = dim.width, height = dim.height;
+				var wrapWidth = parDim.width, wrapHeight = parDim.height;
+				var ratio = wrapWidth / width;
+				if(height * ratio < wrapHeight){
+					ratio = wrapHeight / height;
+					var nH = height * ratio;
+					var nW = width * ratio;
+					$target.css({ width: nW, height: nH });
+					$target.css({ 'margin-left': (wrapWidth-nW)/2, 'margin-top': 0 });
+				} else {
+					var nH = height * ratio;
+					var nW = width * ratio;
+					$target.css({ width: nW, height: nH });
+					$target.css({ 'margin-top': (wrapHeight-nH)/2, 'margin-left': 0 });
+				}
 			}
 		}
-	}}
+	}
 	var getDimFuncs = {
 		clientrect: function($obj){
 			return $obj[0].getBoundingClientRect();

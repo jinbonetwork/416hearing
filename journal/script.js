@@ -95,6 +95,7 @@ var sJournal;
 			} else {
 				this.deactivate();
 			}
+			this.Root.find(".gallery").fancybox({ padding: 0 });
 			this.Root.find('.medium img').extraStyle({ fitted: 'yes' }, '', 'outerrect');
 		},
 

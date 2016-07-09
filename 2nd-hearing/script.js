@@ -202,6 +202,8 @@ var sHearing2;
 				}); */
 			}); // on:append-section
 
+			this.Root.find(".gallery").fancybox({ padding: 0 });
+
 			jQuery(window).resize(function(){
 				var $absMediaWrap = self.Root.find('.sections section.open-inner-page .abstract-media-wrap');
 				if($absMediaWrap.length){

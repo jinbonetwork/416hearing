@@ -126,6 +126,7 @@ var sHearing1;
 
 			//이미지 크롭 ////
 			this.Root.find('.medium img').extraStyle({ fitted: 'yes' }, 'wait');
+			this.Root.find(".gallery").fancybox({ padding: 0 });
 
 			// 의혹 페이지로 이동 ////
 			this.Root.find('.outline li').click(function() {
