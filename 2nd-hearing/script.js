@@ -3,7 +3,7 @@ var sHearing2;
 
 (function($){
 
-	'use strict';
+	//'use strict';
 
 	function SewolHearing2(element,options) {
 		this.Root = jQuery( element );

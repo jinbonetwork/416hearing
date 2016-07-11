@@ -1,7 +1,7 @@
 var _ = require('../contrib/underscore/underscore-min.js');
 (function ($) {
 
-	'use strict';
+	//'use strict';
 
 	function SewolWitnesses(element,options) {
 		var self = this;
@@ -47,7 +47,7 @@ var _ = require('../contrib/underscore/underscore-min.js');
 			if(typeof json.descript !== 'undefined' && json.descript) {
 				description = json.descript;
 			}
-	
+
 			var profile_markup = "";
 			profile_markup = this.witnessesProfileTpl({
 				photo: photo,
@@ -56,7 +56,7 @@ var _ = require('../contrib/underscore/underscore-min.js');
 				positions: position,
 				description: description
 			});
-	
+
 			var suspicions_markup = "";
 			if(typeof json.suspicions !== 'undefined' && json.suspicions.length > 0) {
 				var suspicions_item_markup = "";
@@ -83,7 +83,7 @@ var _ = require('../contrib/underscore/underscore-min.js');
 					cardlist: card_item_markup
 				});
 			}
-		
+
 			var timeline_markup = '';
 			if(typeof json.timeline !== 'undefined' && json.timeline.length > 0) {
 				var timeline_item_markup = '';
@@ -97,14 +97,14 @@ var _ = require('../contrib/underscore/underscore-min.js');
 					timeline: timeline_item_markup
 				});
 			}
-	
+
 			var markup = this.witnessesTpl({
 				profile: profile_markup,
 				suspicions: suspicions_markup,
 				cards: card_markup,
 				timeline: timeline_markup
 			});
-	
+
 			return markup;
 		},
 
