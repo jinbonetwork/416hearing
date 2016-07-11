@@ -4,3 +4,9 @@
 [submodule "spectrum"]
     path = contrib/spectrum
 	url = https://github.com/bgrins/spectrum.git
+[submodule "jquery-browser-plugin"]
+	path = contrib/jquery-browser-plugin
+	url = https://github.com/gabceb/jquery-browser-plugin.git
+[submodule "jquery-disablescroll"]
+	path = contrib/jquery-disablescroll
+	url = https://github.com/ultrapasty/jquery-disablescroll.git
