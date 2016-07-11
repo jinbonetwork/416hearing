@@ -97,7 +97,7 @@ var sHearing2;
 				columns: '1 2',
 				ratio: 'auto',
 				gutter: '0 ='
-			}, 'computed');
+			});
 			jQuery(window).trigger('es-setScrollbarEvent');
 
 			// 첫 페이지의 기울어진 경계선을 위한 ////
@@ -133,35 +133,36 @@ var sHearing2;
 			}
 
 			this.Root.on('append-section', function(event, index){
-				self.Root.find('#suspicion-'+index).addClass('visited-page').append( self.makeHtml(index-1, self.suspicions[index-1]) );
+				var $susp = self.Root.find('#suspicion-'+index);
+				$susp.addClass('visited-page').append( self.makeHtml(index-1, self.suspicions[index-1]) );
 				// 데이터가 없는 요소를 숨기거나 삭제 ////
-				self.Root.find('#suspicion-'+index).find('.etc').each(function(){
+				$susp.find('.etc').each(function(){
 					if(jQuery(this).find('.links.num-0').length)
 						jQuery(this).hide();
 				});
-				self.Root.find('#suspicion-'+index).find('.witness-photo').each(function() {
+				$susp.find('.witness-photo').each(function() {
 					if( !jQuery(this).attr('data-name') )
 						jQuery(this).closest('.answer').hide();
 				});
 				// 첫 페이지로 이동 ////
-				self.Root.find('#suspicion-'+index).find('.go-back-outline').click(function() {
+				$susp.find('.go-back-outline').click(function() {
 					var num = jQuery(this).parents('section').attr('id').replace(/suspicion\-/, '');
 					self.closePage(num);
 					self.Root.find('.outline .header iframe').attr('src', self.Root.find('.outline .header .video-wrap').attr('data-src'));
 				});
 				//증인 정보 표시 ////
-				self.Root.find('#suspicion-'+index).find('.witness-photo').sewolwitnesses({
+				$susp.find('.witness-photo').sewolwitnesses({
 					component: self
 				});
 				// 반응형 처리 ////
 				var bpOfAbstract = '1024 1680';
-				self.Root.find('#suspicion-'+index).find('.abstract .list p').respStyle({
+				$susp.find('.abstract .list p').respStyle({
 					breakpoint: bpOfAbstract,
 					'padding-top': '0 72 max',
 					'padding-left': '15 72 max'
 				});
 				// 스크롤 효과 ////
-				self.Root.find('#suspicion-'+index).scrEffectOfBgcolor({
+				$susp.scrEffectOfBgcolor({
 					background: '#1a1a1a #ffffff',
 					option: 'wait',
 					after: function($contain, bgcolor, bgcIndex){
@@ -170,38 +171,32 @@ var sHearing2;
 					}
 				});
 				// '주요 내용'의 이미지를 슬라이드로 ////
-				self.Root.find('#suspicion-'+index).find('.abstract-media').slideshow({
+				$susp.find('.abstract-media').slideshow({
 					ratio: 35/43,
 					gutter: '0'
 				});
-				self.Root.find('#suspicion-'+index).find('.audio-gallery').fancybox({
+				$susp.find('.audio-gallery').fancybox({
 					padding: 0,
 					afterLoad: function(current, previous){
-						var audioUrl = self.Root.find('#suspicion-'+index).find('.audio-gallery').eq(current.index).find('img').attr('data-audio-url');
+						var audioUrl = $susp.find('.audio-gallery').eq(current.index).find('img').attr('data-audio-url');
 						$(current.inner).append('<audio controls><source src="'+audioUrl+'" type="audio/mpeg"></audio>');
 					}
 				});
 				// 스크롤 스냅 ////
-				self.Root.find('#suspicion-'+index).find('.suspicion-header, .content .abstract ul.list > li').addClass('refresh').paddingHeightAuto({
+				$susp.find('.suspicion-header, .content .abstract ul.list > li').addClass('refresh').paddingHeightAuto({
 					active: 1024
 				});
-				self.Root.find('#suspicion-'+index).scrollSnap({
+
+				$susp.scrollSnap({
 					region: '.suspicion-header, .content .abstract ul.list > li',
 					active: 1024
 				});
+
 				// 슬라이드의 이미지가 아닌 그 밖의 이미지에 대해 크롭 ////
-				self.Root.find('#suspicion-'+index).find('.medium img').extraStyle({ fitted: 'yes' });
+				$susp.find('.medium img').extraStyle({ fitted: 'yes' });
 			}); // on:append-section
 
 			this.Root.find(".gallery").fancybox({ padding: 0 });
-
-			jQuery(window).resize(function(){
-				var $absMediaWrap = self.Root.find('.sections section.open-inner-page .abstract-media-wrap');
-				if($absMediaWrap.length){
-					var amwWidth = $absMediaWrap.width();
-					$absMediaWrap.find('.ps-current li > a > img').outerHeight(amwWidth * 35/43);
-				}
-			});
 
 			if(this.controller.section) {
 				this.openPage(this.controller.section);
@@ -471,7 +466,7 @@ var sHearing2;
 		var DoScrDiableUse = ( $.browser.mozilla ? false : true );
 		var preScrTop = 0;
 		var winHeight = $(window).height();
-		$(window).resize(function(){ winHeight = $(window).height(); });
+		$(window).resize(function(){ winHeight = $(window).height(); console.log(winHeight); });
 
 		if(DoScrDiableUse) $container.disablescroll({ handleScrollbar: false });
 		$container.on('mousewheel', function(event){
