@@ -6,7 +6,6 @@ var sHearing2;
 	'use strict';
 
 	function SewolHearing2(element,options) {
-		var self = this;
 		this.Root = jQuery( element );
 
 		this.settings = $.extend({}, $.fn.sewolhearing2.defaults, options);
@@ -296,7 +295,6 @@ var sHearing2;
 		},
 
 		htmlDialogue: function(dialogue, witData, gallery){
-			var self = this;
 			var html = '';
 			var template = _.template(this.Root.find('#dialogue-template').html());
 			var qa_template = _.template(this.Root.find('#dialogue-qa-template').html());
@@ -347,7 +345,6 @@ var sHearing2;
 		},
 
 		htmlWitnesses: function(witNames, witData){
-			var self = this;
 			if(!witNames.length) return '';
 			var html = '';
 			var template = _.template(this.Root.find('#witnesses-template').html())
@@ -426,7 +423,6 @@ var sHearing2;
 		},
 
 		deactivate: function() {
-			var self = this;
 			this.Root.find('.open-inner-page').trigger('deactivate-scroll-effect');
 		},
 

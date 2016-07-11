@@ -6,7 +6,6 @@ var sHearing1;
 	'use strict';
 
 	function SewolHearing1(element,options) {
-		var self = this;
 		this.Root = jQuery( element );
 
 		this.settings = $.extend({}, $.fn.sewolhearing1.defaults, options);

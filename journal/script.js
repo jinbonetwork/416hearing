@@ -6,7 +6,6 @@ var sJournal;
 	'use strict';
 
 	function SewolJournal(element,options) {
-		var self = this;
 		this.Root = jQuery( element );
 
 		this.settings = $.extend({}, $.fn.sewoljournal.defaults, options);
