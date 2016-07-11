@@ -134,7 +134,7 @@ var sHearing2;
 			}
 
 			this.Root.on('append-section', function(event, index){
-				self.Root.find('#suspicion-'+index).append( self.makeHtml(index-1, self.suspicions[index-1]) );
+				self.Root.find('#suspicion-'+index).addClass('visited-page').append( self.makeHtml(index-1, self.suspicions[index-1]) );
 				// 데이터가 없는 요소를 숨기거나 삭제 ////
 				self.Root.find('#suspicion-'+index).find('.etc').each(function(){
 					if(jQuery(this).find('.links.num-0').length)
@@ -148,7 +148,6 @@ var sHearing2;
 				self.Root.find('#suspicion-'+index).find('.go-back-outline').click(function() {
 					var num = jQuery(this).parents('section').attr('id').replace(/suspicion\-/, '');
 					self.closePage(num);
-//					self.Root.find('.outline .header iframe').attr('src', self.Root.find('.outline .header .video-wrap').attr('data-src')+'&autoplay=1');
 					self.Root.find('.outline .header iframe').attr('src', self.Root.find('.outline .header .video-wrap').attr('data-src'));
 				});
 				//증인 정보 표시 ////
@@ -179,27 +178,20 @@ var sHearing2;
 				self.Root.find('#suspicion-'+index).find('.audio-gallery').fancybox({
 					padding: 0,
 					afterLoad: function(current, previous){
-						if(previous){
-							var $audio = self.Root.find('#suspicion-'+index).find('.audio-gallery').eq(previous.index).find('audio');
-							$audio.get(0).pause();
-							$audio.get(0).currentTime = 0;
-						}
-						self.Root.find('#suspicion-'+index).find('.audio-gallery').eq(current.index).find('audio').get(0).play();
-					},
-					afterClose: function(){
-						var $audio = self.Root.find('#suspicion-'+index).find('.audio-gallery').eq(this.index).find('audio');
-						$audio.get(0).pause();
-						$audio.get(0).currentTime = 0;
+						var audioUrl = self.Root.find('#suspicion-'+index).find('.audio-gallery').eq(current.index).find('img').attr('data-audio-url');
+						$(current.inner).append('<audio controls><source src="'+audioUrl+'" type="audio/mpeg"></audio>');
 					}
 				});
-				// ////
-				self.Root.find('#suspicion-'+index).addClass('visited-page');
-				self.Root.find('#suspicion-'+index).find('.medium img').extraStyle({ fitted: 'yes' });
 				// 스크롤 스냅 ////
-/*				self.Root.find('#suspicion-'+index).scrollSnap({
-					section: '.content .abstract ul.list > li, .content .dialogue',
+				self.Root.find('#suspicion-'+index).find('.suspicion-header, .content .abstract ul.list > li').addClass('refresh').paddingHeightAuto({
 					active: 1024
-				}); */
+				});
+				self.Root.find('#suspicion-'+index).scrollSnap({
+					region: '.suspicion-header, .content .abstract ul.list > li',
+					active: 1024
+				});
+				// 슬라이드의 이미지가 아닌 그 밖의 이미지에 대해 크롭 ////
+				self.Root.find('#suspicion-'+index).find('.medium img').extraStyle({ fitted: 'yes' });
 			}); // on:append-section
 
 			this.Root.find(".gallery").fancybox({ padding: 0 });
@@ -209,7 +201,6 @@ var sHearing2;
 				if($absMediaWrap.length){
 					var amwWidth = $absMediaWrap.width();
 					$absMediaWrap.find('.ps-current li > a > img').outerHeight(amwWidth * 35/43);
-					$absMediaWrap.find('.play-icon i').css('font-size', amwWidth * 35/43 * 0.2);
 				}
 			});
 
@@ -430,28 +421,13 @@ var sHearing2;
 
 		_activate: function() {
 			var $openPage = this.Root.find('.open-inner-page');
-			if($openPage.hasClass('outline')) {
-				if($openPage.hasClass('visited') == false) {
-					$openPage.addClass('visited');
-					this.playOutlineVideo(false);
-				}
-			}
 			$openPage.trigger('activate-scroll-effect');
 			$openPage.find('.refresh').trigger('refresh');
 		},
 
 		deactivate: function() {
 			var self = this;
-
 			this.Root.find('.open-inner-page').trigger('deactivate-scroll-effect');
-			if(this.Root.find('.outline.open-inner-page').length) this.playOutlineVideo(false);
-		},
-
-		playOutlineVideo(play) {
-			var $openPage = this.Root.find('.outline.open-inner-page');
-			var src = $openPage.find('.header .video-wrap').attr('data-src');
-			if(play) src += '&autoplay=1';
-			$openPage.find('.header iframe').attr('src', src);
 		},
 
 		parseUrlHash: function() {
@@ -472,38 +448,80 @@ var sHearing2;
 		}
 	};
 
-	$.fn.scrollSnap = function(arg){
-		if(arg === undefined) arg = {};
-		if(arg.section === undefined) arg.section = 'div';
+	$.fn.paddingHeightAuto = function(arg){ if($.browser.desktop){
+		if(arg === undefined) arg = { active: 0 };
+		$(this).each(function(){
+			var $target = $(this);
+			paddingHeightAuto($target);
+			$(window).resize(function(){ paddingHeightAuto($target); });
+			$target.on('refresh', function(){ paddingHeightAuto($target); });
+		});
+		function paddingHeightAuto($target){ if($target.is(':visible') && window.innerWidth >= arg.active){
+			$target.css({ height: '', 'padding-top': '', 'padding-bottom': '', 'margin-top': 0, 'margin-bottom': 0 });
+			var padding = ($(window).height() - $target.height()) / 2;
+			$target.css({ 'padding-top': padding, 'padding-bottom': padding });
+			$target.outerHeight($(window).height());
+		} else if(window.innerWidth < arg.active){
+			$target.css({ height: '', 'padding-top': '', 'padding-bottom': '', 'margin-top': '', 'margin-bottom': '' });
+		}}
+	}}
+
+	$.fn.scrollSnap = function(arg){ if($.browser.desktop){
+		if(arg === undefined) arg = { active: 0 };
 		if(arg.active === undefined) arg.active = 0;
-		var $container = jQuery(this);
-		if($container.length == 0){
-			console.error('ERROR: .scrollSanp()');
-			return;
-		}
+		var $container = $(this); if($container.length == 0){ console.error('ERROR: .scrollSanp()'); return; }
 		var isSnapping = false;
+		var isScrollDisable = true;
+		var DoScrDiableUse = ( $.browser.mozilla ? false : true );
 		var preScrTop = 0;
-		var scrDir = 'down';
-		$container.scroll(function(event){ if(window.innerWidth >= arg.active){
-			if(isSnapping){
-				event.preventDefault();
-			} else {
-				var scrTop = $container.scrollTop();
-				if(preScrTop < scrTop) scrDir = 'down'; else scrDir = 'up';
-				preScrTop = scrTop;
-				var $sections = $container.find(arg.section);
-				for(var index = 0, len = $sections.length; index < len; index++){
-					var top = $sections.eq(index).offset().top;
-					if(scrDir === 'down' && index === 0 && 0 < top && top < jQuery(window).height()/20){
-						isSnapping = true; break;
-					} else if(scrDir === 'down' && $sections.eq(index-1).offset().top < -5 && 0 < top){
-						isSnapping = true; break;
+		var winHeight = $(window).height();
+		$(window).resize(function(){ winHeight = $(window).height(); });
+
+		if(DoScrDiableUse) $container.disablescroll({ handleScrollbar: false });
+		$container.on('mousewheel', function(event){
+			snapping(event.originalEvent.wheelDelta);
+		});
+		$container.scroll(function(event){
+			var scrTop = $container.scrollTop();
+			snapping(preScrTop - scrTop);
+			preScrTop = scrTop;
+		});
+		function snapping(delta){ if($container.is(':visible') && isSnapping === false && window.innerWidth >= arg.active){
+			var scrTop = $container.scrollTop();
+			if(arg.region){
+				var totHeight = 0;
+				$container.find(arg.region).each(function(){ totHeight += $(this).outerHeight(); });
+				if(scrTop >= totHeight){
+					if(isScrollDisable){
+						isScrollDisable = false;
+						if(DoScrDiableUse) $container.disablescroll('undo');
 					}
+					return;
 				}
-				if(isSnapping) $container.animate({ scrollTop: (scrTop+top) }, 600, 'easeOutBounce', function(){ isSnapping = false; });
+				else if(scrTop < totHeight && isScrollDisable === false){
+					isScrollDisable = true;
+					scrTop = Math.ceil(scrTop / winHeight) * winHeight;
+					if(DoScrDiableUse) $container.disablescroll();
+				}
 			}
-		}});
-	}
+			var newScrTop = ( delta < 0 ? (Math.round(scrTop / winHeight) + 1) * winHeight : (Math.round(scrTop / winHeight) - 1) * winHeight );
+			if(newScrTop < 0) return;
+			isSnapping = true;
+			$container.animate({ scrollTop: newScrTop },{
+				duration: 500,
+				complete: function(){
+					setTimeout(function(){ isSnapping = false; }, 100);
+				},
+				fail: function(){
+					$container.scrollTop(newScrTop);
+					setTimeout(function(){ isSnapping = false; }, 100);
+				}
+			});
+		} else if(window.innerWidth < arg.active){
+			isScrollDisable = false;
+			if(DoScrDiableUse) $container.disablescroll('undo');
+		}}//snapping()
+	}}//$.fn.scrollSnap()
 
 	$.fn.slideshow = function(arg){
 		if(arg === undefined) arg = {};
@@ -513,20 +531,19 @@ var sHearing2;
 		if(arg.bgcolor === undefined) arg.bgcolor = '#4d4d4d';
 		if(arg.captbgcolor === undefined) arg.captbgcolor = '#4d4d4d';
 
-		jQuery(this).each(function(){
-			slideshow(jQuery(this));
+		$(this).each(function(){
+			slideshow($(this));
 		});
 
 		function slideshow($contain){
 			var containRatio = arg.ratio;
 			var index = 0;
 			var $sections = $contain.children(arg.section);
-			var $mainWrap = jQuery('<div class="slideshow-wrap"></div>').appendTo($contain).append($sections);
-			var $leftWrap = jQuery('<div class="left"><div class="prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></div></div>').insertBefore($mainWrap);
-			var $rightWrap = jQuery('<div class="right"><div class="next"><i class="fa fa-chevron-right" aria-hidden="true"></i></div></div').insertAfter($mainWrap);
+			var $mainWrap = $('<div class="slideshow-wrap"></div>').appendTo($contain).append($sections);
+			var $leftWrap = $('<div class="left"><div class="prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></div></div>').insertBefore($mainWrap);
+			var $rightWrap = $('<div class="right"><div class="next"><i class="fa fa-chevron-right" aria-hidden="true"></i></div></div').insertAfter($mainWrap);
 
-			$contain.css({ height: $contain.width() * arg.ratio, overflow: 'hidden', position: 'relative' });
-			$contain.css({ overflow: 'hidden', position: 'relative' });
+			$contain.css({ height: $contain.width() * containRatio, overflow: 'hidden', position: 'relative' });
 			$leftWrap.css({ width: arg.gutter, height: '100%', float: 'left' });
 			$rightWrap.css({ width: arg.gutter, height: '100%', float: 'left' });
 			var mainWidth = $contain.width() - $leftWrap.width() - $rightWrap.width() - 1;
@@ -539,24 +556,29 @@ var sHearing2;
 				afterLoad: function(){
 					var maxHeight = 0;
 					$sections.find('img').each(function(){
-						if(jQuery(this).height() > maxHeight)
-							maxHeight = jQuery(this).height() ;
+						if($(this).height() > maxHeight) maxHeight = $(this).height() ;
 					});
 					if($contain.height() > maxHeight){
 						$contain.css({ height: maxHeight });
 						$sections.find('img').trigger('refresh-image-fit');
 						containRatio = maxHeight / $contain.width();
+						$sections.find('.play-icon').each(function(){
+							$(this).children('i').css({ 'font-size': $(this).height() });
+						});
+						$sections.trigger('refresh');
 					}
 				}
 			});
-			$sections.find('img').each(function(){
-				if(jQuery(this).attr('alt')){
-					var $caption = jQuery('<div class="caption"><span>'+jQuery(this).attr('alt')+'</span></div>').insertAfter(jQuery(this));
-					$caption.css({ position: 'absolute', bottom: 0, left: 0, width: '100%', height: 'auto', opacity: 0.7, 'background-color': arg.captbgcolor });
-					$caption.find('span').css({ 'padding-left': '1em', 'line-height': '2em' });
-				}
-			});
+			// 캡션 ////
+			$sections.find('img').each(function(){ if($(this).attr('alt')){
+				var $caption = $('<div class="caption"><span>'+$(this).attr('alt')+'</span></div>').insertAfter($(this));
+				$caption.css({
+					position: 'absolute', bottom: 0, left: 0, width: '100%', height: 'auto', opacity: 0.7, 'background-color': arg.captbgcolor,
+					padding: '0.5em 1em'
+				});
+			}});
 
+			// ////
 			if($sections.length > 1){
 				var $prev = $leftWrap.children('.prev'), $next = $rightWrap.children('.next');
 				$prev.css({ position: 'absolute', 'z-index': '10', height: '10%', width: 'auto', top: '45%', left: 0, cursor: 'pointer' });
@@ -583,12 +605,16 @@ var sHearing2;
 			}
 
 			$contain.on('refresh-slideshow', refresh);
-			jQuery(window).resize(refresh);
+			$(window).resize(refresh);
 			function refresh(){ if($contain.is(':visible')){
 				$contain.css({ height: $contain.width()*containRatio });
 				$mainWrap.css({ width: $contain.width() - $leftWrap.width() - $rightWrap.width() - 1 });
 				$sections.find('img').trigger('refresh-image-fit');
 				$sections.not(':eq('+index+')').css({ left: $contain.width() });
+				$sections.find('.play-icon').each(function(){
+					$(this).children('i').css({ 'font-size': $(this).height() });
+				});
+				$sections.trigger('refresh');
 			}}
 		}//slideshow
 	}

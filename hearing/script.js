@@ -2,7 +2,7 @@ var _ = require('../contrib/underscore/underscore-min.js');
 var sHearing1;
 
 (function($){
-	
+
 	'use strict';
 
 	function SewolHearing1(element,options) {
@@ -125,7 +125,9 @@ var sHearing1;
 			this.Root.find('section').trigger('deactivate-scroll-effect');
 
 			//이미지 크롭 ////
-			this.Root.find('.medium img').extraStyle({ fitted: 'yes' }, 'wait');
+			this.Root.find('.medium img').extraStyle({ fitted: 'yes' });
+
+			//팬시박스 설정 ////
 			this.Root.find(".gallery").fancybox({ padding: 0 });
 
 			// 의혹 페이지로 이동 ////

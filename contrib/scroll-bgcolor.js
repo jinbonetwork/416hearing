@@ -13,9 +13,6 @@
 			contain.changeColorFirst(arg);
 			contain.$wrapper.on('scroll', function(){
 				var scrtop = contain.$self.scrollTop();
-				//if(scrtop > contain.scrtop) contain.scrdir = 1;
-				//else if(scrtop < contain.scrtop) contain.scrdir = -1;
-				//else contain.scrdir = 0;
 				contain.scrdir = scrtop - contain.scrtop;
 				contain.scrtop = scrtop;
 				if(contain.active) contain.changeColor(arg);
@@ -72,7 +69,10 @@
 		if(contain.index !== index || force){
 			if(arg.before) arg.before(contain.$self, arg.background[contain.index], contain.index);
 			contain.index = index;
-			contain.$self.stop().animate({'background-color': arg.background[index]}, arg.transition);
+			contain.$self.animate(
+				{'background-color': arg.background[index]},
+				{ duration: arg.transition, queue: 'animate-scroll-bgcolor' }
+			).dequeue('animate-scroll-bgcolor');
 			if(arg.after) arg.after(contain.$self, arg.background[index], index);
 		}
 	}}
