@@ -184,12 +184,12 @@ var sHearing2;
 				});
 				// 스크롤 스냅 ////
 				$susp.find('.suspicion-header, .content .abstract ul.list > li').addClass('refresh').paddingHeightAuto({
-					active: 1024
+					active: { width: 1024, height: 700 }
 				});
 
 				$susp.scrollSnap({
 					region: '.suspicion-header, .content .abstract ul.list > li',
-					active: 1024
+					active: { width: 1024, height: 700 }
 				});
 
 				// 슬라이드의 이미지가 아닌 그 밖의 이미지에 대해 크롭 ////
@@ -440,33 +440,36 @@ var sHearing2;
 	};
 
 	$.fn.paddingHeightAuto = function(arg){ if($.browser.desktop){
-		if(arg === undefined) arg = { active: 0 };
+		if(arg === undefined) arg = { active: { width: 0, height: 0 } };
+		if(arg.active === undefined) arg.active = { width: 0, height: 0 };
 		$(this).each(function(){
 			var $target = $(this);
 			paddingHeightAuto($target);
 			$(window).resize(function(){ paddingHeightAuto($target); });
 			$target.on('refresh', function(){ paddingHeightAuto($target); });
 		});
-		function paddingHeightAuto($target){ if($target.is(':visible') && window.innerWidth >= arg.active){
-			$target.css({ height: '', 'padding-top': '', 'padding-bottom': '', 'margin-top': 0, 'margin-bottom': 0 });
-			var padding = ($(window).height() - $target.height()) / 2;
-			$target.css({ 'padding-top': padding, 'padding-bottom': padding });
-			$target.outerHeight($(window).height());
-		} else if(window.innerWidth < arg.active){
-			$target.css({ height: '', 'padding-top': '', 'padding-bottom': '', 'margin-top': '', 'margin-bottom': '' });
+		function paddingHeightAuto($target){ if($target.is(':visible')){
+			if(window.innerWidth >= arg.active.width && window.innerHeight >= arg.active.height){
+				$target.css({ height: '', 'padding-top': '', 'padding-bottom': '', 'margin-top': 0, 'margin-bottom': 0 });
+				var padding = ($(window).height() - $target.height()) / 2;
+				$target.css({ 'padding-top': padding, 'padding-bottom': padding });
+				$target.outerHeight($(window).height());
+			} else {
+				$target.css({ height: '', 'padding-top': '', 'padding-bottom': '', 'margin-top': '', 'margin-bottom': '' });
+			}
 		}}
 	}}
 
 	$.fn.scrollSnap = function(arg){ if($.browser.desktop){
-		if(arg === undefined) arg = { active: 0 };
-		if(arg.active === undefined) arg.active = 0;
+		if(arg === undefined) arg = { active: { width: 0, height: 0 } };
+		if(arg.active === undefined) arg.active = { width: 0, height: 0 };
 		var $container = $(this); if($container.length == 0){ console.error('ERROR: .scrollSanp()'); return; }
 		var isSnapping = false;
 		var isScrollDisable = true;
 		var DoScrDiableUse = ( $.browser.mozilla ? false : true );
 		var preScrTop = 0;
 		var winHeight = $(window).height();
-		$(window).resize(function(){ winHeight = $(window).height(); console.log(winHeight); });
+		$(window).resize(function(){ winHeight = $(window).height(); });
 
 		if(DoScrDiableUse) $container.disablescroll({ handleScrollbar: false });
 		$container.on('mousewheel', function(event){
@@ -477,40 +480,42 @@ var sHearing2;
 			snapping(preScrTop - scrTop);
 			preScrTop = scrTop;
 		});
-		function snapping(delta){ if($container.is(':visible') && isSnapping === false && window.innerWidth >= arg.active){
-			var scrTop = $container.scrollTop();
-			if(arg.region){
-				var totHeight = 0;
-				$container.find(arg.region).each(function(){ totHeight += $(this).outerHeight(); });
-				if(scrTop >= totHeight){
-					if(isScrollDisable){
-						isScrollDisable = false;
-						if(DoScrDiableUse) $container.disablescroll('undo');
+		function snapping(delta){ if($container.is(':visible') && isSnapping === false){
+			if(window.innerWidth >= arg.active.width && window.innerHeight >= arg.active.height){
+				var scrTop = $container.scrollTop();
+				if(arg.region){
+					var totHeight = 0;
+					$container.find(arg.region).each(function(){ totHeight += $(this).outerHeight(); });
+					if(scrTop >= totHeight){
+						if(isScrollDisable){
+							isScrollDisable = false;
+							if(DoScrDiableUse) $container.disablescroll('undo');
+						}
+						return;
 					}
-					return;
+					else if(scrTop < totHeight && isScrollDisable === false){
+						isScrollDisable = true;
+						scrTop = Math.ceil(scrTop / winHeight) * winHeight;
+						if(DoScrDiableUse) $container.disablescroll();
+					}
 				}
-				else if(scrTop < totHeight && isScrollDisable === false){
-					isScrollDisable = true;
-					scrTop = Math.ceil(scrTop / winHeight) * winHeight;
-					if(DoScrDiableUse) $container.disablescroll();
-				}
+				var newScrTop = ( delta < 0 ? (Math.round(scrTop / winHeight) + 1) * winHeight : (Math.round(scrTop / winHeight) - 1) * winHeight );
+				if(newScrTop < 0) return;
+				isSnapping = true;
+				$container.animate({ scrollTop: newScrTop },{
+					duration: 500,
+					complete: function(){
+						setTimeout(function(){ isSnapping = false; }, 100);
+					},
+					fail: function(){
+						$container.scrollTop(newScrTop);
+						setTimeout(function(){ isSnapping = false; }, 100);
+					}
+				});
+			} else {
+				isScrollDisable = false;
+				if(DoScrDiableUse) $container.disablescroll('undo');
 			}
-			var newScrTop = ( delta < 0 ? (Math.round(scrTop / winHeight) + 1) * winHeight : (Math.round(scrTop / winHeight) - 1) * winHeight );
-			if(newScrTop < 0) return;
-			isSnapping = true;
-			$container.animate({ scrollTop: newScrTop },{
-				duration: 500,
-				complete: function(){
-					setTimeout(function(){ isSnapping = false; }, 100);
-				},
-				fail: function(){
-					$container.scrollTop(newScrTop);
-					setTimeout(function(){ isSnapping = false; }, 100);
-				}
-			});
-		} else if(window.innerWidth < arg.active){
-			isScrollDisable = false;
-			if(DoScrDiableUse) $container.disablescroll('undo');
 		}}//snapping()
 	}}//$.fn.scrollSnap()
 
