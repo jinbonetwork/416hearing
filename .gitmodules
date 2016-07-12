@@ -7,6 +7,3 @@
 [submodule "jquery-browser-plugin"]
 	path = contrib/jquery-browser-plugin
 	url = https://github.com/gabceb/jquery-browser-plugin.git
-[submodule "jquery-disablescroll"]
-	path = contrib/jquery-disablescroll
-	url = https://github.com/ultrapasty/jquery-disablescroll.git

@@ -32,7 +32,6 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<script src="contrib/fancybox/2.1.5/source/jquery.fancybox.pack.js"></script>
 	<script src="./contrib/pgwslideshow/pgwslideshow.min.js"></script>
 	<script src="contrib/jquery-browser-plugin/dist/jquery.browser.min.js"></script>
-	<script src="contrib/jquery-disablescroll/jquery.disablescroll.min.js"></script>
 <?php if(defined("__EDIT_MODE__") && __EDIT_MODE__ == true) {?>
 	<script src="contrib/medium-editor/dist/js/medium-editor.min.js"></script>
 	<script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>

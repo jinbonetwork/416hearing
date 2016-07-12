@@ -27,8 +27,6 @@ var sHearing2;
 
 		this.controller = this.parseUrlHash();
 
-		this.featuredVideo = undefined;
-
 		this.init();
 	}
 
@@ -71,7 +69,6 @@ var sHearing2;
 			this.Root.find('.outline .video-wrap').extraStyle({
 				ratio: (360/640)
 			});
-			//this.Root.find('.header iframe').attr('src', self.Root.find('.header .video-wrap').attr('data-src'));
 			// 첫 페이지 반응형 처리////
 			var outlineBreakPoint = '320 1024';
 			this.Root.find('.outline > .header .title-part-1 span').respStyle({
@@ -128,6 +125,7 @@ var sHearing2;
 			// 의혹 페이지로 이동 ////
 			this.Root.find('.outline li').click(function() {
 				self.openPage(jQuery(this).attr('data-num'));
+				// 첫페이지 비디오 정지 ////
 				self.Root.find('.outline .header #hearing2-video').get(0).contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
 			});
 
@@ -469,14 +467,19 @@ var sHearing2;
 		var $container = $(this); if($container.length == 0){ console.error('ERROR: .scrollSanp()'); return; }
 		var isSnapping = false;
 		var isScrollDisable = true;
-		var DoScrDiableUse = ( $.browser.mozilla ? false : true );
+		var doScrDiableUse = ( $.browser.mozilla ? false : true );
 		var preScrTop = 0;
 		var winHeight = $(window).height();
 		$(window).resize(function(){ winHeight = $(window).height(); });
 
-		if(DoScrDiableUse) $container.disablescroll({ handleScrollbar: false });
 		$container.on('mousewheel', function(event){
 			snapping(event.originalEvent.wheelDelta);
+			if(isScrollDisable) event.preventDefault();
+		});
+		$(window).keydown(function(event){
+			if(event.keyCode === 33 || event.keyCode === 38) snapping(1);
+			else if(event.keyCode === 34 || event.keyCode === 40) snapping(-1);
+			if(isScrollDisable) event.preventDefault();
 		});
 		$container.scroll(function(event){
 			var scrTop = $container.scrollTop();
@@ -490,16 +493,12 @@ var sHearing2;
 					var totHeight = 0;
 					$container.find(arg.region).each(function(){ totHeight += $(this).outerHeight(); });
 					if(scrTop >= totHeight){
-						if(isScrollDisable){
-							isScrollDisable = false;
-							if(DoScrDiableUse) $container.disablescroll('undo');
-						}
+						if(isScrollDisable) isScrollDisable = false;
 						return;
 					}
 					else if(scrTop < totHeight && isScrollDisable === false){
 						isScrollDisable = true;
 						scrTop = Math.ceil(scrTop / winHeight) * winHeight;
-						if(DoScrDiableUse) $container.disablescroll();
 					}
 				}
 				var newScrTop = ( delta < 0 ? (Math.round(scrTop / winHeight) + 1) * winHeight : (Math.round(scrTop / winHeight) - 1) * winHeight );
@@ -517,7 +516,6 @@ var sHearing2;
 				});
 			} else {
 				isScrollDisable = false;
-				if(DoScrDiableUse) $container.disablescroll('undo');
 			}
 		}}//snapping()
 	}}//$.fn.scrollSnap()
