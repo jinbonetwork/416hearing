@@ -71,6 +71,33 @@ var sJournal;
 		initEvent: function() {
 			var self = this;
 
+			this.Root.find('section.title').respStyle({
+				breakpoint: '320 1440',
+				'padding-top': '30 200 max',
+				'padding-bottom': '30 200 max'
+			});
+			this.Root.find('section.title .maintitle p').respStyle({
+				breakpoint: '320 1440',
+				'font-size': '3.2 9.6 em max'
+			});
+			this.Root.find('section.title .subtitle span').respStyle({
+				breakpoint: '320 1440',
+				'font-size': '1.3 3.9 em max'
+			});
+			this.Root.find('section:nth-of-type(n+2)').respStyle({
+				breakpoint: '560 1440',
+				'padding-right': '160 565 max'
+			});
+			this.Root.find('.sect-name span').respStyle({
+				breakpoint: '560 1440',
+				width: '128.6 454.15 max',
+				'font-size': '25.72 90.83 max'
+			});
+			this.Root.find('.sect-name').respStyle({
+				breakpoint: '560 1440',
+				'margin-left': '17.23 60.84 max'
+			});
+
 			this.Root.scrEffectOfTitle({
 				title: '.sect-name',
 				position: 'right',
@@ -132,8 +159,8 @@ var sJournal;
 			jQuery.data(this,'handler',sewoljournal);
 		});
 	};
-})(jQuery);
 
-jQuery(document).ready(function() {
-	sJournal = jQuery('#page-journal').sewoljournal();
-});
+	jQuery(document).ready(function() {
+		sJournal = jQuery('#page-journal').sewoljournal();
+	});
+})(jQuery);

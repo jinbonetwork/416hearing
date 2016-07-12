@@ -22,7 +22,6 @@
 		.section(@color, #7657c5);
 	}
 	section.title {
-		padding: 8% 8% 20% 8%;
 		font-family: @font-noto;
 		font-weight: @font-weight;
 		text-align: center;
@@ -40,7 +39,6 @@
 		}
 		.maintitle {
 			p {
-				font-size: 3.2em;
 				line-height: 1em;
 				&:first-child {
 					transform: skewX(30deg);
@@ -54,7 +52,6 @@
 		}
 		.subtitle {
 			span {
-				font-size: 1.5em;
 				line-height: 1em;
 				color: #6d92c4;
 			}
@@ -67,14 +64,6 @@
 
 @media screen and (min-width: 425px) {
 	#page-journal {
-		section.title {
-			.maintitle p {
-				font-size: 3.8em; //헤더
-			}
-			.subtitle span {
-				font-size: 2.4em; //헤더 부제
-			}
-		}
 		section:nth-of-type(n) article .media .medium > .wrapper a {
 			span.icon {
 				margin: -1.5em 0 0 -1.5em;
@@ -88,24 +77,11 @@
 		.media-num(4px);
 	}
 }
-@media screen and (max-width: 559px) {
-	#page-journal {
-		section:nth-of-type(n+2) {
-			.sect-name {
-				/*
-				position: absolute;
-				top: 0;
-				right: 0;
-				*/
-			}
-		}
-	}
-}
 @media screen and (min-width: 560px) {
 	#page-journal {
 		font-size: @font-size-w; //설명문
 		section:nth-of-type(n+2) {
-			padding: 0 9.5em 0 70px;
+			padding: 0 9.6em 0 80px;
 			.sect-name {
 				top: 0;
 				right: 0;
@@ -115,14 +91,6 @@
 }
 @media screen and (min-width: 768px) {
 	#page-journal {
-		section.title {
-			.maintitle p {
-				font-size: 7em; //헤더
-			}
-			.subtitle span {
-				font-size: 3em; //헤더 부제
-			}
-		}
 		section:nth-of-type(n+2) {
 			padding-right: 200px;
 			.sect-name {
@@ -140,17 +108,7 @@
 }
 @media screen and (min-width: 1024px) {
 	#page-journal {
-		section.title {
-			.maintitle p {
-				font-size: 8em; //헤더
-			}
-			.subtitle span {
-				font-size: 4em; //헤더 부제
-			}
-		}
 		section:nth-of-type(n+2) {
-			padding-left: 80px;
-			padding-right: 21em;
 			.sect-name {
 				font-size: 3em; //챕터 제목
 			}
@@ -165,16 +123,7 @@
 
 @media screen and (min-width: 1280px) {
 	#page-journal {
-		section.title {
-			.maintitle p {
-				font-size: 9.6em; //헤더
-			}
-			.subtitle span {
-				font-size: 4.8em; //헤더 부제
-			}
-		}
 		section:nth-of-type(n+2) {
-			padding-right: 27em;
 			.sect-name {
 				font-size: 4.24em; //챕터 제목
 			}
@@ -192,36 +141,15 @@
 	}
 }
 
-/*
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1440px) {
 	#page-journal {
-		section.title {
-			.maintitle p {
-				font-size: 9.6em; //헤더
-			}
-			.subtitle span {
-				font-size: 4.8em; //헤더 부제
-			}
-		}
 		section:nth-of-type(n+2) {
-			padding-right: 27em;
-			.sect-name {
-				font-size: 4.24em; //챕터 제목
-			}
-			article {
-				margin-top: 2em;
-				& > .date {
-					float: left;
-					padding-bottom: 0.5em;
-				}
-				& > .wrapper {
-					padding-left: 8.8em;
-				}
-			}
+			max-width: 1440px;
+			margin-left: auto;
+			margin-right: auto;
 		}
 	}
 }
-*/
 
 .section(@color-main, @color-extra) {
 	color: @color-main;

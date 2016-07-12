@@ -167,7 +167,8 @@
 		this.findBp(bp);
 		for(var prop in data){
 			if(!this.isNotNumProp(prop)){
-				style[prop] = this.calc(data[prop], bp) + data[prop].unit;
+				var value = this.calc(data[prop], bp);
+				style[prop] = ( value !== undefined ? value + data[prop].unit : '' );
 			} else {
 				style[prop] = this.pick(data[prop].series, bp);
 			}
@@ -183,7 +184,7 @@
 	}
 	Style.prototype.pick = function(series, bp){
 		if(bp.bpi >= 0) return series[bp.bpi];
-		else if(bp.bpi == -1) return series[0];
+		else if(bp.bpi == -1) return '';
 		else if(bp.bpi == -2) return series[bp.bp.length-1];
 	}
 	Style.prototype.calc = function(propOfData, this_bp){
@@ -193,7 +194,7 @@
 		if(bpi >= 0){
 			i = bpi;
 		} else if(bpi === -1){
-			return series[0];
+			return undefined;
 		} else if(bpi === -2){
 			if(max){
 				if(func !== 'saw') return series[len-1];

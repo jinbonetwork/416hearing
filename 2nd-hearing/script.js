@@ -156,9 +156,8 @@ var sHearing2;
 					component: self
 				});
 				// 반응형 처리 ////
-				var bpOfAbstract = '1024 1680';
 				$susp.find('.abstract .list p').respStyle({
-					breakpoint: bpOfAbstract,
+					breakpoint: '1024 1680',
 					'padding-top': '0 72 max',
 					'padding-left': '15 72 max'
 				});
@@ -467,7 +466,6 @@ var sHearing2;
 		var $container = $(this); if($container.length == 0){ console.error('ERROR: .scrollSanp()'); return; }
 		var isSnapping = false;
 		var isScrollDisable = true;
-		var doScrDiableUse = ( $.browser.mozilla ? false : true );
 		var preScrTop = 0;
 		var winHeight = $(window).height();
 		$(window).resize(function(){ winHeight = $(window).height(); });
@@ -476,11 +474,12 @@ var sHearing2;
 			snapping(event.originalEvent.wheelDelta);
 			if(isScrollDisable) event.preventDefault();
 		});
-		$(window).keydown(function(event){
+		$(window).keydown(function(event){ if($container.is(':visible')){
 			if(event.keyCode === 33 || event.keyCode === 38) snapping(1);
 			else if(event.keyCode === 34 || event.keyCode === 40) snapping(-1);
+			console.log(isScrollDisable);
 			if(isScrollDisable) event.preventDefault();
-		});
+		}});
 		$container.scroll(function(event){
 			var scrTop = $container.scrollTop();
 			snapping(preScrTop - scrTop);
