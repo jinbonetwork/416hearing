@@ -162,6 +162,7 @@
 		}
 	}
 }
+
 @media screen and (min-width: 1280px) {
 	#page-journal {
 		section.title {
@@ -190,20 +191,37 @@
 		}
 	}
 }
-@media screen and (min-width: 1680px) {
+
+/*
+@media screen and (min-width: 1280px) {
 	#page-journal {
 		section.title {
+			.maintitle p {
+				font-size: 9.6em; //헤더
+			}
+			.subtitle span {
+				font-size: 4.8em; //헤더 부제
+			}
 		}
 		section:nth-of-type(n+2) {
+			padding-right: 27em;
+			.sect-name {
+				font-size: 4.24em; //챕터 제목
+			}
 			article {
-				& > .wrapper .media {
-					max-width: none;
+				margin-top: 2em;
+				& > .date {
+					float: left;
+					padding-bottom: 0.5em;
+				}
+				& > .wrapper {
+					padding-left: 8.8em;
 				}
 			}
 		}
-		.media-num-vw(7px);
 	}
 }
+*/
 
 .section(@color-main, @color-extra) {
 	color: @color-main;

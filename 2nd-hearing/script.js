@@ -26,6 +26,9 @@ var sHearing2;
 		this.Gnavi = jQuery('.pages-stack');
 
 		this.controller = this.parseUrlHash();
+
+		this.featuredVideo = undefined;
+
 		this.init();
 	}
 
@@ -68,7 +71,7 @@ var sHearing2;
 			this.Root.find('.outline .video-wrap').extraStyle({
 				ratio: (360/640)
 			});
-			this.Root.find('.header iframe').attr('src', self.Root.find('.header .video-wrap').attr('data-src'));
+			//this.Root.find('.header iframe').attr('src', self.Root.find('.header .video-wrap').attr('data-src'));
 			// 첫 페이지 반응형 처리////
 			var outlineBreakPoint = '320 1024';
 			this.Root.find('.outline > .header .title-part-1 span').respStyle({
@@ -125,7 +128,7 @@ var sHearing2;
 			// 의혹 페이지로 이동 ////
 			this.Root.find('.outline li').click(function() {
 				self.openPage(jQuery(this).attr('data-num'));
-				self.Root.find('.outline .header iframe').attr('src', self.Root.find('.outline .header .video-wrap').attr('data-src'));
+				self.Root.find('.outline .header #hearing2-video').get(0).contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
 			});
 
 			if(this.Gnavi !== 'undefined' && !this.Gnavi.hasClass('pages-stack--open')) {
@@ -679,8 +682,8 @@ var sHearing2;
 			jQuery.data(this,'handler',sewolhearing2);
 		});
 	};
-})(jQuery);
 
-jQuery(document).ready(function() {
-	sHearing2 = jQuery('#page-2nd-hearing').sewolhearing2();
-});
+	jQuery(document).ready(function() {
+		sHearing2 = jQuery('#page-2nd-hearing').sewolhearing2();
+	});
+})(jQuery);
