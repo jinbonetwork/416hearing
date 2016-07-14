@@ -12,10 +12,10 @@
 
 	'use strict';
 
-	var support = { transitions: Modernizr.csstransitions },
+	var support = { transitions: ModernizrPsn.csstransitions },
 		// transition end event name
 		transEndEventNames = { 'WebkitTransition': 'webkitTransitionEnd', 'MozTransition': 'transitionend', 'OTransition': 'oTransitionEnd', 'msTransition': 'MSTransitionEnd', 'transition': 'transitionend' },
-		transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
+		transEndEventName = transEndEventNames[ ModernizrPsn.prefixed( 'transition' ) ],
 		onEndTransition = function( el, callback ) {
 			var onEndCallbackFn = function( ev ) {
 				if( support.transitions ) {

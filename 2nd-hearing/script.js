@@ -186,14 +186,21 @@ var sHearing2;
 				$susp.find('.suspicion-header, .content .abstract ul.list > li').addClass('refresh').paddingHeightAuto({
 					active: { width: 1024, height: 700 }
 				});
-
 				$susp.scrollSnap({
 					region: '.suspicion-header, .content .abstract ul.list > li',
 					active: { width: 1024, height: 700 }
 				});
-
-				// 슬라이드의 이미지가 아닌 그 밖의 이미지에 대해 크롭 ////
+				// 증인 이미지를 회색톤으로 ////
+				$susp.find('.witness-photo > .photo-wrap img').addClass('grayscale').gray();
+				// 슬라이드의 이미지가 아닌 그 밖의 이미지를 회색톤 & hover effect & 크롭 ////
 				$susp.find('.medium img').extraStyle({ fitted: 'yes' });
+				$susp.find('.medium img').addClass('grayscale grayscale-fade').gray();
+				/*
+				$susp.find('.medium .grayscale').hover(
+					function(){ $(this).addClass('grayscale-off'); },
+					function(){ $(this).removeClass('grayscale-off'); }
+				);
+				*/
 			}); // on:append-section
 
 			this.Root.find(".gallery").fancybox({ padding: 0 });

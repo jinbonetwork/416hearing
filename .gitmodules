@@ -7,3 +7,6 @@
 [submodule "jquery-browser-plugin"]
 	path = contrib/jquery-browser-plugin
 	url = https://github.com/gabceb/jquery-browser-plugin.git
+[submodule "gray"]
+	path = contrib/gray
+	url = https://github.com/karlhorky/gray.git
