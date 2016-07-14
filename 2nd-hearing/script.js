@@ -195,12 +195,6 @@ var sHearing2;
 				// 슬라이드의 이미지가 아닌 그 밖의 이미지를 회색톤 & hover effect & 크롭 ////
 				$susp.find('.medium img').extraStyle({ fitted: 'yes' });
 				$susp.find('.medium img').addClass('grayscale grayscale-fade').gray();
-				/*
-				$susp.find('.medium .grayscale').hover(
-					function(){ $(this).addClass('grayscale-off'); },
-					function(){ $(this).removeClass('grayscale-off'); }
-				);
-				*/
 			}); // on:append-section
 
 			this.Root.find(".gallery").fancybox({ padding: 0 });

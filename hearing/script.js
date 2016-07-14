@@ -123,8 +123,10 @@ var sHearing1;
 			}
 			this.Root.find('section').trigger('deactivate-scroll-effect');
 
-			//이미지 크롭 ////
+			//이미지 회색톤 및 크롭 ////
+			this.Root.find('.witness-photo > .photo-wrap img').addClass('grayscale').gray();
 			this.Root.find('.medium img').extraStyle({ fitted: 'yes' });
+			this.Root.find('.medium img').addClass('grayscale grayscale-fade').gray();
 
 			//팬시박스 설정 ////
 			this.Root.find(".gallery").fancybox({ padding: 0 });

@@ -376,14 +376,10 @@
 					width: 100%; height: 100%;
 					overflow: hidden;
 					background-color: #808080;
-					img {
-						filter: grayscale(100%); -webkit-filter: grayscale(100%);
-						transition: 2s filter ease-in-out; -webkit-transition: 2s -webkit-filter ease-in-out;
+					.grayscale {
+						transition: 2s ease-in-out !important;
 					}
 					a {
-						&:active, &:hover {
-							img { filter: grayscale(0); -webkit-filter: grayscale(0); }
-						}
 						display: block;
 						width: 100%;
 						height: 100%;
@@ -413,15 +409,17 @@
 		}// .media
 		.witness-photo {
 			display: inline-block;
+			max-width: 78px;
 			.photo-wrap {
 				width: 4em; height: 4em;
+				margin-left: auto; margin-right: auto;
 				border-radius: 4em;
 				border: solid 2px #808080;
 				overflow: hidden;
 				cursor: pointer;
-				img {
+				mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+				img, canvas {
 					width: 125%; margin: 0 0 0 -0.3em; //이 값들은 실제 사진을 가지고 조절한다.
-					filter: grayscale(100%); -webkit-filter: grayscale(100%);
 				}
 			}
 			span {
