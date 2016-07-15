@@ -18,12 +18,14 @@
 				if(contain.active) contain.changeColor(arg);
 			});
 			$(window).resize(function(){ if(contain.active){ contain.changeColor(arg, 'force'); }});
-			contain.$self.on('refresh-scroll-effect', function(){ if(contain.active){ contain.changeColor(arg, 'force'); } });
-			contain.$self.on('activate-scroll-effect', function(){
+			contain.$self.on('refresh', function(){ if(contain.active){
+				contain.changeColor(arg, 'force'); }
+			});
+			contain.$self.on('activate', function(){
 				contain.active = true;
 				contain.changeColor(arg, 'force');
 			});
-			contain.$self.on('deactivate-scroll-effect', function(){
+			contain.$self.on('deactivate', function(){
 				contain.active = false;
 			});
 		});

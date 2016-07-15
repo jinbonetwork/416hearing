@@ -242,12 +242,16 @@
 					width: 100%; height: 100%;
 					overflow: hidden;
 					background-color: @color;
-					.grayscale {
-						transition: 2s ease-in-out;
+					img {
+						filter: grayscale(100%); -webkit-filter: grayscale(100%);
+						transition: 2s filter ease-in-out; -webkit-transition: 2s -webkit-filter ease-in-out;
 					}
 					a {
 						&:link, &:active, &:visited, &:hover {
 							color: @color-extra;
+						}
+						&:active, &:hover {
+							img { filter: grayscale(0); -webkit-filter: grayscale(0); }
 						}
 						display: block;
 						width: 100%;

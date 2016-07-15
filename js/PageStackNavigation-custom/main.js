@@ -169,6 +169,8 @@
 			page.style.WebkitTransform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)'; // -200px, -230px, -260px
 			page.style.transform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)';
 		}
+
+		if($(pages[current]).data('handler')) $(pages[current]).data('handler').deactivate();
 	}
 
 	// closes the menu
@@ -208,21 +210,11 @@
 			// reorganize stack
 			buildStack();
 			isMenuOpen = false;
-		});
-		if(id) {
-			var handler = jQuery('#'+id).data('handler');
-			if(typeof(handler) === 'undefined') {
-				var intv = setInterval(function() {
-					handler = jQuery('#'+id).data('handler');
-					if(handler !== 'undefined') {
-						clearInterval(intv);
-						handler.activate();
-					}
-				}, 100);
-			} else {
-				handler.activate();
+			var $openPage = id ? jQuery('#'+id) : jQuery(pages[current]);
+			if($openPage.data('handler')){
+				$openPage.data('handler').activate();
 			}
-		}
+		});
 	}
 
 	// gets the current stack pages indexes. If any of them is the excludePage then this one is not part of the returned array

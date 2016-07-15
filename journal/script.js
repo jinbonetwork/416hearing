@@ -97,7 +97,6 @@ var sJournal;
 				breakpoint: '560 1440',
 				'margin-left': '17.23 60.84 max'
 			});
-
 			this.Root.scrEffectOfTitle({
 				title: '.sect-name',
 				position: 'right',
@@ -108,7 +107,6 @@ var sJournal;
 			this.Root.scrEffectOfBgcolor({
 				background: '#ffffff #ffffff #1a1a1a #f2f2f2 #1a1a1a #dfe5ea',
 				section: 'section',
-				option: 'wait',
 				after: function($contain, bgcolor, bgcIndex){
 					var colors = ['#4d4d4d', '#6d92c4', '#0be4db', '#97d5ac', '#ffb0a9', '#7657c5'];
 					$('button.menu-button i').stop().animate({'color': colors[bgcIndex]}, 1000);
@@ -116,14 +114,10 @@ var sJournal;
 					self.changeTextColor(bgcIndex);
 				}
 			});
-			if(!this.Gnavi.hasClass('pages-stack--open')) {
-				this._activate();
-			} else {
-				this.deactivate();
-			}
+
 			this.Root.find(".gallery").fancybox({ padding: 0 });
 			this.Root.find('.medium img').extraStyle({ fitted: 'yes' }, '', 'outerrect');
-			this.Root.find('.medium img').addClass('grayscale grayscale-fade').gray();
+			//this.Root.find('.medium img').addClass('grayscale grayscale-fade').gray();
 		},
 
 		changeTextColor: function(index){
@@ -135,23 +129,13 @@ var sJournal;
 			}
 		},
 
-		activate: function() {
-			var self = this;
-			var intv = setInterval(function(){
-				if(!self.Gnavi.hasClass('pages-stack--open')){
-					clearInterval(intv);
-					self._activate();
-				}
-			}, 200);
+		activate: function(){
+			this.Root.trigger('activate');
 		},
 
-		_activate: function() {
-			this.Root.trigger('activate-scroll-effect');
+		deactivate: function(){
+			this.Root.trigger('deactivate');
 		},
-
-		deactivate: function() {
-			this.Root.trigger('deactivate-scroll-effect');
-		}
 	};
 
 	jQuery.fn.sewoljournal = function(options) {

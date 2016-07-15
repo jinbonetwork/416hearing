@@ -1,9 +1,8 @@
 (function($){
 	$.fn.extraStyle = function(arg, option, getDimOption){
-		var self = this;
-		var target = this.selector;
-		if($(target).length) extraStyle(this, arg, option, getDimOption);
-		else $(document).ready(function(){ extraStyle(self, arg, option, getDimOption); });
+		var target = this;
+		if($(target).length) extraStyle(target, arg, option, getDimOption);
+		else $(document).ready(function(){ extraStyle(target.selector, arg, option, getDimOption); });
 	}
 	function extraStyle(target, arg, option, getDimOption){
 		if(target && arg){
@@ -22,12 +21,12 @@
 		setResize($target, $target, 'width', option, getDim);
 		if(option !== 'wait') setHeight();
 		$target.on('resize', setHeight);
-		$target.on('refresh-style', setHeight);
+		$target.on('refresh', setHeight);
 		if(option !== 'resize') $(window).resize(setHeight);
 
-		function setHeight(){
+		function setHeight(){ if($target.is(':visible')){
 			$target.outerHeight(getDim($target).width * value);
-		}
+		}}
 	}
 	function fitted($target, value, option, getDim){
 		if($target.is('img') && value === 'yes') {
@@ -37,10 +36,10 @@
 
 			if(option !== 'wait') $target.on('load', fitAndCrop);
 			$target.on('resize', fitAndCrop);
-			$target.on('refresh-style', fitAndCrop);
+			$target.on('refresh', fitAndCrop);
 			if(option !== 'resize') $(window).resize(fitAndCrop);
 
-			function fitAndCrop(){
+			function fitAndCrop(){ if($target.is(':visible')){
 				$target.css({ 'width': '', 'height': '', 'margin-left': '', 'margin-top': '' });
 				var dim = getDim($target), parDim = getDim($target.parent());
 				var width = dim.width, height = dim.height;
@@ -58,7 +57,7 @@
 					$target.css({ width: nW, height: nH });
 					$target.css({ 'margin-top': (wrapHeight-nH)/2, 'margin-left': 0 });
 				}
-			}
+			}}
 		}
 	}
 	var getDimFuncs = {

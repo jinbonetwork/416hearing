@@ -11,7 +11,6 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width,user-scalable=0,initial-scale=1">
 	<title>세월호 청문회</title>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="contrib/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/PageStackNavigation-custom/demo.css" />
 	<link rel="stylesheet" type="text/css" href="css/PageStackNavigation-custom/component.css" />

@@ -6,7 +6,7 @@ var sHearing1;
 	//'use strict';
 
 	function SewolHearing1(element,options) {
-		this.Root = $( element );
+		this.Root = jQuery( element );
 
 		this.settings = $.extend({}, $.fn.sewolhearing1.defaults, options);
 
@@ -15,10 +15,9 @@ var sHearing1;
 		this.witnesses = undefined;
 		this.partMap = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2];
 
+		this.Gnavi = jQuery('.pages-stack');
+
 		this.controller = this.parseUrlHash();
-
-		this.navigation = undefined;
-
 		this.init();
 	}
 
@@ -27,7 +26,7 @@ var sHearing1;
 			var self = this;
 
 			var params = { data: 'hearing' };
-			$.ajax({
+			jQuery.ajax({
 				url: './api.php',
 				data: params,
 				dataType: 'json',
@@ -47,65 +46,52 @@ var sHearing1;
 		initMarkup: function() {
 			var self = this;
 
-			if(this.parts && this.suspicions && this.witnesses) {
+			if(this.parts !== undefined && this.suspicions !== undefined && this.witnesses !== undefined) {
 				this.Root.find('.outline .content').append(self.htmlOutline());
+				var navigation = this.htmlNavigation();
+				for(var i = 0, leni = this.suspicions.length; i < leni; i++) {
+					this.Root.find('.sections').append(self.makeHtml(i, self.suspicions[i], navigation));
+				}
 			}
-			for(var i = 1, leni = this.partMap.length; i <= leni; i++){
-				this.Root.find('.sections').append('<section id="suspicion-'+i+'" class="inner-page"></section>');
-			}
-
-			this.navigation = this.htmlNavigation();
 		},
 
 		initEvent: function() {
 			var self = this;
 
+			if(this.parts === undefined || this.suspicions === undefined || this.witnesses === undefined) {
+				return;
+			}
+			this.Root.find('.etc').each(function() {
+				if( jQuery(this).find('.media.size-0').length && jQuery(this).find('.links.num-0').length )
+					jQuery(this).hide();
+			});
+			this.Root.find('.witness-photo').each(function() {
+				if(!jQuery(this).attr('data-name')) jQuery(this).closest('.answer').hide();
+			});
+
 			//첫 페이지 의혹 리스트의 파트를 위한 그리드 ////
-			this.Root.find('.outline .content').addClass('refreshable').respGrid({
+			this.Root.find('.outline .content').respGrid({
 				breakpoint: '320 560 768 1024 1280',
 				columns: '1 1 2 3 3',
 				ratio: 'auto',
 				gutter: '10 - - - 40'
 			}, 'computed');
-			$(window).trigger('es-setScrollbarEvent');
+			jQuery(window).trigger('es-setScrollbarEvent');
 
 			//스크롤 효과 ////
-			this.Root.find('.outline').addClass('activatable').scrEffectOfBgcolor({
+			this.Root.find('.outline').scrEffectOfBgcolor({
 				background: '#ffffff #1a1a1a',
+				option: 'wait',
 				after: function($contain, bgcolor, bgcIndex) {
 					var colors = ['#1a1a1a', '#ffffff'];
-					$('button.menu-button i').stop().animate({ color: colors[bgcIndex] }, 1000);
+					jQuery('button.menu-button i').stop().animate({ color: colors[bgcIndex] }, 1000);
 					self.Root.find('.outline .header .title-part-2 span').css('color', colors[bgcIndex]);
 					self.Root.find('.outline .content').find('.item span, .title span.main').css('color', colors[bgcIndex]);
 				}
 			});
-
-			// 의혹 페이지로 이동 ////
-			this.Root.find('.outline li').click(function() {
-				self.movePage(0, $(this).attr('data-num'));
-			});
-
-			// ////
-			if(this.controller.section) {
-				this.movePage(0, this.controller.section);
-			}
-		},
-
-		appendSection: function(index){
-			var self = this;
-			var $susp = self.Root.find('#suspicion-'+index);
-			$susp.addClass('visited-page').append(self.makeHtml(index-1, self.suspicions[index-1], this.navigation));
-
-			$susp.find('.etc').each(function() {
-				if( $(this).find('.media.size-0').length && $(this).find('.links.num-0').length )
-					$(this).hide();
-			});
-			$susp.find('.witness-photo').each(function() {
-				if(!$(this).attr('data-name')) $(this).closest('.answer').hide();
-			});
-
-			$susp.addClass('refreshable activatable').scrEffectOfBgcolor({
+			this.Root.find('.sections section').scrEffectOfBgcolor({
 				background: '#1a1a1a #ffffff',
+				option: 'wait',
 				after: function($contain, bgcolor, bgcIndex){
 					var colors = ['#ffffff', '#1a1a1a'];
 					$('button.menu-button i').stop().animate({color: colors[bgcIndex]}, 1000);
@@ -113,7 +99,7 @@ var sHearing1;
 					else $contain.find('.background > p, .title-wrapper > span').css('color', '');
 				}
 			});
-			$susp.scrEffectOfTitle({
+			this.Root.find('.sections section').scrEffectOfTitle({
 				title: '.fixed-element',
 				position: 'right',
 				option: 'wait',
@@ -130,68 +116,105 @@ var sHearing1;
 					}
 				}
 			});
+			if(!this.Gnavi.hasClass('pages-stack--open')){
+				this._activate();
+			} else {
+				this.deactivate();
+			}
+			this.Root.find('section').trigger('deactivate-scroll-effect');
 
 			//이미지 회색톤 및 크롭 ////
-			$susp.find('.witness-photo > .photo-wrap img').addClass('grayscale').gray();
-			$susp.find('.medium img').addClass('refreshable').extraStyle({ fitted: 'yes' });
-			//$susp.find('.medium img').addClass('grayscale grayscale-fade').gray();
+			this.Root.find('.witness-photo > .photo-wrap img').addClass('grayscale').gray();
+			this.Root.find('.medium img').extraStyle({ fitted: 'yes' });
+			this.Root.find('.medium img').addClass('grayscale grayscale-fade').gray();
 
 			//팬시박스 설정 ////
-			$susp.find(".gallery").fancybox({ padding: 0 });
+			this.Root.find(".gallery").fancybox({ padding: 0 });
 
-			$susp.find('.go-back-outline').click(function(){
-				var num = $(this).parents('section').attr('id').replace(/suspicion\-/, '');
-				//self.closePage(num);
-				self.movePage(num, 0);
+			// 의혹 페이지로 이동 ////
+			this.Root.find('.outline li').click(function() {
+				self.openPage(jQuery(this).attr('data-num'));
+			});
+			this.Root.find('.go-back-outline').click(function(){
+				var num = jQuery(this).parents('section').attr('id').replace(/suspicion\-/, '');
+				self.closePage(num);
 			});
 
 			// 네비게이션 동작 ////
-			$susp.find('.navigation .header').click(function() {
-				if($(this).parents('.part').hasClass('folded')){
-					$(this).parents('.navigation').find('.part:not(.folded)').addClass('folded').children('ul').animate({height: 0}, 500);
-					$(this).parents('.part').removeClass('folded');
-					var height = $(this).siblings('ul').css('height', '').height();
-					$(this).siblings('ul').height(0);
-					$(this).siblings('ul').stop().animate({height: height}, 500);
+			this.Root.find('.navigation .header').click(function() {
+				if(jQuery(this).parents('.part').hasClass('folded')){
+					jQuery(this).parents('.navigation').find('.part:not(.folded)').addClass('folded').children('ul').animate({height: 0}, 500);
+					jQuery(this).parents('.part').removeClass('folded');
+					var height = jQuery(this).siblings('ul').css('height', '').height();
+					jQuery(this).siblings('ul').height(0);
+					jQuery(this).siblings('ul').stop().animate({height: height}, 500);
 				} else {
-					$(this).parents('.part').addClass('folded');
-					$(this).siblings('ul').stop().animate({height: 0}, 500);
+					jQuery(this).parents('.part').addClass('folded');
+					jQuery(this).siblings('ul').stop().animate({height: 0}, 500);
 				}
 			});
-			$susp.find('.navigation li').click(function() {
-				var pastNum = $(this).parents('.navigation').find('.selected').find('.num').text();
-				//self.closeAndOpenPage( pastNum, $(this).find('.num').text() );
-				self.movePage( pastNum, $(this).find('.num').text() );
+			this.Root.find('.navigation li').click(function() {
+				var pastNum = jQuery(this).parents('.navigation').find('.selected').find('.num').text();
+				self.closeAndOpenPage( pastNum, jQuery(this).find('.num').text() );
 			});
 
 			//증인 정보 표시 ////
-			$susp.find('.witness-photo').sewolwitnesses({
+			this.Root.find('.witness-photo').sewolwitnesses({
 				component: self
+			});
+
+			if(this.controller.section) {
+				this.openPage(this.controller.section);
+			}
+		},
+
+		openPage: function(pageNum){
+			this.Root.find('.outline').removeClass('open-inner-page').trigger('deactivate-scroll-effect');
+			this.openAndActivatePage(pageNum);
+			this.unfoldNavi(pageNum);
+		},
+
+		closePage: function(pageNum) {
+			this.Root.find('#suspicion-'+pageNum).removeClass('open-inner-page').trigger('deactivate-scroll-effect');
+			this.foldNavi(pageNum);
+			this.Root.find('.outline').addClass('open-inner-page').trigger('activate-scroll-effect');
+			this.Root.find('.outline .content').trigger('refresh-grid');
+		},
+
+		closeAndOpenPage: function(pastNum, curNum) {
+			this.Root.find('#suspicion-'+pastNum).removeClass('open-inner-page').trigger('deactivate-scroll-effect');
+			this.openAndActivatePage(curNum)
+			this.unfoldNavi(curNum);
+		},
+
+		openAndActivatePage: function(pageNum) {
+			this.Root.find('#suspicion-'+pageNum).addClass('open-inner-page').trigger('activate-scroll-effect');
+			if(!this.Root.find('#suspicion-'+pageNum).hasClass('visited-page')){
+				this.Root.find('#suspicion-'+pageNum).addClass('visited-page');
+				this.Root.find('#suspicion-'+pageNum+' .medium img').trigger('refresh-style');
+			} else {
+				this.Root.find('#suspicion-'+pageNum).scrollTop(0);
+			}
+		},
+
+		unfoldNavi: function(pageNum) {
+			this.Root.find('#suspicion-'+pageNum).find('.navigation').each(function() {
+				jQuery(this).find('li').each(function(){
+					if( jQuery(this).find('.num').text() == pageNum ) {
+						jQuery(this).addClass('selected');
+						jQuery(this).parents('.part').removeClass('folded');
+						return false;
+					}
+				});
 			});
 		},
 
-		movePage: function(nFrom, nTo){
-			var $from = ( nFrom == 0 ? this.Root.find('.outline') : this.Root.find('#suspicion-'+nFrom) );
-			var $to = ( nTo == 0 ? this.Root.find('.outline') : this.Root.find('#suspicion-'+nTo) );
-
-			//이전 페이지 닫기 ///
-			$from.removeClass('open-inner-page').trigger('deactivate');
-			if(nFrom > 0){
-				$from.find('.navigation .selected').removeClass('selected').parents('.part').addClass('folded');
-			}
-
-			// 현재 페이지 열기 ////
-			$to.addClass('open-inner-page');
-			if(nTo > 0){
-				if(!$to.hasClass('visited-page')) this.appendSection(nTo);
-				else $to.scrollTop(0);
-			}
-			$to.find('.refreshable').trigger('refresh');
-			$to.trigger('activate');
-			if(nTo > 0){
-				$to.find('.navigation li').eq(nTo-1).addClass('selected').parents('.part').removeClass('folded');
-			}
-		},//movePage
+		foldNavi: function(pageNum) {
+			this.Root.find('#suspicion-'+pageNum).find('.navigation').each(function() {
+				jQuery(this).find('.selected').removeClass('selected');
+				jQuery(this).find('.part').addClass('folded');
+			});
+		},
 
 		htmlOutline: function() {
 			var self = this;
@@ -332,7 +355,7 @@ var sHearing1;
 				if(media[i].url.match(/\.(png|jpg|svg|gif)/)) type = 'image';
 				else if(media[i].url.match(/\.(hwp|pdf|docx)/)) type = 'doc';
 				else type = 'video';
-				var tplMedium = _.template($('#page-journal').find('#'+type+'-template').html());
+				var tplMedium = _.template(jQuery('#page-journal').find('#'+type+'-template').html());
 				var title = media[i].url.replace(/.+\//g, '');
 				html += template({
 					medium: tplMedium({ url: media[i].url, gallery: gallery, title: title }),
@@ -342,15 +365,25 @@ var sHearing1;
 			return html;
 		},
 
-		activate: function(){
-			var $openInnerPage = this.Root.find('.open-inner-page');
-			$openInnerPage.trigger('activate').find('.activatable').trigger('activate');
-			$openInnerPage.find('.refreshable').trigger('refresh');
+		activate: function() {
+			var self = this;
+
+			var $content = this.Root.find('.open-inner-page .content');
+			if(!$content.hasClass('applied-resp-grid')) $content.addClass('applied-resp-grid').trigger('refresh-grid');
+			var intv = setInterval(function(){
+				if(!self.Gnavi.hasClass('pages-stack--open')){
+					clearInterval(intv);
+					self._activate();
+				}
+			}, 200);
 		},
 
-		deactivate: function(){
-			var $openInnerPage = this.Root.find('.open-inner-page');
-			$openInnerPage.trigger('deactivate').find('.activatable').trigger('deactivate');
+		_activate: function() {
+			this.Root.find('.open-inner-page').trigger('activate-scroll-effect');
+		},
+
+		deactivate: function() {
+			this.Root.find('.open-inner-page').trigger('deactivate-scroll-effect');
 		},
 
 		parseUrlHash: function() {
@@ -371,15 +404,14 @@ var sHearing1;
 		}
 	};
 
-	$.fn.sewolhearing1 = function(options) {
+	jQuery.fn.sewolhearing1 = function(options) {
 		return this.each(function() {
-			var sewolhearing1 = new SewolHearing1($(this), options);
-			$.data(this,'handler',sewolhearing1);
+			var sewolhearing1 = new SewolHearing1(jQuery(this), options);
+			jQuery.data(this,'handler',sewolhearing1);
 		});
 	};
-
-	$(document).ready(function() {
-		sHearing1 = $('#page-hearing').sewolhearing1();
-	});
-
 })(jQuery);
+
+jQuery(document).ready(function() {
+	sHearing1 = jQuery('#page-hearing').sewolhearing1();
+});

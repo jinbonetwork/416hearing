@@ -6,7 +6,7 @@ var sHearing2;
 	//'use strict';
 
 	function SewolHearing2(element,options) {
-		this.Root = jQuery( element );
+		this.Root = $( element );
 
 		this.settings = $.extend({}, $.fn.sewolhearing2.defaults, options);
 
@@ -23,8 +23,6 @@ var sHearing2;
 		this.witnesses = undefined;
 		this.partMap = [0, 0, 0, 1, 1, 1];
 
-		this.Gnavi = jQuery('.pages-stack');
-
 		this.controller = this.parseUrlHash();
 
 		this.init();
@@ -35,7 +33,7 @@ var sHearing2;
 			var self = this;
 
 			var params = { data: '2nd_hearing' };
-			jQuery.ajax({
+			$.ajax({
 				url: './api.php',
 				data: params,
 				dataType: 'json',
@@ -66,52 +64,52 @@ var sHearing2;
 		initEvent: function() {
 			var self = this;
 			//첫 페이지 비디오 ////
-			this.Root.find('.outline .video-wrap').extraStyle({
+			this.Root.find('.outline .video-wrap').addClass('refreshable').extraStyle({
 				ratio: (360/640)
 			});
 			// 첫 페이지 반응형 처리////
 			var outlineBreakPoint = '320 1024';
-			this.Root.find('.outline > .header .title-part-1 span').respStyle({
+			this.Root.find('.outline > .header .title-part-1 span').addClass('refreshable').respStyle({
 				'breakpoint': outlineBreakPoint,
 				'font-size': '1 2 em max'
 			});
-			this.Root.find('.outline > .header .title-part-2 span').respStyle({
+			this.Root.find('.outline > .header .title-part-2 span').addClass('refreshable').respStyle({
 				'breakpoint': outlineBreakPoint,
 				'font-size': '3 6 em max'
 			});
-			this.Root.find('.outline > .header .title-part-3 span').respStyle({
+			this.Root.find('.outline > .header .title-part-3 span').addClass('refreshable').respStyle({
 				'breakpoint': outlineBreakPoint,
 				'font-size': '1.2 2.4 em max'
 			});
-			this.Root.find('.outline > .header').respStyle({
+			this.Root.find('.outline > .header').addClass('refreshable').respStyle({
 				'breakpoint': outlineBreakPoint,
 				'padding-top': '3 5 em max',
 				'padding-bottom': '3 5 em max'
 			});
-			this.Root.find('.outline > .header .video-wrap').respStyle({
+			this.Root.find('.outline > .header .video-wrap').addClass('refreshable').respStyle({
 				'breakpoint': outlineBreakPoint,
 				'margin-bottom': '3 7 em max'
 			});
-			this.Root.find('.outline .content').respGrid({
+			this.Root.find('.outline .content').addClass('refreshable').respGrid({
 				breakpoint: '320 768',
 				columns: '1 2',
 				ratio: 'auto',
 				gutter: '0 ='
 			});
-			jQuery(window).trigger('es-setScrollbarEvent');
+			$(window).trigger('es-setScrollbarEvent');
 
 			// 첫 페이지의 기울어진 경계선을 위한 ////
-			this.Root.find('.outline .content .part:eq(0) .tilted-border-line').addClass('refresh').tiltBorderLine();
+			this.Root.find('.outline .content .part:eq(0) .tilted-border-line').addClass('refreshable').tiltBorderLine();
 
 			// 첫 페이지 의혹 제목의 hover 효과를 위한 ////
-			this.Root.find('.outline .content .item .hover-text-wrap').addClass('refresh').sameSizeWithParent('.item-wrap');
+			this.Root.find('.outline .content .item .hover-text-wrap').addClass('refreshable').sameSizeWithParent('.item-wrap');
 
 			//첫 페이지 스크롤 효과 ////
-			this.Root.find('.outline').scrEffectOfBgcolor({
+			this.Root.find('.outline').addClass('activatable').scrEffectOfBgcolor({
 				background: '#ffffff #1a1a1a',
 				after: function($contain, bgcolor, bgcIndex){
 					var colors = ['#1a1a1a', '#ffffff'];
-					jQuery('button.menu-button i').stop().animate({color: colors[bgcIndex]}, 1000);
+					$('button.menu-button i').stop().animate({color: colors[bgcIndex]}, 1000);
 					if(bgcIndex === 0){
 						self.Root.find('.outline .content').find('.item-wrap > span, .title > span').css('color', '#6e6e6e');
 						self.Root.find('.outline .content .tilted-border-line').stop().animate({'border-color': '#6e6e6e'}, 1000);
@@ -121,112 +119,112 @@ var sHearing2;
 					}
 				}
 			});
-			this.Root.find('.outline').trigger('deactivate-scroll-effect');
-			// 의혹 페이지로 이동 ////
-			this.Root.find('.outline li').click(function() {
-				self.openPage(jQuery(this).attr('data-num'));
-				// 첫페이지 비디오 정지 ////
-				self.Root.find('.outline .header #hearing2-video').get(0).contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
-			});
 
-			if(this.Gnavi !== 'undefined' && !this.Gnavi.hasClass('pages-stack--open')) {
-				this._activate();
-			}
-
-			this.Root.on('append-section', function(event, index){
-				var $susp = self.Root.find('#suspicion-'+index);
-				$susp.addClass('visited-page').append( self.makeHtml(index-1, self.suspicions[index-1]) );
-				// 데이터가 없는 요소를 숨기거나 삭제 ////
-				$susp.find('.etc').each(function(){
-					if(jQuery(this).find('.links.num-0').length)
-						jQuery(this).hide();
-				});
-				$susp.find('.witness-photo').each(function() {
-					if( !jQuery(this).attr('data-name') )
-						jQuery(this).closest('.answer').hide();
-				});
-				// 첫 페이지로 이동 ////
-				$susp.find('.go-back-outline').click(function() {
-					var num = jQuery(this).parents('section').attr('id').replace(/suspicion\-/, '');
-					self.closePage(num);
-					self.Root.find('.outline .header iframe').attr('src', self.Root.find('.outline .header .video-wrap').attr('data-src'));
-				});
-				//증인 정보 표시 ////
-				$susp.find('.witness-photo').sewolwitnesses({
-					component: self
-				});
-				// 반응형 처리 ////
-				$susp.find('.abstract .list p').respStyle({
-					breakpoint: '1024 1680',
-					'padding-top': '0 72 max',
-					'padding-left': '15 72 max'
-				});
-				// 스크롤 효과 ////
-				$susp.scrEffectOfBgcolor({
-					background: '#1a1a1a #ffffff',
-					option: 'wait',
-					after: function($contain, bgcolor, bgcIndex){
-						var colors = ['#ffffff', '#1a1a1a'];
-						jQuery('button.menu-button i').stop().animate({color: colors[bgcIndex]}, 1000);
-					}
-				});
-				// '주요 내용'의 이미지를 슬라이드로 ////
-				$susp.find('.abstract-media').slideshow({
-					ratio: 35/43,
-					gutter: '0'
-				});
-				$susp.find('.audio-gallery').fancybox({
-					padding: 0,
-					afterLoad: function(current, previous){
-						var audioUrl = $susp.find('.audio-gallery').eq(current.index).find('img').attr('data-audio-url');
-						$(current.inner).append('<audio controls><source src="'+audioUrl+'" type="audio/mpeg"></audio>');
-					}
-				});
-				// 스크롤 스냅 ////
-				$susp.find('.suspicion-header, .content .abstract ul.list > li').addClass('refresh').paddingHeightAuto({
-					active: { width: 1024, height: 700 }
-				});
-				$susp.scrollSnap({
-					region: '.suspicion-header, .content .abstract ul.list > li',
-					active: { width: 1024, height: 700 }
-				});
-				// 증인 이미지를 회색톤으로 ////
-				$susp.find('.witness-photo > .photo-wrap img').addClass('grayscale').gray();
-				// 슬라이드의 이미지가 아닌 그 밖의 이미지를 회색톤 & hover effect & 크롭 ////
-				$susp.find('.medium img').extraStyle({ fitted: 'yes' });
-				$susp.find('.medium img').addClass('grayscale grayscale-fade').gray();
-			}); // on:append-section
-
+			// 팬시 박스 설정 ////
 			this.Root.find(".gallery").fancybox({ padding: 0 });
 
+			// 의혹 페이지로 이동 ////
+			this.Root.find('.outline li').click(function() {
+				self.movePage(0, $(this).attr('data-num'));
+			});
+
+			// ////
 			if(this.controller.section) {
-				this.openPage(this.controller.section);
+				this.movePage(0, this.controller.section);
 			}
 		},
 
-		openPage: function(pageNum) {
-			this.Root.find('.outline').removeClass('open-inner-page').trigger('deactivate-scroll-effect');
-			this.openAndActivatePage(pageNum);
+		appendSection: function(index){
+			var self = this;
+			var $susp = self.Root.find('#suspicion-'+index);
+			$susp.addClass('visited-page').append( self.makeHtml(index-1, self.suspicions[index-1]) );
+			// 데이터가 없는 요소를 숨기거나 삭제 ////
+			$susp.find('.etc').each(function(){
+				if($(this).find('.links.num-0').length)
+					$(this).hide();
+			});
+			$susp.find('.witness-photo').each(function() {
+				if( !$(this).attr('data-name') )
+					$(this).closest('.answer').hide();
+			});
+			// 첫 페이지로 이동 ////
+			$susp.find('.go-back-outline').click(function() {
+				var num = $(this).parents('section').attr('id').replace(/suspicion\-/, '');
+				self.movePage(num, 0);
+			});
+			//증인 정보 표시 ////
+			$susp.find('.witness-photo').sewolwitnesses({
+				component: self
+			});
+			// 반응형 처리 ////
+			$susp.find('.abstract .list p').addClass('refreshable').respStyle({
+				breakpoint: '1024 1680',
+				'padding-top': '0 72 max',
+				'padding-left': '15 72 max'
+			});
+			// 스크롤 효과 ////
+			$susp.addClass('activatable').scrEffectOfBgcolor({
+				background: '#1a1a1a #ffffff',
+				after: function($contain, bgcolor, bgcIndex){
+					var colors = ['#ffffff', '#1a1a1a'];
+					$('button.menu-button i').stop().animate({color: colors[bgcIndex]}, 1000);
+				}
+			});
+			// '주요 내용'의 이미지를 슬라이드로 ////
+			$susp.find('.abstract-media').addClass('refreshable').slideshow({
+				ratio: 35/43,
+				gutter: '0'
+			});
+			$susp.find('.audio-gallery').fancybox({
+				padding: 0,
+				afterLoad: function(current, previous){
+					var audioUrl = $susp.find('.audio-gallery').eq(current.index).find('img').attr('data-audio-url');
+					$(current.inner).append('<audio controls><source src="'+audioUrl+'" type="audio/mpeg"></audio>');
+				}
+			});
+			// 스크롤 스냅 ////
+			$susp.find('.suspicion-header, .content .abstract ul.list > li').addClass('refreshable').paddingHeightAuto({
+				active: { width: 1024, height: 700 }
+			});
+			$susp.scrollSnap({
+				region: '.suspicion-header, .content .abstract ul.list > li',
+				active: { width: 1024, height: 700 }
+			});
+			// 증인 이미지를 회색톤으로 ////
+			$susp.find('.witness-photo > .photo-wrap img').addClass('grayscale').gray();
+			// 슬라이드의 이미지가 아닌 그 밖의 이미지를 회색톤 & hover effect & 크롭 ////
+			$susp.find('.medium img').addClass('refreshable').extraStyle({ fitted: 'yes' });
+			//$susp.find('.medium img').addClass('grayscale grayscale-fade').gray();
+			// '의혹 전체보기'의 activate/deactivate ////
+			$susp.find('.go-back-outline').addClass('activatable').on('activate', function(){
+				if($(this).css('position') == 'absolute') $(this).css('position', 'fixed');
+			}).on('deactivate', function(){
+				if($(this).css('position') == 'fixed') $(this).css('position', 'absolute');
+			});
 		},
 
-		closePage: function(pageNum) {
-			this.Root.find('#suspicion-'+pageNum).removeClass('open-inner-page').trigger('deactivate-scroll-effect');
-			this.Root.find('.outline').addClass('open-inner-page').trigger('activate-scroll-effect');
-			this.Root.find('.outline .content').trigger('refresh-grid');
-			this.Root.find('.outline .video-wrap').trigger('refresh-style');
-			this.Root.find('.outline').find('.refresh').trigger('refresh');
-		},
+		movePage: function(nFrom, nTo){
+			var $from = ( nFrom == 0 ? this.Root.find('.outline') : this.Root.find('#suspicion-'+nFrom) );
+			var $to = ( nTo == 0 ? this.Root.find('.outline') : this.Root.find('#suspicion-'+nTo) );
 
-		openAndActivatePage: function(pageNum) {
-			this.Root.find('#suspicion-'+pageNum).addClass('open-inner-page');
-			if(!this.Root.find('#suspicion-'+pageNum).hasClass('visited-page')){
-				this.Root.trigger('append-section', pageNum);
+			//이전 페이지 닫기 ///
+			if(nFrom == 0){
+				// 첫 페이지 비디오 재생 중지 ////
+				$from.find('#hearing2-video').get(0).contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
+			}
+			$from.removeClass('open-inner-page');
+			$from.trigger('deactivate').find('.activatable').trigger('deactivate');
+
+			// 현재 페이지 열기 ////
+			$to.addClass('open-inner-page');
+			if($to.hasClass('visited-page')){
+				$to.find('.refreshable').trigger('refresh');
+				$to.trigger('activate').find('.activatable').trigger('activate');
+				$to.scrollTop(0);
 			} else {
-				this.Root.find('#suspicion-'+pageNum).scrollTop(0);
+				this.appendSection(nTo);
 			}
-			this.Root.find('#suspicion-'+pageNum).trigger('activate-scroll-effect');
-			this.Root.find('#suspicion-'+pageNum).find('.abstract-media').trigger('refresh-slideshow');
-		},
+		},//movePage
 
 		htmlOutline: function() {
 			var self = this;
@@ -362,7 +360,7 @@ var sHearing2;
 				if(media[i].url.match(/\.(png|jpg|svg|gif)/)) type = 'image';
 				else if(media[i].url.match(/\.(hwp|pdf|docx)/)) type = 'doc';
 				else type = 'video';
-				var tplMedium = _.template(jQuery('#page-journal').find('#'+type+'-template').html());
+				var tplMedium = _.template($('#page-journal').find('#'+type+'-template').html());
 				html += template({
 					medium: tplMedium({ url: self.g_path[type]+media[i].url, gallery: gallery, title: media[i].url }),
 					caption: media[i].caption
@@ -399,27 +397,15 @@ var sHearing2;
 			}
 		},
 
-		activate: function() {
-			var self = this;
-
-			var $content = this.Root.find('.open-inner-page .content');
-			if(!$content.hasClass('applied-resp-grid')) $content.addClass('applied-resp-grid').trigger('refresh-grid');
-			var intv = setInterval(function(){
-				if(self.Gnavi !== 'undefined' && !self.Gnavi.hasClass('pages-stack--open')) {
-					clearInterval(intv);
-					self._activate();
-				}
-			}, 200);
+		activate: function(){
+			var $openInnerPage = this.Root.find('.open-inner-page');
+			$openInnerPage.trigger('activate').find('.activatable').trigger('activate');
+			$openInnerPage.find('.refreshable').trigger('refresh');
 		},
 
-		_activate: function() {
-			var $openPage = this.Root.find('.open-inner-page');
-			$openPage.trigger('activate-scroll-effect');
-			$openPage.find('.refresh').trigger('refresh');
-		},
-
-		deactivate: function() {
-			this.Root.find('.open-inner-page').trigger('deactivate-scroll-effect');
+		deactivate: function(){
+			var $openInnerPage = this.Root.find('.open-inner-page');
+			$openInnerPage.trigger('deactivate').find('.activatable').trigger('deactivate');
 		},
 
 		parseUrlHash: function() {
@@ -447,6 +433,7 @@ var sHearing2;
 			var $target = $(this);
 			paddingHeightAuto($target);
 			$(window).resize(function(){ paddingHeightAuto($target); });
+			$target.on('paddingHeightAuto refresh', $target.attr('id'), $target.attr('class'));
 			$target.on('refresh', function(){ paddingHeightAuto($target); });
 		});
 		function paddingHeightAuto($target){ if($target.is(':visible')){
@@ -478,7 +465,6 @@ var sHearing2;
 		$(window).keydown(function(event){ if($container.is(':visible')){
 			if(event.keyCode === 33 || event.keyCode === 38) snapping(1);
 			else if(event.keyCode === 34 || event.keyCode === 40) snapping(-1);
-			console.log(isScrollDisable);
 			if(isScrollDisable) event.preventDefault();
 		}});
 		$container.scroll(function(event){
@@ -540,43 +526,64 @@ var sHearing2;
 			var $leftWrap = $('<div class="left"><div class="prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></div></div>').insertBefore($mainWrap);
 			var $rightWrap = $('<div class="right"><div class="next"><i class="fa fa-chevron-right" aria-hidden="true"></i></div></div').insertAfter($mainWrap);
 
-			$contain.css({ height: $contain.width() * containRatio, overflow: 'hidden', position: 'relative' });
-			$leftWrap.css({ width: arg.gutter, height: '100%', float: 'left' });
-			$rightWrap.css({ width: arg.gutter, height: '100%', float: 'left' });
-			var mainWidth = $contain.width() - $leftWrap.width() - $rightWrap.width() - 1;
-			$mainWrap.css({ position: 'relative', width: mainWidth, height: '100%', float: 'left' });
-			$sections.css({ position: 'absolute', top: 0, left: 0, diasplay: 'block',
-				width: '100%', height: '100%', overflow: 'hidden', 'background-color': arg.bgcolor
-			});
-			$sections.children('a').css({ diasplay: 'block', width: '100%', height: '100%', overflow: 'hidden' });
-			$sections.find('img').innerFit({
-				afterLoad: function(){
-					var maxHeight = 0;
-					$sections.find('img').each(function(){
-						if($(this).height() > maxHeight) maxHeight = $(this).height() ;
-					});
-					if($contain.height() > maxHeight){
-						$contain.css({ height: maxHeight });
-						$sections.find('img').trigger('refresh-image-fit');
-						containRatio = maxHeight / $contain.width();
-						$sections.find('.play-icon').each(function(){
-							$(this).children('i').css({ 'font-size': $(this).height() });
-						});
-						$sections.trigger('refresh');
-					}
-				}
-			});
-			// 캡션 ////
-			$sections.find('img').each(function(){ if($(this).attr('alt')){
-				var $caption = $('<div class="caption"><span>'+$(this).attr('alt')+'</span></div>').insertAfter($(this));
-				$caption.css({
-					position: 'absolute', bottom: 0, left: 0, width: '100%', height: 'auto', opacity: 0.7, 'background-color': arg.captbgcolor,
-					padding: '0.5em 1em'
-				});
-			}});
+			initialize();
+			fitImages();
+			makeCaption();
+			makeArrowAndClickEvent();
+			bindRefreshEvent();
 
-			// ////
-			if($sections.length > 1){
+			function initialize(){
+				$contain.css({ height: $contain.width() * containRatio, overflow: 'hidden', position: 'relative' });
+				$leftWrap.css({ width: arg.gutter, height: '100%', float: 'left' });
+				$rightWrap.css({ width: arg.gutter, height: '100%', float: 'left' });
+				var mainWidth = $contain.width() - $leftWrap.width() - $rightWrap.width() - 1;
+				$mainWrap.css({ position: 'relative', width: mainWidth, height: '100%', float: 'left' });
+				$sections.css({ position: 'absolute', top: 0, left: 0, diasplay: 'block',
+					width: '100%', height: '100%', overflow: 'hidden', 'background-color': arg.bgcolor
+				});
+				$sections.children('a').css({ diasplay: 'block', width: '100%', height: '100%', overflow: 'hidden' });
+			}
+			function fitImages(){
+				var maxImgHeight = 0;
+				var numOfLoad = 0;
+				$sections.find('img').each(function(){
+					$(this).load(function(){
+						var $img = $(this);
+						var ratio = $img.height() / $img.width();
+						if(ratio > containRatio) $img.css('height', '100%');
+						else $img.css('width', '100%');
+						if(maxImgHeight < $img.height()) maxImgHeight = $img.height();
+						numOfLoad++;
+						if(numOfLoad == $sections.length){
+							$contain.height(maxImgHeight);
+							containRatio = maxImgHeight / $contain.width();
+							makeImageMargin();
+						}
+					});
+				});
+			}
+			function makeImageMargin(){
+				$sections.find('img').each(function(){
+					var $img = $(this);
+					if($img.width() == $img.parent().width()){
+						var margin = ($img.parent().height() - $img.height())/2;
+						$img.css({ 'margin-top': margin, 'margin-bottom': margin });
+					} else {
+						var margin = ($img.parent().width() - $img.width())/2;
+						$img.css({ 'margin-left': margin, 'margin-right': margin });
+					}
+				});
+			}
+			function makeCaption(){
+				$sections.find('img').each(function(){ if($(this).attr('alt')){
+					var $caption = $('<div class="caption"><span>'+$(this).attr('alt')+'</span></div>').insertAfter($(this));
+					$caption.css({
+						position: 'absolute', bottom: 0, left: 0, width: '100%', height: 'auto', opacity: 0.7, 'background-color': arg.captbgcolor,
+						padding: '0.5em 1em'
+					});
+				}});
+			}
+			function makeArrowAndClickEvent(){ if($sections.length > 1){
 				var $prev = $leftWrap.children('.prev'), $next = $rightWrap.children('.next');
 				$prev.css({ position: 'absolute', 'z-index': '10', height: '10%', width: 'auto', top: '45%', left: 0, cursor: 'pointer' });
 				$next.css({ position: 'absolute', 'z-index': '10', height: '10%', width: 'auto', top: '45%', right: 0, cursor: 'pointer' });
@@ -599,56 +606,31 @@ var sHearing2;
 					$sections.eq(prev).css({ left: -1*$contain.width() }).finish().animate({ left: 0 }, 1000, 'easeOutQuint', function(){ isChanging = false; });
 					index = prev;
 				}});
+			}}
+			function bindRefreshEvent(){
+				$contain.on('refresh', refresh);
+				$(window).resize(refresh);
 			}
-
-			$contain.on('refresh-slideshow', refresh);
-			$(window).resize(refresh);
 			function refresh(){ if($contain.is(':visible')){
 				$contain.css({ height: $contain.width()*containRatio });
 				$mainWrap.css({ width: $contain.width() - $leftWrap.width() - $rightWrap.width() - 1 });
-				$sections.find('img').trigger('refresh-image-fit');
+				makeImageMargin();
 				$sections.not(':eq('+index+')').css({ left: $contain.width() });
 				$sections.find('.play-icon').each(function(){
 					$(this).children('i').css({ 'font-size': $(this).height() });
 				});
-				$sections.trigger('refresh');
 			}}
 		}//slideshow
-	}
-
-	$.fn.innerFit = function(arg){
-		if(arg === undefined) arg = {};
-		var numOfLoad = 0;
-		var numOfImages = jQuery(this).length;
-		jQuery(this).each(function(){
-			var $img = jQuery(this);
-			$img.load(fit);
-			$img.on('refresh-image-fit', fit);
-			function fit(event) {
-				var $parent = $img.parent();
-				$img.css({ width: '100%', height: '', 'margin-left': '', 'margin-top': '' });
-				if($img.height() > $parent.height()){
-					var width = $img.css({ width: '', height: $parent.height() }).width();
-					$img.css({ 'margin-left': ($parent.width() - width)/2 });
-				} else {
-					$img.css({ 'margin-top': ($parent.height() - $img.height())/2 });
-				}
-				if(event.type == 'load'){
-					numOfLoad++;
-					if(numOfLoad == numOfImages && arg.afterLoad) arg.afterLoad();
-				}
-			}
-		});
-	}
+	}//$.fn.slideshow
 
 	$.fn.sameSizeWithParent = function(selector){
 		if(selector && $.type(selector) === 'string'){
-			jQuery(this).each(function(){
-				var $target = jQuery(this);
+			$(this).each(function(){
+				var $target = $(this);
 				var $parent = $target.parents(selector);
 				setSize();
 				$target.on('refresh', setSize);
-				jQuery(window).resize(setSize);
+				$(window).resize(setSize);
 				function setSize(event){
 					if($parent.is(':visible') && $target.is(':visible')){
 						var rect = $parent.get(0).getBoundingClientRect();
@@ -661,11 +643,11 @@ var sHearing2;
 	}
 
 	$.fn.tiltBorderLine = function(){
-		jQuery(this).each(function(){
-			var $target = jQuery(this);
+		$(this).each(function(){
+			var $target = $(this);
 			tiltBorderLine($target);
 			$target.on('refresh', function(){ tiltBorderLine($target); });
-			jQuery(window).resize(function(){ tiltBorderLine($target); })
+			$(window).resize(function(){ tiltBorderLine($target); })
 		});
 		function tiltBorderLine($target){ if($target.is(':visible')){
 			$target.css('transform', '');
@@ -674,14 +656,14 @@ var sHearing2;
 		}}
 	}
 
-	jQuery.fn.sewolhearing2 = function(options) {
+	$.fn.sewolhearing2 = function(options) {
 		return this.each(function() {
-			var sewolhearing2 = new SewolHearing2(jQuery(this), options);
-			jQuery.data(this,'handler',sewolhearing2);
+			var sewolhearing2 = new SewolHearing2($(this), options);
+			$.data(this,'handler',sewolhearing2);
 		});
 	};
 
-	jQuery(document).ready(function() {
-		sHearing2 = jQuery('#page-2nd-hearing').sewolhearing2();
+	$(document).ready(function() {
+		sHearing2 = $('#page-2nd-hearing').sewolhearing2();
 	});
 })(jQuery);

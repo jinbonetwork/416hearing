@@ -24,25 +24,23 @@
 		}
 	}}
 	$.fn.respStyle = function(arg){
-		var self = this;
-		var target = this.selector;
-		if(jQuery(target).length) respStyle(this, arg);
-		else $(document).ready(function(){ respStyle(self, arg); });
+		var target = this;
+		if($(target).length) respStyle(target, arg);
+		else $(document).ready(function(){ respStyle(target.selector, arg); });
 	}
 	function respStyle(target, arg){if(target && arg){
 		$(target).each(function(){
 			var $target = $(this);
 			var style = new Style(arg);
-			if(jQuery(this).is(':visible')) $target.css(style.css());
+			if($(this).is(':visible')) $target.css(style.css());
 			$(window).resize(function(){ if($target.is(':visible')) $target.css(style.css()); });
-			$target.on('refresh-style', function(){ if($target.is(':visible')) $target.css(style.css()); });
+			$target.on('refresh', function(){ if($target.is(':visible')) $target.css(style.css()); });
 		});
 	}}
 	$.fn.respGrid = function(arg, getDimOption){
-		var self = this;
-		var target = this.selector;
-		if($(target).length) respGrid(this, arg, getDimOption);
-		else $(document).ready(function(){ respGrid(self, arg, getDimOption); });
+		var target = this;
+		if($(target).length) respGrid(target, arg, getDimOption);
+		else $(document).ready(function(){ respGrid(target.selector, arg, getDimOption); });
 	}
 	function respGrid(target, arg, getDimOption){if(target && arg){
 		$(target).each(function(){
@@ -53,7 +51,7 @@
 			var grid = new Grid(arg, $target.children('.es.es-cell').length, getDimOption);
 			if($target.is(':visible')) grid.adjust($target);
 			$(window).resize(function(){ grid.adjust($target); });
-			$target.on('refresh-grid', function(){ grid.adjust($target); });
+			$target.on('refresh', function(){ grid.adjust($target); });
 			$(window).on('es-changeScrollbar', function(){ grid.adjust($target, false); });
 		});
 	}}

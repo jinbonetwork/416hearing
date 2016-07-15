@@ -24,17 +24,17 @@
 				contain.determinActive(arg);
 				if(contain.active && contain.widthActive) contain.fixTitle(arg, 'all');
 			});
-			contain.$self.on('refresh-scroll-effect', function(){ if(contain.active && contain.widthActive){
+			contain.$self.on('refresh', function(){ if(contain.active && contain.widthActive){
 				contain.fixTitle(arg, 'all');
 			}});
-			contain.$self.on('activate-scroll-effect', function(){ if(contain.active === false){
+			contain.$self.on('activate', function(){ if(contain.active === false){
 				contain.active = true;
 				if(contain.widthActive){
 					contain.setStyle(arg);
 					contain.fixTitle(arg, 'all');
 				}
 			}});
-			contain.$self.on('deactivate-scroll-effect', function(){ if(contain.active === true){
+			contain.$self.on('deactivate', function(){ if(contain.active === true){
 				contain.active = false;
 				contain.removeStyle(arg);
 			}});
