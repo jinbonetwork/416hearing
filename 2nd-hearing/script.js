@@ -570,6 +570,7 @@ var sHearing2;
 			function adjustImageMarginAndPlayIcon(){
 				$sections.find('img').each(function(){
 					var $img = $(this);
+					$img.css({ 'margin-top': '', 'margin-bottom': '', 'margin-left': '', 'margin-right': '' });
 					if($img.width() == $img.parent().width()){
 						var margin = ($img.parent().height() - $img.height())/2;
 						$img.css({ 'margin-top': margin, 'margin-bottom': margin });
