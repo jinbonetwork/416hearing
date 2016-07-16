@@ -562,12 +562,12 @@ var sHearing2;
 						if(numOfLoad == $sections.length){
 							$contain.height(maxImgHeight);
 							containRatio = maxImgHeight / $contain.width();
-							makeImageMargin();
+							adjustImageMarginAndPlayIcon();
 						}
 					});
 				});
 			}
-			function makeImageMargin(){
+			function adjustImageMarginAndPlayIcon(){
 				$sections.find('img').each(function(){
 					var $img = $(this);
 					if($img.width() == $img.parent().width()){
@@ -577,6 +577,9 @@ var sHearing2;
 						var margin = ($img.parent().width() - $img.width())/2;
 						$img.css({ 'margin-left': margin, 'margin-right': margin });
 					}
+				});
+				$sections.find('.play-icon').each(function(){
+					$(this).children('i').css({ 'font-size': $(this).height() });
 				});
 			}
 			function makeCaption(){
@@ -619,11 +622,8 @@ var sHearing2;
 			function refresh(){ if($contain.is(':visible')){
 				$contain.css({ height: $contain.width()*containRatio });
 				$mainWrap.css({ width: $contain.width() - $leftWrap.width() - $rightWrap.width() - 1 });
-				makeImageMargin();
+				adjustImageMarginAndPlayIcon();
 				$sections.not(':eq('+index+')').css({ left: $contain.width() });
-				$sections.find('.play-icon').each(function(){
-					$(this).children('i').css({ 'font-size': $(this).height() });
-				});
 			}}
 		}//slideshow
 	}//$.fn.slideshow
