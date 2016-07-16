@@ -66,6 +66,13 @@
 					openPage('page-journal');
 					break;
 			}
+		} else {
+			var intv = setInterval(function(){
+				if($(stack).hasClass('pages-stack')){
+					clearInterval(intv);
+					$(pages[current]).data('handler').activate();
+				}
+			}, 200);
 		}
 	}
 
