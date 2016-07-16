@@ -86,7 +86,7 @@ var sHearing2;
 				'padding-top': '3 5 em max',
 				'padding-bottom': '3 5 em max'
 			});
-			this.Root.find('.outline > .header .video-wrap').addClass('refreshable').respStyle({
+			this.Root.find('.outline > .header .video-wrap').respStyle({
 				'breakpoint': outlineBreakPoint,
 				'margin-bottom': '3 7 em max'
 			});
@@ -105,7 +105,7 @@ var sHearing2;
 			this.Root.find('.outline .content .item .hover-text-wrap').addClass('refreshable').sameSizeWithParent('.item-wrap');
 
 			//첫 페이지 스크롤 효과 ////
-			this.Root.find('.outline').addClass('activatable').scrEffectOfBgcolor({
+			this.Root.find('.outline').scrEffectOfBgcolor({
 				background: '#ffffff #1a1a1a',
 				after: function($contain, bgcolor, bgcIndex){
 					var colors = ['#1a1a1a', '#ffffff'];
@@ -163,7 +163,7 @@ var sHearing2;
 				'padding-left': '15 72 max'
 			});
 			// 스크롤 효과 ////
-			$susp.addClass('activatable').scrEffectOfBgcolor({
+			$susp.scrEffectOfBgcolor({
 				background: '#1a1a1a #ffffff',
 				after: function($contain, bgcolor, bgcIndex){
 					var colors = ['#ffffff', '#1a1a1a'];
@@ -195,11 +195,19 @@ var sHearing2;
 			// 슬라이드의 이미지가 아닌 그 밖의 이미지를 회색톤 & hover effect & 크롭 ////
 			$susp.find('.medium img').addClass('refreshable').extraStyle({ fitted: 'yes' });
 			//$susp.find('.medium img').addClass('grayscale grayscale-fade').gray();
-			// '의혹 전체보기'의 activate/deactivate ////
-			$susp.find('.go-back-outline').addClass('activatable').on('activate', function(){
-				if($(this).css('position') == 'absolute') $(this).css('position', 'fixed');
+			// '의혹 전체보기' ////
+			this.eventsOfGoBackOutline($susp);
+		},
+
+		eventsOfGoBackOutline: function($susp){
+			var $gbo = $susp.find('.go-back-outline');
+			$(window).resize(function(){ if($susp.is(':visible')){
+				$gbo.css('position', '');
+			}});
+			$susp.on('activate', function(){
+				if($gbo.css('position') == 'absolute') $gbo.css('position', 'fixed');
 			}).on('deactivate', function(){
-				if($(this).css('position') == 'fixed') $(this).css('position', 'absolute');
+				if($gbo.css('position') == 'fixed') $gbo.css('position', 'absolute');
 			});
 		},
 
@@ -213,13 +221,13 @@ var sHearing2;
 				$from.find('#hearing2-video').get(0).contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
 			}
 			$from.removeClass('open-inner-page');
-			$from.trigger('deactivate').find('.activatable').trigger('deactivate');
+			$from.trigger('deactivate');
 
 			// 현재 페이지 열기 ////
 			$to.addClass('open-inner-page');
 			if($to.hasClass('visited-page')){
 				$to.find('.refreshable').trigger('refresh');
-				$to.trigger('activate').find('.activatable').trigger('activate');
+				$to.trigger('activate');
 				$to.scrollTop(0);
 			} else {
 				this.appendSection(nTo);
@@ -398,14 +406,12 @@ var sHearing2;
 		},
 
 		activate: function(){
-			var $openInnerPage = this.Root.find('.open-inner-page');
-			$openInnerPage.trigger('activate').find('.activatable').trigger('activate');
-			$openInnerPage.find('.refreshable').trigger('refresh');
+			this.Root.find('.open-inner-page').find('.refreshable').trigger('refresh');
+			this.Root.find('.open-inner-page').trigger('activate');
 		},
 
 		deactivate: function(){
-			var $openInnerPage = this.Root.find('.open-inner-page');
-			$openInnerPage.trigger('deactivate').find('.activatable').trigger('deactivate');
+			this.Root.find('.open-inner-page').trigger('deactivate');
 		},
 
 		parseUrlHash: function() {
@@ -433,7 +439,6 @@ var sHearing2;
 			var $target = $(this);
 			paddingHeightAuto($target);
 			$(window).resize(function(){ paddingHeightAuto($target); });
-			$target.on('paddingHeightAuto refresh', $target.attr('id'), $target.attr('class'));
 			$target.on('refresh', function(){ paddingHeightAuto($target); });
 		});
 		function paddingHeightAuto($target){ if($target.is(':visible')){

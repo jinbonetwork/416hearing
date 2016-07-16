@@ -6,11 +6,11 @@ var sJournal;
 	'use strict';
 
 	function SewolJournal(element,options) {
-		this.Root = jQuery( element );
+		this.Root = $( element );
 
 		this.settings = $.extend({}, $.fn.sewoljournal.defaults, options);
 
-		this.Gnavi = jQuery('.pages-stack');
+		this.Gnavi = $('.pages-stack');
 
 		this.init();
 	}
@@ -19,7 +19,7 @@ var sJournal;
 		init: function() {
 			var self = this;
 
-			jQuery.ajax({
+			$.ajax({
 				url: 'data/journal.json',
 				dataType: 'json',
 				success: function(sections){
@@ -138,14 +138,14 @@ var sJournal;
 		},
 	};
 
-	jQuery.fn.sewoljournal = function(options) {
+	$.fn.sewoljournal = function(options) {
 		return this.each(function() {
-			var sewoljournal = new SewolJournal(jQuery(this), options);
-			jQuery.data(this,'handler',sewoljournal);
+			var sewoljournal = new SewolJournal($(this), options);
+			$.data(this,'handler',sewoljournal);
 		});
 	};
 
-	jQuery(document).ready(function() {
-		sJournal = jQuery('#page-journal').sewoljournal();
+	$(document).ready(function() {
+		sJournal = $('#page-journal').sewoljournal();
 	});
 })(jQuery);

@@ -211,9 +211,7 @@
 			buildStack();
 			isMenuOpen = false;
 			var $openPage = id ? jQuery('#'+id) : jQuery(pages[current]);
-			if($openPage.data('handler')){
-				$openPage.data('handler').activate();
-			}
+			if($openPage.data('handler')) $openPage.data('handler').activate();
 		});
 	}
 

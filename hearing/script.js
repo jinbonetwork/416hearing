@@ -70,7 +70,7 @@ var sHearing1;
 			$(window).trigger('es-setScrollbarEvent');
 
 			//스크롤 효과 ////
-			this.Root.find('.outline').addClass('activatable').scrEffectOfBgcolor({
+			this.Root.find('.outline').scrEffectOfBgcolor({
 				background: '#ffffff #1a1a1a',
 				after: function($contain, bgcolor, bgcIndex) {
 					var colors = ['#1a1a1a', '#ffffff'];
@@ -104,7 +104,7 @@ var sHearing1;
 				if(!$(this).attr('data-name')) $(this).closest('.answer').hide();
 			});
 
-			$susp.addClass('refreshable activatable').scrEffectOfBgcolor({
+			$susp.scrEffectOfBgcolor({
 				background: '#1a1a1a #ffffff',
 				after: function($contain, bgcolor, bgcIndex){
 					var colors = ['#ffffff', '#1a1a1a'];
@@ -141,7 +141,6 @@ var sHearing1;
 
 			$susp.find('.go-back-outline').click(function(){
 				var num = $(this).parents('section').attr('id').replace(/suspicion\-/, '');
-				//self.closePage(num);
 				self.movePage(num, 0);
 			});
 
@@ -160,7 +159,6 @@ var sHearing1;
 			});
 			$susp.find('.navigation li').click(function() {
 				var pastNum = $(this).parents('.navigation').find('.selected').find('.num').text();
-				//self.closeAndOpenPage( pastNum, $(this).find('.num').text() );
 				self.movePage( pastNum, $(this).find('.num').text() );
 			});
 
@@ -174,23 +172,25 @@ var sHearing1;
 			var $from = ( nFrom == 0 ? this.Root.find('.outline') : this.Root.find('#suspicion-'+nFrom) );
 			var $to = ( nTo == 0 ? this.Root.find('.outline') : this.Root.find('#suspicion-'+nTo) );
 
-			//이전 페이지 닫기 ///
+			//이전 페이지 닫기 ////
 			$from.removeClass('open-inner-page').trigger('deactivate');
 			if(nFrom > 0){
 				$from.find('.navigation .selected').removeClass('selected').parents('.part').addClass('folded');
 			}
 
-			// 현재 페이지 열기 ////
+			//현재 페이지 여기 ////
 			$to.addClass('open-inner-page');
-			if(nTo > 0){
-				if(!$to.hasClass('visited-page')) this.appendSection(nTo);
-				else $to.scrollTop(0);
+			if($to.hasClass('visited-page')){
+				$to.find('.refreshable').trigger('refresh');
+				$to.trigger('activate');
+				$to.scrollTop(0);
+			} else {
+				this.appendSection(nTo);
 			}
-			$to.find('.refreshable').trigger('refresh');
-			$to.trigger('activate');
 			if(nTo > 0){
 				$to.find('.navigation li').eq(nTo-1).addClass('selected').parents('.part').removeClass('folded');
 			}
+
 		},//movePage
 
 		htmlOutline: function() {
@@ -343,14 +343,12 @@ var sHearing1;
 		},
 
 		activate: function(){
-			var $openInnerPage = this.Root.find('.open-inner-page');
-			$openInnerPage.trigger('activate').find('.activatable').trigger('activate');
-			$openInnerPage.find('.refreshable').trigger('refresh');
+			this.Root.find('.open-inner-page').find('.refreshable').trigger('refresh');
+			this.Root.find('.open-inner-page').trigger('activate');
 		},
 
 		deactivate: function(){
-			var $openInnerPage = this.Root.find('.open-inner-page');
-			$openInnerPage.trigger('deactivate').find('.activatable').trigger('deactivate');
+			this.Root.find('.open-inner-page').trigger('deactivate');
 		},
 
 		parseUrlHash: function() {
