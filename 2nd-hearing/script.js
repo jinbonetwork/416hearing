@@ -150,6 +150,8 @@ var sHearing2;
 				if( !$(this).attr('data-name') )
 					$(this).closest('.answer').hide();
 			});
+			// 로드 비디오 ////
+			$susp.find('.dialogue .video-wrap').addClass('refreshable').clickAndPlayYoutube();
 			// 첫 페이지로 이동 ////
 			$susp.find('.go-back-outline').click(function() {
 				var num = $(this).parents('section').attr('id').replace(/suspicion\-/, '');
@@ -221,7 +223,8 @@ var sHearing2;
 			//이전 페이지 닫기 ///
 			if(nFrom == 0){
 				// 첫 페이지 비디오 재생 중지 ////
-				$from.find('#hearing2-video').data('ytplayer').stopVideo();
+				var hearing2Video = $from.find('#hearing2-video').data('ytplayer');
+				if(hearing2Video) hearing2Video.stopVideo();
 			}
 			$from.removeClass('open-inner-page');
 			$from.trigger('deactivate');
@@ -691,6 +694,7 @@ var sHearing2;
 		self.player = undefined;
 		self.id = $player.attr('data-youtube-id');
 		self.playerid = 'player-'+self.id;
+		self.$playIcon, self.$ffImage;
 
 		self.loadFirstFrameImage();
 		if($.browser.desktop){
@@ -702,25 +706,26 @@ var sHearing2;
 		self.bindRefresh();
 	}
 	ClickAndPlayYoutube.prototype.loadFirstFrameImage = function(){
+		var self = this;
 		// Markup ////
-		var $playIcon = $('<div class="play-icon"><i class="fa fa-play"></i></div>').appendTo(this.$player);
-		var $ffImg = $('<img src="http://img.youtube.com/vi/'+this.id+'/0.jpg">').appendTo(this.$player);
+		self.$playIcon = $('<div class="play-icon"><i class="fa fa-play"></i></div>').appendTo(self.$player);
+		self.$ffImage = $('<img src="http://img.youtube.com/vi/'+self.id+'/0.jpg">').appendTo(self.$player);
 		// Sytle ////
-		this.$player.css({ position: 'relative' });
-		$playIcon.css({ position: 'absolute', left: '40%', top: '40%', width: '20%', height: '20%', cursor: 'pointer' });
-		$playIcon.children('i').css({ 'font-size': $playIcon.height(), color: '#6d92c4' });
-		$ffImg.css({ cursor: 'pointer' }).extraStyle({ fitted: 'yes' });
+		self.$player.css({ position: 'relative' });
+		self.$playIcon.css({ position: 'absolute', left: '40%', top: '40%', width: '20%', height: '20%', cursor: 'pointer', 'text-align': 'center' });
+		self.$playIcon.children('i').css({ 'font-size': self.$playIcon.height(), color: '#6d92c4' });
+		self.$ffImage.css({ cursor: 'pointer' }).extraStyle({ fitted: 'yes' });
 	}
 	ClickAndPlayYoutube.prototype.clickAndPlay = function(){
 		var self = this;
-		self.$player.find('.play-icon').click(function(){ self.loadVideo('autoplay'); });
-		self.$player.find('img').click(function(){ self.loadVideo('autoplay'); });
+		self.$playIcon.click(function(){ self.loadVideo('autoplay'); });
+		self.$ffImage.click(function(){ self.loadVideo('autoplay'); });
 	}
 	ClickAndPlayYoutube.prototype.loadVideoInWindow = function(){
 		var self = this;
 		var intv = setInterval(function(){
 			var top = self.$player.offset().top;
-			if(0 <= top && top < $(window).height()){
+			if(self.$player.is(':visible') && 0 <= top && top < $(window).height()){
 				clearInterval(intv);
 				self.loadVideo();
 			}
@@ -728,14 +733,15 @@ var sHearing2;
 	}
 	ClickAndPlayYoutube.prototype.loadVideo = function(autoplay){
 		var self = this;
-		self.$player.children().remove();
 		self.$player.append('<div id="'+self.playerid+'"></div>');
-		self.player = new YT.Player(this.playerid, {
+		self.player = new YT.Player(self.playerid, {
 			width: '100%',
 			height: '100%',
 			videoId: self.id,
 			events: {
 				onReady: function(){
+					self.$playIcon.hide();
+					self.$ffImage.hide();
 					self.$player.data('ytplayer', self.player);
 					if(autoplay) self.player.playVideo();
 				}
@@ -749,9 +755,8 @@ var sHearing2;
 	}
 	ClickAndPlayYoutube.prototype.refresh = function(){
 		var self = this;
-		var $playIcon = self.$player.find('.play-icon');
-		if($playIcon.length){
-			$playIcon.children('i').css({ 'font-size': $playIcon.height() });
+		if(self.$playIcon.is(':visible')){
+			self.$playIcon.children('i').css({ 'font-size': self.$playIcon.height() });
 		}
 	}
 
