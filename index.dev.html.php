@@ -27,6 +27,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<link rel="stylesheet" href="contrib/spectrum/spectrum.css">
 <?php }?>
 
+	<script src="https://www.youtube.com/iframe_api"></script>
 	<script src="contrib/jquery/jquery-2.2.1.min.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="js/PageStackNavigation-custom/modernizr-custom.js"></script>

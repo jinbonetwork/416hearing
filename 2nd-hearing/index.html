@@ -1,8 +1,6 @@
 <div class="outline visited-page inner-page open-inner-page">
 	<div class="header">
-		<div class="video-wrap">
-			<iframe id="hearing2-video" width="100%" height="100%" src="https://www.youtube.com/embed/2i-bn8SdLiM?enablejsapi=1&version=3&playerapiid=ytplayer" frameborder="0" allowfullscreen="true" allowscriptaccess="always"></iframe>
-		</div>
+		<div class="video-wrap" id="hearing2-video" data-youtube-id="2i-bn8SdLiM"></div>
 		<div class="wrapper">
 			<div class="title">
 				<div class="title-part-1"><span>416세월호참사 특별조사위원회</span></div>
@@ -176,7 +174,7 @@
 		</div>
 	</div>
 </script>
-<script type="text/template" id="dialogue-video-tempate">
+<script type="text/template" id="dialogue-video-template">
 	<div class="video-wrap">
 		<iframe width="100%" height="100%" src="https://www.youtube.com/embed/<%= videoUrl %>?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
 	</div>

@@ -63,34 +63,37 @@ var sHearing2;
 
 		initEvent: function() {
 			var self = this;
+			var outlineBreakPoint = '320 1024';
 			//첫 페이지 비디오 ////
-			this.Root.find('.outline .video-wrap').addClass('refreshable').extraStyle({
+			self.Root.find('.outline #hearing2-video').addClass('refreshable').extraStyle({
 				ratio: (360/640)
 			});
-			// 첫 페이지 반응형 처리////
-			var outlineBreakPoint = '320 1024';
-			this.Root.find('.outline > .header .title-part-1 span').addClass('refreshable').respStyle({
+			self.Root.find('.outline #hearing2-video').respStyle({
 				'breakpoint': outlineBreakPoint,
-				'font-size': '1 2 em max'
+				'margin-bottom': '3 7 em max'
 			});
-			this.Root.find('.outline > .header .title-part-2 span').addClass('refreshable').respStyle({
-				'breakpoint': outlineBreakPoint,
-				'font-size': '3 6 em max'
-			});
-			this.Root.find('.outline > .header .title-part-3 span').addClass('refreshable').respStyle({
-				'breakpoint': outlineBreakPoint,
-				'font-size': '1.2 2.4 em max'
-			});
-			this.Root.find('.outline > .header').addClass('refreshable').respStyle({
+			self.Root.find('.outline #hearing2-video').clickAndPlayYoutube();
+			// 쳇 페이지 헤더 ////
+			self.Root.find('.outline > .header').addClass('refreshable').respStyle({
 				'breakpoint': outlineBreakPoint,
 				'padding-top': '3 5 em max',
 				'padding-bottom': '3 5 em max'
 			});
-			this.Root.find('.outline > .header .video-wrap').respStyle({
+			// 첫 페이지 제목 ////
+			self.Root.find('.outline > .header .title-part-1 span').addClass('refreshable').respStyle({
 				'breakpoint': outlineBreakPoint,
-				'margin-bottom': '3 7 em max'
+				'font-size': '1 2 em max'
 			});
-			this.Root.find('.outline .content').addClass('refreshable').respGrid({
+			self.Root.find('.outline > .header .title-part-2 span').addClass('refreshable').respStyle({
+				'breakpoint': outlineBreakPoint,
+				'font-size': '3 6 em max'
+			});
+			self.Root.find('.outline > .header .title-part-3 span').addClass('refreshable').respStyle({
+				'breakpoint': outlineBreakPoint,
+				'font-size': '1.2 2.4 em max'
+			});
+			// 첫 페이지 의혹 리스트 ////
+			self.Root.find('.outline .content').addClass('refreshable').respGrid({
 				breakpoint: '320 768',
 				columns: '1 2',
 				ratio: 'auto',
@@ -99,13 +102,13 @@ var sHearing2;
 			$(window).trigger('es-setScrollbarEvent');
 
 			// 첫 페이지의 기울어진 경계선을 위한 ////
-			this.Root.find('.outline .content .part:eq(0) .tilted-border-line').addClass('refreshable').tiltBorderLine();
+			self.Root.find('.outline .content .part:eq(0) .tilted-border-line').addClass('refreshable').tiltBorderLine();
 
 			// 첫 페이지 의혹 제목의 hover 효과를 위한 ////
-			this.Root.find('.outline .content .item .hover-text-wrap').addClass('refreshable').sameSizeWithParent('.item-wrap');
+			self.Root.find('.outline .content .item .hover-text-wrap').addClass('refreshable').sameSizeWithParent('.item-wrap');
 
 			//첫 페이지 스크롤 효과 ////
-			this.Root.find('.outline').scrEffectOfBgcolor({
+			self.Root.find('.outline').scrEffectOfBgcolor({
 				background: '#ffffff #1a1a1a',
 				after: function($contain, bgcolor, bgcIndex){
 					var colors = ['#1a1a1a', '#ffffff'];
@@ -121,16 +124,16 @@ var sHearing2;
 			});
 
 			// 팬시 박스 설정 ////
-			this.Root.find(".gallery").fancybox({ padding: 0 });
+			self.Root.find(".gallery").fancybox({ padding: 0 });
 
 			// 의혹 페이지로 이동 ////
-			this.Root.find('.outline li').click(function() {
+			self.Root.find('.outline li').click(function() {
 				self.movePage(0, $(this).attr('data-num'));
 			});
 
 			// ////
-			if(this.controller.section) {
-				this.movePage(0, this.controller.section);
+			if(self.controller.section) {
+				self.movePage(0, this.controller.section);
 			}
 		},
 
@@ -218,7 +221,7 @@ var sHearing2;
 			//이전 페이지 닫기 ///
 			if(nFrom == 0){
 				// 첫 페이지 비디오 재생 중지 ////
-				$from.find('#hearing2-video').get(0).contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
+				$from.find('#hearing2-video').data('ytplayer').stopVideo();
 			}
 			$from.removeClass('open-inner-page');
 			$from.trigger('deactivate');
@@ -300,7 +303,7 @@ var sHearing2;
 			var html = '';
 			var template = _.template(this.Root.find('#dialogue-template').html());
 			var qa_template = _.template(this.Root.find('#dialogue-qa-template').html());
-			var dlgVideoTmpl = _.template(this.Root.find('#dialogue-video-tempate').html());
+			var dlgVideoTmpl = _.template(this.Root.find('#dialogue-video-template').html());
 				for(var i = 0, len = dialogue.length; i < len; i++){
 				var qna = dialogue[i];
 				var qna_content = '';
@@ -669,6 +672,87 @@ var sHearing2;
 			var deg = Math.atan($target.outerWidth() / $target.outerHeight()) * 180 / Math.PI;
 			$target.css('transform', 'skewX(-'+deg+'deg)');
 		}}
+	}
+
+	$.fn.clickAndPlayYoutube = function(){
+		// Dependency:
+		//  - font-awesome
+		//  - extraStyle
+		//  - youtube api
+		//  - jquery-browser-plugin
+
+		return this.each(function(){
+			new ClickAndPlayYoutube($(this));
+		});
+	}
+	function ClickAndPlayYoutube($player){
+		var self = this;
+		self.$player = $player;
+		self.player = undefined;
+		self.id = $player.attr('data-youtube-id');
+		self.playerid = 'player-'+self.id;
+
+		self.loadFirstFrameImage();
+		if($.browser.desktop){
+			self.clickAndPlay();
+		} else {
+			self.loadVideoInWindow();
+		}
+
+		self.bindRefresh();
+	}
+	ClickAndPlayYoutube.prototype.loadFirstFrameImage = function(){
+		// Markup ////
+		var $playIcon = $('<div class="play-icon"><i class="fa fa-play"></i></div>').appendTo(this.$player);
+		var $ffImg = $('<img src="http://img.youtube.com/vi/'+this.id+'/0.jpg">').appendTo(this.$player);
+		// Sytle ////
+		this.$player.css({ position: 'relative' });
+		$playIcon.css({ position: 'absolute', left: '40%', top: '40%', width: '20%', height: '20%', cursor: 'pointer' });
+		$playIcon.children('i').css({ 'font-size': $playIcon.height(), color: '#6d92c4' });
+		$ffImg.css({ cursor: 'pointer' }).extraStyle({ fitted: 'yes' });
+	}
+	ClickAndPlayYoutube.prototype.clickAndPlay = function(){
+		var self = this;
+		self.$player.find('.play-icon').click(function(){ self.loadVideo('autoplay'); });
+		self.$player.find('img').click(function(){ self.loadVideo('autoplay'); });
+	}
+	ClickAndPlayYoutube.prototype.loadVideoInWindow = function(){
+		var self = this;
+		var intv = setInterval(function(){
+			var top = self.$player.offset().top;
+			if(0 <= top && top < $(window).height()){
+				clearInterval(intv);
+				self.loadVideo();
+			}
+		}, 500);
+	}
+	ClickAndPlayYoutube.prototype.loadVideo = function(autoplay){
+		var self = this;
+		self.$player.children().remove();
+		self.$player.append('<div id="'+self.playerid+'"></div>');
+		self.player = new YT.Player(this.playerid, {
+			width: '100%',
+			height: '100%',
+			videoId: self.id,
+			events: {
+				onReady: function(){
+					self.$player.data('ytplayer', self.player);
+					if(autoplay) self.player.playVideo();
+				}
+			}
+		});
+	}
+	ClickAndPlayYoutube.prototype.bindRefresh = function(){
+		var self = this;
+		self.$player.on('refresh', self.refresh.bind(self));
+		$(window).resize(self.refresh.bind(self));
+	}
+	ClickAndPlayYoutube.prototype.refresh = function(){
+		var self = this;
+		var $playIcon = self.$player.find('.play-icon');
+		if($playIcon.length){
+			$playIcon.children('i').css({ 'font-size': $playIcon.height() });
+		}
 	}
 
 	$.fn.sewolhearing2 = function(options) {
