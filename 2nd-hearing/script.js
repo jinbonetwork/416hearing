@@ -567,7 +567,6 @@ var sHearing2;
 		var self = this;
 		var maxImgHeight = 0;
 		var numOfLoad = 0;
-		var $sections = this.$sections;
 		self.$sections.find('img').load(function(){
 			var $img = $(this);
 			var ratio = $img.height() / $img.width();
@@ -697,9 +696,8 @@ var sHearing2;
 		self.$playIcon, self.$ffImage;
 
 		self.loadFirstFrameImage();
-		if($.browser.desktop){
-			self.clickAndPlay();
-		} else {
+		self.clickAndPlay();
+		if($.browser.mobile){
 			self.loadVideoInWindow();
 		}
 
