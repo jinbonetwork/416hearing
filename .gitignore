@@ -4,7 +4,7 @@ data/docs/*
 data/live*
 data/live/live.html
 node_modules/
-contrib/copy.sh
+contrib/plugins/copy.sh
 bundle.css
 bundle.js
 index.html.php
