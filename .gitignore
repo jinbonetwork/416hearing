@@ -8,3 +8,4 @@ contrib/plugins/copy.sh
 bundle.css
 bundle.js
 index.html.php
+rsync-bundles.sh
