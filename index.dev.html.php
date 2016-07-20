@@ -69,14 +69,11 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	</section>
 	<!-- pages stack -->
 	<div class="pages-stack">
-		<!--
-		<div class="page se-container<?php //print ( ( defined("__EDIT_MODE__") && __EDIT_MODE__ == true ) ? " is-admin" : "" ); ?>" id="page-2nd-hearing">
-			<?php //$live = file_get_contents(dirname(__FILE__)."/data/live/live.html");
-			//echo str_replace("[%=live%]",$live,file_get_contents(dirname(__FILE__).'/2nd-hearing/index.html')); ?>
+		<div class="page" id="page-truth-beyond">
+			<?php echo file_get_contents(dirname(__FILE__).'/truth_beyond/index.html'); ?>
 		</div>
-		-->
 		<div class="page" id="page-2nd-hearing">
-			<?php echo file_get_contents(dirname(__FILE__).'/2nd-hearing/index.html'); ?>
+			<?php echo file_get_contents(dirname(__FILE__).'/2nd_hearing/index.html'); ?>
 		</div>
 		<div class="page" id="page-hearing">
 			<?php echo file_get_contents(dirname(__FILE__).'/hearing/index.html'); ?>
@@ -88,6 +85,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<!-- /pages-stack -->
 	<?php echo file_get_contents(dirname(__FILE__).'/witnesses/witnesses.html'); ?>
 	<button class="menu-button"><span><i class="fa fa-bars"></i></span></button>
+
 	<script src="contrib/PageStackNavigation/js/classie.js"></script>
 	<script src="js/PageStackNavigation-custom/main.js"></script>
 </body>

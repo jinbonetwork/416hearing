@@ -1,8 +1,9 @@
 require('./css/style.less');
 require('./journal/style.less');
-require('./2nd-hearing/style.less');
+require('./2nd_hearing/style.less');
 require('./hearing/style.less');
 require('./witnesses/witnesses.less');
+require('./truth_beyond/style.less');
 
 require('./contrib/plugins/scroll-bgcolor.js');
 require('./contrib/plugins/scroll-title.js');
@@ -16,3 +17,4 @@ require('./journal/script.js');
 require('./witnesses/witnesses.js');
 require('./2nd-hearing/script.js');
 require('./hearing/script.js');
+require('./truth_beyond/script.js');
