@@ -1,21 +1,21 @@
 /*
 목차
-	- .part.investigate-law
-	- .part.investigate-journal
-	- .part.investigate-score
+	1 .part.investigate-law
+	2 .part.investigate-journal
+		2-1 .journal-desktop
+		2-2 .journla-mobile
+	3 .part.investigate-score
 */
 
 @import "../css/variables.less";
 
 #page-truth-beyond > section.investigate {
-	// - .part.investigate-law ////
-	@media screen and (max-width: 767px) {
-		.investigate-law--wrap {
+	// 1 .part.investigate-law ////
+	.investigate-law--wrap {
+		@media screen and (max-width: 767px) {
 			font-size: 13px;
 		}
-	}
-	@media screen and (min-width: 768px) {
-		.investigate-law--wrap {
+		@media screen and (min-width: 768px) {
 			font-size: 15px;
 		}
 	}
@@ -23,21 +23,19 @@
 		border: solid 3px #6d92c4;
 		padding-top: 2em;
 		padding-bottom: 2em;
-	}
-	@media screen and (max-width: 767px) {
-		.investigate-law--content {
+		@media screen and (max-width: 767px) {
 			padding-left: 2em;
 			padding-right: 2em;
 		}
-	}
-	@media screen and (min-width: 768px) {
-		.investigate-law--content {
+		@media screen and (min-width: 768px) {
 			padding-left: 4em;
 			padding-right: 4em;
 		}
 	}
+
 	.investigate-law--content li {
 		text-align: justify;
+		line-height: 1.5em;
 	}
 	.investigate-law--content h6 {
 		font-size: 15px;
@@ -53,19 +51,16 @@
 		border-bottom: 0;
 		padding-top: 1em;
 		padding-bottom: 1em;
-	}
-	@media screen and (max-width: 767px) {
-		.investigate-law--caption {
+		@media screen and (max-width: 767px) {
 			padding-left: 2em;
 			padding-right: 2em;
 		}
-	}
-	@media screen and (min-width: 768px) {
-		.investigate-law--caption {
+		@media screen and (min-width: 768px) {
 			padding-left: 4em;
 			padding-right: 4em;
 		}
 	}
+
 	.investigate-law--caption a,
 	.investigate-law--caption a:active,
 	.investigate-law--caption a:visited {
@@ -73,19 +68,17 @@
 		color: #6d92c4
 	}
 
-	// .part.investigate-journal ////
+	// 2 .part.investigate-journal ////
 	.part.investigate-journal h3 {
 		font-wight: @font-wt-black;
 		text-align: center;
 		margin-bottom: 1em;
 	}
-	@media screen and (max-width: 767px) {
-		.journal-desktop { display: none; }
-	}
-	@media screen and (min-width: 768px) {
-		.journal-mobile { display: none; }
-	}
+	// 2-1 .journal-desktop ////
 	.journal-desktop {
+		@media screen and (max-width: 767px) {
+			display: none;
+		}
 		.journal-header p {
 			text-align: center;
 		}
@@ -168,7 +161,6 @@
 			margin-left: 50%;
 			width: 50%;
 			padding-top: 40px;
-
 		}
 		.journal-right ul {
 			background-color: #7657c5;
@@ -221,7 +213,11 @@
 			background-color: #fff;
 		}
 	}// .journal-desktop
+	// 2-2 .journal-desktop ////
 	.journal-mobile {
+		@media screen and (min-width: 768px) {
+			display: none;
+		}
 		li:after {
 			content: '';
 			display: block;
@@ -290,25 +286,9 @@
 			color: #0be4db;
 		}
 	}// .journal-mobile
-	.journal-closing {
-		text-align: justify;
-		margin: 0 auto;
-	}
-	@media screen and (max-width: 767px) {
-		.journal-closing {
-			font-size: 16px;
-			line-height: 1.5em;
-		}
-	}
-	@media screen and (min-width: 768px) {
-		.journal-closing {
-			max-width: 600px;
-			font-size: 18px;
-			line-height: 2em;
-		}
-	}
 
-	// .part.investigate-score ////
+
+	// 3 .part.investigate-score ////
 	.investigate-score--wrap:after {
 		content: ''; display: block; clear: both;
 	}
@@ -322,23 +302,23 @@
 	.investigate-score--title strong {
 		font-weight: @font-wt-bold;
 	}
-	@media screen and (max-width: 767px) {
-		.investigate-score--title h6 { font-size: 15px; }
-	}
-	@media screen and (min-width: 768px) {
-		.investigate-score--title h6 { font-size: 18px; }
+	.investigate-score--title h6 {
+		@media screen and (max-width: 767px) {
+			font-size: 15px;
+		}
+		@media screen and (min-width: 768px) {
+			font-size: 18px;
+		}
 	}
 	.investigate-score--title p {
 		line-height: 1.2em;
 	}
-	@media screen and (max-width: 767px) {
-		.investigate-score--graph {
+	.investigate-score--graph {
+		@media screen and (max-width: 767px) {
 			margin-top: 10%;
 			margin-bottom: 10%;
 		}
-	}
-	@media screen and (min-width: 768px) {
-		.investigate-score--graph {
+		@media screen and (min-width: 768px) {
 			margin-left: 50%;
 			margin-bottom: 10%;
 		}
@@ -353,12 +333,5 @@
 		padding-bottom: 100%;
 		background-color: #7657c5;
 	}
-	@media screen and (max-width: 767px) {
-		.investigate-score--closing { font-size: 15px; }
-	}
-	@media screen and (min-width: 768px) {
-		.investigate-score--closing { font-size: 18px; }
-	}
-
 
 }

@@ -1,14 +1,15 @@
 /*
 목차
-	- common
-	- section.page-title
-	- section.investigate
+	1 common
+	2 section.page-title
+	3 section.investigate
+	4 section.conceal
 */
 
 var SewolTruthBeyond = require('./script.js');
 (function($){
 	SewolTruthBeyond.prototype.style = function(){
-		// common ////
+		// 1 common ////
 		this.$('section:first-child, section + section, .part + .part, .resp-margin-top').respStyle({
 			breakpoint: '320 1920',
 			'margin-top': '60 160 max'
@@ -22,14 +23,26 @@ var SewolTruthBeyond = require('./script.js');
 			'padding-left': '24 40 = max',
 			'padding-right': '24 40 = max'
 		});
+		this.$('.media-and-text-in-two-column .left-column').respStyle({
+			breakpoint: '768 1920',
+			'padding-right': '12 20 max'
+		});
+		this.$('.media-and-text-in-two-column .right-column').respStyle({
+			breakpoint: '768 1920',
+			'padding-left': '12 20 max'
+		});
+		this.$('.subsection-title-region > h3').respStyle({
+			breakpoint: '320 1920',
+			'font-size': '21 36 max'
+		});
 
-		// section.page-title ////
+		// 2 section.page-title ////
 		this.$('.page-title h1').respStyle({
 			breakpoint: '320 1920',
 			'font-size': '42 72 max'
 		});
 
-		// section.investigate ////;
+		// 3 section.investigate ////;
 		this.$('.part.investigate-journal h3').respStyle({
 			breakpoint: '320 1920',
 			'font-size': '21 36 max'
@@ -46,5 +59,8 @@ var SewolTruthBeyond = require('./script.js');
 			breakpoint: '320 1920',
 			'font-size': '20 60 max'
 		});
+
+		// 4 section.conceal ////
+
 	}
 })(jQuery);

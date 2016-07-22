@@ -1,0 +1,37 @@
+/*
+목차
+	1 .part.navy-part-1
+*/
+@import "../css/variables.less";
+
+#page-truth-beyond > section.conceal {
+	// 1 .part.navy-part-1 ///
+	.navy-p1-image-wrap {
+		@media screen and (min-width: 768px) {
+			width: 50%;
+			float: left;
+		}
+	}
+	.navy-p1-image-wrap:first-child {
+		@media screen and (min-width: 768px) {
+			padding-right: 3%;
+		}
+	}
+	.navy-p1-image-wrap:last-child {
+		@media screen and (min-width: 768px) {
+			padding-left: 3%;
+		}
+	}
+	.navy-p1-image-wrap > p {
+		font-size: 15px;
+		font-weight: @font-wt-bold;
+		color: #7657c5;
+		margin-bottom: 5%;
+	}
+	.navy-p1-image-wrap img {
+		width: 100%;
+	}
+	.navy-p1-image-wrap:last-child img {
+		border: solid 1px #808080;
+	}
+}

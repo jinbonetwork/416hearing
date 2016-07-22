@@ -16,6 +16,7 @@ var sTruthBeyond;
 		}
 		this.markup();
 		this.style();
+		this.adjustment();
 		this.events();
 	}
 	SewolTruthBeyond.prototype.$ = function(selector){
@@ -26,7 +27,13 @@ var sTruthBeyond;
 		self.$('.image-with-title').each(function(){
 			self.imageWithTitle($(this));
 		});
+		self.$('.media-and-text-in-two-column').each(function(){
+			self.mediaAndTextInTwoColumn($(this));
+		});
 		self.markupJournal();
+	}
+	SewolTruthBeyond.prototype.adjustment = function(){
+		self.$('.navy-p1-image-wrap:last-child').fitEnd(self.$('.navy-p1-image-wrap:first-child'), 'bottom');
 	}
 	SewolTruthBeyond.prototype.events = function(){
 		var self = this;
@@ -120,6 +127,71 @@ var sTruthBeyond;
 			preYear = year;
 		}
 		$wrap.children('ul.journal-data').remove();
+	}
+	SewolTruthBeyond.prototype.mediaAndTextInTwoColumn = function($el){
+		var self = this;
+		var arg = {
+			type: $el.attr('data-type'),
+			src: $el.attr('data-src'),
+			option: $el.attr('data-option'),
+			link: $el.attr('data-link'),
+			caption: $el.attr('data-caption'),
+			text: $el.attr('data-text')
+		};
+		var mkLinkWrap = '<a class="link-wrap" href="'+arg.link+'" target="_blank"><img src="'+self.path.image+arg.src+'"></a>';
+		var mkVideoWrap = '';
+		var mkMedia =
+			'<div class="media-wrap">' +
+				( arg.type == 'prezi' ? mkLinkWrap : mkVideoWrap ) +
+				'<div class="caption"><h6>'+arg.caption+'</h6></div>' +
+			'</div>';
+		var mkText = '<div class="text-wrap">'+arg.text+'</div>';
+		var markup =
+			'<div class="left-column">'+( arg.option == 'left-media' ? mkMedia : mkText )+'</div>' +
+			'<div class="right-column">'+( arg.option == 'left-media' ? mkText : mkMedia )+'</div>';
+		$el.append(markup);
+	}
+
+	$.fn.fitEnd = function($target, which){
+		return this.each(function(){
+			new FitEnd($(this), $target, which);
+		});
+	}
+	function FitEnd($el, $target, which){
+		this.$el = $el;
+		this.$target = $target;
+		this.which = which;
+
+		this.fitEnd();
+		this.events();
+	}
+	FitEnd.prototype.fitEnd = function(){
+		var self = this;
+		var oEnd1 = self.$el[0].getBoundingClientRect()[self.which];
+		var oEnd2 = self.$target[0].getBoundingClientRect()[self.which];
+		var end1, end2;
+		var intv = setInterval(function(){
+			end1 = self.$el[0].getBoundingClientRect()[self.which];
+			end2 = self.$target[0].getBoundingClientRect()[self.which];
+			if(oEnd1 === end1 && oEnd2 === end2){
+				clearInterval(intv);
+				var prop = '';
+				switch (self.which){
+					case 'top': prop = 'padding-bottom'; break;
+					case 'bottom': prop = 'padding-top'; break;
+					case 'left': prop = 'padding-right'; break;
+					case 'right': prop = 'padding-left'; break;
+				}
+				self.$el.css(prop, '+='+(end2 - end1));
+			} else {
+				oEnd2 = end2;
+				oEnd1 = end1;
+			}
+		}, 200);
+	}
+	FitEnd.prototype.events = function(){
+		this.$el.on('refresh', this.fitEnd.bind(this));
+		$(window).resize(this.fitEnd.bind(this));
 	}
 
 	$.fn.sewolTruthBeyond = function(options) {
