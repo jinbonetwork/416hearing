@@ -1,0 +1,271 @@
+/*
+목차
+	- .part.investigate-law
+	- .part.investigate-journal
+		- .journal-desktop
+*/
+
+@import "../css/variables.less";
+
+#page-truth-beyond > section.investigate {
+	// - .part.investigate-law ////
+	.investigate-law--wrap {
+		margin: 0 auto;
+		max-width: 600px;
+		padding: 0 24px;
+	}
+	@media screen and (max-width: 767px) {
+		.investigate-law--wrap {
+			font-size: 13px;
+		}
+	}
+	@media screen and (min-width: 768px) {
+		.investigate-law--wrap {
+			font-size: 15px;
+		}
+	}
+	.investigate-law--content {
+		border: solid 3px #6d92c4;
+		padding-top: 2em;
+		padding-bottom: 2em;
+	}
+	.investigate-law--content li {
+		text-align: justify;
+	}
+	.investigate-law--content h6 {
+		font-size: 15px;
+		font-weight: @font-wt-bold;
+		margin-bottom: 1.5em;
+	}
+	.investigate-law--content strong {
+		font-weight: @font-wt-bold;
+	}
+	.investigate-law--caption {
+		border: solid 3px transparent;
+		border-top: 0;
+		border-bottom: 0;
+		padding-top: 1em;
+		padding-bottom: 1em;
+	}
+	.investigate-law--caption a,
+	.investigate-law--caption a:active,
+	.investigate-law--caption a:visited {
+		font-weight: @font-wt-bold;
+		color: #6d92c4
+	}
+
+	// .part.investigate-journal ////
+	.part.investigate-journal h3 {
+		font-wight: @font-wt-black;
+		text-align: center;
+		margin-bottom: 1em;
+	}
+	@media screen and (max-width: 767px) {
+		.journal-desktop { display: none; }
+	}
+	@media screen and (min-width: 768px) {
+		.journal-mobile { display: none; }
+	}
+	.journal-desktop {
+		padding: 0 40px;
+		.journal-header p {
+			text-align: center;
+		}
+		.journal-header .journal-year {
+			font-family: @font-mont;
+			font-size: 22px;
+		}
+		.journal-header .journal-date {
+			font-family: @font-mont;
+			font-size: 14px;
+			color: #6d92c4;
+			margin-bottom: 1em;
+		}
+		.journal-header .journal-content {
+			font-weight: @font-wt-black;
+			font-size: 18px;
+			margin-bottom: 1em;
+		}
+		.journal-wrap {
+			position: relative;
+		}
+		.journal-wrap ul {
+			padding-top: 40px;
+		}
+		.journal-wrap li {
+			line-height: 1.2em;
+		}
+		.journal-wrap li.journal-year {
+			height: 30px;
+		}
+		.journal-wrap li.journal-date {
+			height: 50px;
+		}
+		.journal-wrap li.journal-period {
+			height: 72px;
+		}
+		.journal-wrap li:last-child {
+			height: 45px;
+		}
+		.journal-right li:last-child {
+			height: 85px;
+		}
+		.journal-left {
+			position: absolute;
+			top: 0; left: 0;
+			width: 50%;
+		}
+		.journal-left ul {
+			background-color: #0be4db;
+			padding-right: 90px;
+		}
+		.journal-left  li {
+			position: relative;
+			text-align: right;
+			font-weight: @font-wt-bold;
+		}
+		.journal-left li > strong {
+			font-weight: @font-wt-bold;
+			color: #7657c5;
+		}
+		.journal-left > h6 {
+			position: absolute;
+			top: 0; left: 0;
+			color:  #7657c5;
+			font-size: 118px;
+			line-height: 1em;
+		}
+		.journal-left .link-line {
+			position: absolute;
+			top: 8px; right: -90px;
+			display: block;
+			width: 80px;
+			border-top: solid 2px #fff;
+		}
+		.journal-right {
+			position: absolute;
+			top: 0; right: 0;
+			width: 50%;
+		}
+		.journal-right ul {
+			background-color: #7657c5;
+			padding-left: 90px;
+			padding-top: 0;
+			margin-top: 40px;
+		}
+		.journal-right li {
+			position: relative;
+			text-align: left;
+			font-weight: @font-wt-bold;
+			color: #fff;
+		}
+		.journal-right  li > strong {
+			font-weight: @font-wt-bold;
+			color: #0be4db;
+		}
+		.journal-right > h6 {
+			position: absolute;
+			top: 0; right: 0;
+			color:  #0be4db;
+			font-size: 118px;
+			line-height: 1em;
+		}
+		.journal-right .link-line {
+			position: absolute;
+			top: 8px; left: -90px;
+			display: block;
+			width: 80px;
+			border-top: solid 2px #fff;
+		}
+		.journal-center {
+			position: absolute;
+			top: 0; left: 50%;
+			transform: translate(-50%, 0);
+		}
+		.journal-center li > div {
+			font-family: @font-mont;
+			line-height: 1.3em;
+			width: 90px;
+			text-align: center;
+		}
+		.journal-center li.journal-year > div {
+			font-size: 22px;
+			color: #fff;
+		}
+		.journal-center li.journal-date > div,
+		.journal-center li.journal-period > div {
+			font-size: 14px;
+			color: #6d92c4;
+			background-color: #fff;
+		}
+	}// .journal-desktop
+	.journal-mobile {
+		li:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+		li.left {
+			background-color: #0be4db;
+		}
+		li.right {
+			background-color: #7657c5;
+		}
+		li {
+			padding-bottom: 20px;
+		}
+		li.left + li.right, li.right + li.left, li.none + li.left {
+			padding-top: 20px;
+		}
+		li.row-with-year {
+			padding-top: 0 !important;
+		}
+		li > .journal-year {
+			font-family: @font-mont;
+			font-size: 22px;
+			margin-left: 10px;
+			width: 60px;
+			text-align: center;
+		}
+		li:not(.none) > .journal-year {
+			color: #fff;
+		}
+		li > .journal-label {
+			float: left;
+			width: 100px;
+			font-family: @font-mont;
+			font-size: 14px;
+			color: #6d92c4;
+			text-align: center;
+			width: 60px;
+			margin: 0 10px;
+			background-color: #fff;
+		}
+		li > .journal-item {
+			margin-left: 80px;
+			font-size: 15px;
+			font-weight: @font-wt-bold;
+			line-height: 1.2em;
+			padding-right: 10px;
+		}
+		li.right > .journal-item {
+			color: #fff;
+		}
+		li > .journal-item > span {
+			font-size: 12px;
+			font-weight: @font-wt-light;
+			border: solid 1px #fff;
+			border-radius: 5px;
+			margin-right: 5px;
+		}
+		li > .journal-item > strong {
+			font-weight: @font-wt-bold;
+		}
+		li.left > .journal-item > strong {
+			color: #7657c5;
+		}
+		li.right > .journal-item > strong {
+			color: #0be4db;
+		}
+	}// .journal-mobile
+}

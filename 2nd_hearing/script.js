@@ -99,7 +99,6 @@ var sHearing2;
 				ratio: 'auto',
 				gutter: '0 ='
 			});
-			$(window).trigger('es-setScrollbarEvent');
 
 			// 첫 페이지의 기울어진 경계선을 위한 ////
 			self.Root.find('.outline .content .part:eq(0) .tilted-border-line').addClass('refreshable').tiltBorderLine();

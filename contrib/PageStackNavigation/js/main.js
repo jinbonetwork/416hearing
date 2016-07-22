@@ -214,7 +214,6 @@
 			idxs.push(nextStackPageIdx_2);
 		}
 
-		console.log(idxs, excludeIdx);
 		return idxs;
 
 	}

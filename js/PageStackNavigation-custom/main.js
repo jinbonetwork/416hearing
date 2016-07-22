@@ -65,6 +65,9 @@
 				case 'journal':
 					openPage('page-journal');
 					break;
+				case 'truthbeyond':
+					openPage('page-truth-beyond');
+					break;
 			}
 		} else {
 			var intv = setInterval(function(){
@@ -224,6 +227,7 @@
 
 	// gets the current stack pages indexes. If any of them is the excludePage then this one is not part of the returned array
 	function getStackPagesIdxs(excludePageIdx) {
+
 		var nextStackPageIdx = current + 1 < pagesTotal ? current + 1 : 0,
 			nextStackPageIdx_2 = current + 2 < pagesTotal ? current + 2 : 1,
 			idxs = [],
@@ -240,7 +244,7 @@
 			idxs.push(nextStackPageIdx_2);
 		}
 
-		if(idxs[0] == 1 && idxs[1] == 2 && idxs[2] == 1) idxs = [1, 2, 0];
+		//if(idxs[0] == 1 && idxs[1] == 2 && idxs[2] == 1) idxs = [1, 2, 0];
 
 		return idxs;
 

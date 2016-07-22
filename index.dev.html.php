@@ -58,6 +58,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 <body>
 	<!-- navigation -->
 	<nav class="pages-nav">
+		<div class="pages-nav__item"><a class="link link--page" href="#page-truth-beyond">진상규명은...</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-2nd-hearing">2차 청문회</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-hearing">1차 청문회</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-journal">416가족의 발자취</a></div>

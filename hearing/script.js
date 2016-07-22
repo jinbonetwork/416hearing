@@ -67,7 +67,6 @@ var sHearing1;
 				ratio: 'auto',
 				gutter: '10 - - - 40'
 			}, 'computed');
-			$(window).trigger('es-setScrollbarEvent');
 
 			//스크롤 효과 ////
 			this.Root.find('.outline').scrEffectOfBgcolor({

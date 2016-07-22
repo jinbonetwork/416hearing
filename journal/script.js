@@ -10,8 +10,6 @@ var sJournal;
 
 		this.settings = $.extend({}, $.fn.sewoljournal.defaults, options);
 
-		this.Gnavi = $('.pages-stack');
-
 		this.init();
 	}
 

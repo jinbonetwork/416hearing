@@ -1,0 +1,42 @@
+/*
+목차:
+	- 공통
+	- section.page-title
+*/
+
+@import "../css/variables.less";
+
+#page-truth-beyond {
+	font-family: @font-noto;
+	font-weight: @font-wt-light;
+	color: #666;
+
+	// 공통 ////
+	h1, h2, h3, h4, h5, h6 {
+		color: #666;
+		margin: 0;
+		line-height: 1.2em;
+	}
+	& > section {
+		max-width: 1920px;
+		margin:0 auto;
+	}
+
+	// section.page-title ////
+	section.page-title {
+		padding: 0 24px;
+		div {
+			text-align: center;
+		}
+		h1 {
+			display: inline-block;
+			text-align: left;
+		}
+		div:first-child h1 {
+			font-weight: @font-wt-light;
+		}
+		div:last-child h1 {
+			font-weight: @font-wt-black;
+		}
+	}
+}
