@@ -9,13 +9,18 @@ var SewolTruthBeyond = require('./script.js');
 (function($){
 	SewolTruthBeyond.prototype.style = function(){
 		// common ////
-		this.$('section:first-child, section + section, .part + .part').respStyle({
+		this.$('section:first-child, section + section, .part + .part, .resp-margin-top').respStyle({
 			breakpoint: '320 1920',
 			'margin-top': '60 160 max'
 		});
 		this.$('.image-with-title .title-on-image h6').respStyle({
 			breakpoint: '320 1920',
 			'font-size': '36 52 max'
+		});
+		this.$('.image-with-title, .subsection-title-region, .contents-region').respStyle({
+			breakpoint: '320 768 1920',
+			'padding-left': '24 40 = max',
+			'padding-right': '24 40 = max'
 		});
 
 		// section.page-title ////
@@ -25,11 +30,6 @@ var SewolTruthBeyond = require('./script.js');
 		});
 
 		// section.investigate ////;
-		this.$('.investigate-law--content, .investigate-law--caption').respStyle({
-			breakpoint: '320 1920',
-			'padding-left': '2 4 em max',
-			'padding-right': '2 4 em max'
-		});
 		this.$('.part.investigate-journal h3').respStyle({
 			breakpoint: '320 1920',
 			'font-size': '21 36 max'
@@ -41,6 +41,10 @@ var SewolTruthBeyond = require('./script.js');
 		this.$('.journal-desktop').find('.journal-left li, .journal-right li').respStyle({
 			breakpoint: '768 1024 1920',
 			'font-size': '15 18 = max'
+		});
+		this.$('.investigate-score--title p').respStyle({
+			breakpoint: '320 1920',
+			'font-size': '20 60 max'
 		});
 	}
 })(jQuery);

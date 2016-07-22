@@ -2,18 +2,13 @@
 목차
 	- .part.investigate-law
 	- .part.investigate-journal
-		- .journal-desktop
+	- .part.investigate-score
 */
 
 @import "../css/variables.less";
 
 #page-truth-beyond > section.investigate {
 	// - .part.investigate-law ////
-	.investigate-law--wrap {
-		margin: 0 auto;
-		max-width: 600px;
-		padding: 0 24px;
-	}
 	@media screen and (max-width: 767px) {
 		.investigate-law--wrap {
 			font-size: 13px;
@@ -28,6 +23,18 @@
 		border: solid 3px #6d92c4;
 		padding-top: 2em;
 		padding-bottom: 2em;
+	}
+	@media screen and (max-width: 767px) {
+		.investigate-law--content {
+			padding-left: 2em;
+			padding-right: 2em;
+		}
+	}
+	@media screen and (min-width: 768px) {
+		.investigate-law--content {
+			padding-left: 4em;
+			padding-right: 4em;
+		}
 	}
 	.investigate-law--content li {
 		text-align: justify;
@@ -46,6 +53,18 @@
 		border-bottom: 0;
 		padding-top: 1em;
 		padding-bottom: 1em;
+	}
+	@media screen and (max-width: 767px) {
+		.investigate-law--caption {
+			padding-left: 2em;
+			padding-right: 2em;
+		}
+	}
+	@media screen and (min-width: 768px) {
+		.investigate-law--caption {
+			padding-left: 4em;
+			padding-right: 4em;
+		}
 	}
 	.investigate-law--caption a,
 	.investigate-law--caption a:active,
@@ -67,7 +86,6 @@
 		.journal-mobile { display: none; }
 	}
 	.journal-desktop {
-		padding: 0 40px;
 		.journal-header p {
 			text-align: center;
 		}
@@ -87,7 +105,12 @@
 			margin-bottom: 1em;
 		}
 		.journal-wrap {
-			position: relative;
+			position: relative;;
+		}
+		.journal-wrap:after {
+			content: '';
+			display: block;
+			clear: both;
 		}
 		.journal-wrap ul {
 			padding-top: 40px;
@@ -111,8 +134,7 @@
 			height: 85px;
 		}
 		.journal-left {
-			position: absolute;
-			top: 0; left: 0;
+			float: left;
 			width: 50%;
 		}
 		.journal-left ul {
@@ -143,15 +165,15 @@
 			border-top: solid 2px #fff;
 		}
 		.journal-right {
-			position: absolute;
-			top: 0; right: 0;
+			margin-left: 50%;
 			width: 50%;
+			padding-top: 40px;
+
 		}
 		.journal-right ul {
 			background-color: #7657c5;
 			padding-left: 90px;
 			padding-top: 0;
-			margin-top: 40px;
 		}
 		.journal-right li {
 			position: relative;
@@ -243,7 +265,7 @@
 		}
 		li > .journal-item {
 			margin-left: 80px;
-			font-size: 15px;
+			font-size: 16px;
 			font-weight: @font-wt-bold;
 			line-height: 1.2em;
 			padding-right: 10px;
@@ -268,4 +290,75 @@
 			color: #0be4db;
 		}
 	}// .journal-mobile
+	.journal-closing {
+		text-align: justify;
+		margin: 0 auto;
+	}
+	@media screen and (max-width: 767px) {
+		.journal-closing {
+			font-size: 16px;
+			line-height: 1.5em;
+		}
+	}
+	@media screen and (min-width: 768px) {
+		.journal-closing {
+			max-width: 600px;
+			font-size: 18px;
+			line-height: 2em;
+		}
+	}
+
+	// .part.investigate-score ////
+	.investigate-score--wrap:after {
+		content: ''; display: block; clear: both;
+	}
+	@media screen and (min-width: 768px) {
+		.investigate-score--title {
+			float: left;
+			width: 50%;
+		}
+	}
+	.investigate-score--title h6,
+	.investigate-score--title strong {
+		font-weight: @font-wt-bold;
+	}
+	@media screen and (max-width: 767px) {
+		.investigate-score--title h6 { font-size: 15px; }
+	}
+	@media screen and (min-width: 768px) {
+		.investigate-score--title h6 { font-size: 18px; }
+	}
+	.investigate-score--title p {
+		line-height: 1.2em;
+	}
+	@media screen and (max-width: 767px) {
+		.investigate-score--graph {
+			margin-top: 10%;
+			margin-bottom: 10%;
+		}
+	}
+	@media screen and (min-width: 768px) {
+		.investigate-score--graph {
+			margin-left: 50%;
+			margin-bottom: 10%;
+		}
+	}
+	.investigate-score--graph .graph {
+		width: 80%;
+		margin: 0 auto;
+	}
+	.investigate-score--graph .graph:before {
+		content: '';
+		display: block;
+		padding-bottom: 100%;
+		background-color: #7657c5;
+	}
+	@media screen and (max-width: 767px) {
+		.investigate-score--closing { font-size: 15px; }
+	}
+	@media screen and (min-width: 768px) {
+		.investigate-score--closing { font-size: 18px; }
+	}
+
+
 }

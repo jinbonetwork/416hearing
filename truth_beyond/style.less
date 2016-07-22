@@ -17,9 +17,17 @@
 		margin: 0;
 		line-height: 1.2em;
 	}
-	& > section {
-		max-width: 1920px;
-		margin:0 auto;
+	.subsection-title-region, .contents-region, .text-region {
+		margin: 0 auto;
+	}
+	.subsection-title-region { max-width: 1520px; }
+	.contents-region { max-width: 1280px; }
+	.text-region { max-width: 600px; }
+	@media screen and (max-width: 647px) {
+		.text-region {
+			padding-left: 24px;
+			padding-right: 24px;
+		}
 	}
 
 	// section.page-title ////
