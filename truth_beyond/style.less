@@ -1,7 +1,14 @@
 /*
 목차:
-	- 공통
-	- section.page-title
+	h-tags
+	.caption
+	.subsection-title-region
+	.contents-region
+	.text-region
+	.simple-image-wrap
+	.related-material
+	.list-with-circle-number
+	section.page-title
 */
 
 @import "../css/variables.less";
@@ -11,12 +18,37 @@
 	font-weight: @font-wt-light;
 	color: #666;
 
-	// 공통 ////
+	// h-tags ////
 	h1, h2, h3, h4, h5, h6 {
 		color: #666;
 		margin: 0;
 		line-height: 1.2em;
 	}
+
+	// .caption ////
+	.caption {
+		margin: 10px 0;
+	}
+	.caption h6 {
+		display: inline-block;
+		color: #808080;
+		font-weight: @font-wt-bold;
+		@media screen and (max-width: 767px) { font-size: 13px; }
+		@media screen and (min-width: 768px) { font-size: 15px; }
+	}
+	.caption button {
+		background-color: #6d92c4;
+		border: 0;
+		color: #fff;
+		font-family: @font-noto;
+		font-weight: @font-wt-bold;
+		@media screen and (max-width: 767px) { font-size: 13px; }
+		@media screen and (min-width: 768px) { font-size: 15px; }
+		padding: 0.2em 1em;
+		margin-left: 1em;
+	}
+
+	// .subsection-title-region ////
 	.subsection-title-region {
 		margin: 0 auto;
 		max-width: 1520px;
@@ -24,7 +56,6 @@
 	.subsection-title-region:after {
 		content: ''; display: block; clear: both;
 	}
-
 	.subsection-title-region > h3 {
 		font-weight: @font-wt-black;
 		@media screen and (max-width: 767px) {
@@ -44,10 +75,14 @@
 	.subsection-title-region > .subsection-content:after {
 		content: ''; display: block; clear: both;
 	}
+
+	// .contents-region ////
 	.contents-region {
 		margin: 0 auto;
 		max-width: 1280px;
 	}
+
+	// .text-region ////
 	.text-region {
 		margin: 0 auto;
 		max-width: 600px;
@@ -66,8 +101,167 @@
 		}
 	}
 
+	// .simple-image-wrap ////
+	.simple-image-wrap img {
+		width: 100%;
+	}
+
+	// .blockquote ////
+	.blockquote {
+		text-align: center;
+		.wrap {
+			display: inline-block;
+		}
+		.text-wrap {
+			position: relative;
+			display: inline-block;
+			text-align: left;
+		}
+		.text-wrap span {
+			font-family: @font-batang;
+		}
+		i {
+			color: #6d92c4;
+		}
+		i.fa-quote-left {
+			position: absolute;
+			top: 0; left: 0;
+		}
+		i.fa-quote-right {
+			position: absolute;
+			bottom: 0; right: 0;
+		}
+		.caption {
+			text-align: left;
+		}
+	}
+
+	// .related-material ////
+	.related-material h6 {
+		font-size: 15px;
+		font-weight: @font-wt-bold;
+		color: #7657c5
+	}
+
+	// .list-with-circle-number ////
+	.list-with-circle-number {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		li {
+			position: relative;
+			margin-top: 3%;
+			font-weight: @font-wt-bold;
+		}
+		.list-number {
+			position: absolute;
+			top: 0; left: 0;
+			width: 30px;
+			height: 30px;
+			border-radius: 30px;
+			border: solid 1px #666;
+			line-height: 30px;
+			text-align: center;
+			font-family: @font-mont;
+			font-size: 17px;
+		}
+		h6, p {
+			margin-left: 40px;
+			@media screen and (min-width: 376px) {
+				margin-right: 75px;
+			}
+		}
+		h6 > a {
+			&, &:active, &:visited, &:hover { color: #666 }
+			@media screen and (max-width: 767px) {
+				font-size: 16px;
+			}
+			@media screen and (min-width: 768px) {
+				font-size: 17px;
+			}
+		}
+		p {
+			font-size: 12px;
+			color: #808080;
+			font-size: 12px;
+			margin-top: 0.5em;
+		}
+		.list-note {
+			font-size: 13px;
+			@media screen and (max-width: 375px) {
+				margin-left: 40px;
+				margin-top: 0.5px;
+			}
+			@media screen and (min-width: 376px) {
+				position: absolute;
+				top: 0; right: 0;
+				width: 75px;
+				text-align: right;
+			}
+		}
+	}
+
+	// .suspicion-list ////
+	.suspicion-list {
+		background-color: #333;
+		.list-wrap {
+			margin: 0 auto;
+			max-width: 720px;
+			@media screen and (max-width: 768px) {
+				padding-left: 24px;
+				padding-right: 24px;
+			}
+		}
+		.list-title {
+			position: relative;
+			top: -20px;
+			margin-left: 60px;
+		}
+		h6 {
+			display: inline-block;
+			font-size: 15px;
+			padding: 0.8em;
+			color: #fff;
+			background-color: #7657c5;
+		}
+		&.hearing2 h6 {
+			color: #333;
+			background-color: #0be4db;
+		}
+		li {
+			padding-bottom: 5%;
+		}
+		li:after {
+			content: ''; display: block; clear: both;
+		}
+		li > .number {
+			float: left;
+			font-size: 16px;
+			width: 47px;
+			color: #333;
+			text-align: center;
+			font-weight: @font-wt-bold;
+			background-color: #0be4db;
+		}
+		&.hearing2 li > .number {
+			color: #fff;
+			background-color: #7657c5;
+		}
+		li > .number > span:last-child {
+			font-family: @font-mont;
+		}
+		li > .title {
+			margin-left: 60px;
+		}
+		li > .title > span {
+			font-size: 17px;
+			font-weight: @font-wt-bold;
+			color: #fff;
+		}
+	}
+
 	// section.page-title ////
-	section.page-title {
+	.part.page-title {
 		padding: 0 24px;
 		div {
 			text-align: center;

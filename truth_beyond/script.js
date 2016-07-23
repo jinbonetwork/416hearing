@@ -1,13 +1,11 @@
-var sTruthBeyond;
-
 (function($){
 
 	//'use strict';
 
 	module.exports = SewolTruthBeyond;
-
 	function SewolTruthBeyond(element,options) {
 		this.Root = $(element);
+		this.data = require('./data.json.js');
 		this.path = {
 			root: 'data/truth_beyond/',
 			image: 'data/truth_beyond/images/',
@@ -16,24 +14,24 @@ var sTruthBeyond;
 		}
 		this.markup();
 		this.style();
-		this.adjustment();
+		this.markupAfterStyle();
 		this.events();
 	}
-	SewolTruthBeyond.prototype.$ = function(selector){
+	SewolTruthBeyond.prototype.$el = function(selector){
 		return ( selector ? this.Root.find(selector) : this.Root );
 	}
 	SewolTruthBeyond.prototype.markup = function(){
-		var self = this;
-		self.$('.image-with-title').each(function(){
-			self.imageWithTitle($(this));
-		});
-		self.$('.media-and-text-in-two-column').each(function(){
-			self.mediaAndTextInTwoColumn($(this));
-		});
-		self.markupJournal();
+		for(var prop in this.data){
+			var template = this.data[prop].template;
+			this[template](prop, this.data[prop], this.$el());
+		}
 	}
-	SewolTruthBeyond.prototype.adjustment = function(){
-		self.$('.navy-p1-image-wrap:last-child').fitEnd(self.$('.navy-p1-image-wrap:first-child'), 'bottom', 768);
+	SewolTruthBeyond.prototype.markupAfterStyle = function(){
+		this.$el('.video-wrap').clickAndPlayYoutube();
+		this.$el('.navy-p1-image-wrap:last-child').fitEnd(
+			this.$el('.navy-p1-image-wrap:first-child'), 'bottom', 768
+		);
+		this.nisPart1ImgArrange();
 	}
 	SewolTruthBeyond.prototype.events = function(){
 		var self = this;
@@ -51,22 +49,40 @@ var sTruthBeyond;
 		var self = this;
 
 	}
-	SewolTruthBeyond.prototype.imageWithTitle = function($el){
-		var self = this;
-		var arg = {
-			src: $el.attr('data-src'),
-			option: $el.attr('data-option'),
-			title: $el.attr('data-title'),
-			caption: $el.attr('data-caption')
-		};
+	SewolTruthBeyond.prototype.plainDiv = function(partname, partdata, $container){
 		var markup =
-			'<div class="image-wrap">' +
-				'<img src="'+self.path.image+arg.src+'">' +
-				'<div class="title-on-image"><h6>'+arg.title+'</h6></div>' +
-			'</div>' +
-			'<div class="caption"><h6>'+arg.caption+'</h6></div>';
-		$el.append(markup);
-		if(arg.option == 'auto'){
+			'<div class="'+( partname ? 'part '+partname : '' )+( partdata.classes ? ' '+partdata.classes : '' )+'">'+
+				( partdata.title ? '<h6>'+partdata.title+'</h6>' : '' ) +
+			'</div>';
+		var $part = $(markup).appendTo($container);
+		if($.type(partdata.data) !== 'string'){
+			for(var i = 0, len = partdata.data.length; i < len; i++){
+				this[partdata.data[i].template]('', partdata.data[i], $part);
+			}
+		} else {
+			$('<span>'+partdata.data+'</span>').appendTo($part);
+		}
+	}
+	SewolTruthBeyond.prototype.pageTitle = function(partname, partdata, $container){
+		var markup =
+			'<div class="part page-title">' +
+				'<div><h1>'+partdata.data[0]+'</h1></div>' +
+				'<div><h1>'+partdata.data[1]+'</h1></div>' +
+			'</div>';
+		$(markup).appendTo($container);
+	}
+	SewolTruthBeyond.prototype.imageWithTitle = function(partname, partdata, $container){
+		var self = this;
+		var markup =
+			'<div class="part image-with-title '+partname+'"">' +
+				'<div class="image-wrap">' +
+					'<img src="'+self.path.image+partdata.src+'">' +
+					'<div class="title-on-image"><h6>'+partdata.title+'</h6></div>' +
+				'</div>' +
+				'<div class="caption"><h6>'+partdata.caption+'</h6></div>' +
+			'</div>';
+		var $el = $(markup).appendTo($container);
+		if(partdata.option == 'auto'){
 			var $img = $el.find('img');
 			$img.load(function(){ self.imageCropAuto($img); });
 			$(window).resize(function(){ self.imageCropAuto($img); });
@@ -80,27 +96,69 @@ var sTruthBeyond;
 			else $image.css({ width: 'auto', height: '100%' });
 		}
 	}
-	SewolTruthBeyond.prototype.markupJournal = function(){
+	SewolTruthBeyond.prototype.investigateLaw = function(partname, partdata, $container){
+		var markup =
+			'<div class="part investigate-law text-region">' +
+				'<div class="investigate-law--wrap">' +
+					'<div class="investigate-law--content">' +
+						'<h6>'+partdata.title+'</h6>' +
+						'<ul>' +
+							'<li>'+partdata.data[0]+'</li>' +
+							'<li>'+partdata.data[1]+'</li>' +
+						'</ul>' +
+					'</div>' +
+					'<div class="investigate-law--caption">'+partdata.caption+'</div>' +
+				'</div>' +
+			'</div>';
+		$(markup).appendTo($container);
+	}
+	SewolTruthBeyond.prototype.investigateJournal = function(partname, partdata, $container){
 		var self = this;
-		var $wrap = self.$('.investigate-journal');
-		var $list = $wrap.find('ul.journal-data > li');
+		var markup =
+			'<div class="part investigate-journal">' +
+				'<h3>'+partdata.title+'</h3>' +
+				'<div class="journal-desktop contents-region">' +
+					'<div class="journal-header">' +
+						'<p class="journal-year"></p>' +
+						'<p class="journal-date"></p>' +
+						'<p class="journal-content"></p>' +
+					'</div>' +
+					'<div class="journal-wrap">' +
+						'<div class="journal-left">' +
+							'<ul></ul>' +
+							'<h6>정<br>부<br>주<br>장</h6>' +
+						'</div>' +
+						'<div class="journal-right">' +
+							'<ul></ul>' +
+							'<h6>특<br>조<br>위<br>주<br>장</h6>' +
+						'</div>' +
+						'<div class="journal-center">' +
+							'<ul></ul>' +
+						'</div>' +
+					'</div>' +
+				'</div>' +
+				'<div class="journal-mobile">' +
+					'<ul></ul>' +
+				'</div>' +
+				'<div class="journal-closing resp-margin-top text-region">'+partdata.closing+'</div>' +
+			'</div>';
+		var $wrap = $(markup).appendTo($container);
 		var $desktop = $wrap.find('.journal-desktop');
 		var $mobile = $wrap.find('.journal-mobile > ul');
 		var $center = $desktop.find('.journal-center > ul');
 		var $left = $desktop.find('.journal-left > ul');
 		var $right = $desktop.find('.journal-right > ul');
 
-		$desktop.find('p.journal-year').html($list.eq(0).attr('data-year'));
-		$desktop.find('p.journal-date').html($list.eq(1).attr('data-date'));
-		$desktop.find('p.journal-content').html($list.eq(1).html());
+		$desktop.find('p.journal-year').html(partdata.data[0].year);
+		$desktop.find('p.journal-date').html(partdata.data[1].date);
+		$desktop.find('p.journal-content').html(partdata.data[1].content);
 		var preYear = '';
-		for(var i = 0, len = $list.length; i < len; i++){
-			var $li = $list.eq(i);
-			var year = $li.attr('data-year');
-			var date = $li.attr('data-date');
-			var period = $li.attr('data-period');
-			var side = $li.attr('data-side');
-			var content = $li.html();
+		for(var i = 0, len = partdata.data.length; i < len; i++){
+			var year = partdata.data[i].year;
+			var date = partdata.data[i].date;
+			var period = partdata.data[i].period;
+			var side = partdata.data[i].side;
+			var content = partdata.data[i].content;
 
 			var liClass;
 			if(year) liClass = 'journal-year';
@@ -111,7 +169,6 @@ var sTruthBeyond;
 				$left.append('<li class="'+liClass+'">'+(side == 'left' ? content+'<div class="link-line"></div>' : '' )+'</li>');
 				$right.append('<li class="'+liClass+'">'+(side == 'right' ? content+'<div class="link-line"></div>' : '' )+'</li>');
 			}
-
 			if(year === undefined){
 				var sideHtml = '';
 				if(side == 'left') sideHtml = '<span>정부주장</span>';
@@ -126,79 +183,166 @@ var sTruthBeyond;
 			}
 			preYear = year;
 		}
-		$wrap.children('ul.journal-data').remove();
 	}
-	SewolTruthBeyond.prototype.mediaAndTextInTwoColumn = function($el){
+	SewolTruthBeyond.prototype.investigateScore = function(partname, partdata, $container){
+		var markup =
+			'<div class="part investigate-score">' +
+				'<div class="investigate-score--wrap contents-region">' +
+					'<div class="investigate-score--title">' +
+						'<h6>'+partdata.title+'</h6>' +
+						'<p>'+partdata.content+'</p>' +
+					'</div>' +
+					'<div class="investigate-score--graph">' +
+						'<div class="graph"></div>' +
+					'</div>' +
+				'</div>' +
+				'<div class="investigate-score--closing text-region">'+partdata.closing+'</div>' +
+			'</div>';
+		$(markup).appendTo($container);
+	}
+	SewolTruthBeyond.prototype.mediaAndTextInTwoColumn = function(partname, partdata, $container){
 		var self = this;
-		var arg = {
-			type: $el.attr('data-type'),
-			src: $el.attr('data-src'),
-			option: $el.attr('data-option'),
-			link: $el.attr('data-link'),
-			caption: $el.attr('data-caption'),
-			text: $el.attr('data-text')
-		};
-		var mkLinkWrap = '<a class="link-wrap" href="'+arg.link+'" target="_blank"><img src="'+self.path.image+arg.src+'"></a>';
-		var mkVideoWrap = '';
+		var mkWraps = '';
+		if(partdata.type == 'prezi'){
+			mkWraps = '<a class="link-wrap" href="'+partdata.link+'" target="_blank"><img src="'+self.path.image+partdata.src+'"></a>';
+		} else if(partdata.type == 'video'){
+			mkWraps = '<div class="video-wrap" data-youtube-id="'+partdata.src+'"></div>';
+		} else if(partdata.type == 'image'){
+			mkWraps = '<img src="'+self.path.image+partdata.src+'">';
+		} else {
+			mkWraps = '<div class="void-wrap"></div>';
+		}
 		var mkMedia =
 			'<div class="media-wrap">' +
-				( arg.type == 'prezi' ? mkLinkWrap : mkVideoWrap ) +
-				'<div class="caption"><h6>'+arg.caption+'</h6></div>' +
+				mkWraps +
+				(partdata.caption ? '<div class="caption"><h6>'+partdata.caption+'</h6></div>' : '') +
 			'</div>';
-		var mkText = '<div class="text-wrap">'+arg.text+'</div>';
+		var mkText = '<div class="text-wrap">'+partdata.text+'</div>';
+		var ratioClass = ( partdata.ratio && partdata.ratio == '2:1' ? 'ratio21' : '' );
 		var markup =
-			'<div class="left-column">'+( arg.option == 'left-media' ? mkMedia : mkText )+'</div>' +
-			'<div class="right-column">'+( arg.option == 'left-media' ? mkText : mkMedia )+'</div>';
-		$el.append(markup);
+			'<div class="part contents-region '+partname+'">' +
+				'<div class="media-and-text-in-two-column'+( ratioClass ? ' '+ratioClass : '' )+'">' +
+					'<div class="left-column">'+( partdata.option == 'left-media' ? mkMedia : mkText )+'</div>' +
+					'<div class="right-column">'+( partdata.option == 'left-media' ? mkText : mkMedia )+'</div>' +
+				'</div>' +
+			'</div>';
+		var $part = $(markup).appendTo($container);
+		var $otherMaterial = $('<div class="other-materal"></div>').insertAfter($part.find('.text-wrap'));
+		if(partdata.type == 'prezi' || partdata.type == 'video'){ if(partdata.data){
+			for(var i = 0, len = partdata.data.length; i < len; i++){
+				self[partdata.data[i].template]('', partdata.data[i], $otherMaterial);
+			}
+		}} else { if(partdata.data){
+			self[partdata.data[0].template]('', partdata.data[0], $part.find('.void-wrap'));
+			for(var i = 1, len = partdata.data.length; i < len; i++){
+				self[partdata.data[i].template]('', partdata.data[i], $otherMaterial);
+			}
+		}}
 	}
-
-	$.fn.fitEnd = function($target, which, active){
-		return this.each(function(){
-			new FitEnd($(this), $target, which, active);
+	SewolTruthBeyond.prototype.simpleImageWrap = function(partname, partdata, $container){
+		var self = this;
+		var markup =
+			'<div class="simple-image-wrap">' +
+				'<img src="'+self.path.image+partdata.src+'">' +
+				'<div class="caption"><h6>'+partdata.caption+'</h6></div>' +
+			'</div>';
+		$(markup).appendTo($container);
+	};
+	SewolTruthBeyond.prototype.subsectionTitleRegion = function(partname, partdata, $container){
+		var markup =
+			'<div class="part subsection-title-region '+partname+'">' +
+				'<h3>'+partdata.title+'</h3>' +
+				'<div class="subsection-content"></div>' +
+			'</div>';
+		var $part = $(markup).appendTo($container);
+		var $content = $part.find('.subsection-content');
+		for(var i = 0, len = partdata.data.length; i < len; i++){
+			this[partdata.data[i].template]('', partdata.data[i], $content);
+		}
+	}
+	SewolTruthBeyond.prototype.navyPart1 = function(partname, partdata, $container){
+		var markup =
+			'<div class="navy-p1-image-wrap">' +
+				'<p>'+partdata.text+'</p>' +
+				'<img src="'+this.path.image+partdata.src+'">' +
+			'</div>';
+		$(markup).appendTo($container);
+	}
+	SewolTruthBeyond.prototype.blockquote = function(partname, partdata, $container){
+		var markup =
+			'<div class="blockquote">' +
+				'<div class="wrap">' +
+					'<div class="text-wrap">' +
+						'<i class="fa fa-quote-left" aria-hidden="true"></i>' +
+						'<span>'+partdata.text+'</span>' +
+						'<i class="fa fa-quote-right" aria-hidden="true"></i>' +
+					'</div>' +
+					'<div class="caption"><h6>'+partdata.caption+'</h6></div>' +
+				'</div>' +
+			'</div>';
+		$(markup).appendTo($container);
+	}
+	SewolTruthBeyond.prototype.listWithCircleNumber = function(partname, partdata, $container){
+		var mkList = '';
+		var title, content, note
+		for(var i = 0, len = partdata.data.length; i < len; i++){
+			title = partdata.data[i].title;
+			content = partdata.data[i].content;
+			note = partdata.data[i].note;
+			mkList += '<li>' +
+				'<div class="list-number">'+(i+1)+'</div>' +
+				'<h6>'+title+'</h6>' +
+				( content ? '<p>'+content+'</p>' : '') +
+				( note ? '<div class="list-note">'+note+'</div>' : '') +
+			'</li>';
+		}
+		var markup ='<ol class="list-with-circle-number">'+mkList+'</ol>';
+		$(markup).appendTo($container);
+	}
+	SewolTruthBeyond.prototype.bluehousePart1 = function(partname, partdata, $container){
+		var markup =
+			'<div class="video-wrap" data-youtube-id="'+partdata.youtube+'"></div>' +
+			'<div class="caption">' +
+				'<h6>'+partdata.caption+'</h6>' +
+				'<button type="button">텍스트로 보기</button>' +
+			'</div>';
+		$(markup).appendTo($container);
+	}
+	SewolTruthBeyond.prototype.suspicionList = function(partname, partdata, $container){
+		var mkList = '', data;
+		for(var i = 0, len = partdata.data.length; i < len; i++){
+			data = partdata.data[i];
+			mkList += '<li>' +
+				'<div class="number"><span>의혹</span><span>'+data.number+'</span></div>' +
+				'<div class="title" data-href="'+data.href+'"><span>'+data.title+'</span></div>' +
+			'</li>';
+		}
+		var markup =
+			'<div class="part '+partname+' suspicion-list '+partdata.page+'">' +
+				'<div class="list-wrap">' +
+					'<div class="list-title"><h6>'+partdata.title+'</h6></div>' +
+					'<ul>'+mkList+'</ul>' +
+				'</div>' +
+			'</div>';
+		$(markup).appendTo($container);
+	}
+	SewolTruthBeyond.prototype.nisPart1 = function(partname, partdata, $container){
+		var markup = '';
+		for(var i = 0, len = partdata.data.length; i < len; i++){
+			markup += '<img src="'+this.path.image+partdata.data[i]+'">';
+		}
+		markup = '<div class="image-wrap">'+markup+'</div>';
+		$(markup).appendTo($container);
+	}
+	SewolTruthBeyond.prototype.nisPart1ImgArrange = function(){
+		var self = this;
+		var a, y, x, r = 20;
+		self.$el('.nis-part-1 img').each(function(index){
+			a = (2*Math.PI / 7 * index);
+			x = r*Math.sin(a) + 50;
+			y = r*Math.cos(a) + 50;
+			$(this).css({ left: x+'%', top: y+'%' });
 		});
-	}
-	function FitEnd($el, $target, which, active){
-		this.$el = $el;
-		this.$target = $target;
-		this.which = which;
-		this.active = active;
-		this.prop = '';
-
-		this.init();
-		this.fitEnd();
-		this.events();
-	}
-	FitEnd.prototype.init = function(){
-		switch(this.which){
-			case 'top': this.prop = 'padding-bottom'; break;
-			case 'bottom': this.prop = 'padding-top'; break;
-			case 'left': this.prop = 'padding-right'; break;
-			case 'right': this.prop = 'padding-left'; break;
-		}
-	}
-	FitEnd.prototype.fitEnd = function(){
-		this.$el.css(this.prop, '');
-		if(this.$el.is(':visible') && this.active <= window.innerWidth){
-			var self = this;
-			var oEnd1 = self.$el[0].getBoundingClientRect()[self.which];
-			var oEnd2 = self.$target[0].getBoundingClientRect()[self.which];
-			var end1, end2;
-			var intv = setInterval(function(){
-				end1 = self.$el[0].getBoundingClientRect()[self.which];
-				end2 = self.$target[0].getBoundingClientRect()[self.which];
-				if(oEnd1 === end1 && oEnd2 === end2){
-					clearInterval(intv);
-					self.$el.css(self.prop, '+='+(end2 - end1));
-				} else {
-					oEnd2 = end2;
-					oEnd1 = end1;
-				}
-			}, 200);
-		}
-	}
-	FitEnd.prototype.events = function(){
-		this.$el.on('refresh', this.fitEnd.bind(this));
-		$(window).resize(this.fitEnd.bind(this));
 	}
 
 	$.fn.sewolTruthBeyond = function(options) {
@@ -209,7 +353,6 @@ var sTruthBeyond;
 	};
 
 	$(document).ready(function() {
-		sTruthBeyond = $('#page-truth-beyond').sewolTruthBeyond();
+		$('#page-truth-beyond').sewolTruthBeyond();
 	});
-
 })(jQuery);

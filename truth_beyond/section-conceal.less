@@ -1,10 +1,13 @@
 /*
 목차
 	1 .part.navy-part-1
+	2 .part.navy-part-2
+	3 .part.navy-part-3
+	4 .part.nis-part-1
 */
 @import "../css/variables.less";
 
-#page-truth-beyond > section.conceal {
+#page-truth-beyond {
 	// 1 .part.navy-part-1 ///
 	.navy-p1-image-wrap {
 		@media screen and (min-width: 768px) {
@@ -36,5 +39,41 @@
 	}
 	.navy-p1-image-wrap:last-child img {
 		border: solid 1px #808080;
+	}
+
+	// 2 .part.navy-part-2 ////
+	.part.navy-part-2 .right-column:after {
+		content: ''; display: block; clear: both;
+	}
+	.part.navy-part-2 .simple-image-wrap {
+		@media screen and (max-width: 767px) {
+			margin-top: 5%;
+		}
+		@media screen and (min-width: 768px) {
+			width: 50%;
+			float: right;
+		}
+	}
+
+	// 3 .part.navy-part-3 ////
+	.part.navy-part-4 .media-and-text-in-two-column .text-wrap {
+		@media screen and (min-width: 768px) {
+			padding-top: 30px;
+		}
+	}
+
+	// 4 .part.nis-part-1 ////
+	.part.nis-part-1 {
+		.image-wrap {
+			position: relative;
+			padding-bottom: 50%;
+		}
+		img:nth-child(n+1){
+			position: absolute;;
+			top: 50%;
+			left: 50%;
+			width: 60%;
+			transform: translate(-50%, -50%);
+		}
 	}
 }
