@@ -35,6 +35,11 @@
 	}
 	SewolTruthBeyond.prototype.events = function(){
 		var self = this;
+		self.$el('.suspicion-list [data-href] > span').click(function(){
+			var href = $(this).parent().attr('data-href');
+			href = href.split('-');
+			self.movePageGlobally(href);
+		});
 
 	}
 	SewolTruthBeyond.prototype.activate = function(){
@@ -45,8 +50,10 @@
 		var self = this;
 
 	}
-	SewolTruthBeyond.prototype.movePageGlobally = function(){
+	SewolTruthBeyond.prototype.movePageGlobally = function(href){
 		var self = this;
+		if(href[0] === '1'){
+		}
 
 	}
 	SewolTruthBeyond.prototype.plainDiv = function(partname, partdata, $container){

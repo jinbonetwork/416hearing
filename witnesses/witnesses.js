@@ -200,14 +200,12 @@ var _ = require('../contrib/underscore/underscore-min.js');
 					var preId = jQuery('#page-hearing .navigation').find('.selected').first().find('.num').text();
 					jQuery('#page-hearing #suspicion-'+preId+' .navigation li').each(function(){
 						if(jQuery(this).find('.num').text() == id){ jQuery(this).click(); return false; }
-					})
+					});
 					break;
 				case 2:
 					var preId = jQuery('#page-2nd-hearing .sections .inner-page.open-inner-page').attr('id').replace(/suspicion\-/i,"");
 					if(id != preId) {
-						console.log(this.settings.component);
-						this.settings.component.closePage(preId);
-						this.settings.component.openPage(id);
+						this.settings.component.movePage(preId, id);
 					}
 					break;
 			}
