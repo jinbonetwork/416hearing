@@ -4,6 +4,8 @@
 	2 .part.navy-part-2
 	3 .part.navy-part-3
 	4 .part.nis-part-1
+	5 .part.special-prosecutor-part-1
+	6 .part.law-revision-table
 */
 @import "../css/variables.less";
 
@@ -75,5 +77,98 @@
 			width: 60%;
 			transform: translate(-50%, -50%);
 		}
+	}
+
+	// 5 .part.special-prosecutor ////
+	.part.special-prosecutor-part-1 {
+		.subsection-content:after {
+			clear: both; display: block; clear: both;
+		}
+		.related-material {
+			@media screen and (min-width: 768px) {
+				float: right;
+				width: 50%;
+				min-width: 500px;
+			}
+		}
+	}
+	.part.special-prosecutor-part-2 div:last-child {
+		margin-top: 5%;
+	}
+
+	// 6 .part.law-revision-table ////
+	.part.law-revision-table {
+		.lrvt-wrap > li {
+			padding: 3% 0;
+			border-top: solid 3px #bdcee4;
+		}
+		.lrvt-wrap > li:last-child {
+			border-bottom: solid 3px #bdcee4;
+		}
+		.lrvt-title {
+			font-size: 15px;
+			font-weight: @font-wt-bold;
+			margin-bottom: 1em;
+		}
+		.lrvt-list-wrap:after {
+			content: ''; display: block; clear: both;
+		}
+		.lrvt-list {
+			@media screen and (min-width: 900px) {
+				float:left;
+				width: 60%;
+			}
+		}
+		.lrvt-explain {
+			font-size: 16px;
+			line-height: 1.5em;
+			color: #808080;
+			@media screen and (min-width: 900px) {
+				float: left;
+				width: 40%;
+			}
+		}
+		.lrvt-list > li:after {
+			content: ''; display: block; clear: both;
+		}
+		.lrvt-bill {
+			font-size: 17px;
+			line-height: 1.2em;
+			@media screen and (min-width: 430px) {
+				float: left;
+				width: 83.3333%;
+				margin-bottom: 1em;
+			}
+		}
+		.lrvt-bill:before {
+			content: ''; display: block;
+			float: left;
+			width: 15px;
+			height: 12px;
+			border-bottom: solid 2px #6d92c4;
+		}
+		.lrvt-bill:after {
+			content: ''; display: block; clear: both;
+		}
+		.lrvt-bill a {
+			&, &:active, &:visited, &hover { color: #6d92c4; }
+			display: block;
+			font-weight: @font-wt-bold;
+			margin-left: 20px;
+		}
+		.lrvt-date {
+			font-size: 12px;
+			font-weight: @font-wt-bold;
+			color: #808080;
+			@media screen and (max-width: 429px) {
+				margin-left: 20px;
+			}
+			@media screen and (min-width: 430px) {
+				float: left;
+				width: 16.6666%;
+				text-align: center;
+			}
+		}
+
 	}
 }

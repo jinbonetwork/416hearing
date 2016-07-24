@@ -8,6 +8,7 @@
 	.simple-image-wrap
 	.related-material
 	.list-with-circle-number
+	.two-images-with-caption
 	section.page-title
 */
 
@@ -203,6 +204,8 @@
 
 	// .suspicion-list ////
 	.suspicion-list {
+		margin: 0 auto;
+		max-width: 1920px;
 		background-color: #333;
 		.list-wrap {
 			margin: 0 auto;
@@ -260,6 +263,29 @@
 		}
 	}
 
+	// .two-images-with-caption ////
+	.two-images-with-caption {
+		max-width: 1920px;
+		margin: 0 auto;
+		.image-wrap {
+			overflow: hidden;
+		}
+		img {
+			width: 100%;
+		}
+		@media screen and (min-width: 768px){
+			.image-wrap {
+				width: 50%;
+			}
+			.image-wrap:first-child {
+				float: left;
+			}
+			.image-wrap:last-child {
+				margin-left: 50%;
+			}
+		}
+	}
+
 	// section.page-title ////
 	.part.page-title {
 		padding: 0 24px;
@@ -275,6 +301,30 @@
 		}
 		div:last-child h1 {
 			font-weight: @font-wt-black;
+		}
+	}
+
+	// .part.conclusion-video ////
+	.part.conclusion-video {
+		.other-material {
+			text-align: center;
+		}
+		.share-wrap {
+			font-weight: @font-wt-bold;
+			@media screen and (min-width: 768){
+				display: inline-block;
+				padding-top: 50%;
+				text-align: left;
+			}
+		}
+		.share-wrap div:first-child {
+			margin-bottom: 1em;
+		}
+		.share-wrap i {
+			font-size: 25px;
+		}
+		.share-wrap i + i {
+			padding-left: 1em;
 		}
 	}
 }

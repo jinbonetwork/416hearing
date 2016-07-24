@@ -51,16 +51,27 @@
 	}
 	SewolTruthBeyond.prototype.plainDiv = function(partname, partdata, $container){
 		var markup =
-			'<div class="'+( partname ? 'part '+partname : '' )+( partdata.classes ? ' '+partdata.classes : '' )+'">'+
+			'<div>' +
 				( partdata.title ? '<h6>'+partdata.title+'</h6>' : '' ) +
+				( partdata.imgsrc ? '<img src="'+this.path.image+partdata.imgsrc+'">' : '' ) +
+				( partdata.text ? '<p>'+partdata.text+'</p>' : '' ) +
 			'</div>';
 		var $part = $(markup).appendTo($container);
-		if($.type(partdata.data) !== 'string'){
-			for(var i = 0, len = partdata.data.length; i < len; i++){
-				this[partdata.data[i].template]('', partdata.data[i], $part);
+		if(partname) $part.addClass('part '+partname);
+		if(partdata.classes) $part.addClass(partdata.classes);
+		if(partdata.data){
+			if($.type(partdata.data) !== 'string'){
+				for(var i = 0, len = partdata.data.length; i < len; i++){
+					var data = partdata.data[i];
+					if($.type(data) !== 'string'){
+						this[data.template]('', data, $part);
+					} else {
+						$('<div>'+data+'</div>').appendTo($part);
+					}
+				}
+			} else {
+				$part.html(partdata.data);
 			}
-		} else {
-			$('<span>'+partdata.data+'</span>').appendTo($part);
 		}
 	}
 	SewolTruthBeyond.prototype.pageTitle = function(partname, partdata, $container){
@@ -79,7 +90,7 @@
 					'<img src="'+self.path.image+partdata.src+'">' +
 					'<div class="title-on-image"><h6>'+partdata.title+'</h6></div>' +
 				'</div>' +
-				'<div class="caption"><h6>'+partdata.caption+'</h6></div>' +
+				( partdata.caption ? '<div class="caption"><h6>'+partdata.caption+'</h6></div>' : '') +
 			'</div>';
 		var $el = $(markup).appendTo($container);
 		if(partdata.option == 'auto'){
@@ -218,7 +229,11 @@
 				(partdata.caption ? '<div class="caption"><h6>'+partdata.caption+'</h6></div>' : '') +
 			'</div>';
 		var mkText = '<div class="text-wrap">'+partdata.text+'</div>';
-		var ratioClass = ( partdata.ratio && partdata.ratio == '2:1' ? 'ratio21' : '' );
+		var ratioClass = '';
+		switch(partdata.ratio){
+			case '2:1': ratioClass = 'ratio21'; break;
+			case '1:2': ratioClass = 'ratio12'; break;
+		}
 		var markup =
 			'<div class="part contents-region '+partname+'">' +
 				'<div class="media-and-text-in-two-column'+( ratioClass ? ' '+ratioClass : '' )+'">' +
@@ -227,7 +242,7 @@
 				'</div>' +
 			'</div>';
 		var $part = $(markup).appendTo($container);
-		var $otherMaterial = $('<div class="other-materal"></div>').insertAfter($part.find('.text-wrap'));
+		var $otherMaterial = $('<div class="other-material"></div>').insertAfter($part.find('.text-wrap'));
 		if(partdata.type == 'prezi' || partdata.type == 'video'){ if(partdata.data){
 			for(var i = 0, len = partdata.data.length; i < len; i++){
 				self[partdata.data[i].template]('', partdata.data[i], $otherMaterial);
@@ -244,7 +259,7 @@
 		var markup =
 			'<div class="simple-image-wrap">' +
 				'<img src="'+self.path.image+partdata.src+'">' +
-				'<div class="caption"><h6>'+partdata.caption+'</h6></div>' +
+				( partdata.caption ? '<div class="caption"><h6>'+partdata.caption+'</h6></div>' : '') +
 			'</div>';
 		$(markup).appendTo($container);
 	};
@@ -332,6 +347,37 @@
 			markup += '<img src="'+this.path.image+partdata.data[i]+'">';
 		}
 		markup = '<div class="image-wrap">'+markup+'</div>';
+		$(markup).appendTo($container);
+	}
+	SewolTruthBeyond.prototype.lawRevisionTable = function(partname, partdata, $container){
+		var mkData = '';
+		for(var i = 0, leni = partdata.data.length; i < leni; i++){
+			var data = partdata.data[i], mkList = '';
+			for(var j = 0, lenj = data.list.length; j < lenj; j++){
+				mkList += '<li>' +
+					'<div class="lrvt-bill">' +
+						'<a href="'+this.path.doc+data.list[j].material+'" target="_blank">'+data.list[j].bill+'</a>' +
+					'</div>' +
+					'<div class="lrvt-date">'+data.list[j].date+'</div>' +
+				'</li>';
+			}
+			mkData += '<li>' +
+				'<div class="lrvt-title">'+data.title+'</div>' +
+				'<div class="lrvt-list-wrap">' +
+					'<ul class="lrvt-list">'+mkList+'</ul><div class="lrvt-explain">'+data.explain+'</div>' +
+				'</div>' +
+			'</li>';
+		}
+		var markup = '<div class="part law-revision-table contents-region"><ul class="lrvt-wrap">'+mkData+'</ul></div>';
+		$(markup).appendTo($container);
+	}
+	SewolTruthBeyond.prototype.twoImagesWithCpation = function(partname, partdata, $container){
+		var markup =
+		 	'<div class="part two-images-with-caption">' +
+				'<div class="image-wrap"><img src="'+this.path.image+partdata.src[0]+'"></div>' +
+				'<div class="image-wrap"><img src="'+this.path.image+partdata.src[1]+'"></div>' +
+				'<div class="text-region"><div class="caption"><h6>'+partdata.caption+'</h6></div></div>' +
+			'</div>';
 		$(markup).appendTo($container);
 	}
 	SewolTruthBeyond.prototype.nisPart1ImgArrange = function(){

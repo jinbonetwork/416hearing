@@ -248,5 +248,180 @@ module.exports = {
 		"template": "plainDiv",
 		"classes": "text-region",
 		"data": "최근 밝혀진 해군기지 철근 과적운송 등 정부가 참사원인을 제공했다는 의혹에서 국정원은 전혀 자유롭지 못합니다. 세월호의 실소유주가 국정원이 아니냐는 의혹도 이와 무관하지 않습니다. 우리는 그런 의혹들을 퍼즐조각을 맞추듯이 진상규명을 통해 밝혀내야 할 것입니다."
+	},
+	"special-prosecutor-part-1": {
+		"template": "subsectionTitleRegion",
+		"title": "특검 실시와 책임자 처벌로 사회적 신뢰회복과 치유를!",
+		"data": [
+			{
+				"template": "plainDiv",
+				"classes": "related-material",
+				"title": "관련 자료",
+				"data": [
+					{
+						"template": "listWithCircleNumber",
+						"data": [
+							{
+								"title": "<a href=\"http://taogi.net/416hearing/#journal\" target=\"_blank\">특별법 제정 활동을 중심으로 본 416가족의 발자취</a>",
+								"note": "416가족협의회"
+							},
+							{
+								"title": "<a href=\"http://www.nocutnews.co.kr/news/4614073\">세월호특조위 활동 종료 코앞... 유가족들의 &lsquo;사흘&rsquo;</a>",
+								"note": "노컷뉴스"
+							},
+							{
+								"title": "<a href=\"http://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0002222082&CMPT_CD=P0001\">&lsquo;세월호 철근&rsquo; 검·경은 덮었고 해수부는 숨겼다. 세월호 관계자들, 수사 때 철근 적재량 확인방법까지 알려줘</a>",
+								"note": "프레시안"
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	"special-prosecutor-part-2": {
+		"template": "plainDiv",
+		"classes": "text-region",
+		"data": [
+			"그밖에도 청해진 해운의 선내 대기 방송, 정부에 의한 명백한 증거 조작, 해피아의 이윤 추구, 언론의 오보와 진상 은폐 등, 권력의 비호를 받고 있는 수많은 문제들은 세월호 참사의 구조적 원인을 규명하고, 재발방지를 위해서 반드시 밝혀져야 합니다.",
+			"그러나 수사권과 기소권 없는 특조위와 청문회만으로는 충분하지 않습니다. 세월호 참사에 대한 청와대, 국정원, 구조지휘라인에 대해 총체적 책임을 묻고 구조적인 원인규명과 책임자 처벌을 위해서라도 반드시 특검은 즉각 도입되어야 합니다."
+		]
+	},
+	"law-revision-table": {
+		"template": "lawRevisionTable",
+		"data": [
+			{
+				"title": "4ㆍ16세월호참사 특별조사위원회",
+				"list": [
+					{
+						"bill": "4ㆍ16세월호참사 초기 구조구난 작업의 적정성에 대한 진상규명 사건의 특별검사 수사를 위한 국회 의결 요청안",
+						"material": "2000572_416committee.pdf",
+						"date": "2016.06.20"
+					}
+				],
+				"explain": "참사 초기 구조실패에 대한 해양경찰 지휘부(해경청장, 서해지방해경청장, 목포해양경찰서장)의 업무상 과실치사에 대한 형사상 책임을 특검을 통해 밝히고자 국회에 의결 요청"
+			},
+			{
+				"title": "416세월호참사피해구제및지원등을위한특별법일부개정법률안",
+				"list": [
+					{
+						"bill": "박주민 의원 등 70인안",
+						"material": "2000365_0620.pdf",
+						"date": "2016.06.20"
+					}
+				],
+				"explain": "현행 416특별법으로 구제받지 못하고 있는 기간제교사, 민간잠수사, 자원봉사자, 소방공무원, 생존자 및 단원고 교직원 등을 희생자, 피해자로 규정, 지원을 받을 수 있도록 법 개정 요청"
+			},
+			{
+				"title": "세월호참사진상규명및안전사회건설등을위한특별법일부개정법률안",
+				"list": [
+					{
+						"bill": "위성곤 의원 등 11인안",
+						"material": "2000009_0530.pdf",
+						"date": "2016.05.30"
+					},
+					{
+						"bill": "유성엽 의원 등 25인안",
+						"material": "2000076_0602.pdf",
+						"date": "2016.06.02"
+					},
+					{
+						"bill": "박주민 의원 등 129인안",
+						"material": "2000114_0607.pdf",
+						"date": "2016.06.07"
+					}
+				],
+				"explain": "특조위 업무범위 및 활동기간의 명확한 규정, 활동의 독립성 보장을 위해 미비한 부분 보완, 활동기간 기산점을 명확히 하고 선체정밀조사 권한, 국가기관 지원 등의 법 개정 요청"
+			},
+		]
+	},
+	"salvage-part-1": {
+		"template": "imageWithTitle",
+		"option": "auto",
+		"src": "DSC_0451.jpg",
+		"title": "세월호 선체인양을 앞두고 특조위 강제종료? 범죄 피의자가 셀프 조사를 선언하는 꼴입니다."
+	},
+	"salvage-part-2": {
+		"template": "mediaAndTextInTwoColumn",
+		"type": "video",
+		"src": "5cmCJgNOCFs",
+		"option": "left-media",
+		"caption": "2016년 6월 16일, 와이어에 의한 선체 손상 부위.<br>선수들기를 위해 와이어를 감았으나 그에 의해 선체가 손상돼 철판이 안쪽으로 오그라들었다.",
+		"text": "정부가 7월에 완료하겠다던 선체인양 작업이 지속적으로 실패하고 있습니다. 최근에는 선체 선수 들기 작업 도중 2차례 너울성 파도에 의해 선체 갑판 2곳이 7m 이상 파손되기도 했습니다. 경험이 부족한 업체를 선정한 것이 아니냐는 우려가 현실화되고 있습니다.",
+		"data": [
+			{
+				"template": "simpleImageWrap",
+				"src": "bulwarks-1.jpg",
+				"caption": "- 심잠호(深潛號, Shen Qian Hao)에 야적 중인 불워크 절단 조각들.<br>해수부는 2016년 3월 세월호 불워크(파도를 막아주는 울타리)를 절단하겠다고 일방적으로 통보하였다. 이외에도 93개의 천공작업뿐만 아니라 선수들기 과정에서 선체손상도 입힌 상태다."
+			},
+			{
+				"template": "simpleImageWrap",
+				"src": "bulwarks-2.jpg"
+			}
+		]
+	},
+	"salvage-part-3": {
+		"template": "twoImagesWithCpation",
+		"src": [ "DSC_0332.jpg", "MTS_000135561.jpg" ],
+		"caption": "선체를 띄우는 부력제인 폰툰은 부착과 인양 시 선체훼손 가능성이 높고 안정성이 낮아 설치 전부터 우려가 있었다. 결국 세월호 인양을 위해 설치되었던 폰툰은 공기주입과정에서부터 문제를 일으켰다. 투입 전 폰툰과 찌그러진 폰툰."
+	},
+	"salvage-part-4": {
+		"template": "plainDiv",
+		"classes": "text-region",
+		"data": "인양시기가 지속적으로 미뤄지고 있는 가운데 정부는 특조위 강제 종료에 관한 공문을 하달한 바 있습니다. 선체인양 마감 시점을 앞두고 독립적인 조사기관의 활동을 멈추라고 종용하고 있는 것입니다. 정부의 주장대로 특조위 활동이 종료되면, 조사대상 그 자체인 정부가 참사의 가장 핵심적인 증거인 선체의 조사 주체가 되는 아이러니한 상황이 발생하고 맙니다."
+	},
+	"salvage-part-5": {
+		"template": "suspicionList",
+		"title": "2차 청문회 관련 의혹 보기",
+		"page": "hearing2",
+		"data": [
+			{
+				"number": "3",
+				"title": "묻지마 선체인양?!",
+				"href": "2-3"
+			}
+		]
+	},
+	"salvage-part-6": {
+		"template": "mediaAndTextInTwoColumn",
+		"type": "video",
+		"src": "egRM0ouai2o",
+		"option": "right-media",
+		"caption": "정부가 제시한 온전한 선체인양을 전제로 한 선체인양작업영상",
+		"text": "더 나아가 해수부와 상하이샐비지는 ‘온전한 선체인양’이라는 당초 대국민약속과는 달리 세월호 참사 진상규명에 반드시 필요한 선체를 제대로 보존하지 않고, 인양 후 선체를 절단해 미수습자 수색작업을 진행하려 하고 있습니다. 미수습자 수습과 조사환경 확보를 위해 선체를 반드시 절단해야 하는지 의문입니다. 선체수습작업 업체선정 당시 <strong>절단 없이 작업을 진행하겠다</strong>는 입찰서를 제출한 업체도 있었습니다."
+	},
+	"salvage-part-7": {
+		"template": "twoImagesWithCpation",
+		"src": [ "koreasalvage-1.png", "koreasalvage-2.png" ],
+		"caption": "인양 후 선체 정리 작업에 채택된 코리아쌀베지의 선체 절단 작업도"
+	},
+	"salvage-part-8": {
+		"template": "plainDiv",
+		"imgsrc": "DSC_0422.jpg",
+		"text": "지금은 정부가 세월호를 인양하고 선체를 통한 사고원인을 규명하도록 규제하고 감독할 방법이 없는 상황입니다. 특별법 개정을 통해 세월호 참사 원인 규명을 위한 가장 명확한 증거인 선체는 온전히 인양되고, 미수습자들이 가족의 품으로 돌아가고, 정부가 선체조사의 주체로서 특조위에 의해 반드시 조사받도록 해야 합니다."
+	},
+	"conclusion-map": {
+		"template": "imageWithTitle",
+		"option": "auto",
+		"src": "maps/level-12.jpg",
+		"title": "진실은 좌초시킬 수 없습니다. 진상규명은 계속되어야 합니다."
+	},
+	"conclusion-video": {
+		"template": "mediaAndTextInTwoColumn",
+		"type": "video",
+		"src": "5cmCJgNOCFs",
+		"option": "left-media",
+		"ratio": "2:1",
+		"text": "",
+		"data": [
+			{
+				"template": "plainDiv",
+				"classes": "share-wrap",
+				"data": [
+					"공유하기",
+					"<i class=\"fa fa-github-alt\" aria-hidden=\"true\"></i><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i>"
+				]
+			}
+		]
 	}
 };

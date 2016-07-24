@@ -1,0 +1,52 @@
+@import "../css/variables.less";
+
+#page-truth-beyond  {
+	.salvage-part-2 {
+		.other-material {
+			position: relative;
+		}
+		.simple-image-wrap {
+			@media screen and (min-width: 768px){
+				width: 60%;
+			}
+		}
+		.simple-image-wrap:last-child {
+			@media screen and (min-width: 768px){
+				position: absolute;
+				top: 40%; right: 0;
+			}
+		}
+		.simple-image-wrap:first-child .caption {
+			@media screen and (min-width: 768px){
+				width: 60%;
+			}
+		}
+	}
+
+	.salvage-part-8 {
+		position: relative;
+		max-width: 1920px;
+		margin: 0 auto;
+		img {
+			width: 100%;
+			min-width: 500px;
+		}
+		p {
+			position: absolute;
+			top: 0;
+			right: 0;
+			color: #fff;
+			@media screen and (max-width: 767px) {
+				font-size: 16px;
+				line-height: 1.5em;
+				padding: 10%;
+			}
+			@media screen and (min-width: 768px) {
+				width: 50%;
+				font-size: 18px;
+				line-height: 2em;
+				padding: 10% 10% 10% 0;
+			}
+		}
+	}
+}

@@ -4,7 +4,7 @@
 	.blockquote
 	.video-wrap
 	.media-and-text-in-two-column
-	section.page-title
+	.page-title
 	section.investigate
 	section.conceal
 */
@@ -15,6 +15,10 @@
 		this.$el('.part, .resp-margin-top').respStyle({
 			breakpoint: '320 1920',
 			'margin-top': '60 160 max'
+		});
+		this.$el('.part:last-child').respStyle({
+			breakpoint: '320 1920',
+			'margin-bottom': '60 160 max'
 		});
 		this.$el('.image-with-title .title-on-image h6').respStyle({
 			breakpoint: '320 1920',
@@ -64,7 +68,7 @@
 			'padding-left': '12 20 max'
 		});
 
-		// section.page-title ////
+		// .page-title ////
 		this.$el('.page-title h1').respStyle({
 			breakpoint: '320 1920',
 			'font-size': '42 72 max'

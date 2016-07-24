@@ -8,6 +8,7 @@ require('./truth_beyond/image-with-title.less');
 require('./truth_beyond/media-and-text-in-two-column.less');
 require('./truth_beyond/section-investigate.less');
 require('./truth_beyond/section-conceal.less');
+require('./truth_beyond/section-salvage.less');
 
 require('./contrib/plugins/scroll-bgcolor.js');
 require('./contrib/plugins/scroll-title.js');
