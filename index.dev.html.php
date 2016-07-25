@@ -22,6 +22,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<link rel="shortcut icon" type="image/x-icon" href="./resources/favicon.ico">
 	<link rel="stylesheet" href="./contrib/pgwslideshow/pgwslideshow.min.css">
 	<link rel="stylesheet" href="./contrib/gray/css/gray.min.css">
+	<link rel="stylesheet" href="./contrib/WOW/css/libs/animate.css">
 <?php if(defined("__EDIT_MODE__") && __EDIT_MODE__ == true) {?>
 	<link rel="stylesheet" href="contrib/medium-editor/dist/css/medium-editor.min.css">
 	<link rel="stylesheet" href="contrib/medium-editor/dist/css/themes/bootstrap.min.css">
@@ -36,6 +37,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<script src="./contrib/pgwslideshow/pgwslideshow.min.js"></script>
 	<script src="contrib/jquery-browser-plugin/dist/jquery.browser.min.js"></script>
 	<script src="contrib/gray/js/jquery.gray.min.js"></script>
+	<script src="contrib/WOW/dist/wow.min.js"></script>
 <?php if(defined("__EDIT_MODE__") && __EDIT_MODE__ == true) {?>
 	<script src="contrib/medium-editor/dist/js/medium-editor.min.js"></script>
 	<script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>

@@ -500,7 +500,7 @@
 		delay = 0;
 		var newDelay, oldDelay;
 		for(var i = 0, len = elements.length; i < len; i++){
-			var $el = self.$el(elements[i]); console.log(elements[i], i, len);
+			var $el = self.$el(elements[i]);
 			if($el.offset().top < $(window).height()){
 				delay += 0.5;
 				oldDelay = $el.attr('data-wow-delay');
