@@ -24,6 +24,7 @@ var sHearing2;
 		this.partMap = [0, 0, 0, 1, 1, 1];
 
 		this.controller = this.parseUrlHash();
+		this.current = 0;
 
 		this.init();
 	}
@@ -237,6 +238,7 @@ var sHearing2;
 			} else {
 				this.appendSection(nTo);
 			}
+			this.current = nTo;
 		},//movePage
 
 		htmlOutline: function() {
@@ -417,6 +419,10 @@ var sHearing2;
 
 		deactivate: function(){
 			this.Root.find('.open-inner-page').trigger('deactivate');
+		},
+
+		getCurrent: function() {
+			return this.current;
 		},
 
 		parseUrlHash: function() {

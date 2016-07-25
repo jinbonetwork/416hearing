@@ -17,6 +17,8 @@ var sHearing1;
 
 		this.controller = this.parseUrlHash();
 
+		this.current = 0;
+
 		this.navigation = undefined;
 
 		this.init();
@@ -189,6 +191,7 @@ var sHearing1;
 			if(nTo > 0){
 				$to.find('.navigation li').eq(nTo-1).addClass('selected').parents('.part').removeClass('folded');
 			}
+			this.current = nTo;
 
 		},//movePage
 
@@ -348,6 +351,10 @@ var sHearing1;
 
 		deactivate: function(){
 			this.Root.find('.open-inner-page').trigger('deactivate');
+		},
+
+		getCurrent: function() {
+			return this.current;
 		},
 
 		parseUrlHash: function() {

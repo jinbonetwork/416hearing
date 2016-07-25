@@ -12,258 +12,305 @@
 
 	'use strict';
 
-	var support = { transitions: ModernizrPsn.csstransitions },
-		// transition end event name
-		transEndEventNames = { 'WebkitTransition': 'webkitTransitionEnd', 'MozTransition': 'transitionend', 'OTransition': 'oTransitionEnd', 'msTransition': 'MSTransitionEnd', 'transition': 'transitionend' },
-		transEndEventName = transEndEventNames[ ModernizrPsn.prefixed( 'transition' ) ],
-		onEndTransition = function( el, callback ) {
+	function PageStackNavigation(element,options) {
+		this.Root = $( element );
+
+		var self = this;
+		
+		this.support = { transitions: ModernizrPsn.csstransitions };
+			// transition end event name
+		var transEndEventNames = { 'WebkitTransition': 'webkitTransitionEnd', 'MozTransition': 'transitionend', 'OTransition': 'oTransitionEnd', 'msTransition': 'MSTransitionEnd', 'transition': 'transitionend' };
+		this.transEndEventName = transEndEventNames[ ModernizrPsn.prefixed( 'transition' ) ];
+		// the pages wrapper
+		this.stack = document.querySelector('.pages-stack'),
+		// the page elements
+		this.pages = [].slice.call(this.stack.children);
+		// total number of page elements
+		this.pagesTotal = this.pages.length;
+		// index of current page
+		this.current = 0;
+		// menu button
+		this.menuCtrl = document.querySelector('button.menu-button');
+		// the navigation wrapper
+		this.nav = document.querySelector('.pages-nav');
+		// the menu nav items
+		this.navItems = [].slice.call(this.nav.querySelectorAll('.link--page'));
+		// check if menu is open
+		this.isMenuOpen = false;
+		this.isChangePaging = false;
+
+		this.init();
+	}
+
+	PageStackNavigation.prototype = {
+		onEndTransition: function( el, callback ) {
+			var self = this;
 			var onEndCallbackFn = function( ev ) {
-				if( support.transitions ) {
+				if( self.support.transitions ) {
 					if( ev.target != this ) return;
-					this.removeEventListener( transEndEventName, onEndCallbackFn );
+					this.removeEventListener( self.transEndEventName, onEndCallbackFn );
 				}
 				if( callback && typeof callback === 'function' ) { callback.call(this); }
 			};
-			if( support.transitions ) {
-				el.addEventListener( transEndEventName, onEndCallbackFn );
+			if( self.support.transitions ) {
+				el.addEventListener( self.transEndEventName, onEndCallbackFn );
 			}
 			else {
 				onEndCallbackFn();
 			}
 		},
-		// the pages wrapper
-		stack = document.querySelector('.pages-stack'),
-		// the page elements
-		pages = [].slice.call(stack.children),
-		// total number of page elements
-		pagesTotal = pages.length,
-		// index of current page
-		current = 0,
-		// menu button
-		menuCtrl = document.querySelector('button.menu-button'),
-		// the navigation wrapper
-		nav = document.querySelector('.pages-nav'),
-		// the menu nav items
-		navItems = [].slice.call(nav.querySelectorAll('.link--page')),
-		// check if menu is open
-		isMenuOpen = false;
 
-	function init() {
-		buildStack();
-		initEvents();
+		init: function() {
+			var self = this;
 
-		var controller = parseUrlHash();
-		if(controller.page) {
-			toggleMenu();
-			switch(controller.page) {
-				case 'hearing1':
-					openPage('page-hearing');
-					break;
-				case 'hearing2':
-					openPage('page-2nd-hearing');
-					break;
-				case 'journal':
-					openPage('page-journal');
-					break;
-				case 'truthbeyond':
-					openPage('page-truth-beyond');
-					break;
-			}
-		} else {
-			var intv = setInterval(function(){
-				if($(stack).hasClass('pages-stack')){
-					clearInterval(intv);
-					$(pages[current]).data('handler').activate();
+			this.buildStack();
+			this.initEvents();
+
+			this.controller = this.parseUrlHash();
+			if(this.controller.page) {
+				this.toggleMenu();
+				switch(this.controller.page) {
+					case 'hearing1':
+						this.openPage('page-hearing');
+						break;
+					case 'hearing2':
+						this.openPage('page-2nd-hearing');
+						break;
+					case 'journal':
+						this.openPage('page-journal');
+						break;
+					case 'truthbeyond':
+						this.openPage('page-truth-beyond');
+						break;
 				}
-			}, 200);
-		}
-	}
+			} else {
+				var intv = setInterval(function(){
+					if($(self.stack).hasClass('pages-stack')){
+						clearInterval(intv);
+						$(self.pages[self.current]).data('handler').activate();
+					}
+				}, 200);
+			}
 
-	function buildStack() {
-		var stackPagesIdxs = getStackPagesIdxs();
+			$(document).on('move-to-page', function(event, page){
+				self.toggleMenu();
+				//openPage('page-hearing');
+			});
+		},
 
-		// set z-index, opacity, initial transforms to pages and add class page--inactive to all except the current one
-		for(var i = 0; i < pagesTotal; ++i) {
-			var page = pages[i],
-				posIdx = stackPagesIdxs.indexOf(i);
+		buildStack: function() {
+			var stackPagesIdxs = this.getStackPagesIdxs();
 
-			if( current !== i ) {
-				classie.add(page, 'page--inactive');
+			// set z-index, opacity, initial transforms to pages and add class page--inactive to all except the current one
+			for(var i = 0; i < this.pagesTotal; ++i) {
+				var page = this.pages[i],
+					posIdx = stackPagesIdxs.indexOf(i);
 
-				if( posIdx !== -1 ) {
-					// visible pages in the stack
-					page.style.WebkitTransform = 'translate3d(0,100%,0)';
-					page.style.transform = 'translate3d(0,100%,0)';
+				if( this.current !== i ) {
+					classie.add(page, 'page--inactive');
+
+					if( posIdx !== -1 ) {
+						// visible pages in the stack
+						page.style.WebkitTransform = 'translate3d(0,100%,0)';
+						page.style.transform = 'translate3d(0,100%,0)';
+					}
+					else {
+						// invisible pages in the stack
+						page.style.WebkitTransform = 'translate3d(0,75%,-300px)';
+						page.style.transform = 'translate3d(0,75%,-300px)';
+					}
 				}
 				else {
-					// invisible pages in the stack
-					page.style.WebkitTransform = 'translate3d(0,75%,-300px)';
-					page.style.transform = 'translate3d(0,75%,-300px)';
+					classie.remove(page, 'page--inactive');
+				}
+
+				page.style.zIndex = i < this.current ? parseInt(this.current - i) : parseInt(this.pagesTotal + this.current - i);
+
+				if( posIdx !== -1 ) {
+					page.style.opacity = parseFloat(1 - 0.1 * posIdx);
+				}
+				else {
+					page.style.opacity = 0;
 				}
 			}
-			else {
-				classie.remove(page, 'page--inactive');
-			}
+		},
 
-			page.style.zIndex = i < current ? parseInt(current - i) : parseInt(pagesTotal + current - i);
+		// event binding
+		initEvents: function() {
+			// menu button click
+			var self = this;
 
-			if( posIdx !== -1 ) {
-				page.style.opacity = parseFloat(1 - 0.1 * posIdx);
-			}
-			else {
-				page.style.opacity = 0;
-			}
-		}
-	}
-
-	// event binding
-	function initEvents() {
-		// menu button click
-		menuCtrl.addEventListener('click', toggleMenu);
-
-		// navigation menu clicks
-		navItems.forEach(function(item) {
-			// which page to open?
-			var pageid = item.getAttribute('href').slice(1);
-			item.addEventListener('click', function(ev) {
-				ev.preventDefault();
-				openPage(pageid);
+			this.menuCtrl.addEventListener('click', function(e) {
+				self.toggleMenu();
 			});
-		});
 
-		// clicking on a page when the menu is open triggers the menu to close again and open the clicked page
-		pages.forEach(function(page) {
-			var pageid = page.getAttribute('id');
-			page.addEventListener('click', function(ev) {
-				if( isMenuOpen ) {
+			// navigation menu clicks
+			this.navItems.forEach(function(item) {
+				// which page to open?
+				var pageid = item.getAttribute('href').slice(1);
+				item.addEventListener('click', function(ev) {
 					ev.preventDefault();
-					openPage(pageid);
+					self.openPage(pageid);
+				});
+			});
+
+			// clicking on a page when the menu is open triggers the menu to close again and open the clicked page
+			this.pages.forEach(function(page) {
+				var pageid = page.getAttribute('id');
+				page.addEventListener('click', function(ev) {
+					if( self.isMenuOpen && !self.isChangePaging ) {
+						ev.preventDefault();
+						self.openPage(pageid);
+					}
+				});
+			});
+
+			// keyboard navigation events
+			document.addEventListener( 'keydown', function( ev ) {
+				if( !self.isMenuOpen ) return;
+				var keyCode = ev.keyCode || ev.which;
+				if( keyCode === 27 ) {
+					self.closeMenu();
 				}
 			});
-		});
+		},
 
-		// keyboard navigation events
-		document.addEventListener( 'keydown', function( ev ) {
-			if( !isMenuOpen ) return;
-			var keyCode = ev.keyCode || ev.which;
-			if( keyCode === 27 ) {
-				closeMenu();
+		// toggle menu fn
+		toggleMenu: function() {
+			if( this.isMenuOpen ) {
+				this.closeMenu();
 			}
-		} );
-	}
+			else {
+				this.openMenu();
+				this.isMenuOpen = true;
+			}
+		},
 
-	// toggle menu fn
-	function toggleMenu() {
-		if( isMenuOpen ) {
-			closeMenu();
+		// opens the menu
+		openMenu: function() {
+			var self = this;
+			// toggle the menu button
+			classie.add(self.menuCtrl, 'menu-button--open');
+			// stack gets the class "pages-stack--open" to add the transitions
+			classie.add(self.stack, 'pages-stack--open');
+			// reveal the menu
+			classie.add(self.nav, 'pages-nav--open');
+			// now set the page transforms
+			var stackPagesIdxs = self.getStackPagesIdxs();
+
+			for(var i = 0, len = stackPagesIdxs.length; i < len; ++i) {
+				var page = self.pages[stackPagesIdxs[i]];
+				page.style.WebkitTransform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)'; // -200px, -230px, -260px
+				page.style.transform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)';
+			}
+
+			if($(self.pages[self.current]).data('handler')) $(self.pages[self.current]).data('handler').deactivate();
+		},
+
+		// closes the menu
+		closeMenu: function() {
+			// same as opening the current page again
+			this.openPage();
+		},
+
+		// opens a page
+		openPage: function(id) {
+			var self = this;
+			var futurePage = id ? document.getElementById(id) : this.pages[this.current],
+				futureCurrent = this.pages.indexOf(futurePage),
+				stackPagesIdxs = this.getStackPagesIdxs(futureCurrent);
+
+			// set transforms for the new current page
+			futurePage.style.WebkitTransform = 'translate3d(0, 0, 0)';
+			futurePage.style.transform = 'translate3d(0, 0, 0)';
+			futurePage.style.opacity = 1;
+
+			// set transforms for the other items in the stack
+			for(var i = 0, len = stackPagesIdxs.length; i < len; ++i) {
+				var page = this.pages[stackPagesIdxs[i]];
+				page.style.WebkitTransform = 'translate3d(0,100%,0)';
+				page.style.transform = 'translate3d(0,100%,0)';
+			}
+
+			// set current
+			if( id ) {
+				this.current = futureCurrent;
+			}
+
+			// close menu..
+			classie.remove(this.menuCtrl, 'menu-button--open');
+			classie.remove(this.nav, 'pages-nav--open');
+			this.onEndTransition(futurePage, function() {
+				classie.remove(self.stack, 'pages-stack--open');
+				// reorganize stack
+				self.buildStack();
+				self.isMenuOpen = false;
+				var $openPage = id ? jQuery('#'+id) : jQuery(self.pages[self.current]);
+				if($openPage.data('handler')) $openPage.data('handler').activate();
+			});
+			this.isChangePaging = false;
+		},
+
+		changePage: function(id) {
+			var self = this;
+			this.isChangePaging = true;
+			this.toggleMenu();
+			var stackPagesIdxs = this.getStackPagesIdxs();
+			var page = this.pages[(stackPagesIdxs.length-1)];
+			this.onEndTransition(page, function() {
+				self.openPage(id);
+			});
+		},
+
+		// gets the current stack pages indexes. If any of them is the excludePage then this one is not part of the returned array
+		getStackPagesIdxs: function(excludePageIdx) {
+
+			var nextStackPageIdx = this.current + 1 < this.pagesTotal ? this.current + 1 : 0,
+				nextStackPageIdx_2 = this.current + 2 < this.pagesTotal ? this.current + 2 : 1,
+				idxs = [],
+
+				excludeIdx = excludePageIdx || -1;
+
+			if( excludePageIdx != this.current ) {
+				idxs.push(this.current);
+			}
+			if( excludePageIdx != nextStackPageIdx ) {
+				idxs.push(nextStackPageIdx);
+			}
+			if( excludePageIdx != nextStackPageIdx_2 ) {
+				idxs.push(nextStackPageIdx_2);
+			}
+
+			//if(idxs[0] == 1 && idxs[1] == 2 && idxs[2] == 1) idxs = [1, 2, 0];
+
+			return idxs;
+
+		},
+
+		parseUrlHash: function() {
+			var obj = {};
+			if(window.location.hash) {
+				var hash = window.location.hash.substr(1).split('-');
+				obj.page = (hash.length > 0 ? hash[0] : '');
+				obj.section = (hash.length > 1 ? hash[1] : 0);
+			} else {
+				obj.page = '';
+				obj.section = 0;
+			}
+
+			return obj;
 		}
-		else {
-			openMenu();
-			isMenuOpen = true;
-		}
-	}
+	};
 
-	// opens the menu
-	function openMenu() {
-		// toggle the menu button
-		classie.add(menuCtrl, 'menu-button--open');
-		// stack gets the class "pages-stack--open" to add the transitions
-		classie.add(stack, 'pages-stack--open');
-		// reveal the menu
-		classie.add(nav, 'pages-nav--open');
-		// now set the page transforms
-		var stackPagesIdxs = getStackPagesIdxs();
-
-		for(var i = 0, len = stackPagesIdxs.length; i < len; ++i) {
-			var page = pages[stackPagesIdxs[i]];
-			page.style.WebkitTransform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)'; // -200px, -230px, -260px
-			page.style.transform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)';
-		}
-
-		if($(pages[current]).data('handler')) $(pages[current]).data('handler').deactivate();
-	}
-
-	// closes the menu
-	function closeMenu() {
-		// same as opening the current page again
-		openPage();
-	}
-
-	// opens a page
-	function openPage(id) {
-		var futurePage = id ? document.getElementById(id) : pages[current],
-			futureCurrent = pages.indexOf(futurePage),
-			stackPagesIdxs = getStackPagesIdxs(futureCurrent);
-
-		// set transforms for the new current page
-		futurePage.style.WebkitTransform = 'translate3d(0, 0, 0)';
-		futurePage.style.transform = 'translate3d(0, 0, 0)';
-		futurePage.style.opacity = 1;
-
-		// set transforms for the other items in the stack
-		for(var i = 0, len = stackPagesIdxs.length; i < len; ++i) {
-			var page = pages[stackPagesIdxs[i]];
-			page.style.WebkitTransform = 'translate3d(0,100%,0)';
-			page.style.transform = 'translate3d(0,100%,0)';
-		}
-
-		// set current
-		if( id ) {
-			current = futureCurrent;
-		}
-
-		// close menu..
-		classie.remove(menuCtrl, 'menu-button--open');
-		classie.remove(nav, 'pages-nav--open');
-		onEndTransition(futurePage, function() {
-			classie.remove(stack, 'pages-stack--open');
-			// reorganize stack
-			buildStack();
-			isMenuOpen = false;
-			var $openPage = id ? jQuery('#'+id) : jQuery(pages[current]);
-			if($openPage.data('handler')) $openPage.data('handler').activate();
+	$.fn.pagestacknavigation = function(options) {
+		return this.each(function() {
+			var pagestacknavigation = new PageStackNavigation($(this), options);
+			$.data(this,'handler',pagestacknavigation);
 		});
-	}
+	};
 
-	// gets the current stack pages indexes. If any of them is the excludePage then this one is not part of the returned array
-	function getStackPagesIdxs(excludePageIdx) {
-
-		var nextStackPageIdx = current + 1 < pagesTotal ? current + 1 : 0,
-			nextStackPageIdx_2 = current + 2 < pagesTotal ? current + 2 : 1,
-			idxs = [],
-
-			excludeIdx = excludePageIdx || -1;
-
-		if( excludePageIdx != current ) {
-			idxs.push(current);
-		}
-		if( excludePageIdx != nextStackPageIdx ) {
-			idxs.push(nextStackPageIdx);
-		}
-		if( excludePageIdx != nextStackPageIdx_2 ) {
-			idxs.push(nextStackPageIdx_2);
-		}
-
-		//if(idxs[0] == 1 && idxs[1] == 2 && idxs[2] == 1) idxs = [1, 2, 0];
-
-		return idxs;
-
-	}
-
-	function parseUrlHash() {
-		var obj = {};
-		if(window.location.hash) {
-			var hash = window.location.hash.substr(1).split('-');
-			obj.page = (hash.length > 0 ? hash[0] : '');
-			obj.section = (hash.length > 1 ? hash[1] : 0);
-		} else {
-			obj.page = '';
-			obj.section = 0;
-		}
-
-		return obj;
-	}
-
-	init();
+	$(document).ready(function() {
+		var snavigation = $('body').pagestacknavigation();
+	});
 
 })(window);
