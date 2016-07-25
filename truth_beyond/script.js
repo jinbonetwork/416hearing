@@ -38,6 +38,7 @@
 	SewolTruthBeyond.prototype.events = function(){
 		var self = this;
 		self.$el('.suspicion-list [data-href] > span').click(function(){
+			self.movePageGlobally();
 		});
 
 		var numOfImage = this.$el().find('img').length;
@@ -62,14 +63,15 @@
 		});
 	}
 	SewolTruthBeyond.prototype.activate = function(){
-		var self = this;
+		//console.log('activate');
 
 	}
 	SewolTruthBeyond.prototype.deactivate = function(){
-		var self = this;
+		//console.log('deactivete');
 
 	}
 	SewolTruthBeyond.prototype.movePageGlobally = function(){
+		//$(document).trigger('move-to-page');
 	}
 	SewolTruthBeyond.prototype.plainDiv = function(partname, partdata, $container){
 		var markup =
