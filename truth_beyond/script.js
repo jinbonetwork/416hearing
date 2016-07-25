@@ -38,7 +38,7 @@
 	SewolTruthBeyond.prototype.events = function(){
 		var self = this;
 		self.$el('.suspicion-list [data-href] > span').click(function(){
-			self.movePageGlobally();
+			self.movePageGlobally(this);
 		});
 
 		var numOfImage = this.$el().find('img').length;
@@ -70,8 +70,31 @@
 		//console.log('deactivete');
 
 	}
-	SewolTruthBeyond.prototype.movePageGlobally = function(){
-		//$(document).trigger('move-to-page');
+	SewolTruthBeyond.prototype.movePageGlobally = function(elem){
+		var l = jQuery(elem).parent();
+		var _sl = l.attr('data-href');
+		var sl = _sl.split("-");
+		var handler = $('body').data('handler');
+		switch(parseInt(sl[0])) {
+			case 1:
+				handler.changePage('page-hearing');
+				if(sl.length > 1) {
+					var subhandler = $('#page-hearing').data('handler');
+					var f = subhandler.getCurrent();
+					subhandler.movePage(f, parseInt(sl[1]));
+				}
+				break;
+			case 2:
+				handler.changePage('page-2nd-hearing');
+				if(sl.length > 1) {
+					var subhandler = $('#page-2nd-hearing').data('handler');
+					var f = subhandler.getCurrent();
+					subhandler.movePage(f, parseInt(sl[1]));
+				}
+				break;
+			default:
+				break;
+		}
 	}
 	SewolTruthBeyond.prototype.plainDiv = function(partname, partdata, $container){
 		var markup =
