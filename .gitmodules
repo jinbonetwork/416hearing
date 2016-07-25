@@ -10,3 +10,6 @@
 [submodule "gray"]
 	path = contrib/gray
 	url = https://github.com/karlhorky/gray.git
+[submodule "WOW"]
+	path = contrib/WOW
+	url = https://github.com/matthieua/WOW.git

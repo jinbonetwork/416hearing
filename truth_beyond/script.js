@@ -45,6 +45,16 @@
 			countImage++;
 			if(countImage === numOfImage) self.onLoadTotalImages();
 		});
+
+		self.$el().find('.graph.progress').circles({
+			showProgress: 1,
+			targetPos: 211,
+			scale: 212,
+			speed: 10,
+			container: self.Root,
+			onFinishMoving:function(pos){
+			}
+		});
 	}
 	SewolTruthBeyond.prototype.activate = function(){
 		var self = this;
@@ -211,7 +221,7 @@
 						'<p>'+partdata.content+'</p>' +
 					'</div>' +
 					'<div class="investigate-score--graph">' +
-						'<div class="graph"></div>' +
+						'<div class="graph progress"></div>' +
 					'</div>' +
 				'</div>' +
 				'<div class="investigate-score--closing text-region">'+partdata.closing+'</div>' +
