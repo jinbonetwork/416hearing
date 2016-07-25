@@ -402,7 +402,7 @@
 	SewolTruthBeyond.prototype.nisPart1 = function(partname, partdata, $container){
 		var markup = '';
 		for(var i = 0, len = partdata.data.length; i < len; i++){
-			markup += '<img src="'+this.path.image+partdata.data[i]+'">';
+			markup += '<div class="image-container"><img src="'+this.path.image+partdata.data[i]+'"></div>';
 		}
 		markup = '<div class="image-wrap">'+markup+'</div>';
 		$(markup).appendTo($container);
@@ -469,11 +469,16 @@
 	SewolTruthBeyond.prototype.nisPart1ImgArrange = function(){
 		var self = this;
 		var a, y, x, r = 20;
-		self.$el('.nis-part-1 img').each(function(index){
+		self.$el('.nis-part-1 .image-container').each(function(index){
 			a = (2*Math.PI / 7 * index);
 			x = r*Math.sin(a) + 50;
 			y = r*Math.cos(a) + 50;
 			$(this).css({ left: x+'%', top: y+'%' });
+		});
+		self.$el('.nis-part-1 img').each(function(index){
+			$(this).addClass('wow');
+			$(this).addClass('bounceInUp');
+			$(this).attr('data-wow-delay', (0.8 + (0.3 * index))+'s');
 		});
 	}
 	SewolTruthBeyond.prototype.onLoadTotalImages = function(){
