@@ -38,7 +38,7 @@
 	SewolTruthBeyond.prototype.events = function(){
 		var self = this;
 		self.$el('.suspicion-list [data-href] > span').click(function(){
-			self.movePageGlobally(this);
+			self.movePageGlobally();
 		});
 
 		var numOfImage = this.$el().find('img').length;
@@ -70,32 +70,8 @@
 		//console.log('deactivete');
 
 	}
-	SewolTruthBeyond.prototype.movePageGlobally = function(elem){
-		var self = this;
-		var l = jQuery(elem).parent();
-		var _sl = l.attr('data-href');
-		var sl = _sl.split("-");
-		var handler = $('body').data('handler');
-		switch(parseInt(sl[0])) {
-			case 1:
-				handler.changePage('page-hearing');
-				if(sl.length > 1) {
-					var subhandler = $('#page-hearing').data('handler');
-					var f = subhandler.getCurrent();
-					subhandler.movePage(f, parseInt(sl[1]));
-				}
-				break;
-			case 2:
-				handler.changePage('page-2nd-hearing');
-				if(sl.length > 1) {
-					var subhandler = $('#page-2nd-hearing').data('handler');
-					var f = subhandler.getCurrent();
-					subhandler.movePage(f, parseInt(sl[1]));
-				}
-				break;
-			default:
-				break;
-		}
+	SewolTruthBeyond.prototype.movePageGlobally = function(){
+		//$(document).trigger('move-to-page');
 	}
 	SewolTruthBeyond.prototype.plainDiv = function(partname, partdata, $container){
 		var markup =
@@ -370,7 +346,7 @@
 			'<div class="caption">' +
 				'<h6>'+partdata.caption+'</h6>' +
 				'<div class="overlay-link url">' +
-					'<a href="data/truth_beyond/docs/recorded.html" class="overlay-button" data-subject="[전문] 이정현 전 청와대 홍보수석의 KBS 세월호 보도 개입 녹취록">텍스트로 보기</a>' +
+					'<a href="/416hearing/data/truth_beyond/docs/recorded.html" class="overlay-button" data-subject="[전문] 이정현 전 청와대 홍보수석의 KBS 세월호 보도 개입 녹취록">텍스트로 보기</a>' +
 				'</div>' +
 			'</div>';
 		$(markup).appendTo($container);
@@ -437,7 +413,7 @@
 		var mkMaps = '';
 		for(var i = 4; i <= 12; i++){
 			var index = ( i < 10 ? '0'+i : ''+i );
-			mkMaps += '<img src="'+self.path.image+'maps/level-'+index+'">'
+			mkMaps += '<img src="'+self.path.image+'maps/level-'+index+'.jpg">'
 		}
 		var mkText = '';
 		for(var i = partdata.text.length; i >= 0; i--){
