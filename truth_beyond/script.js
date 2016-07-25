@@ -413,11 +413,15 @@
 			var index = ( i < 10 ? '0'+i : ''+i );
 			mkMaps += '<img src="'+self.path.image+'maps/level-'+index+'">'
 		}
+		var mkText = '';
+		for(var i = partdata.text.length; i >= 0; i--){
+			mkText += '<p>'+partdata.text[i]+'</p>';
+		}
 		var markup =
 			'<div class="part image-with-title '+partname+'"">' +
 				'<div class="image-wrap">' +
 					'<div class="map-wrap">' +
-						mkMaps +
+						mkMaps + mkText +
 					'</div>' +
 					'<div class="title-on-image"><h6>'+partdata.title+'</h6></div>' +
 				'</div>' +
@@ -428,51 +432,6 @@
 			var $img = $el.find('img');
 			$img.load(function(){ self.imageCropAuto($img); });
 			$(window).resize(function(){ self.imageCropAuto($img); });
-		}
-	}
-	SewolTruthBeyond.prototype.conclusionMapEffect = function(){
-		var self = this;
-		var $wrap = self.$el('.conclusion-map');
-		var wrapTop, scrTop, preScrTop = 0, direc = 'down';
-		var startZoom = false, isAvailable = true;
-		var $maps = $wrap.find('.map-wrap > img');
-		var mapIdx = $maps.length-1;
-		self.$el().scroll(function(){
-			scrTop = self.$el().scrollTop();
-			direc = ( scrTop > preScrTop ? 'down' : 'up' );
-			preScrTop = scrTop;
-			wrapTop = $wrap.offset().top;
-			if(direc == 'down' && wrapTop <= 0){
-				self.$el().scrollTop(scrTop + wrapTop);
-				startZoom = true;
-			}
-		});
-		self.$el().on('mousewheel', function(event){ if(startZoom){
-			event.preventDefault();
-			var direc = event.originalEvent.wheelDelta;
-			if(isAvailable){
-				isAvailable = false;
-				if(direc < 0) zoomIn();
-				else zoomOut();
-			}
-		}});
-		function zoomIn(){
-			$maps.hide();
-			$maps.eq(mapIdx-1).css('z-index', 1).show();
-			$maps.eq(mapIdx).css('z-index', 2).show();
-			var newWidth = 2*$maps.eq(mapIdx).width(); console.log(newWidth);
-			var newHeight = 2*$maps.eq(mapIdx).height();
-			$maps.eq(mapIdx).animate({
-				width: newWidth,
-				height: newHeight
-			}, 'slow', function(){
-				$maps.eq(mapIdx).fadeOut('fast');
-				isAvaliable = true;
-				mapIdx--;
-			});
-		}
-		function zoomOut(){
-
 		}
 	}
 	SewolTruthBeyond.prototype.nisPart1ImgArrange = function(){

@@ -27,3 +27,4 @@ require('./2nd_hearing/script.js');
 require('./hearing/script.js');
 require('./truth_beyond/script.js');
 require('./truth_beyond/style.js');
+require('./truth_beyond/conclusion-map-effect.js');
