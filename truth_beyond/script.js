@@ -459,10 +459,18 @@
 			'.salvage-part-2 .right-column .text-wrap',
 			'.salvage-part-2 .right-column .simple-image-wrap:first-child',
 			'.salvage-part-2 .right-column .simple-image-wrap:last-child',
-			'.salvage-part-3 .image-wrap:first-child',
-			'.salvage-part-3 .image-wrap:last-child',
+			'.salvage-part-3 .image-wrap:nth-child(1)',
+			'.salvage-part-3 .image-wrap:nth-child(2)',
 			'.salvage-part-3 .text-region',
-			'.salvage-part-4'
+			'.salvage-part-4',
+			'.salvage-part-5',
+			'.salvage-part-6 .left-column',
+			'.salvage-part-6 .right-column',
+			'.salvage-part-7 .image-wrap:nth-child(1)',
+			'.salvage-part-7 .image-wrap:nth-child(2)',
+			'.salvage-part-7 .text-region',
+			'.salvage-part-8 img',
+			'.salvage-part-8 p'
 		];
 
 		self.$el(elements.join()).css('visibility', 'hidden').addClass('wow fadeInUp');
@@ -482,14 +490,17 @@
 		self.scrAniDelay(elements, '.special-prosecutor-part-2 > div:first-child', 2);
 		self.scrAniDelay(elements, '.law-revision-table li:nth-child(1)', 2);
 		self.scrAniDelay(elements, '.salvage-part-2 .left-column', 4);
-		self.scrAniDelay(elements, '.salvage-part-3 .image-wrap:first-child', 3);
+		self.scrAniDelay(elements, '.salvage-part-3 .image-wrap:nth-child(1)', 3);
+		self.scrAniDelay(elements, '.salvage-part-6 .left-column', 2);
+		self.scrAniDelay(elements, '.salvage-part-7 .image-wrap:nth-child(1)', 3);
+		self.scrAniDelay(elements, '.salvage-part-8 img', 2);
 
 		self.$el('.navy-part-1 h3, .bluehouse-part-1 h3, .nis-part-1 h3, .special-prosecutor-part-1 h3').removeClass('fadeInUp').addClass('slideInLeft');
 
 		delay = 0;
 		var newDelay, oldDelay;
 		for(var i = 0, len = elements.length; i < len; i++){
-			var $el = self.$el(elements[i]); console.log(i, len);
+			var $el = self.$el(elements[i]); console.log(elements[i], i, len);
 			if($el.offset().top < $(window).height()){
 				delay += 0.5;
 				oldDelay = $el.attr('data-wow-delay');
