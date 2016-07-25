@@ -36,12 +36,17 @@
 		}
 
 		this.transitionEnd = transEndEventNames[ ModernizrPsn.prefixed('transition') ];
+		if(this.settings.container !== 'undefined' && !this.settings.container.is('body')) {
+			this.$container = this.settings.container;
+		} else {
+			this.$container = $(window);
+		}
 
 		this.init();
 		jQuery(window).resize(function(e) {
 			self.setSize();
 		});
-		jQuery(window).scroll(function(e) {
+		this.$container.scroll(function(e) {
 			self.setSize();
 		});
 		this.setSize();
@@ -211,18 +216,26 @@
 		setSize: function() {
 			var self = this;
 			var t = this.root.offset().top;
-			var l = this.root.offset().left;
-			var w = this.root.outerWidth();
-			var h = this.root.outerHeight();
-			var s = jQuery(window).scrollTop();
+			if(t > 0 && this.$container.height() > t) {
+				var l = this.root.offset().left;
+				var w = this.root.innerWidth();
+				var h = this.root.outerHeight();
+				var s = jQuery(window).scrollTop();
 
-			if(!this.overlay.hasClass('open')) {
-				this.overlay.css({
-					'top': (t-s)+'px',
-					'left': l+'px',
-					'width': w+'px',
-					'height': h+'px'
-				});
+				if(!this.overlay.hasClass('open')) {
+					this.overlay.css({
+						'top': t+'px',
+						'left': (l+20)+'px',
+						'width': (w-20)+'px',
+						'height': h+'px'
+					});
+				}
+			} else {
+				if(!this.overlay.hasClass('open')) {
+					this.overlay.css({
+						'top': '-100px'
+					});
+				}
 			}
 		}
 	}

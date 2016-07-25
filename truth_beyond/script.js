@@ -65,7 +65,8 @@
 		});
 
 		self.$el().find('.overlay-link').overlay_link({
-			button: '.overlay-button'
+			button: '.overlay-button',
+			container: self.$el(),
 		});
 	}
 	SewolTruthBeyond.prototype.activate = function(){
