@@ -401,9 +401,8 @@ module.exports = {
 		"text": "지금은 정부가 세월호를 인양하고 선체를 통한 사고원인을 규명하도록 규제하고 감독할 방법이 없는 상황입니다. 특별법 개정을 통해 세월호 참사 원인 규명을 위한 가장 명확한 증거인 선체는 온전히 인양되고, 미수습자들이 가족의 품으로 돌아가고, 정부가 선체조사의 주체로서 특조위에 의해 반드시 조사받도록 해야 합니다."
 	},
 	"conclusion-map": {
-		"template": "imageWithTitle",
+		"template": "conclusionMap",
 		"option": "auto",
-		"src": "maps/level-12.jpg",
 		"title": "진실은 좌초시킬 수 없습니다. 진상규명은 계속되어야 합니다."
 	},
 	"conclusion-video": {

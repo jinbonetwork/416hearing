@@ -33,6 +33,7 @@
 			this.$el('.navy-p1-image-wrap:first-child'), 'bottom', 768
 		);
 		this.nisPart1ImgArrange();
+		this.conclusionMapEffect();
 	}
 	SewolTruthBeyond.prototype.events = function(){
 		var self = this;
@@ -398,6 +399,72 @@
 				'<div class="text-region"><div class="caption"><h6>'+partdata.caption+'</h6></div></div>' +
 			'</div>';
 		$(markup).appendTo($container);
+	}
+	SewolTruthBeyond.prototype.conclusionMap = function(partname, partdata, $container){
+		var self = this;
+		var mkMaps = '';
+		for(var i = 4; i <= 12; i++){
+			var index = ( i < 10 ? '0'+i : ''+i );
+			mkMaps += '<img src="'+self.path.image+'maps/level-'+index+'">'
+		}
+		var markup =
+			'<div class="part image-with-title '+partname+'"">' +
+				'<div class="image-wrap">' +
+					'<div class="map-wrap">' +
+						mkMaps +
+					'</div>' +
+					'<div class="title-on-image"><h6>'+partdata.title+'</h6></div>' +
+				'</div>' +
+				( partdata.caption ? '<div class="caption"><h6>'+partdata.caption+'</h6></div>' : '') +
+			'</div>';
+		var $el = $(markup).appendTo($container);
+		if(partdata.option == 'auto'){
+			var $img = $el.find('img');
+			$img.load(function(){ self.imageCropAuto($img); });
+			$(window).resize(function(){ self.imageCropAuto($img); });
+		}
+	}
+	SewolTruthBeyond.prototype.conclusionMapEffect = function(){
+		var self = this;
+		var $wrap = self.$el('.conclusion-map');
+		var wrapTop, scrTop, preScrTop = 0, direc = 'down';
+		var startZoom = false, isAvailable = true;
+		var $maps = $wrap.find('.map-wrap > img');
+		var mapIdx = $maps.length-1;
+		self.$el().scroll(function(){
+			scrTop = self.$el().scrollTop();
+			direc = ( scrTop > preScrTop ? 'down' : 'up' );
+			preScrTop = scrTop;
+			wrapTop = $wrap.offset().top;
+			if(direc == 'down' && wrapTop <= 0){
+				self.$el().scrollTop(scrTop + wrapTop);
+				startZoom = true;
+			}
+		});
+		self.$el().on('mousewheel', function(event){
+			if(startZoom) event.preventDefault();
+			var direc = event.originalEvent.wheelDelta;
+			if(isAvailable){
+				isAvailable = false;
+				if(direc < 0) zoomIn();
+				else zoomOut();
+			}
+		});
+		function zoomIn(){
+			$maps.hide();
+			$maps.eq(mapIdx-1).css('z-index', 1).show();
+			$maps.eq(mapIdx).css('z-index', 1).show();
+			$maps.eq(mapIdx).animate({
+				width: 2*$maps.eq(mapIdx).width()
+			}, 'slow', function(){
+				$maps.eq(mapIdx).fadeOut('fast');
+				isAvaliable = true;
+				mapIdx--;
+			});
+		}
+		function zoomOut(){
+
+		}
 	}
 	SewolTruthBeyond.prototype.nisPart1ImgArrange = function(){
 		var self = this;
