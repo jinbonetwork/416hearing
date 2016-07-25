@@ -441,21 +441,24 @@
 				startZoom = true;
 			}
 		});
-		self.$el().on('mousewheel', function(event){
-			if(startZoom) event.preventDefault();
+		self.$el().on('mousewheel', function(event){ if(startZoom){
+			event.preventDefault();
 			var direc = event.originalEvent.wheelDelta;
 			if(isAvailable){
 				isAvailable = false;
 				if(direc < 0) zoomIn();
 				else zoomOut();
 			}
-		});
+		}});
 		function zoomIn(){
 			$maps.hide();
 			$maps.eq(mapIdx-1).css('z-index', 1).show();
-			$maps.eq(mapIdx).css('z-index', 1).show();
+			$maps.eq(mapIdx).css('z-index', 2).show();
+			var newWidth = 2*$maps.eq(mapIdx).width(); console.log(newWidth);
+			var newHeight = 2*$maps.eq(mapIdx).height();
 			$maps.eq(mapIdx).animate({
-				width: 2*$maps.eq(mapIdx).width()
+				width: newWidth,
+				height: newHeight
 			}, 'slow', function(){
 				$maps.eq(mapIdx).fadeOut('fast');
 				isAvaliable = true;
