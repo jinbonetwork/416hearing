@@ -37,6 +37,12 @@
 	}
 	SewolTruthBeyond.prototype.events = function(){
 		var self = this;
+		self.$el('.related-material ol.list-with-circle-number li').mouseenter(function(e) {
+			jQuery(this).find('p').slideDown();
+		});
+		self.$el('.related-material ol.list-with-circle-number li').mouseleave(function(e) {
+			jQuery(this).find('p').slideUp();
+		});
 		self.$el('.suspicion-list [data-href] > span').click(function(){
 			self.movePageGlobally(this);
 		});
