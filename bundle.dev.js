@@ -19,6 +19,7 @@ require('./contrib/plugins/scrollsnap.js');
 require('./contrib/plugins/slideshow.js');
 require('./contrib/plugins/fitEnd.js');
 require('./contrib/plugins/circularprogress.js');
+require('./contrib/plugins/overlay-link.js');
 require('./js/script.js');
 require('./journal/script.js');
 require('./witnesses/witnesses.js');

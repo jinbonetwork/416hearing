@@ -16,6 +16,11 @@
 
 @import "../css/variables.less";
 
+.noscroll {
+	overflow: hidden;
+	overflow-y: hidden;
+}
+
 #page-truth-beyond {
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;
@@ -42,15 +47,21 @@
 			font-weight: @font-wt-bold;
 			font-size: inherit;
 		}
-		button {
-			background-color: #6d92c4;
-			border: 0;
-			color: #fff;
-			font-family: @font-noto;
-			font-weight: @font-wt-bold;
-			font-size: inherit;
-			padding: 0.2em 1em;
-			margin-left: 1em;
+		.overlay-link {
+			display: inline-block;
+			z-index: 1201;
+			a.overlay-button {
+				z-index: 1201;
+				background-color: #6d92c4;
+				border: 0;
+				color: #fff;
+				text-decoration: none;
+				font-family: @font-noto;
+				font-weight: @font-wt-bold;
+				font-size: inherit;
+				padding: 0.2em 1em;
+				margin-left: 1em;
+			}
 		}
 	}
 
@@ -351,5 +362,160 @@
 		.share-wrap i + i {
 			padding-left: 1em;
 		}
+	}
+}
+
+.overlay-content {
+	position: fixed;
+	z-index: 1200;
+	background-color: #6d92c4;
+	color: #fff;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	overflow: hidden;
+	pointer-events: none;
+	-o-transition: opacity 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, width 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, height 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, top 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, left 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, -o-transform 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s;
+	-ms-transition: opacity 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, width 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, height 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, top 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, left 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, -ms-transform 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s;
+	-moz-transition: opacity 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, width 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, height 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, top 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, left 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, -moz-transform 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s;
+	-webkit-transition: opacity 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, width 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, height 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, top 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, left 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, -webkit-transform 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s;
+	transition: opacity 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, width 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, height 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, top 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, left 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s, transform 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.1s;
+}
+.overlay-content.open {
+	z-index: 1300;
+	top: 0 !important;
+	left: 0 !important;
+	width: 100% !important;
+	height: 100% !important;
+	overflow: hidden;
+	opacity: 1;
+	transform: skew(0) !important;
+	-webkit-transform: skew(0) !important;
+	-moz-transform: skew(0) !important;
+	-ms-transform: skew(0) !important;
+	-o-transform: skew(0) !important;
+	filter: alpha(opacity=100);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	pointer-events: auto;
+}
+.overlay-content.scroll {
+	overflow-y: scroll;
+}
+.overlay-content>div {
+	position: relative;
+	text-align: justify;
+	visibility: hidden;
+	height: 0;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	-webkit-transition: opacity 0.1s, visibility 0s 0.1s, height 0s 0.1s;
+	-moz-transition: opacity 0.1s, visibility 0s 0.1s, height 0s 0.1s;
+	-ms-transition: opacity 0.1s, visibility 0s 0.1s, height 0s 0.1s;
+	-o-transition: opacity 0.1s, visibility 0s 0.1s, height 0s 0.1s;
+	transition: opacity 0.1s, visibility 0s 0.1s, height 0s 0.1s;
+	transition-timing-function: inherit;
+	-webkit-transition-timing-function: inherit;
+	-moz-transition-timing-function: inherit;
+	-ms-transition-timing-function: inherit;
+	-o-transition-timing-function: inherit;
+}
+.overlay-content.open>div {
+	padding: 60px;
+	visibility: visible;
+	height: auto;
+	opacity: 1;
+	filter: alpha(opacity=100);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+}
+.overlay-content .icon-close {
+	position: absolute;
+	z-index:1299;
+	top: 10px;
+	right: 14px;
+	cursor: pointer;
+	font-style: normal;
+	visibility: hidden;
+	width: 50px;
+	height: 0;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	-o-transition: opacity 0.1s 0.5s, visibility 0s 0.5s, height 0s 0.5s;
+	-ms-transition: opacity 0.1s 0.5s, visibility 0s 0.5s, height 0s 0.5s;
+	-moz-transition: opacity 0.1s 0.5s, visibility 0s 0.5s, height 0s 0.5s;
+	-webkit-transition: opacity 0.1s 0.5s, visibility 0s 0.5s, height 0s 0.5s;
+	transition: opacity 0.1s 0.5s, visibility 0s 0.5s, height 0s 0.5s;
+	height: 50px;
+}
+.overlay-content.open .icon-close {
+	z-index: 1400;
+	height: 50px;
+	opacity: 1;
+	visibility: visible;
+	filter: alpha(opacity=100);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+}
+.overlay-content .icon-close::before {
+	font-family: "FontAwesome";
+	content: "\f00d";
+	font-size: 30px;
+	color: #ffffff;
+}
+.overlay-content.open .icon-close span {
+	display: none;
+}
+.overlay-content .overlay-content-box h3 {
+	margin: 0 0 20px 0;
+	padding: 0;
+	font-size: 1.8em;
+}
+.overlay-content .overlay-content-box .recorded-content p.source {
+	padding: 0 0 15px 30px;
+	margin: 0;
+}
+.overlay-content .overlay-content-box .recorded-content p.source:before {
+	font-family: "FontAwesome";
+	content: "\f08e";
+	padding-right: 10px;
+}
+.overlay-content .overlay-content-box .recorded-content p.source a {
+	color: #fff;
+	text-decoration: none;
+}
+.overlay-content .overlay-content-box .recorded-content p.source a:hover {
+	text-decoration: underline;
+}
+.overlay-content .overlay-content-box .recorded-content section.recorded-section {
+	margin: 20px 0;
+}
+.overlay-content .overlay-content-box .recorded-content section.recorded-section h4 {
+	font-size: 1.5em;
+	margin: 10px 0;
+	padding: 0;
+}
+.overlay-content .overlay-content-box .recorded-content section.recorded-section h4:before {
+	font-family: "FontAwesome";
+	content: "\f073";
+	padding-right: 10px;
+}
+.overlay-content .overlay-content-box .recorded-content section.recorded-section p.message {
+	position: relative;
+	padding: 10px 0 10px 80px;
+	margin: 0;
+}
+.overlay-content .overlay-content-box .recorded-content section.recorded-section p.message label {
+	position: absolute;
+	left: 15px;
+	top: 10px;
+}
+.overlay-content .close-box {
+	text-align: center;
+	button {
+		background: #fff;
+		color: #6d92c4;
+		margin: 0;
+		padding: 5px 10px;
+		border: 0;
 	}
 }
