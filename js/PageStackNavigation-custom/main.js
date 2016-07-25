@@ -77,6 +77,11 @@
 				}
 			}, 200);
 		}
+
+		$(document).on('move-to-page', function(event, page){
+			toggleMenu();
+			//openPage('page-hearing');
+		});
 	}
 
 	function buildStack() {

@@ -11,6 +11,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width,user-scalable=0,initial-scale=1">
 	<title>세월호 청문회</title>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="contrib/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/PageStackNavigation-custom/demo.css" />
 	<link rel="stylesheet" type="text/css" href="css/PageStackNavigation-custom/component.css" />
@@ -58,7 +59,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 <body>
 	<!-- navigation -->
 	<nav class="pages-nav">
-		<div class="pages-nav__item"><a class="link link--page" href="#page-truth-beyond">진상규명은...</a></div>
+		<div class="pages-nav__item"><a class="link link--page" href="#page-truth-beyond">진상규명은</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-2nd-hearing">2차 청문회</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-hearing">1차 청문회</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-journal">416가족의 발자취</a></div>

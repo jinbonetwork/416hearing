@@ -16,6 +16,7 @@
 		this.style();
 		this.markupAfterStyle();
 		this.events();
+		this.scrollAnimation();
 	}
 	SewolTruthBeyond.prototype.$el = function(selector){
 		return ( selector ? this.Root.find(selector) : this.Root );
@@ -36,11 +37,14 @@
 	SewolTruthBeyond.prototype.events = function(){
 		var self = this;
 		self.$el('.suspicion-list [data-href] > span').click(function(){
-			var href = $(this).parent().attr('data-href');
-			href = href.split('-');
-			self.movePageGlobally(href);
 		});
 
+		var numOfImage = this.$el().find('img').length;
+		var countImage = 0;
+		self.$el().find('img').load(function(){
+			countImage++;
+			if(countImage === numOfImage) self.onLoadTotalImages();
+		});
 	}
 	SewolTruthBeyond.prototype.activate = function(){
 		var self = this;
@@ -50,11 +54,7 @@
 		var self = this;
 
 	}
-	SewolTruthBeyond.prototype.movePageGlobally = function(href){
-		var self = this;
-		if(href[0] === '1'){
-		}
-
+	SewolTruthBeyond.prototype.movePageGlobally = function(){
 	}
 	SewolTruthBeyond.prototype.plainDiv = function(partname, partdata, $container){
 		var markup =
@@ -84,8 +84,8 @@
 	SewolTruthBeyond.prototype.pageTitle = function(partname, partdata, $container){
 		var markup =
 			'<div class="part page-title">' +
-				'<div><h1>'+partdata.data[0]+'</h1></div>' +
-				'<div><h1>'+partdata.data[1]+'</h1></div>' +
+				'<div class="title-1"><h1>'+partdata.data[0]+'</h1></div>' +
+				'<div class="title-2"><h1>'+partdata.data[1]+'</h1></div>' +
 			'</div>';
 		$(markup).appendTo($container);
 	}
@@ -380,7 +380,7 @@
 	}
 	SewolTruthBeyond.prototype.twoImagesWithCpation = function(partname, partdata, $container){
 		var markup =
-		 	'<div class="part two-images-with-caption">' +
+		 	'<div class="part '+partname+' two-images-with-caption">' +
 				'<div class="image-wrap"><img src="'+this.path.image+partdata.src[0]+'"></div>' +
 				'<div class="image-wrap"><img src="'+this.path.image+partdata.src[1]+'"></div>' +
 				'<div class="text-region"><div class="caption"><h6>'+partdata.caption+'</h6></div></div>' +
@@ -396,6 +396,122 @@
 			y = r*Math.cos(a) + 50;
 			$(this).css({ left: x+'%', top: y+'%' });
 		});
+	}
+	SewolTruthBeyond.prototype.onLoadTotalImages = function(){
+		new WOW({
+			scrollContainer: '#'+this.$el().attr('id')
+		}).init();
+	}
+	SewolTruthBeyond.prototype.scrollAnimation = function(){
+		var self = this;
+		var elements = [
+			'.part.page-title > .title-1',
+			'.part.page-title > .title-2',
+			'.part.investigate-title',
+			'.part.investigate-law',
+			'.part.investigate-journal > h3',
+			'.part.investigate-journal .journal-header',
+			'.part.investigate-journal .journal-left',
+			'.part.investigate-journal .journal-right',
+			'.part.investigate-journal .journal-center',
+			'.part.investigate-journal .journal-closing',
+			'.investigate-score--title',
+			'.investigate-score--graph',
+			'.investigate-score--closing',
+			'.part.prezi-suspicoins .left-column',
+			'.part.prezi-suspicoins .right-column',
+			'.part.conceal-title',
+			'.navy-part-1 h3',
+			'.navy-p1-image-wrap:first-child',
+			'.navy-p1-image-wrap:last-child',
+			'.navy-part-2 .left-column',
+			'.navy-part-2 .right-column',
+			'.navy-part-2 .other-material .simple-image-wrap',
+			'.navy-part-3',
+			'.navy-part-4 .left-column',
+			'.navy-part-4 .right-column',
+			'.navy-part-5',
+			'.bluehouse-part-1 h3',
+			'.bluehouse-part-1 .subsection-content',
+			'.bluehouse-part-2 .left-column',
+			'.bluehouse-part-2 .right-column',
+			'.bluehouse-part-3',
+			'.bluehouse-part-4',
+			'.bluehouse-part-5 .left-column',
+			'.bluehouse-part-5 .right-column',
+			'.bluehouse-part-6',
+			'.bluehouse-part-7 .left-column',
+			'.bluehouse-part-7 .right-column',
+			'.nis-part-1 h3',
+			'.nis-part-1 .subsection-content',
+			'.nis-part-2',
+			'.nis-part-3',
+			'.nis-part-4',
+			'.special-prosecutor-part-1 h3',
+			'.special-prosecutor-part-1 .subsection-content',
+			'.special-prosecutor-part-2 > div:first-child',
+			'.special-prosecutor-part-2 > div:last-child',
+			'.law-revision-table li:nth-child(1)',
+			'.law-revision-table li:nth-child(2)',
+			'.law-revision-table li:nth-child(3)',
+			'.salvage-part-1',
+			'.salvage-part-2 .left-column',
+			'.salvage-part-2 .right-column .text-wrap',
+			'.salvage-part-2 .right-column .simple-image-wrap:first-child',
+			'.salvage-part-2 .right-column .simple-image-wrap:last-child',
+			'.salvage-part-3 .image-wrap:first-child',
+			'.salvage-part-3 .image-wrap:last-child',
+			'.salvage-part-3 .text-region',
+			'.salvage-part-4'
+		];
+
+		self.$el(elements.join()).css('visibility', 'hidden').addClass('wow fadeInUp');
+
+		self.scrAniDelay(elements, '.part.investigate-journal .journal-left', 3);
+		self.scrAniDelay(elements, '.investigate-score--title', 2);
+		self.scrAniDelay(elements, '.part.prezi-suspicoins .left-column', 2);
+		self.scrAniDelay(elements, '.navy-part-1 h3', 3);
+		self.scrAniDelay(elements, '.navy-part-2 .left-column', 3);
+		self.scrAniDelay(elements, '.navy-part-4 .left-column', 2);
+		self.scrAniDelay(elements, '.bluehouse-part-1 h3', 2);
+		self.scrAniDelay(elements, '.bluehouse-part-2 .left-column', 2);
+		self.scrAniDelay(elements, '.bluehouse-part-5 .left-column', 2);
+		self.scrAniDelay(elements, '.bluehouse-part-7 .left-column', 2);
+		self.scrAniDelay(elements, '.nis-part-1 h3', 2);
+		self.scrAniDelay(elements, '.special-prosecutor-part-1 h3', 2);
+		self.scrAniDelay(elements, '.special-prosecutor-part-2 > div:first-child', 2);
+		self.scrAniDelay(elements, '.law-revision-table li:nth-child(1)', 2);
+		self.scrAniDelay(elements, '.salvage-part-2 .left-column', 4);
+		self.scrAniDelay(elements, '.salvage-part-3 .image-wrap:first-child', 3);
+
+		self.$el('.navy-part-1 h3, .bluehouse-part-1 h3, .nis-part-1 h3, .special-prosecutor-part-1 h3').removeClass('fadeInUp').addClass('slideInLeft');
+
+		delay = 0;
+		var newDelay, oldDelay;
+		for(var i = 0, len = elements.length; i < len; i++){
+			var $el = self.$el(elements[i]); console.log(i, len);
+			if($el.offset().top < $(window).height()){
+				delay += 0.5;
+				oldDelay = $el.attr('data-wow-delay');
+				if(oldDelay){
+					newDelay = parseFloat(oldDelay) + delay;
+				} else {
+					newDelay = delay;
+				}
+				$el.attr('data-wow-delay',  newDelay+'s');
+			}
+		}
+	}
+	SewolTruthBeyond.prototype.scrAniDelay = function(elements, el, count){
+		var startIndex = 0;
+		for(var i = 0, len = elements.length; i < len; i++){
+			if(el == elements[i]){
+				startIndex = i; break;
+			}
+		}
+		for(var i = 0; i < count; i++){
+			this.$el(elements[startIndex + i]).attr('data-wow-delay', (0.5*i)+'s');
+		}
 	}
 
 	$.fn.sewolTruthBeyond = function(options) {

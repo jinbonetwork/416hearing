@@ -1,8 +1,12 @@
 @import "../css/variables.less";
 
 #page-truth-beyond .image-with-title {
-	max-width: 1920px;
-	margin: 0 auto;
+	max-width: 1840px;
+	@media screen and (min-width: 1920px){
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
 	.image-wrap {
 		position: relative;
 		overflow: hidden;

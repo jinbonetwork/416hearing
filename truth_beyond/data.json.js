@@ -6,14 +6,14 @@ module.exports = {
 			"진상규명은 계속되어야 합니다."
 		]
 	},
-	"investigte-title": {
+	"investigate-title": {
 		"template": "imageWithTitle",
 		"option": "auto",
 		"src": "DSC_0464.jpg",
 		"title": "진상규명 진척도 고작 0.4%, 정부의 대답은 “특조위 강제 종료”",
 		"caption": "2016년 6월, 선체 인양을 모니터링하기 위해 구입한 ‘진실호’에 올라탄 416 가족들"
 	},
-	"investigte-law": {
+	"investigate-law": {
 		"template": "investigateLaw",
 		"title": "세월호 특별법 제7조(위원회의 활동기간)",
 		"data": [
@@ -30,7 +30,7 @@ module.exports = {
 			{ "side": "none", "date": "11.19", "content": "416세월호참사특별법 제정" },
 			{ "year": "2015"},
 			{ "side": "left", "date": "1.1", "content": "416특조위 활동 시작일<br><strong>(416세월호참사특별법 시행일)</strong>" },
-			{ "side": "right", "date": "5.11" },
+			{ "side": "right", "date": "5.11", "content": "" },
 			{ "side": "right", "date": "8.4", "content": "416특조위 활동 시작일<br><strong>(국무회의 예산통과일)</strong>" },
 			{ "side": "right", "date": "9.14", "content": "조사신청 개시" },
 			{ "side": "right", "date": "9.21", "content": "특조위 조사 개시일" },
