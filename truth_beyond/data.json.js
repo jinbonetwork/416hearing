@@ -129,12 +129,12 @@ module.exports = {
 								"note": "미디어오늘"
 							},
 							{
-								"title": "<a href=\"http://h21.hani.co.kr/arti/society/society_general/42001.html\">제주해군기지 공사 세월호 도입에 영향 줬다</a>",
+								"title": "<a href=\"http://h21.hani.co.kr/arti/society/society_general/42001.html\" target=\"_blank\">제주해군기지 공사 세월호 도입에 영향 줬다</a>",
 								"content": "[최초 보도] 세월호 도입 전 2010년부터 제주해군기지 공사 관련 영업계획 명시… 참사 당일 적재한 철근 426t 중 제주해군기지 시공사로 간 철근만 최소 278t",
 								"note": "한겨레21"
 							},
 							{
-								"title": "<a href=\"http://www.pressian.com/news/article.html?no=138387\">세월호, 426톤 철근 과적…\"정부 책임져야\"</a>",
+								"title": "<a href=\"http://www.pressian.com/news/article.html?no=138387\" target=\"_blank\">세월호, 426톤 철근 과적…\"정부 책임져야\"</a>",
 								"note": "프레시안"
 							}
 						]
@@ -363,7 +363,7 @@ module.exports = {
 	"salvage-part-3": {
 		"template": "twoImagesWithCpation",
 		"src": [ "DSC_0332.jpg", "MTS_000135561.jpg" ],
-		"caption": "선체를 띄우는 부력제인 폰툰은 부착과 인양 시 선체훼손 가능성이 높고 안정성이 낮아 설치 전부터 우려가 있었다. 결국 세월호 인양을 위해 설치되었던 폰툰은 공기주입과정에서부터 문제를 일으켰다. 투입 전 폰툰과 찌그러진 폰툰."
+		"caption": "선체를 띄우는 부력제인 폰툰은 부착과 인양 시 선체훼손 가능성이 높고 안정성이 낮아 설치 전부터 우려가 있었다. 결국 세월호 인양을 위해 설치되었던 폰툰은 공기주입과정에서부터 문제를 일으켰다."
 	},
 	"salvage-part-4": {
 		"template": "plainDiv",
@@ -419,7 +419,7 @@ module.exports = {
 	"conclusion-video": {
 		"template": "mediaAndTextInTwoColumn",
 		"type": "video",
-		"src": "5cmCJgNOCFs",
+		"src": "sVnxFiEYP70",
 		"option": "left-media",
 		"ratio": "2:1",
 		"text": "",
