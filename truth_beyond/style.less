@@ -193,7 +193,6 @@
 			}
 		}
 		h6 > a {
-			&, &:active, &:visited, &:hover { color: #666 }
 			@media screen and (max-width: 767px) {
 				font-size: 16px;
 			}
@@ -435,7 +434,6 @@
 	-o-transition-timing-function: inherit;
 }
 .overlay-content.open>div {
-	padding: 60px;
 	visibility: visible;
 	height: auto;
 	opacity: 1;
@@ -479,6 +477,12 @@
 .overlay-content.open .icon-close span {
 	display: none;
 }
+
+.overlay-content .overlay-content-box {
+	max-width: 700px;
+	margin: 0 auto;
+	padding: 2em;
+}
 .overlay-content .overlay-content-box h3 {
 	margin: 0 0 20px 0;
 	padding: 0;
@@ -490,7 +494,7 @@
 }
 .overlay-content .overlay-content-box .recorded-content p.source:before {
 	font-family: "FontAwesome";
-	content: "\f08e";
+	content: "\f0c1";
 	padding-right: 10px;
 }
 .overlay-content .overlay-content-box .recorded-content p.source a {
@@ -505,6 +509,7 @@
 }
 .overlay-content .overlay-content-box .recorded-content section.recorded-section h4 {
 	font-size: 1.5em;
+	color: #0be4db;
 	margin: 10px 0;
 	padding: 0;
 }
@@ -514,15 +519,25 @@
 	padding-right: 10px;
 }
 .overlay-content .overlay-content-box .recorded-content section.recorded-section p.message {
-	position: relative;
-	padding: 10px 0 10px 80px;
-	margin: 0;
+	margin-bottom: 0.5em;
 }
 .overlay-content .overlay-content-box .recorded-content section.recorded-section p.message label {
-	position: absolute;
-	left: 15px;
-	top: 10px;
+	font-weight: 700;
 }
+
+@media all and (min-width: 768px) {
+	.overlay-content .overlay-content-box .recorded-content section.recorded-section p.message {
+		position: relative;
+		padding: 10px 0 10px 80px;
+		margin: 0;
+	}
+	.overlay-content .overlay-content-box .recorded-content section.recorded-section p.message label {
+		position: absolute;
+		left: 15px;
+		top: 10px;
+	}
+}
+
 .overlay-content .close-box {
 	text-align: center;
 	button {
