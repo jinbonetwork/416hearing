@@ -30,7 +30,7 @@ module.exports = {
 			{ "side": "none", "date": "11.19", "content": "416세월호참사특별법 제정" },
 			{ "year": "2015"},
 			{ "side": "left", "date": "1.1", "content": "416특조위 활동 시작일<br><strong>(416세월호참사특별법 시행일)</strong>" },
-			{ "side": "right", "date": "5.11", "content": "" },
+			{ "side": "right", "date": "5.11", "content": "416특별법 시행령 제정" },
 			{ "side": "right", "date": "8.4", "content": "416특조위 활동 시작일<br><strong>(국무회의 예산통과일)</strong>" },
 			{ "side": "right", "date": "9.14", "content": "조사신청 개시" },
 			{ "side": "right", "date": "9.21", "content": "특조위 조사 개시일" },
@@ -211,10 +211,10 @@ module.exports = {
 		"template": "mediaAndTextInTwoColumn",
 		"type": "prezi",
 		"src": "prezi-2.png",
-		"link": "https://prezi.com/gw9tqigfbyqv/presentation/",
+		"link": "https://prezi.com/pzibhezmg94s/presentation/",
 		"option": "right-media",
 		"ratio": "2:1",
-		"caption": "청와대와 세월호 참사",
+		"caption": "청와대와 416 세월호 참사",
 		"text": "현재는 정부가 세월호를 반드시 인양하고, 선체를 통한 사고원인을 규명하도록 규제하고 감독할 방법이 없는 상황입니다. 특별법 개정을 통해 세월호 참사 원인 규명을 위한 가장 명확한 증거인 선체는 온전히 인양되고, 미수습자들이 가족품으로 돌아가고 선체조사 주체로서 반드시 특조위에 의해 조사되도록 해야 합니다."
 	},
 	"nis-part-1": {
