@@ -99,6 +99,11 @@
 				}
 			});
 
+			$(window).resize(function(e) {
+				self.resize();
+			});
+			this.resize();
+
 			if(this.containerHeight > this.$elem.offset().top && this.activate == false)
 				self.run();
 		},
@@ -251,6 +256,12 @@
             }
         },
 
+		resize: function() {
+			var s = Math.min(7, ( ( 0.012857 * this.$elem.width() ) + 0.8572 ) ).toFixed(1);
+			this.inner.css({
+				'font-size': s+'em'
+			});
+		}
 	}
 	$.fn.circles = function(options){
 		/* syntax to use outside the plugin - http://acuriousanimal.com/blog/2013/02/25/things-i-learned-creating-a-jquery-plugin-part-ii/
