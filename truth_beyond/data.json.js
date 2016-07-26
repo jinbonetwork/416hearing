@@ -344,7 +344,7 @@ module.exports = {
 	"salvage-part-2": {
 		"template": "mediaAndTextInTwoColumn",
 		"type": "video",
-		"src": "5cmCJgNOCFs",
+		"src": "sMNi1edN4_I",
 		"option": "left-media",
 		"caption": "2016년 6월 16일, 와이어에 의한 선체 손상 부위.<br>선수들기를 위해 와이어를 감았으나 그에 의해 선체가 손상돼 철판이 안쪽으로 오그라들었다.",
 		"text": "정부가 7월에 완료하겠다던 선체인양 작업이 지속적으로 실패하고 있습니다. 최근에는 선체 선수 들기 작업 도중 2차례 너울성 파도에 의해 선체 갑판 2곳이 7m 이상 파손되기도 했습니다. 경험이 부족한 업체를 선정한 것이 아니냐는 우려가 현실화되고 있습니다.",
