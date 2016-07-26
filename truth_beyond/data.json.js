@@ -266,11 +266,11 @@ module.exports = {
 								"note": "416가족협의회"
 							},
 							{
-								"title": "<a href=\"http://www.nocutnews.co.kr/news/4614073\">세월호특조위 활동 종료 코앞... 유가족들의 &lsquo;사흘&rsquo;</a>",
+								"title": "<a href=\"http://www.nocutnews.co.kr/news/4614073\" target=\"_blank\">세월호특조위 활동 종료 코앞... 유가족들의 &lsquo;사흘&rsquo;</a>",
 								"note": "노컷뉴스"
 							},
 							{
-								"title": "<a href=\"http://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0002222082&CMPT_CD=P0001\">&lsquo;세월호 철근&rsquo; 검·경은 덮었고 해수부는 숨겼다. 세월호 관계자들, 수사 때 철근 적재량 확인방법까지 알려줘</a>",
+								"title": "<a href=\"http://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0002222082&CMPT_CD=P0001\" target=\"_blank\">&lsquo;세월호 철근&rsquo; 검·경은 덮었고 해수부는 숨겼다. 세월호 관계자들, 수사 때 철근 적재량 확인방법까지 알려줘</a>",
 								"note": "프레시안"
 							}
 						]
@@ -344,7 +344,7 @@ module.exports = {
 	"salvage-part-2": {
 		"template": "mediaAndTextInTwoColumn",
 		"type": "video",
-		"src": "sMNi1edN4_I",
+		"src": "03GRQa0Z-KA",
 		"option": "left-media",
 		"caption": "2016년 6월 16일, 와이어에 의한 선체 손상 부위.<br>선수들기를 위해 와이어를 감았으나 그에 의해 선체가 손상돼 철판이 안쪽으로 오그라들었다.",
 		"text": "정부가 7월에 완료하겠다던 선체인양 작업이 지속적으로 실패하고 있습니다. 최근에는 선체 선수 들기 작업 도중 2차례 너울성 파도에 의해 선체 갑판 2곳이 7m 이상 파손되기도 했습니다. 경험이 부족한 업체를 선정한 것이 아니냐는 우려가 현실화되고 있습니다.",
