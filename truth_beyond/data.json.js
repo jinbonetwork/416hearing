@@ -30,7 +30,7 @@ module.exports = {
 			{ "side": "none", "date": "11.19", "content": "416세월호참사특별법 제정" },
 			{ "year": "2015"},
 			{ "side": "left", "date": "1.1", "content": "416특조위 활동 시작일<br><strong>(416세월호참사특별법 시행일)</strong>" },
-			{ "side": "right", "date": "5.11", "content": "" },
+			{ "side": "right", "date": "5.11", "content": "416특별법 시행령 제정" },
 			{ "side": "right", "date": "8.4", "content": "416특조위 활동 시작일<br><strong>(국무회의 예산통과일)</strong>" },
 			{ "side": "right", "date": "9.14", "content": "조사신청 개시" },
 			{ "side": "right", "date": "9.21", "content": "특조위 조사 개시일" },
@@ -86,7 +86,7 @@ module.exports = {
 	"navy-part-2": {
 		"template": "mediaAndTextInTwoColumn",
 		"type": "video",
-		"src": "5cmCJgNOCFs",
+		"src": "sMNi1edN4_I",
 		"option": "left-media",
 		"caption": "참사전날 인천항에 정박중인 세월호가 출항 10분 전까지 화물을 싣고 있는 모습이 담긴 CCTV",
 		"text": "2014년 4월 15일 인천항에 내려앉은 자욱한 안개를 뚫고서 화물만이라도 출항해야 한다고, 청해진 물류팀은 강경한 목소리로 거듭 주장했습니다. 왜 이런 무리수를 두어야 했을까요. 그 날 세월호의 선내에는 제주도로 향하던 승객들뿐 아니라 제주 강정마을 해군기지 공사에 기일을 맞춰 전달해야 할 수백 톤의 철근이 포함되어 있었기 때문이 아닌가 하는 의혹이 최근 제기되고 있습니다.",
@@ -129,12 +129,12 @@ module.exports = {
 								"note": "미디어오늘"
 							},
 							{
-								"title": "<a href=\"http://h21.hani.co.kr/arti/society/society_general/42001.html\">제주해군기지 공사 세월호 도입에 영향 줬다</a>",
+								"title": "<a href=\"http://h21.hani.co.kr/arti/society/society_general/42001.html\" target=\"_blank\">제주해군기지 공사 세월호 도입에 영향 줬다</a>",
 								"content": "[최초 보도] 세월호 도입 전 2010년부터 제주해군기지 공사 관련 영업계획 명시… 참사 당일 적재한 철근 426t 중 제주해군기지 시공사로 간 철근만 최소 278t",
 								"note": "한겨레21"
 							},
 							{
-								"title": "<a href=\"http://www.pressian.com/news/article.html?no=138387\">세월호, 426톤 철근 과적…\"정부 책임져야\"</a>",
+								"title": "<a href=\"http://www.pressian.com/news/article.html?no=138387\" target=\"_blank\">세월호, 426톤 철근 과적…\"정부 책임져야\"</a>",
 								"note": "프레시안"
 							}
 						]
@@ -211,10 +211,10 @@ module.exports = {
 		"template": "mediaAndTextInTwoColumn",
 		"type": "prezi",
 		"src": "prezi-2.png",
-		"link": "https://prezi.com/gw9tqigfbyqv/presentation/",
+		"link": "https://prezi.com/pzibhezmg94s/presentation/",
 		"option": "right-media",
 		"ratio": "2:1",
-		"caption": "청와대와 세월호 참사",
+		"caption": "청와대와 416 세월호 참사",
 		"text": "현재는 정부가 세월호를 반드시 인양하고, 선체를 통한 사고원인을 규명하도록 규제하고 감독할 방법이 없는 상황입니다. 특별법 개정을 통해 세월호 참사 원인 규명을 위한 가장 명확한 증거인 선체는 온전히 인양되고, 미수습자들이 가족품으로 돌아가고 선체조사 주체로서 반드시 특조위에 의해 조사되도록 해야 합니다."
 	},
 	"nis-part-1": {
@@ -344,7 +344,7 @@ module.exports = {
 	"salvage-part-2": {
 		"template": "mediaAndTextInTwoColumn",
 		"type": "video",
-		"src": "5cmCJgNOCFs",
+		"src": "sMNi1edN4_I",
 		"option": "left-media",
 		"caption": "2016년 6월 16일, 와이어에 의한 선체 손상 부위.<br>선수들기를 위해 와이어를 감았으나 그에 의해 선체가 손상돼 철판이 안쪽으로 오그라들었다.",
 		"text": "정부가 7월에 완료하겠다던 선체인양 작업이 지속적으로 실패하고 있습니다. 최근에는 선체 선수 들기 작업 도중 2차례 너울성 파도에 의해 선체 갑판 2곳이 7m 이상 파손되기도 했습니다. 경험이 부족한 업체를 선정한 것이 아니냐는 우려가 현실화되고 있습니다.",
@@ -363,7 +363,7 @@ module.exports = {
 	"salvage-part-3": {
 		"template": "twoImagesWithCpation",
 		"src": [ "DSC_0332.jpg", "MTS_000135561.jpg" ],
-		"caption": "선체를 띄우는 부력제인 폰툰은 부착과 인양 시 선체훼손 가능성이 높고 안정성이 낮아 설치 전부터 우려가 있었다. 결국 세월호 인양을 위해 설치되었던 폰툰은 공기주입과정에서부터 문제를 일으켰다. 투입 전 폰툰과 찌그러진 폰툰."
+		"caption": "선체를 띄우는 부력제인 폰툰은 부착과 인양 시 선체훼손 가능성이 높고 안정성이 낮아 설치 전부터 우려가 있었다. 결국 세월호 인양을 위해 설치되었던 폰툰은 공기주입과정에서부터 문제를 일으켰다."
 	},
 	"salvage-part-4": {
 		"template": "plainDiv",
@@ -419,7 +419,7 @@ module.exports = {
 	"conclusion-video": {
 		"template": "mediaAndTextInTwoColumn",
 		"type": "video",
-		"src": "5cmCJgNOCFs",
+		"src": "sVnxFiEYP70",
 		"option": "left-media",
 		"ratio": "2:1",
 		"text": "",
