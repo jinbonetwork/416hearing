@@ -15,9 +15,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<link rel="stylesheet" href="contrib/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/PageStackNavigation-custom/demo.css" />
 	<link rel="stylesheet" type="text/css" href="css/PageStackNavigation-custom/component.css" />
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/earlyaccess/notosanskr.css">
 	<link rel="stylesheet" type="text/css" href="contrib/bareunbatang/style.css">
-	<link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
 	<link rel="stylesheet" href="contrib/fancybox/2.1.5/source/jquery.fancybox.css">
 	<link rel="shortcut icon" type="image/x-icon" href="./resources/favicon.ico">
 	<link rel="stylesheet" href="./contrib/pgwslideshow/pgwslideshow.min.css">
@@ -29,6 +27,20 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<link rel="stylesheet" href="contrib/spectrum/spectrum.css">
 <?php }?>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+	<script type="text/javascript">
+		WebFont.load({
+			// For google fonts
+			google: {
+				families: ['Montserrat:400,700']
+			},
+			// For early access or custom font
+			custom: {
+				families: ['Noto Sans KR'],
+				urls: ['http://fonts.googleapis.com/earlyaccess/notosanskr.css']
+			}
+		});
+	</script>
 	<script src="https://www.youtube.com/iframe_api"></script>
 	<script src="contrib/jquery/jquery-2.2.1.min.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -37,6 +49,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<script src="./contrib/pgwslideshow/pgwslideshow.min.js"></script>
 	<script src="contrib/jquery-browser-plugin/dist/jquery.browser.min.js"></script>
 	<script src="contrib/gray/js/jquery.gray.min.js"></script>
+	<script src="contrib/lazyload/dist/lazyload.min.js"></script>
 	<script src="contrib/WOW/dist/wow.min.js"></script>
 <?php if(defined("__EDIT_MODE__") && __EDIT_MODE__ == true) {?>
 	<script src="contrib/medium-editor/dist/js/medium-editor.min.js"></script>
