@@ -22,10 +22,20 @@
 		return ( selector ? this.Root.find(selector) : this.Root );
 	}
 	SewolTruthBeyond.prototype.markup = function(){
+		var self = this;
 		for(var prop in this.data){
 			var template = this.data[prop].template;
 			this[template](prop, this.data[prop], this.$el());
 		}
+		var myLazyload = new LazyLoad({
+			elements_selector: "img.lazyload",
+			container: document.getElementById('page-truth-beyond'),
+			callback_load: function(element) {
+				if(jQuery(element).hasClass('auto')) {
+					self.imageCropAuto(jQuery(element));
+				}
+			}
+		});
 	}
 	SewolTruthBeyond.prototype.markupAfterStyle = function(){
 		this.$el('.video-wrap').clickAndPlayYoutube();
@@ -37,6 +47,16 @@
 	}
 	SewolTruthBeyond.prototype.events = function(){
 		var self = this;
+
+		new WOW({
+			scrollContainer: '#'+this.$el().attr('id')
+		}).init();
+
+		$(window).resize(function(){
+			jQuery('img.lazyload.auto').each(function() {
+				self.imageCropAuto(jQuery(this));
+			});
+		});
 		self.$el('.related-material ol.list-with-circle-number li').mouseenter(function(e) {
 			jQuery(this).find('p').slideDown();
 		});
@@ -45,13 +65,6 @@
 		});
 		self.$el('.suspicion-list [data-href] > span').click(function(){
 			self.movePageGlobally(this);
-		});
-
-		var numOfImage = this.$el().find('img').length;
-		var countImage = 0;
-		self.$el().find('img').load(function(){
-			countImage++;
-			if(countImage === numOfImage) self.onLoadTotalImages();
 		});
 
 		self.$el().find('.graph .progress').circles({
@@ -107,7 +120,7 @@
 		var markup =
 			'<div>' +
 				( partdata.title ? '<h6>'+partdata.title+'</h6>' : '' ) +
-				( partdata.imgsrc ? '<img src="'+this.path.image+partdata.imgsrc+'">' : '' ) +
+				( partdata.imgsrc ? '<img data-original="'+this.path.image+partdata.imgsrc+'" class="lazyload">' : '' ) +
 				( partdata.text ? '<p>'+partdata.text+'</p>' : '' ) +
 			'</div>';
 		var $part = $(markup).appendTo($container);
@@ -141,17 +154,12 @@
 		var markup =
 			'<div class="part image-with-title '+partname+'"">' +
 				'<div class="image-wrap">' +
-					'<img src="'+self.path.image+partdata.src+'">' +
+					'<img data-original="'+self.path.image+partdata.src+'" class="lazyload'+(partdata.option == 'auto' ? ' auto' : '')+'">' +
 					'<div class="title-on-image"><h6>'+partdata.title+'</h6></div>' +
 				'</div>' +
 				( partdata.caption ? '<div class="caption"><h6>'+partdata.caption+'</h6></div>' : '') +
 			'</div>';
 		var $el = $(markup).appendTo($container);
-		if(partdata.option == 'auto'){
-			var $img = $el.find('img');
-			$img.load(function(){ self.imageCropAuto($img); });
-			$(window).resize(function(){ self.imageCropAuto($img); });
-		}
 	}
 	SewolTruthBeyond.prototype.imageCropAuto = function($image){
 		var w = $image.get(0).naturalWidth, h = $image.get(0).naturalHeight;
@@ -271,11 +279,11 @@
 		var self = this;
 		var mkWraps = '';
 		if(partdata.type == 'prezi'){
-			mkWraps = '<a class="link-wrap" href="'+partdata.link+'" target="_blank"><img src="'+self.path.image+partdata.src+'"></a>';
+			mkWraps = '<a class="link-wrap" href="'+partdata.link+'" target="_blank"><img data-original="'+self.path.image+partdata.src+'" class="lazyload"></a>';
 		} else if(partdata.type == 'video'){
 			mkWraps = '<div class="video-wrap" data-youtube-id="'+partdata.src+'"></div>';
 		} else if(partdata.type == 'image'){
-			mkWraps = '<img src="'+self.path.image+partdata.src+'">';
+			mkWraps = '<img data-original="'+self.path.image+partdata.src+'" class="lazyload">';
 		} else {
 			mkWraps = '<div class="void-wrap"></div>';
 		}
@@ -314,7 +322,7 @@
 		var self = this;
 		var markup =
 			'<div class="simple-image-wrap">' +
-				'<img src="'+self.path.image+partdata.src+'">' +
+				'<img data-original="'+self.path.image+partdata.src+'" class="lazyload">' +
 				( partdata.caption ? '<div class="caption"><h6>'+partdata.caption+'</h6></div>' : '') +
 			'</div>';
 		$(markup).appendTo($container);
@@ -335,7 +343,7 @@
 		var markup =
 			'<div class="navy-p1-image-wrap">' +
 				'<p>'+partdata.text+'</p>' +
-				'<img src="'+this.path.image+partdata.src+'">' +
+				'<img data-original="'+this.path.image+partdata.src+'" class="lazyload">' +
 			'</div>';
 		$(markup).appendTo($container);
 	}
@@ -402,7 +410,7 @@
 	SewolTruthBeyond.prototype.nisPart1 = function(partname, partdata, $container){
 		var markup = '';
 		for(var i = 0, len = partdata.data.length; i < len; i++){
-			markup += '<div class="image-container"><img src="'+this.path.image+partdata.data[i]+'"></div>';
+			markup += '<div class="image-container"><img data-original="'+this.path.image+partdata.data[i]+'" class="lazyload"></div>';
 		}
 		markup = '<div class="image-wrap">'+markup+'</div>';
 		$(markup).appendTo($container);
@@ -432,8 +440,8 @@
 	SewolTruthBeyond.prototype.twoImagesWithCpation = function(partname, partdata, $container){
 		var markup =
 		 	'<div class="part '+partname+' two-images-with-caption">' +
-				'<div class="image-wrap"><img src="'+this.path.image+partdata.src[0]+'"></div>' +
-				'<div class="image-wrap"><img src="'+this.path.image+partdata.src[1]+'"></div>' +
+				'<div class="image-wrap"><img data-original="'+this.path.image+partdata.src[0]+'" class="lazyload"></div>' +
+				'<div class="image-wrap"><img data-original="'+this.path.image+partdata.src[1]+'" class="lazyload"></div>' +
 				'<div class="text-region"><div class="caption"><h6>'+partdata.caption+'</h6></div></div>' +
 			'</div>';
 		$(markup).appendTo($container);
@@ -443,7 +451,7 @@
 		var mkMaps = '';
 		for(var i = 4; i <= 12; i++){
 			var index = ( i < 10 ? '0'+i : ''+i );
-			mkMaps += '<img src="'+self.path.image+'maps/level-'+index+'.jpg">'
+			mkMaps += '<img data-original="'+self.path.image+'maps/level-'+index+'.jpg" class="lazyload'+(partdata.option == 'auto' ? ' auto' : '')+'">'
 		}
 		var mkText = '';
 		for(var i = partdata.text.length; i >= 0; i--){
@@ -460,11 +468,6 @@
 				( partdata.caption ? '<div class="caption"><h6>'+partdata.caption+'</h6></div>' : '') +
 			'</div>';
 		var $el = $(markup).appendTo($container);
-		if(partdata.option == 'auto'){
-			var $img = $el.find('img');
-			$img.load(function(){ self.imageCropAuto($img); });
-			$(window).resize(function(){ self.imageCropAuto($img); });
-		}
 	}
 	SewolTruthBeyond.prototype.nisPart1ImgArrange = function(){
 		var self = this;
@@ -478,14 +481,10 @@
 		self.$el('.nis-part-1 img').each(function(index){
 			$(this).addClass('wow');
 			$(this).addClass('bounceInUp');
-			$(this).attr('data-wow-delay', (0.8 + (0.3 * index))+'s');
+			$(this).attr('data-wow-delay', (0.2 + (0.3 * index))+'s');
 		});
 	}
-	SewolTruthBeyond.prototype.onLoadTotalImages = function(){
-		new WOW({
-			scrollContainer: '#'+this.$el().attr('id')
-		}).init();
-	}
+
 	SewolTruthBeyond.prototype.scrollAnimation = function(){
 		var self = this;
 		var elements = [
@@ -557,7 +556,7 @@
 			'.salvage-part-8 p'
 		];
 
-		self.$el(elements.join()).css('visibility', 'hidden').addClass('wow fadeInUp');
+		self.$el(elements.join()).addClass('wow fadeInUp');
 
 		self.scrAniDelay(elements, '.part.investigate-journal .journal-left', 3);
 		self.scrAniDelay(elements, '.investigate-score--title', 2);
