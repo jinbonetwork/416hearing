@@ -120,7 +120,7 @@
 		var markup =
 			'<div>' +
 				( partdata.title ? '<h6>'+partdata.title+'</h6>' : '' ) +
-				( partdata.imgsrc ? '<img src="'+this.path.image+partdata.imgsrc+'">' : '' ) +
+				( partdata.imgsrc ? '<img data-original="'+this.path.image+partdata.imgsrc+'" class="lazyload">' : '' ) +
 				( partdata.text ? '<p>'+partdata.text+'</p>' : '' ) +
 			'</div>';
 		var $part = $(markup).appendTo($container);
@@ -279,11 +279,11 @@
 		var self = this;
 		var mkWraps = '';
 		if(partdata.type == 'prezi'){
-			mkWraps = '<a class="link-wrap" href="'+partdata.link+'" target="_blank"><img src="'+self.path.image+partdata.src+'"></a>';
+			mkWraps = '<a class="link-wrap" href="'+partdata.link+'" target="_blank"><img data-original="'+self.path.image+partdata.src+'" class="lazyload"></a>';
 		} else if(partdata.type == 'video'){
 			mkWraps = '<div class="video-wrap" data-youtube-id="'+partdata.src+'"></div>';
 		} else if(partdata.type == 'image'){
-			mkWraps = '<img src="'+self.path.image+partdata.src+'">';
+			mkWraps = '<img data-original="'+self.path.image+partdata.src+'" class="lazyload">';
 		} else {
 			mkWraps = '<div class="void-wrap"></div>';
 		}
