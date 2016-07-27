@@ -65,10 +65,12 @@
             //create required elements
             var prog = $('<div/>').addClass('progressinner').appendTo(this.$elem);
             var prog2 = $('<div/>').addClass('progressinner').addClass('counter').appendTo(this.$elem);
-            var lpane = $('<div/>').addClass('lpane').appendTo(prog);
-            var rpane = $('<div/>').addClass('rpane').appendTo(prog);
-            var lrpane = $('<div/>').addClass('lpane').appendTo(prog2);
-            var rrpane = $('<div/>').addClass('rpane').appendTo(prog2);
+			var container = $('<div/>').addClass('progresscontainer').appendTo(prog);
+			var container2 = $('<div/>').addClass('progresscontainer').appendTo(prog2);
+            var lpane = $('<div/>').addClass('lpane').appendTo(container);
+            var rpane = $('<div/>').addClass('rpane').appendTo(container);
+            var lrpane = $('<div/>').addClass('lpane').appendTo(container2);
+            var rrpane = $('<div/>').addClass('rpane').appendTo(container2);
             this.rpanel = $('<div/>').addClass('cover').appendTo(rpane);
             this.lpanel = $('<div/>').addClass('cover').appendTo(lpane);
             this.rrpanel = $('<div/>').addClass('cover').appendTo(rrpane);
