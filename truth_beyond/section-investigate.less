@@ -359,11 +359,23 @@
 			-ms-box-sizing:border-box;
 			box-sizing:border-box;
 			overflow:hidden;
-			transform: rotate(-35deg);
-			-webkit-transform: rotate(-35deg);
-			-moz-transform: rotate(-35deg);
-			-ms-transform: rotate(-35deg);
-			-o-transform: rotate(-35deg);
+			.progresscontainer {
+				width: 100%;
+				height: 100%;
+				-webkit-border-radius:10000px;
+				-moz-border-radius:10000px;
+				border-radius:10000px;
+				-moz-box-sizing:border-box;
+				-webkit-box-sizing:border-box;
+				-ms-box-sizing:border-box;
+				box-sizing:border-box;
+				overflow:hidden;
+				transform: rotate(-35deg);
+				-webkit-transform: rotate(-35deg);
+				-moz-transform: rotate(-35deg);
+				-ms-transform: rotate(-35deg);
+				-o-transform: rotate(-35deg);
+			}
 			.lpane, .rpane{
 				content:"";
 				position:absolute;
@@ -409,11 +421,6 @@
 				font-weight: bold;
 				text-align: center;
 				line-height: 1.0em;
-				transform: rotate(35deg);
-				-webkit-transform: rotate(35deg);
-				-moz-transform: rotate(35deg);
-				-ms-transform: rotate(35deg);
-				-o-transform: rotate(35deg);
 				.displayprogress {
 					color: #7657c5;
 					transition: color 10s;
