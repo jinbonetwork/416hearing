@@ -9,8 +9,8 @@
 	.video-wrap
 	.media-and-text-in-two-column
 	.page-title
-	section.investigate
-	section.conceal
+	.investigate
+	.conceal
 */
 (function($){
 	var SewolTruthBeyond = require('./script.js');
@@ -27,13 +27,18 @@
 
 		// .image-with-title ////
 		this.$el('.image-with-title').respStyle({
+			breakpoint: '320 768 1920',
+			'font-size': '36 - 52 max',
+			'margin-left': '24 40 = max',
+			'margin-right': '24 40 = max'
+		});
+		this.$el('.title-on-image h6').respStyle({
 			breakpoint: '320 1920',
 			'font-size': '36 52 max'
 		});
-		this.$el('.image-with-title').respStyle({
-			breakpoint: '320 768 1920',
-			'margin-left': '24 40 = max',
-			'margin-right': '24 40 = max'
+		this.$el('.conclusion-map .title-on-image h6').respStyle({
+			breakpoint: '320 1920',
+			'font-size': '30 52 max'
 		});
 
 		// .subsection-title-region ////
@@ -52,12 +57,6 @@
 			breakpoint: '320 768 1920',
 			'padding-left': '24 40 = max',
 			'padding-right': '24 40 = max'
-		});
-
-		//.title-on-image ////
-		this.$el('.title-on-image h6').respStyle({
-			breakpoint: '320 1920',
-			'font-size': '36 52 max'
 		});
 
 		// .blockquote ////
@@ -100,7 +99,7 @@
 			'font-size': '42 72 max'
 		});
 
-		// section.investigate ////;
+		// .investigate ////;
 		this.$el('.part.investigate-journal h3').respStyle({
 			breakpoint: '320 1920',
 			'font-size': '21 36 max'
@@ -118,7 +117,7 @@
 			'font-size': '20 60 max'
 		});
 
-		// section.conceal ////
+		// .conceal ////
 		this.$el('.part.navy-part-2 .simple-image-wrap').respStyle({
 			breakpoint: '768 1920',
 			'padding-top': '24 40 max'
