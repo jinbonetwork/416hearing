@@ -4,8 +4,9 @@
 		var self = this;
 		var $window = $(window);
 		var $wrap = self.$el('.conclusion-map');
-		var wrapTop, wrapBot, scrTop, preScrTop = 0, direc = 'down';
-		var isZooming = false, isAvailable = true, isScrolling = false;
+		var wrapTop, wrapBot, scrTop, preScrTop = 0, touchY = 0, direc = -1;
+		var isZooming = false, isAvailable = true, isScrolling = false, isWheelAvailable = false;
+		var duration = 0;
 
 		var $maps = $wrap.find('.map-wrap > img');
 		var mapIdx = $maps.length-1;
@@ -21,43 +22,89 @@
 			"성역 없는 진상 규명이 가능합니다.",
 			"감추는 자가 범인입니다!<br>기억하고 함께 행동해주세요."
 		];
-		$wrap.find('.map-wrap > p').eq(9).remove();
-		$wrap.find('.map-wrap > p').eq(8).remove();
-		var $text = $wrap.find('.map-wrap > p').each(function(index){
-			$(this).css('opacity', 0).html(text[text.length-1-index]);
-		});
-		self.$el().scroll(function(){
+		$wrap.find('.map-wrap > p').remove();
+		for(var i = text.length-1; i >= 0; i--){
+			$('<p>'+text[i]+'</p>').css('opacity', 0).appendTo($wrap.find('.map-wrap'));
+		}
+		var $text = $wrap.find('.map-wrap > p');
+
+		self.$el().scroll(onScroll);
+		self.$el().on('mousewheel', onMousewheel);
+		self.$el().on('touchmove', onTouchmove);
+		self.$el().on('touchstart', onTouchStart);
+
+		function onScroll(event){
 			scrTop = self.$el().scrollTop();
-			direc = ( scrTop > preScrTop ? 'down' : 'up' );
+			direc = preScrTop - scrTop;
 			preScrTop = scrTop;
-			if(isZooming === false){
+			if(isScrolling === false || $.browser.mobile){
 				wrapTop = $wrap.offset().top;
 				wrapBot = $wrap.offset().top + $wrap.height();
-				if(direc == 'down' && wrapTop <= 0 && mapIdx > 0){
-					isZooming = true;
-					isScrolling = true;
-					self.$el().animate({ scrollTop: scrTop + wrapTop }, 'slow', function(){
-						isScrolling = false;
-					});
+				if(direc < 0 && wrapTop <= 0 && mapIdx > 0){
+					autoScroll(scrTop + wrapTop);
 				}
-				else if(direc == 'up' && wrapBot >= $window.height() && mapIdx < $maps.length-1){
-					isZooming = true;
-					isScrolling = true;
-					self.$el().animate({ scrollTop: scrTop + wrapBot - $window.height() }, 'slow', function(){
-						isScrolling = false;
-					});
+				else if(direc > 0 && wrapBot >= $window.height() && mapIdx < $maps.length-1){
+					autoScroll(scrTop + wrapBot - $window.height());
 				}
 			}
-		});
-		self.$el().on('mousewheel', function(event){ if(isZooming === true && isScrolling === false){
-			event.preventDefault();
-			var direc = event.originalEvent.wheelDelta;
+		}
+		function autoScroll(newScrTop){
+			isZooming = true;
+			isScrolling = true;
+			if($.browser.desktop){
+				self.$el().animate({ scrollTop: newScrTop }, duration, function(){
+					isScrolling = false;
+				});
+			} else {
+				mobileAutoScroll(newScrTop);
+			}
+			if(isWheelAvailable === false){
+				zoom(direc);
+			}
+		}
+		function mobileAutoScroll(newScrTop){
+			var intv = setInterval(function(){
+				var diff = self.$el().scrollTop() - newScrTop;
+				if(-1 <= diff && diff <= 1){
+					clearInterval(intv);
+					isScrolling = false;
+				} else {
+					self.$el().scrollTop(newScrTop);
+				}
+			}, 50);
+		}
+		function onMousewheel(event){
+			if(!isWheelAvailable){
+				isWheelAvailable = true;
+				duration = 'fast';
+			}
+			if(isZooming === true && isScrolling === false){
+				event.preventDefault();
+				zoom(event.originalEvent.wheelDelta);
+			}
+		}
+		function onTouchmove(event){
+			var direction = event.originalEvent.targetTouches[0].pageY - touchY;
+			if(!isWheelAvailable){
+				isWheelAvailable = true;
+				duration = 0;
+			}
+			if(isZooming === true && isScrolling === false){
+				event.preventDefault();
+				zoom(direction);
+			}
+		}
+		function onTouchStart(event){
+			var e = event.originalEvent;
+			touchY = e.targetTouches[0].pageY;
+		}
+		function zoom(direction){
 			if(isAvailable){
 				isAvailable = false;
-				if(direc < 0) zoomIn();
-				else if(direc > 0) zoomOut();
+				if(direction < 0) zoomIn();
+				else if(direction > 0) zoomOut();
 			}
-		}});
+		}
 		function zoomIn(){
 			if(mapIdx <= 0){
 				isAvailable = true;
@@ -91,9 +138,9 @@
 						if(mapIdx < $maps.length-1) $maps.eq(mapIdx).css('z-index', 2);
 						else isZooming = false;
 					});
+					$text.eq(mapIdx).animate({ top: '100%', opacity: 0 }, 'slow');
+					$text.eq(mapIdx+1).animate({ top: '50%', opacity: 1 }, 'slow');
 				});
-				$text.eq(mapIdx).animate({ top: '100%', opacity: 0 }, 'slow');
-				$text.eq(mapIdx+1).animate({ top: '50%', opacity: 1 }, 'slow');
 			}
 		}//zoomOut()
 	}
