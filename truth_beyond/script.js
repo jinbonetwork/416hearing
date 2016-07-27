@@ -451,10 +451,11 @@
 		var mkMaps = '';
 		for(var i = 4; i <= 12; i++){
 			var index = ( i < 10 ? '0'+i : ''+i );
-			mkMaps += '<img data-original="'+self.path.image+'maps/level-'+index+'.jpg" class="lazyload'+(partdata.option == 'auto' ? ' auto' : '')+'">'
+			//mkMaps += '<img data-original="'+self.path.image+'maps/level-'+index+'.jpg" class="lazyload'+(partdata.option == 'auto' ? ' auto' : '')+'">';
+			mkMaps += '<img src="'+self.path.image+'maps/level-'+index+'.jpg">';
 		}
 		var mkText = '';
-		for(var i = partdata.text.length; i >= 0; i--){
+		for(var i = partdata.text.length-1; i >= 0; i--){
 			mkText += '<p>'+partdata.text[i]+'</p>';
 		}
 		var markup =
@@ -468,6 +469,9 @@
 				( partdata.caption ? '<div class="caption"><h6>'+partdata.caption+'</h6></div>' : '') +
 			'</div>';
 		var $el = $(markup).appendTo($container);
+		$el.find('.map-wrap img').each(function(){
+			self.imageCropAuto($(this));
+		});
 	}
 	SewolTruthBeyond.prototype.nisPart1ImgArrange = function(){
 		var self = this;

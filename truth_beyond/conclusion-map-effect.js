@@ -9,24 +9,11 @@
 		var duration = 0;
 
 		var $maps = $wrap.find('.map-wrap > img');
+		var $text = $wrap.find('.map-wrap > p');
+		
 		var mapIdx = $maps.length-1;
 		$maps.hide();
 		$maps.eq(mapIdx).show().css('z-index', 2);
-		var text = [
-			"이제 더 이상 물러설 수 없습니다!",
-			"416특별법 개정안을 통과시키고",
-			"특조위 조사기간도 보장되어야 합니다.",
-			"특검을 실시하고<br>인양과정을 투명하게 공개할 때",
-			"세월호는 온전히 인양되고",
-			"미수습자가 가족품에 돌아올 수 있으며",
-			"성역 없는 진상 규명이 가능합니다.",
-			"감추는 자가 범인입니다!<br>기억하고 함께 행동해주세요."
-		];
-		$wrap.find('.map-wrap > p').remove();
-		for(var i = text.length-1; i >= 0; i--){
-			$('<p>'+text[i]+'</p>').css('opacity', 0).appendTo($wrap.find('.map-wrap'));
-		}
-		var $text = $wrap.find('.map-wrap > p');
 
 		self.$el().scroll(onScroll);
 		self.$el().on('mousewheel', onMousewheel);
