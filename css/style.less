@@ -84,7 +84,7 @@ ul {
 		transition: opacity 1s; -webkit-transition: opacity 1s;
 	}
 	.js .pages-nav a.link--page {
-		font-size: 1.3em;
+		font-size: 1.1em;
 	}
 }
 @media screen and (min-width: 560px) {
@@ -94,9 +94,12 @@ ul {
 	}
 	.pages-nav.pages-nav--open + .introduction,
 	.js .pages-nav {
-		font-size: @font-size-w;
+		font-size: @font-size-m;
 		& > p.content {
 			padding: 25vw 0 0 0;
+		}
+		.pages-nav__item {
+			width: 25%;
 		}
 	}
 }
@@ -114,7 +117,7 @@ ul {
 	.js .pages-nav {
 		margin: 0;
 		width: 100%;
-		padding: 0 20%;
+		padding: 0 15%;
 		text-align: center;
 	}
 }
