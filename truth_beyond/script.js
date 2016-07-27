@@ -481,7 +481,7 @@
 		self.$el('.nis-part-1 img').each(function(index){
 			$(this).addClass('wow');
 			$(this).addClass('bounceInUp');
-			$(this).attr('data-wow-delay', (0.8 + (0.3 * index))+'s');
+			$(this).attr('data-wow-delay', (0.2 + (0.3 * index))+'s');
 		});
 	}
 
