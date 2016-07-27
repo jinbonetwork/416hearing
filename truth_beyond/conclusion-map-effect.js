@@ -10,7 +10,7 @@
 
 		var $maps = $wrap.find('.map-wrap > img');
 		var $text = $wrap.find('.map-wrap > p');
-		
+
 		var mapIdx = $maps.length-1;
 		$maps.hide();
 		$maps.eq(mapIdx).show().css('z-index', 2);
@@ -93,12 +93,15 @@
 			}
 		}
 		function zoomIn(){
+			var newWidth, newHeight;
 			if(mapIdx <= 0){
 				isAvailable = true;
 				isZooming = false;
 			} else {
-				var newWidth = 2*$maps.eq(mapIdx).width();
-				var newHeight = 2*$maps.eq(mapIdx).height();
+				$maps.eq(mapIdx).css('width', '').css('height', '');
+				$maps.eq(mapIdx-1).css('width', '').css('height', '');
+				newWidth = 2*$maps.eq(mapIdx).width();
+				newHeight = 2*$maps.eq(mapIdx).height();
 				$maps.eq(mapIdx-1).show().css('z-index', 1);
 				$maps.eq(mapIdx).animate({ width: newWidth, height: newHeight }, 'slow', function(){
 					$maps.eq(mapIdx).fadeOut('fast', function(){
@@ -112,15 +115,20 @@
 			}
 		}//zoomIn()
 		function zoomOut(){
+			var width, height;
 			if(mapIdx >= $maps.length-1){
 				isAvailable = true;
 				isZooming = false;
 			} else {
-				var newWidth = 0.5*$maps.eq(mapIdx+1).width();
-				var newHeight = 0.5*$maps.eq(mapIdx+1).height();
+				$maps.eq(mapIdx+1).css('width', '').css('height', '');
+				$maps.eq(mapIdx).css('width', '').css('height', '');
+				width = $maps.eq(mapIdx+1).width();
+				height = $maps.eq(mapIdx+1).height();
+				$maps.eq(mapIdx+1).width(2*width);
+				$maps.eq(mapIdx+1).height(2*height);
 				$maps.eq(mapIdx+1).show().css('z-index', 1);
 				$maps.eq(mapIdx).fadeOut('fast', function(){
-					$maps.eq(mapIdx+1).animate({ width: newWidth, height: newHeight }, 'slow', function(){
+					$maps.eq(mapIdx+1).animate({ width: width, height: height }, 'slow', function(){
 						mapIdx++; isAvailable = true;
 						if(mapIdx < $maps.length-1) $maps.eq(mapIdx).css('z-index', 2);
 						else isZooming = false;

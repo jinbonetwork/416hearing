@@ -159,7 +159,7 @@
 				'</div>' +
 				( partdata.caption ? '<div class="caption"><h6>'+partdata.caption+'</h6></div>' : '') +
 			'</div>';
-		var $el = $(markup).appendTo($container);
+		$(markup).appendTo($container);
 	}
 	SewolTruthBeyond.prototype.imageCropAuto = function($image){
 		var w = $image.get(0).naturalWidth, h = $image.get(0).naturalHeight;
@@ -468,10 +468,7 @@
 				'</div>' +
 				( partdata.caption ? '<div class="caption"><h6>'+partdata.caption+'</h6></div>' : '') +
 			'</div>';
-		var $el = $(markup).appendTo($container);
-		$el.find('.map-wrap img').each(function(){
-			self.imageCropAuto($(this));
-		});
+		$(markup).appendTo($container);
 	}
 	SewolTruthBeyond.prototype.nisPart1ImgArrange = function(){
 		var self = this;
