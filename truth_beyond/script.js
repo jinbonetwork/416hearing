@@ -410,7 +410,7 @@
 	SewolTruthBeyond.prototype.nisPart1 = function(partname, partdata, $container){
 		var markup = '';
 		for(var i = 0, len = partdata.data.length; i < len; i++){
-			markup += '<div class="image-container"><img data-original="'+this.path.image+partdata.data[i]+'" class="lazyload"></div>';
+			markup += '<div class="image-container"><img data-original="'+this.path.image+partdata.data[i]+'" class="lazyload" width="100%"></div>';
 		}
 		markup = '<div class="image-wrap">'+markup+'</div>';
 		$(markup).appendTo($container);
@@ -481,7 +481,7 @@
 		self.$el('.nis-part-1 img').each(function(index){
 			$(this).addClass('wow');
 			$(this).addClass('bounceInUp');
-			$(this).attr('data-wow-delay', (0.2 + (0.3 * index))+'s');
+			$(this).attr('data-wow-delay', (0.2 + (1 * index))+'s');
 		});
 	}
 
