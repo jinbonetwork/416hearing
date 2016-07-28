@@ -12,6 +12,9 @@
 			doc: 'data/truth_beyond/docs/',
 			video: ''
 		}
+
+		this.pageHandler = jQuery('body').data('handler')
+
 		this.markup();
 		this.style();
 		this.markupAfterStyle();
@@ -94,22 +97,21 @@
 		var l = jQuery(elem).parent();
 		var _sl = l.attr('data-href');
 		var sl = _sl.split("-");
-		var handler = $('body').data('handler');
 		switch(parseInt(sl[0])) {
 			case 1:
-				handler.changePage('page-hearing');
+				this.pageHandler.changePage('page-hearing');
 				if(sl.length > 1) {
 					var subhandler = $('#page-hearing').data('handler');
 					var f = subhandler.getCurrent();
-					subhandler.movePage(f, parseInt(sl[1]));
+					subhandler.movePage(f, parseInt(sl[1]),false);
 				}
 				break;
 			case 2:
-				handler.changePage('page-2nd-hearing');
+				this.pageHandler.changePage('page-2nd-hearing');
 				if(sl.length > 1) {
 					var subhandler = $('#page-2nd-hearing').data('handler');
 					var f = subhandler.getCurrent();
-					subhandler.movePage(f, parseInt(sl[1]));
+					subhandler.movePage(f, parseInt(sl[1]),false);
 				}
 				break;
 			default:
