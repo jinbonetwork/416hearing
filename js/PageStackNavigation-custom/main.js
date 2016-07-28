@@ -39,6 +39,8 @@
 		this.isMenuOpen = false;
 		this.isChangePaging = false;
 
+		this.history = {};
+
 		this.init();
 	}
 
@@ -63,6 +65,11 @@
 		init: function() {
 			var self = this;
 
+			this.history['page'] = [];
+			for(var i = 0; i < this.pagesTotal; i++) {
+				this.history[this.pages[i].getAttribute('id')] = [];
+			}
+
 			this.buildStack();
 			this.initEvents();
 
@@ -71,16 +78,16 @@
 				this.toggleMenu();
 				switch(this.controller.page) {
 					case 'hearing1':
-						this.openPage('page-hearing');
+						this.openPage('page-hearing',false);
 						break;
 					case 'hearing2':
-						this.openPage('page-2nd-hearing');
+						this.openPage('page-2nd-hearing',false);
 						break;
 					case 'journal':
-						this.openPage('page-journal');
+						this.openPage('page-journal',false);
 						break;
 					case 'truthbeyond':
-						this.openPage('page-truth-beyond');
+						this.openPage('page-truth-beyond',false);
 						break;
 				}
 			} else {
@@ -150,7 +157,7 @@
 				var pageid = item.getAttribute('href').slice(1);
 				item.addEventListener('click', function(ev) {
 					ev.preventDefault();
-					self.openPage(pageid);
+					self.openPage(pageid,true);
 				});
 			});
 
@@ -160,7 +167,7 @@
 				page.addEventListener('click', function(ev) {
 					if( self.isMenuOpen && !self.isChangePaging ) {
 						ev.preventDefault();
-						self.openPage(pageid);
+						self.openPage(pageid,true);
 					}
 				});
 			});
@@ -173,6 +180,8 @@
 					self.closeMenu();
 				}
 			});
+
+			this.popstateHandler();
 		},
 
 		// toggle menu fn
@@ -210,11 +219,11 @@
 		// closes the menu
 		closeMenu: function() {
 			// same as opening the current page again
-			this.openPage();
+			this.openPage('',false);
 		},
 
 		// opens a page
-		openPage: function(id) {
+		openPage: function(id, history) {
 			var self = this;
 			var futurePage = id ? document.getElementById(id) : this.pages[this.current],
 				futureCurrent = this.pages.indexOf(futurePage),
@@ -234,6 +243,12 @@
 
 			// set current
 			if( id ) {
+				if( this.current != futureCurrent ) {
+					if(history === true) {
+						this.pushHistory('page', this.current, futureCurrent);
+						this.cleanHistory(this.pages[this.current].getAttribute('id'));
+					}
+				}
 				this.current = futureCurrent;
 			}
 
@@ -258,7 +273,7 @@
 			var stackPagesIdxs = this.getStackPagesIdxs();
 			var page = this.pages[(stackPagesIdxs.length-1)];
 			this.onEndTransition(page, function() {
-				self.openPage(id);
+				self.openPage(id, true);
 			});
 		},
 
@@ -299,6 +314,79 @@
 			}
 
 			return obj;
+		},
+
+		pushHistory: function(page,from,to) {
+			var hash = '#';
+			switch(page) {
+				case 'page':
+					switch(to) {
+						case 0:
+							hash += 'truth_beyond';
+							break;
+						case 1:
+							hash += 'hearing2';
+							break;
+						case 2:
+							hash += 'hearing';
+							break;
+						case 4:
+							hash += 'journal';
+							break;
+					}
+					break;
+				case 'page-truth-beyond':
+					hash += 'truth_beyond';
+					if(to) hash += '-'+to;
+					break;
+				case 'page-hearing':
+					hash += 'hearing';
+					if(to) hash += '-'+to;
+					break;
+				case 'page-2nd-hearing':
+					hash += 'hearing2';
+					if(to) hash += '-'+to;
+					break;
+				case 'page-journal':
+					hash += 'journal';
+					if(to) hash += '-'+to;
+					break;
+				default:
+					break;
+			}
+			window.history.pushState({},'',window.location.href+hash);
+			this.history[page].push(from);
+		},
+
+		popHistory: function(page) {
+			console.log('history page : '+page);
+			var hist = -1;
+			if(this.history[page].length > 0)
+				hist = this.history[page].pop();
+			console.log('history hist : '+hist);
+			return hist;
+		},
+
+		cleanHistory: function(page) {
+			this.history[page] = [];
+		},
+
+		popstateHandler: function() {
+			var self = this;
+			jQuery(window).on('popstate',function(e) {
+				console.log('popstate');
+				var hist = self.popHistory(self.pages[self.current].getAttribute('id'));
+				if(hist >= 0) {
+					var handler = $(self.pages[self.current]).data('handler')
+					var f = handler.getCurrent();
+					handler.movePage(f, parseInt(sl[1]),false);
+				} else {
+					var hist = self.popHistory('page');
+					if(hist >= 0) {
+						self.changePage(self.pages[hist].getAttribute('id'), false);
+					}
+				}
+			});
 		}
 	};
 
