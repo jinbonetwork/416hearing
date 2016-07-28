@@ -286,26 +286,21 @@
 		getStackPagesIdxs: function(excludePageIdx) {
 
 			var nextStackPageIdx = this.current + 1 < this.pagesTotal ? this.current + 1 : 0,
-				nextStackPageIdx_2 = this.current + 2 < this.pagesTotal ? this.current + 2 : 1,
-				nextStackPageIdx_3 = this.current + 3 < this.pagesTotal ? this.current + 3 : 1,
+				nextStackPageIdx_2 = this.current + 2 < this.pagesTotal ? this.current + 2 : 0,
+				nextStackPageIdx_3 = this.current + 3 < this.pagesTotal ? this.current + 3 : 2,
 				idxs = [],
 
 				excludeIdx = excludePageIdx || -1;
 
-			if( excludePageIdx != this.current ) {
-				idxs.push(this.current);
+			for(var i=0; i< this.pagesTotal; i++) {
+				if( (i + this.current) < this.pagesTotal )
+					var s = i + this.current;
+				else
+					var s = i + this.current - this.pagesTotal;
+				if( excludePageIdx != s ) {
+					idxs.push(s);
+				}
 			}
-			if( excludePageIdx != nextStackPageIdx ) {
-				idxs.push(nextStackPageIdx);
-			}
-			if( excludePageIdx != nextStackPageIdx_2 ) {
-				idxs.push(nextStackPageIdx_2);
-			}
-			if( excludePageIdx != nextStackPageIdx_3 ) {
-				idxs.push(nextStackPageIdx_3);
-			}
-
-			//if(idxs[0] == 1 && idxs[1] == 2 && idxs[2] == 1) idxs = [1, 2, 0];
 
 			return idxs;
 
