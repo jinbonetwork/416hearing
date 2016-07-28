@@ -448,30 +448,6 @@
 			'</div>';
 		$(markup).appendTo($container);
 	}
-	SewolTruthBeyond.prototype.conclusionMap = function(partname, partdata, $container){
-		var self = this;
-		var mkMaps = '';
-		for(var i = 4; i <= 12; i++){
-			var index = ( i < 10 ? '0'+i : ''+i );
-			//mkMaps += '<img data-original="'+self.path.image+'maps/level-'+index+'.jpg" class="lazyload'+(partdata.option == 'auto' ? ' auto' : '')+'">';
-			mkMaps += '<img src="'+self.path.image+'maps/level-'+index+'.jpg">';
-		}
-		var mkText = '';
-		for(var i = partdata.text.length-1; i >= 0; i--){
-			mkText += '<p>'+partdata.text[i]+'</p>';
-		}
-		var markup =
-			'<div class="part image-with-title '+partname+'"">' +
-				'<div class="image-wrap">' +
-					'<div class="map-wrap">' +
-						mkMaps + mkText +
-					'</div>' +
-					'<div class="title-on-image"><h6>'+partdata.title+'</h6></div>' +
-				'</div>' +
-				( partdata.caption ? '<div class="caption"><h6>'+partdata.caption+'</h6></div>' : '') +
-			'</div>';
-		$(markup).appendTo($container);
-	}
 	SewolTruthBeyond.prototype.nisPart1ImgArrange = function(){
 		var self = this;
 		var a, y, x, r = 20;
