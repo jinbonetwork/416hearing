@@ -100,20 +100,16 @@
 		var sl = _sl.split("-");
 		switch(parseInt(sl[0])) {
 			case 1:
-				this.pageHandler.changePage('page-hearing');
-				if(sl.length > 1) {
-					var subhandler = $('#page-hearing').data('handler');
-					var f = subhandler.getCurrent();
-					subhandler.movePage(f, parseInt(sl[1]),false);
-				}
+				this.pageHandler.changePage('page-hearing', (sl.length > 1 ? parseInt(sl[1]) : 0) );
+				var subhandler = jQuery('#page-hearing').data('handler');;
+				var f = subhandler.getCurrent();
+				subhandler.movePage(f, (sl.length > 1 ? parseInt(sl[1]) : 0), false);
 				break;
 			case 2:
-				this.pageHandler.changePage('page-2nd-hearing');
-				if(sl.length > 1) {
-					var subhandler = $('#page-2nd-hearing').data('handler');
-					var f = subhandler.getCurrent();
-					subhandler.movePage(f, parseInt(sl[1]),false);
-				}
+				this.pageHandler.changePage('page-2nd-hearing', (sl.length > 1 ? parseInt(sl[1]) : 0) );
+				var subhandler = jQuery('#page-2nd-hearing').data('handler');;
+				var f = subhandler.getCurrent();
+				subhandler.movePage(f, (sl.length > 1 ? parseInt(sl[1]) : 0), false);
 				break;
 			default:
 				break;

@@ -59,13 +59,13 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<meta property="og:type" content="website"/>
 	<meta property="og:url" content="http://taogi.net/416hearing"/>
 	<meta property="og:image" content="http://www.taogi.net/416hearing/data/images/og_image.png"/>
-	<meta property="og:description" content="세월호 청문회 - 감추는 자가 범인이다. 끝까지 밝혀야 합니다!">
+	<meta property="og:description" content="세월호 청문회 - 진실은 좌초시킬 수 없습니다. 진상규명은 계속되어야 합니다.">
 	<meta property="og:site_name" content="세월호 청문회"/>
 	<meta property="og:section" content="사회"/>
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="@416family">
 	<meta name="twitter:title" content="세월호 청문회">
-	<meta name="twitter:description" content="세월호 청문회 - 감추는 자가 범인이다. 끝까지 밝혀야 합니다!">
+	<meta name="twitter:description" content="세월호 청문회 - 진실은 좌초시킬 수 없습니다. 진상규명은 계속되어야 합니다.">
 	<meta name="twitter:creator" content="세월호 청문회">
 	<meta name="twitter:image:src" content="http://www.taogi.net/416hearing/data/images/og_image.png">
 	<meta name="twitter:domain" content="http://www.taogi.net/416hearing">
