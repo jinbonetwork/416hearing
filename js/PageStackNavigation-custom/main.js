@@ -285,11 +285,7 @@
 		// gets the current stack pages indexes. If any of them is the excludePage then this one is not part of the returned array
 		getStackPagesIdxs: function(excludePageIdx) {
 
-			var nextStackPageIdx = this.current + 1 < this.pagesTotal ? this.current + 1 : 0,
-				nextStackPageIdx_2 = this.current + 2 < this.pagesTotal ? this.current + 2 : 0,
-				nextStackPageIdx_3 = this.current + 3 < this.pagesTotal ? this.current + 3 : 2,
-				idxs = [],
-
+			var idxs = [],
 				excludeIdx = excludePageIdx || -1;
 
 			for(var i=0; i< this.pagesTotal; i++) {
@@ -303,7 +299,6 @@
 			}
 
 			return idxs;
-
 		},
 
 		parseUrlHash: function() {
