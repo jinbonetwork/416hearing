@@ -244,6 +244,12 @@ var sHearing2;
 				this.appendSection(nTo);
 			}
 			this.current = nTo;
+
+			hash = "hearing2";
+			if(nTo) hash += "-"+nTo;
+			if(window.location.hash != hash) {
+				window.location.hash = hash;
+			}
 		},//movePage
 
 		htmlOutline: function() {
