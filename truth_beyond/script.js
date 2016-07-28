@@ -330,10 +330,12 @@
 		iconSize();
 		$(window).resize(iconSize);
 		function iconSize(){
-			var $wrap = self.$el('.media-and-text-in-two-column .link-wrap');
-			var w = $wrap.outerWidth();
-			$wrap.find('i').each(function(index){
-				$(this).css('font-size', 0.14*w*(index+1));
+			self.$el('.media-and-text-in-two-column .link-wrap').each(function(){
+				var $wrap = $(this);
+				var w = $wrap.outerWidth();
+				$wrap.find('i').each(function(index){
+					$(this).css('font-size', 0.14*w*(index+1));
+				});
 			});
 		}
 	}
