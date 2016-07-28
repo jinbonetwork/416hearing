@@ -30,7 +30,7 @@ module.exports = {
 			{ "side": "none", "date": "11.19", "content": "416세월호참사특별법 제정" },
 			{ "year": "2015"},
 			{ "side": "left", "date": "1.1", "content": "416특조위 활동 시작일<br><strong>(416세월호참사특별법 시행일)</strong>" },
-			{ "side": "right", "date": "5.11", "content": "416특별법 시행령 제정" },
+			{ "side": "right", "date": "5.11", "content": "416특별법 시행령 제정 및 시행" },
 			{ "side": "right", "date": "8.4", "content": "416특조위 활동 시작일<br><strong>(국무회의 예산통과일)</strong>" },
 			{ "side": "right", "date": "9.14", "content": "조사신청 개시" },
 			{ "side": "right", "date": "9.21", "content": "특조위 조사 개시일" },
