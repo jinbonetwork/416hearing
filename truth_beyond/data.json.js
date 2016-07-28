@@ -428,7 +428,7 @@ module.exports = {
 				"classes": "share-wrap",
 				"data": [
 					"공유하기",
-					"<a class=\"github\" href=\"https://github.com/jinbonetwork/416hearing\" target=\"_blank\"><i class=\"fa fa-github-alt\" aria-hidden=\"true\"></i></a><a class=\"twitter\" href=\"https://twitter.com/share?text=세월호 청문회 - 진실은 좌초시킬 수 없습니다. 진상규명은 계속되어야 합니다.\" target=\"_blank\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></a><a class=\"facebook\" href=\"https://facebook.com/sharer.php?u=http://www.taogi.net/416hearing/\" target=\"_blank\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></a>"
+					"<a class=\"github\" href=\"https://github.com/jinbonetwork/416hearing\" target=\"_blank\"><i class=\"fa fa-github-alt\" aria-hidden=\"true\"></i></a><a class=\"twitter\" href=\"https://twitter.com/share?u=http://www.taogi.net/416hearing&text=세월호 청문회 - 진실은 좌초시킬 수 없습니다. 진상규명은 계속되어야 합니다.\" target=\"_blank\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></a><a class=\"facebook\" href=\"https://facebook.com/sharer.php?u=http://www.taogi.net/416hearing/\" target=\"_blank\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></a>"
 				]
 			}
 		]
