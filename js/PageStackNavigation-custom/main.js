@@ -354,16 +354,14 @@
 				default:
 					break;
 			}
-			window.history.pushState({},'',window.location.href+hash);
+			window.history.pushState({},'',window.location.pathname+hash);
 			this.history[page].push(from);
 		},
 
 		popHistory: function(page) {
-			console.log('history page : '+page);
 			var hist = -1;
 			if(this.history[page].length > 0)
 				hist = this.history[page].pop();
-			console.log('history hist : '+hist);
 			return hist;
 		},
 
@@ -374,12 +372,11 @@
 		popstateHandler: function() {
 			var self = this;
 			jQuery(window).on('popstate',function(e) {
-				console.log('popstate');
 				var hist = self.popHistory(self.pages[self.current].getAttribute('id'));
 				if(hist >= 0) {
 					var handler = $(self.pages[self.current]).data('handler')
 					var f = handler.getCurrent();
-					handler.movePage(f, parseInt(sl[1]),false);
+					handler.movePage(f, hist,false);
 				} else {
 					var hist = self.popHistory('page');
 					if(hist >= 0) {
