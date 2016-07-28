@@ -9,8 +9,11 @@
 			mkMaps += '<img src="'+self.path.image+'maps/level-'+index+'.jpg">';
 		}
 		var mkText = '';
-		for(var i = partdata.text.length-1; i >= 0; i--){
-			mkText += '<p>'+partdata.text[i]+'</p>';
+		if($.browser.desktop) {
+			for(var i = partdata.text.length-1; i >= 0; i--) mkText += '<p>'+partdata.text[i]+'</p>';
+		} else {
+			for(var i = 0; i < partdata.text.length; i++) mkText += '<p>'+partdata.text[i]+'</p>';
+			mkText = '<div class="text-wrap">' + mkText + '</div>';
 		}
 		var markup =
 			'<div class="part image-with-title '+partname+'"">' +
@@ -22,28 +25,43 @@
 				'</div>' +
 				( partdata.caption ? '<div class="caption"><h6>'+partdata.caption+'</h6></div>' : '') +
 			'</div>';
-		$(markup).appendTo($container);
+		var $el = $(markup).appendTo($container);
+		if($.browser.mobile){
+			$el.find('.title-on-image').addClass('wow fadeInUp');
+			$el.find('.text-wrap p').each(function(index){
+				var delay = (0.5*(index+1)) + 's'
+				$(this).addClass('wow fadeInUp').attr('data-wow-delay', delay);
+			});
+		}
 	}
-	SewolTruthBeyond.prototype.conclusionMapEffect = function(){
+	SewolTruthBeyond.prototype.conclusionMapEffect = function(){ if($.browser.desktop){
 		var self = this;
 		var $window = $(window);
 		var $wrap = self.$el('.conclusion-map');
 		var wrapTop, wrapBot, scrTop, preScrTop = 0, touchY = 0, direc = -1;
 		var isZooming = false, isAvailable = true, isScrolling = false, isWheelAvailable = false;
 		var duration = 0;
-
 		var $maps = $wrap.find('.map-wrap > img');
 		var $text = $wrap.find('.map-wrap > p');
-
+		var txtlidx = $text.length-1;
 		var mapIdx = $maps.length-1;
-		$maps.hide();
-		$maps.eq(mapIdx).show().css('z-index', 2);
 
-		self.$el().scroll(onScroll);
+		initialize();
+		self.$el().on('scroll', onScroll);
 		self.$el().on('mousewheel', onMousewheel);
-		self.$el().on('touchmove', onTouchmove);
-		self.$el().on('touchstart', onTouchStart);
+		//self.$el().on('touchmove', onTouchmove);
+		//self.$el().on('touchstart', onTouchStart);
 
+		function initialize(){
+			$text.css({
+				position: 'absolute',
+				top: '100%',
+				left: '10%',
+				'z-index': 8
+			});
+			$maps.hide();
+			$maps.eq(mapIdx).show().css('z-index', 2);
+		}
 		function onScroll(event){
 			scrTop = self.$el().scrollTop();
 			direc = preScrTop - scrTop;
@@ -73,6 +91,7 @@
 				zoom(direc);
 			}
 		}
+		/*
 		function mobileAutoScroll(newScrTop){
 			var intv = setInterval(function(){
 				var diff = self.$el().scrollTop() - newScrTop;
@@ -84,6 +103,7 @@
 				}
 			}, 50);
 		}
+		*/
 		function onMousewheel(event){
 			if(!isWheelAvailable){
 				isWheelAvailable = true;
@@ -94,6 +114,7 @@
 				zoom(event.originalEvent.wheelDelta);
 			}
 		}
+		/*
 		function onTouchmove(event){
 			var direction = event.originalEvent.targetTouches[0].pageY - touchY;
 			if(!isWheelAvailable){
@@ -109,6 +130,7 @@
 			var e = event.originalEvent;
 			touchY = e.targetTouches[0].pageY;
 		}
+		*/
 		function zoom(direction){
 			if(isAvailable){
 				isAvailable = false;
@@ -162,5 +184,5 @@
 				});
 			}
 		}//zoomOut()
-	}
+	}}
 })(jQuery);
