@@ -34,11 +34,11 @@
 		});
 		this.$el('.title-on-image h6').respStyle({
 			breakpoint: '320 1920',
-			'font-size': '36 52 max'
+			'font-size': '30 52 max'
 		});
 		this.$el('.conclusion-map .title-on-image h6').respStyle({
-			breakpoint: '320 1920',
-			'font-size': '30 52 max'
+			breakpoint: '320 768 1920',
+			'font-size': '25 36 52 max'
 		});
 
 		// .subsection-title-region ////
