@@ -287,6 +287,7 @@
 
 			var nextStackPageIdx = this.current + 1 < this.pagesTotal ? this.current + 1 : 0,
 				nextStackPageIdx_2 = this.current + 2 < this.pagesTotal ? this.current + 2 : 1,
+				nextStackPageIdx_3 = this.current + 3 < this.pagesTotal ? this.current + 3 : 1,
 				idxs = [],
 
 				excludeIdx = excludePageIdx || -1;
@@ -299,6 +300,9 @@
 			}
 			if( excludePageIdx != nextStackPageIdx_2 ) {
 				idxs.push(nextStackPageIdx_2);
+			}
+			if( excludePageIdx != nextStackPageIdx_3 ) {
+				idxs.push(nextStackPageIdx_3);
 			}
 
 			//if(idxs[0] == 1 && idxs[1] == 2 && idxs[2] == 1) idxs = [1, 2, 0];
