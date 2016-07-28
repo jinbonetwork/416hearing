@@ -10,6 +10,8 @@ var sJournal;
 
 		this.settings = $.extend({}, $.fn.sewoljournal.defaults, options);
 
+		this.pageHandler = jQuery('body').data('handler')
+
 		this.init();
 	}
 

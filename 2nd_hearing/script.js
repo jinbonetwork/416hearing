@@ -26,6 +26,8 @@ var sHearing2;
 		this.controller = this.parseUrlHash();
 		this.current = 0;
 
+		this.pageHandler = jQuery('body').data('handler')
+
 		this.init();
 	}
 
@@ -128,12 +130,12 @@ var sHearing2;
 
 			// 의혹 페이지로 이동 ////
 			self.Root.find('.outline li').click(function() {
-				self.movePage(0, $(this).attr('data-num'));
+				self.movePage(0, $(this).attr('data-num'),true);
 			});
 
 			// ////
 			if(self.controller.section) {
-				self.movePage(0, this.controller.section);
+				self.movePage(0, this.controller.section,true);
 			}
 		},
 
@@ -155,7 +157,7 @@ var sHearing2;
 			// 첫 페이지로 이동 ////
 			$susp.find('.go-back-outline').click(function() {
 				var num = $(this).parents('section').attr('id').replace(/suspicion\-/, '');
-				self.movePage(num, 0);
+				self.movePage(num, 0,true);
 			});
 			//증인 정보 표시 ////
 			$susp.find('.witness-photo').sewolwitnesses({
@@ -216,11 +218,14 @@ var sHearing2;
 			});
 		},
 
-		movePage: function(nFrom, nTo){
+		movePage: function(nFrom, nTo, history){
 			var $from = ( nFrom == 0 ? this.Root.find('.outline') : this.Root.find('#suspicion-'+nFrom) );
 			var $to = ( nTo == 0 ? this.Root.find('.outline') : this.Root.find('#suspicion-'+nTo) );
 
 			//이전 페이지 닫기 ///
+			if( history === true && nFrom != nTo ) {
+				this.pageHandler.pushHistory(this.Root.attr('id'),nFrom,nTo);
+			}
 			if(nFrom == 0){
 				// 첫 페이지 비디오 재생 중지 ////
 				var hearing2Video = $from.find('#hearing2-video').data('ytplayer');
