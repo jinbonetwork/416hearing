@@ -39,9 +39,23 @@
 		width: 100%;
 	}
 	.link-wrap {
+		&, &:hover, &:visited, &:active {
+			color: #6d92c4;
+		}
+		position: relative;
 		overflow: hidden;
 		display: block;
 		line-height: 0;
+	}
+	.link-icon i {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		opacity: 0.8;
+	}
+	.link-wrap:hover .link-icon i {
+		opacity: 1;
 	}
 	.text-wrap {
 		text-align: justify;

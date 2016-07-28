@@ -13,7 +13,7 @@
 			video: ''
 		}
 
-		this.pageHandler = jQuery('body').data('handler')
+		this.pageHandler = jQuery('body').data('handler');
 
 		this.markup();
 		this.style();
@@ -47,6 +47,7 @@
 		);
 		this.nisPart1ImgArrange();
 		this.conclusionMapEffect();
+		this.mediaAndTextInTwoColumnStyle();
 	}
 	SewolTruthBeyond.prototype.events = function(){
 		var self = this;
@@ -281,7 +282,11 @@
 		var self = this;
 		var mkWraps = '';
 		if(partdata.type == 'prezi'){
-			mkWraps = '<a class="link-wrap" href="'+partdata.link+'" target="_blank"><img data-original="'+self.path.image+partdata.src+'" class="lazyload"></a>';
+			mkWraps =
+				'<a class="link-wrap" href="'+partdata.link+'" target="_blank">' +
+					'<div class="link-icon"><i class="fa fa-link"></i><i class="fa fa-circle-thin"></i></div>' +
+					'<img data-original="'+self.path.image+partdata.src+'" class="lazyload">' +
+				'</a>';
 		} else if(partdata.type == 'video'){
 			mkWraps = '<div class="video-wrap" data-youtube-id="'+partdata.src+'"></div>';
 		} else if(partdata.type == 'image'){
@@ -319,6 +324,18 @@
 				self[partdata.data[i].template]('', partdata.data[i], $otherMaterial);
 			}
 		}}
+	}
+	SewolTruthBeyond.prototype.mediaAndTextInTwoColumnStyle = function(){
+		var self = this;
+		iconSize();
+		$(window).resize(iconSize);
+		function iconSize(){
+			var $wrap = self.$el('.media-and-text-in-two-column .link-wrap');
+			var w = $wrap.outerWidth();
+			$wrap.find('i').each(function(index){
+				$(this).css('font-size', 0.14*w*(index+1));
+			});
+		}
 	}
 	SewolTruthBeyond.prototype.simpleImageWrap = function(partname, partdata, $container){
 		var self = this;
