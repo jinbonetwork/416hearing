@@ -13,7 +13,7 @@
 			video: ''
 		}
 
-		this.pageHandler = jQuery('body').data('handler')
+		this.pageHandler = jQuery('body').data('handler');
 
 		this.markup();
 		this.style();
@@ -47,6 +47,7 @@
 		);
 		this.nisPart1ImgArrange();
 		this.conclusionMapEffect();
+		this.mediaAndTextInTwoColumnStyle();
 	}
 	SewolTruthBeyond.prototype.events = function(){
 		var self = this;
@@ -99,20 +100,16 @@
 		var sl = _sl.split("-");
 		switch(parseInt(sl[0])) {
 			case 1:
-				this.pageHandler.changePage('page-hearing');
-				if(sl.length > 1) {
-					var subhandler = $('#page-hearing').data('handler');
-					var f = subhandler.getCurrent();
-					subhandler.movePage(f, parseInt(sl[1]),false);
-				}
+				this.pageHandler.changePage('page-hearing', (sl.length > 1 ? parseInt(sl[1]) : 0) );
+				var subhandler = jQuery('#page-hearing').data('handler');;
+				var f = subhandler.getCurrent();
+				subhandler.movePage(f, (sl.length > 1 ? parseInt(sl[1]) : 0), false);
 				break;
 			case 2:
-				this.pageHandler.changePage('page-2nd-hearing');
-				if(sl.length > 1) {
-					var subhandler = $('#page-2nd-hearing').data('handler');
-					var f = subhandler.getCurrent();
-					subhandler.movePage(f, parseInt(sl[1]),false);
-				}
+				this.pageHandler.changePage('page-2nd-hearing', (sl.length > 1 ? parseInt(sl[1]) : 0) );
+				var subhandler = jQuery('#page-2nd-hearing').data('handler');;
+				var f = subhandler.getCurrent();
+				subhandler.movePage(f, (sl.length > 1 ? parseInt(sl[1]) : 0), false);
 				break;
 			default:
 				break;
@@ -281,7 +278,11 @@
 		var self = this;
 		var mkWraps = '';
 		if(partdata.type == 'prezi'){
-			mkWraps = '<a class="link-wrap" href="'+partdata.link+'" target="_blank"><img data-original="'+self.path.image+partdata.src+'" class="lazyload"></a>';
+			mkWraps =
+				'<a class="link-wrap" href="'+partdata.link+'" target="_blank">' +
+					'<div class="link-icon"><i class="fa fa-link"></i><i class="fa fa-circle-thin"></i></div>' +
+					'<img data-original="'+self.path.image+partdata.src+'" class="lazyload">' +
+				'</a>';
 		} else if(partdata.type == 'video'){
 			mkWraps = '<div class="video-wrap" data-youtube-id="'+partdata.src+'"></div>';
 		} else if(partdata.type == 'image'){
@@ -319,6 +320,20 @@
 				self[partdata.data[i].template]('', partdata.data[i], $otherMaterial);
 			}
 		}}
+	}
+	SewolTruthBeyond.prototype.mediaAndTextInTwoColumnStyle = function(){
+		var self = this;
+		iconSize();
+		$(window).resize(iconSize);
+		function iconSize(){
+			self.$el('.media-and-text-in-two-column .link-wrap').each(function(){
+				var $wrap = $(this);
+				var w = $wrap.outerWidth();
+				$wrap.find('i').each(function(index){
+					$(this).css('font-size', 0.14*w*(index+1));
+				});
+			});
+		}
 	}
 	SewolTruthBeyond.prototype.simpleImageWrap = function(partname, partdata, $container){
 		var self = this;
@@ -445,30 +460,6 @@
 				'<div class="image-wrap"><img data-original="'+this.path.image+partdata.src[0]+'" class="lazyload"></div>' +
 				'<div class="image-wrap"><img data-original="'+this.path.image+partdata.src[1]+'" class="lazyload"></div>' +
 				'<div class="text-region"><div class="caption"><h6>'+partdata.caption+'</h6></div></div>' +
-			'</div>';
-		$(markup).appendTo($container);
-	}
-	SewolTruthBeyond.prototype.conclusionMap = function(partname, partdata, $container){
-		var self = this;
-		var mkMaps = '';
-		for(var i = 4; i <= 12; i++){
-			var index = ( i < 10 ? '0'+i : ''+i );
-			//mkMaps += '<img data-original="'+self.path.image+'maps/level-'+index+'.jpg" class="lazyload'+(partdata.option == 'auto' ? ' auto' : '')+'">';
-			mkMaps += '<img src="'+self.path.image+'maps/level-'+index+'.jpg">';
-		}
-		var mkText = '';
-		for(var i = partdata.text.length-1; i >= 0; i--){
-			mkText += '<p>'+partdata.text[i]+'</p>';
-		}
-		var markup =
-			'<div class="part image-with-title '+partname+'"">' +
-				'<div class="image-wrap">' +
-					'<div class="map-wrap">' +
-						mkMaps + mkText +
-					'</div>' +
-					'<div class="title-on-image"><h6>'+partdata.title+'</h6></div>' +
-				'</div>' +
-				( partdata.caption ? '<div class="caption"><h6>'+partdata.caption+'</h6></div>' : '') +
 			'</div>';
 		$(markup).appendTo($container);
 	}

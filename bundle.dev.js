@@ -9,6 +9,7 @@ require('./truth_beyond/media-and-text-in-two-column.less');
 require('./truth_beyond/section-investigate.less');
 require('./truth_beyond/section-conceal.less');
 require('./truth_beyond/section-salvage.less');
+require('./truth_beyond/conclusion-map.less');
 
 require('./contrib/plugins/scroll-bgcolor.js');
 require('./contrib/plugins/scroll-title.js');
@@ -27,4 +28,4 @@ require('./2nd_hearing/script.js');
 require('./hearing/script.js');
 require('./truth_beyond/script.js');
 require('./truth_beyond/style.js');
-require('./truth_beyond/conclusion-map-effect.js');
+require('./truth_beyond/conclusion-map.js');

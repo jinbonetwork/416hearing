@@ -78,16 +78,16 @@
 				this.toggleMenu();
 				switch(this.controller.page) {
 					case 'hearing1':
-						this.openPage('page-hearing',false);
+						this.openPage('page-hearing',0,false);
 						break;
 					case 'hearing2':
-						this.openPage('page-2nd-hearing',false);
+						this.openPage('page-2nd-hearing',0,false);
 						break;
 					case 'journal':
-						this.openPage('page-journal',false);
+						this.openPage('page-journal',0,false);
 						break;
 					case 'truthbeyond':
-						this.openPage('page-truth-beyond',false);
+						this.openPage('page-truth-beyond',0,false);
 						break;
 				}
 			} else {
@@ -157,7 +157,7 @@
 				var pageid = item.getAttribute('href').slice(1);
 				item.addEventListener('click', function(ev) {
 					ev.preventDefault();
-					self.openPage(pageid,true);
+					self.openPage(pageid,0,true);
 				});
 			});
 
@@ -167,7 +167,7 @@
 				page.addEventListener('click', function(ev) {
 					if( self.isMenuOpen && !self.isChangePaging ) {
 						ev.preventDefault();
-						self.openPage(pageid,true);
+						self.openPage(pageid,0,true);
 					}
 				});
 			});
@@ -219,11 +219,11 @@
 		// closes the menu
 		closeMenu: function() {
 			// same as opening the current page again
-			this.openPage('',false);
+			this.openPage('',0,false);
 		},
 
 		// opens a page
-		openPage: function(id, history) {
+		openPage: function(id, section, history) {
 			var self = this;
 			var futurePage = id ? document.getElementById(id) : this.pages[this.current],
 				futureCurrent = this.pages.indexOf(futurePage),
@@ -245,7 +245,9 @@
 			if( id ) {
 				if( this.current != futureCurrent ) {
 					if(history === true) {
-						this.pushHistory('page', this.current, futureCurrent);
+						this.pushHistory('page', this.current);
+						if(!section)
+							this.pushState('page', futureCurrent);
 						this.cleanHistory(this.pages[this.current].getAttribute('id'));
 					}
 				}
@@ -261,19 +263,22 @@
 				self.buildStack();
 				self.isMenuOpen = false;
 				var $openPage = id ? jQuery('#'+id) : jQuery(self.pages[self.current]);
-				if($openPage.data('handler')) $openPage.data('handler').activate();
+				if( $openPage.data('handler') ) {
+					var subhandler = $openPage.data('handler');
+					subhandler.activate();
+				}
 			});
 			this.isChangePaging = false;
 		},
 
-		changePage: function(id) {
+		changePage: function(id,section) {
 			var self = this;
 			this.isChangePaging = true;
 			this.toggleMenu();
 			var stackPagesIdxs = this.getStackPagesIdxs();
 			var page = this.pages[(stackPagesIdxs.length-1)];
 			this.onEndTransition(page, function() {
-				self.openPage(id, true);
+				self.openPage(id, section, true);
 			});
 		},
 
@@ -316,19 +321,23 @@
 			return obj;
 		},
 
-		pushHistory: function(page,from,to) {
+		pushHistory: function(page,from) {
+			this.history[page].push(from);
+		},
+
+		pushState: function(page,to) {
 			var hash = '#';
 			switch(page) {
 				case 'page':
 					switch(to) {
 						case 0:
-							hash += 'truth_beyond';
+							hash += 'truthbeyond';
 							break;
 						case 1:
 							hash += 'hearing2';
 							break;
 						case 2:
-							hash += 'hearing';
+							hash += 'hearing1';
 							break;
 						case 4:
 							hash += 'journal';
@@ -336,11 +345,11 @@
 					}
 					break;
 				case 'page-truth-beyond':
-					hash += 'truth_beyond';
+					hash += 'truthbeyond';
 					if(to) hash += '-'+to;
 					break;
 				case 'page-hearing':
-					hash += 'hearing';
+					hash += 'hearing1';
 					if(to) hash += '-'+to;
 					break;
 				case 'page-2nd-hearing':
@@ -355,7 +364,6 @@
 					break;
 			}
 			window.history.pushState({},'',window.location.pathname+hash);
-			this.history[page].push(from);
 		},
 
 		popHistory: function(page) {
@@ -380,7 +388,7 @@
 				} else {
 					var hist = self.popHistory('page');
 					if(hist >= 0) {
-						self.changePage(self.pages[hist].getAttribute('id'), false);
+						self.changePage(self.pages[hist].getAttribute('id'), 0);
 					}
 				}
 			});

@@ -178,8 +178,11 @@ var sHearing1;
 			//이전 페이지 닫기 ////
 			$from.removeClass('open-inner-page').trigger('deactivate');
 
-			if( history === true && nFrom != nTo ) {
-				this.pageHandler.pushHistory(this.Root.attr('id'),nFrom, nTo);
+			if( history === true ) {
+				this.pageHandler.pushHistory(this.Root.attr('id'),nFrom);
+			}
+			if( nFrom != nTo ) {
+				this.pageHandler.pushState(this.Root.attr('id'),nTo);
 			}
 
 			if(nFrom > 0){
@@ -199,6 +202,11 @@ var sHearing1;
 				$to.find('.navigation li').eq(nTo-1).addClass('selected').parents('.part').removeClass('folded');
 			}
 			this.current = nTo;
+			var hash = "#hearing1";
+			if(nTo) hash += "-"+nTo;
+			if(window.location.hash != hash) {
+				window.location.hash = hash;
+			}
 
 		},//movePage
 
