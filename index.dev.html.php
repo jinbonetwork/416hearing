@@ -67,7 +67,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<meta name="twitter:title" content="세월호 청문회">
 	<meta name="twitter:description" content="세월호 청문회 - 진실은 좌초시킬 수 없습니다. 진상규명은 계속되어야 합니다.">
 	<meta name="twitter:creator" content="세월호 청문회">
-	<meta name="twitter:image:src" content="http://www.taogi.net/416hearing/data/images/og_image.png">
+	<meta name="twitter:image:src" content="http://www.taogi.net/416hearing/data/images/og_image.png?2">
 	<meta name="twitter:domain" content="http://www.taogi.net/416hearing">
 </head>
 
