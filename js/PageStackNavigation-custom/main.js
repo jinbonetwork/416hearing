@@ -16,7 +16,7 @@
 		this.Root = $( element );
 
 		var self = this;
-		
+
 		this.support = { transitions: ModernizrPsn.csstransitions };
 			// transition end event name
 		var transEndEventNames = { 'WebkitTransition': 'webkitTransitionEnd', 'MozTransition': 'transitionend', 'OTransition': 'oTransitionEnd', 'msTransition': 'MSTransitionEnd', 'transition': 'transitionend' };
@@ -98,11 +98,6 @@
 					}
 				}, 200);
 			}
-
-			$(document).on('move-to-page', function(event, page){
-				self.toggleMenu();
-				//openPage('page-hearing');
-			});
 		},
 
 		buildStack: function() {

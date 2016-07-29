@@ -68,6 +68,10 @@ ul {
 	}
 }
 .menu-button {
+	width: 50px;
+	padding: 10px;
+	background-color: rgba(255, 255, 255, 0.5);
+	border-radius: 25px;
 	i {
 		color: @color;
 		font-size: 30px;
@@ -78,7 +82,7 @@ ul {
 }
 @media screen and (max-width: 559px) {
 	.menu-button {
-		top: 15px;
+		top: 5px;
 		right: 10px;
 		left: auto;
 		transition: opacity 1s; -webkit-transition: opacity 1s;
@@ -89,8 +93,8 @@ ul {
 }
 @media screen and (min-width: 560px) {
 	.menu-button {
-		top: 20px;
-		left: 20px;
+		top: 10px;
+		left: 10px;
 	}
 	.pages-nav.pages-nav--open + .introduction,
 	.js .pages-nav {
@@ -123,8 +127,8 @@ ul {
 }
 @media screen and (min-width: 1024px) {
 	.menu-button {
-		top: 30px;
-		left: 30px;
+		top: 20px;
+		left: 20px;
 	}
 	.pages-nav.pages-nav--open + .introduction {
 		& > p.content {
