@@ -56,19 +56,19 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<script src="contrib/medium-editor/dist/js/medium-editor.min.js"></script>
 	<script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 <?php }?>
-	<meta property="og:title" content="세월호 청문회"/>
+	<meta property="og:title" content="세월호, 끝나지 않은 진상규명"/>
 	<meta property="og:type" content="website"/>
 	<meta property="og:url" content="http://taogi.net/416hearing"/>
-	<meta property="og:image" content="http://www.taogi.net/416hearing/data/images/og_image.png"/>
-	<meta property="og:description" content="세월호 청문회 - 진실은 좌초시킬 수 없습니다. 진상규명은 계속되어야 합니다.">
-	<meta property="og:site_name" content="세월호 청문회"/>
+	<meta property="og:image" content="http://www.taogi.net/416hearing/data/images/og.png"/>
+	<meta property="og:description" content="세월호 선수들기가 성공했습니다. 그러나 이제 시작입니다. 가장 확실한 증거인 세월호 인양후 정밀조사는 특조위에 의해 수행되어야 합니다.">
+	<meta property="og:site_name" content="세월호, 끝나지 않은 진상규명"/>
 	<meta property="og:section" content="사회"/>
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="@416family">
-	<meta name="twitter:title" content="세월호 청문회">
-	<meta name="twitter:description" content="세월호 청문회 - 진실은 좌초시킬 수 없습니다. 진상규명은 계속되어야 합니다.">
-	<meta name="twitter:creator" content="세월호 청문회">
-	<meta name="twitter:image:src" content="http://www.taogi.net/416hearing/data/images/og_image.png?2">
+	<meta name="twitter:title" content="세월호, 끝나지 않은 진상규명">
+	<meta name="twitter:description" content="세월호 선수들기가 성공했습니다. 그러나 이제 시작입니다. 가장 확실한 증거인 세월호 인양후 정밀조사는 특조위에 의해 수행되어야 합니다.">
+	<meta name="twitter:creator" content="세월호 가족협의회, 진보네트워크센터">
+	<meta name="twitter:image:src" content="http://www.taogi.net/416hearing/data/images/og.png?">
 	<meta name="twitter:domain" content="http://www.taogi.net/416hearing">
 </head>
 
