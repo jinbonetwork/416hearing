@@ -63,7 +63,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<meta property="og:description" content="세월호 선수들기가 성공했습니다. 그러나 이제 시작입니다. 가장 확실한 증거인 세월호 인양후 정밀조사는 특조위에 의해 수행되어야 합니다.">
 	<meta property="og:site_name" content="세월호, 끝나지 않은 진상규명"/>
 	<meta property="og:section" content="사회"/>
-	<meta name="twitter:card" content="summary">
+	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@416family">
 	<meta name="twitter:title" content="세월호, 끝나지 않은 진상규명">
 	<meta name="twitter:description" content="세월호 선수들기가 성공했습니다. 그러나 이제 시작입니다. 가장 확실한 증거인 세월호 인양후 정밀조사는 특조위에 의해 수행되어야 합니다.">
