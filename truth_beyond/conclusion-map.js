@@ -29,7 +29,7 @@
 		if($.browser.mobile){
 			$el.find('.title-on-image').addClass('wow fadeInUp');
 			$el.find('.text-wrap p').each(function(index){
-				var delay = (0.5*(index+1)) + 's'
+				var delay = (0.2*(index+1)) + 's'
 				$(this).addClass('wow fadeInUp').attr('data-wow-delay', delay);
 			});
 		}

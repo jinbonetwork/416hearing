@@ -526,9 +526,9 @@
 			'.special-prosecutor-part-1 .subsection-content',
 			'.special-prosecutor-part-2 > div:first-child',
 			'.special-prosecutor-part-2 > div:last-child',
-			'.law-revision-table li:nth-child(1)',
-			'.law-revision-table li:nth-child(2)',
-			'.law-revision-table li:nth-child(3)',
+			'.law-revision-table ul > li:nth-child(1)',
+			'.law-revision-table ul > li:nth-child(2)',
+			'.law-revision-table ul > li:nth-child(3)',
 			'.salvage-part-1',
 			'.salvage-part-2 .left-column',
 			'.salvage-part-2 .right-column .text-wrap',
@@ -547,30 +547,32 @@
 			'.salvage-part-8 img',
 			'.salvage-part-8 p'
 		];
-
 		self.$el(elements.join()).addClass('wow fadeInUp');
 
-		self.scrAniDelay(elements, '.part.investigate-journal .journal-left', 3);
-		self.scrAniDelay(elements, '.investigate-score--title', 2);
-		self.scrAniDelay(elements, '.part.prezi-suspicoins .left-column', 2);
-		self.scrAniDelay(elements, '.navy-part-1 h3', 3);
-		self.scrAniDelay(elements, '.navy-part-2 .left-column', 3);
-		self.scrAniDelay(elements, '.navy-part-4 .left-column', 2);
-		self.scrAniDelay(elements, '.bluehouse-part-1 h3', 2);
-		self.scrAniDelay(elements, '.bluehouse-part-2 .left-column', 2);
-		self.scrAniDelay(elements, '.bluehouse-part-5 .left-column', 2);
-		self.scrAniDelay(elements, '.bluehouse-part-7 .left-column', 2);
-		self.scrAniDelay(elements, '.nis-part-1 h3', 2);
-		self.scrAniDelay(elements, '.special-prosecutor-part-1 h3', 2);
-		self.scrAniDelay(elements, '.special-prosecutor-part-2 > div:first-child', 2);
-		self.scrAniDelay(elements, '.law-revision-table li:nth-child(1)', 2);
-		self.scrAniDelay(elements, '.salvage-part-2 .left-column', 4);
-		self.scrAniDelay(elements, '.salvage-part-3 .image-wrap:nth-child(1)', 3);
-		self.scrAniDelay(elements, '.salvage-part-6 .left-column', 2);
-		self.scrAniDelay(elements, '.salvage-part-7 .image-wrap:nth-child(1)', 3);
-		self.scrAniDelay(elements, '.salvage-part-8 img', 2);
-
-		self.$el('.navy-part-1 h3, .bluehouse-part-1 h3, .nis-part-1 h3, .special-prosecutor-part-1 h3').removeClass('fadeInUp').addClass('slideInLeft');
+		if(window.innerWidth >= 768){
+			self.scrAniDelay(elements, '.part.investigate-journal .journal-left', 3);
+			self.scrAniDelay(elements, '.investigate-score--title', 2);
+			self.scrAniDelay(elements, '.part.prezi-suspicoins .left-column', 2);
+			self.scrAniDelay(elements, '.navy-part-1 h3', 3);
+			self.scrAniDelay(elements, '.navy-part-2 .left-column', 3);
+			self.scrAniDelay(elements, '.navy-part-4 .left-column', 2);
+			self.scrAniDelay(elements, '.bluehouse-part-1 h3', 2);
+			self.scrAniDelay(elements, '.bluehouse-part-2 .left-column', 2);
+			self.scrAniDelay(elements, '.bluehouse-part-5 .left-column', 2);
+			self.scrAniDelay(elements, '.bluehouse-part-7 .left-column', 2);
+			self.scrAniDelay(elements, '.nis-part-1 h3', 2);
+			self.scrAniDelay(elements, '.special-prosecutor-part-1 h3', 2);
+			self.scrAniDelay(elements, '.special-prosecutor-part-2 > div:first-child', 2);
+			self.scrAniDelay(elements, '.law-revision-table li:nth-child(1)', 2);
+			self.scrAniDelay(elements, '.salvage-part-2 .left-column', 4);
+			self.scrAniDelay(elements, '.salvage-part-3 .image-wrap:nth-child(1)', 3);
+			self.scrAniDelay(elements, '.salvage-part-6 .left-column', 2);
+			self.scrAniDelay(elements, '.salvage-part-7 .image-wrap:nth-child(1)', 3);
+			self.scrAniDelay(elements, '.salvage-part-8 img', 2);
+			self.$el('.navy-part-1 h3, .bluehouse-part-1 h3, .nis-part-1 h3, .special-prosecutor-part-1 h3').removeClass('fadeInUp').addClass('slideInLeft');
+		} else {
+			self.$el('.journal-mobile > ul > li').addClass('wow fadeInUp');
+		}
 
 		delay = 0;
 		var newDelay, oldDelay;
@@ -588,7 +590,8 @@
 			}
 		}
 	}
-	SewolTruthBeyond.prototype.scrAniDelay = function(elements, el, count){
+	SewolTruthBeyond.prototype.scrAniDelay = function(elements, el, count, interval){
+		interval = ( interval ? inteval : 0.5);
 		var startIndex = 0;
 		for(var i = 0, len = elements.length; i < len; i++){
 			if(el == elements[i]){
@@ -596,10 +599,9 @@
 			}
 		}
 		for(var i = 0; i < count; i++){
-			this.$el(elements[startIndex + i]).attr('data-wow-delay', (0.5*i)+'s');
+			this.$el(elements[startIndex + i]).attr('data-wow-delay', (interval*i)+'s');
 		}
 	}
-
 	$.fn.sewolTruthBeyond = function(options) {
 		return this.each(function() {
 			var sewolTruthBeyond = new SewolTruthBeyond($(this), options);
