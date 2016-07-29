@@ -56,6 +56,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<script src="contrib/medium-editor/dist/js/medium-editor.min.js"></script>
 	<script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 <?php }?>
+	<meta property="fb:app_id" content="578918368936572"/>
 	<meta property="og:title" content="세월호, 끝나지 않은 진상규명"/>
 	<meta property="og:type" content="website"/>
 	<meta property="og:url" content="http://taogi.net/416hearing"/>
@@ -73,6 +74,23 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 </head>
 
 <body>
+<script>
+  window.fbAsyncInit = function() {
+	      FB.init({
+			        appId      : '578918368936572',
+						      xfbml      : true,
+							        version    : 'v2.7'
+									    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 	<!-- navigation -->
 	<nav class="pages-nav">
 		<div class="pages-nav__item"><a class="link link--page" href="#page-truth-beyond">끝나지 않은 진상규명</a></div>
