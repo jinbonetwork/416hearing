@@ -338,8 +338,9 @@ module.exports = {
 	"salvage-part-1": {
 		"template": "imageWithTitle",
 		"option": "auto",
-		"src": "DSC_0451.jpg",
-		"title": "세월호 선체인양을 앞두고 특조위 강제종료? 범죄 피의자가 셀프 조사를 선언하는 꼴입니다."
+		"src": "IMG_3044.jpg",
+		"title": "세월호 선체인양을 앞두고 특조위 강제종료? 범죄 피의자가 셀프 조사를 선언하는 꼴입니다.",
+		"caption": "2016년 7월 29일 아침, 마침내 완료된 선수 들기"
 	},
 	"salvage-part-2": {
 		"template": "mediaAndTextInTwoColumn",
