@@ -41,7 +41,7 @@ module.exports = {
 			{ "side": "left", "period": "7.1<br>~9.30", "content": "416특조위 보고서 작성 발간시기" },
 			{ "year": "2017" },
 			{ "side": "right", "date": "2.3", "content": "<strong>416특조위 조사 종료</strong>" },
-			{ "side": "right", "period": "2.4<br>~5.3", "content": "416특조위 보고서 작성 발간" }
+			{ "side": "right", "period": "2.4<br>~5.3", "content": "416특조위 보고서 작성 발간시기" }
 		],
 		"closing": "정부는 작년 1월 1일부터 4·16세월호참사 특별조사위원회(이하 ‘특조위’)가 발족했으니 이제 그만 활동종료를 선언해야 한다고 말합니다. 하지만 특조위 활동예산이 확정된 것이 작년 8월4일, 그나마 조사를 시작한 건 작년 9월 21일이었습니다. 그런데 올 해 6월 30일, 특조위 활동은 “이제 그만”하라고 정부는 일방적으로 통보합니다."
 	},
@@ -150,7 +150,7 @@ module.exports = {
 	},
 	"bluehouse-part-1": {
 		"template": "subsectionTitleRegion",
-		"title": "세월호, 과적과 무리한 출항의 비밀은 제주해군기지 건설기일 때문?",
+		"title": "청와대, 보도통제와 여론조작의 컨트롤타워",
 		"data": [
 			{
 				"template": "bluehousePart1",
@@ -352,7 +352,7 @@ module.exports = {
 			{
 				"template": "simpleImageWrap",
 				"src": "bulwarks-1.jpg",
-				"caption": "- 심잠호(深潛號, Shen Qian Hao)에 야적 중인 불워크 절단 조각들.<br>해수부는 2016년 3월 세월호 불워크(파도를 막아주는 울타리)를 절단하겠다고 일방적으로 통보하였다. 이외에도 93개의 천공작업뿐만 아니라 선수들기 과정에서 선체손상도 입힌 상태다."
+				"caption": "심잠호(深潛號, Shen Qian Hao)에 야적 중인 불워크 절단 조각들.<br>해수부는 2016년 3월 세월호 불워크(파도를 막아주는 울타리)를 절단하겠다고 일방적으로 통보하였다. 이외에도 93개의 천공작업뿐만 아니라 선수들기 과정에서 선체손상도 입힌 상태다."
 			},
 			{
 				"template": "simpleImageWrap",
