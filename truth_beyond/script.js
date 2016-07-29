@@ -399,7 +399,7 @@
 			'<div class="caption">' +
 				'<h6>'+partdata.caption+'</h6>' +
 				'<div class="overlay-link url">' +
-					'<a href="/416hearing/data/truth_beyond/docs/recorded.html" class="overlay-button" data-subject="[전문] 이정현 전 청와대 홍보수석의 KBS 세월호 보도 개입 녹취록">텍스트로 보기</a>' +
+					'<a href="data/truth_beyond/docs/recorded.html" class="overlay-button" data-subject="[전문] 이정현 전 청와대 홍보수석의 KBS 세월호 보도 개입 녹취록">텍스트로 보기</a>' +
 				'</div>' +
 			'</div>';
 		$(markup).appendTo($container);
