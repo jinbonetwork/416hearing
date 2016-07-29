@@ -223,8 +223,11 @@ var sHearing2;
 			var $to = ( nTo == 0 ? this.Root.find('.outline') : this.Root.find('#suspicion-'+nTo) );
 
 			//이전 페이지 닫기 ///
-			if( history === true && nFrom != nTo ) {
-				this.pageHandler.pushHistory(this.Root.attr('id'),nFrom,nTo);
+			if( history === true ) {
+				this.pageHandler.pushHistory(this.Root.attr('id'),nFrom);
+			}
+			if( nFrom != nTo ) {
+				this.pageHandler.pushState(this.Root.attr('id'),nTo);
 			}
 			if(nFrom == 0){
 				// 첫 페이지 비디오 재생 중지 ////
