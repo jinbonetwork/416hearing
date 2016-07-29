@@ -51,6 +51,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	<script src="contrib/gray/js/jquery.gray.min.js"></script>
 	<script src="contrib/lazyload/dist/lazyload.min.js"></script>
 	<script src="contrib/WOW/dist/wow.min.js"></script>
+	<script src="contrib/jquery-disablescroll/jquery.disablescroll.min.js"></script>
 <?php if(defined("__EDIT_MODE__") && __EDIT_MODE__ == true) {?>
 	<script src="contrib/medium-editor/dist/js/medium-editor.min.js"></script>
 	<script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>

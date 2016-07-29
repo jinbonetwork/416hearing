@@ -16,3 +16,6 @@
 [submodule "WOW"]
 	path = contrib/WOW
 	url = https://github.com/matthieua/WOW.git
+[submodule "jquery-disablescroll"]
+	path = contrib/jquery-disablescroll
+	url = https://github.com/ultrapasty/jquery-disablescroll.git

@@ -87,10 +87,9 @@
 		});
 	}
 	SewolTruthBeyond.prototype.activate = function(){
-		$('button.menu-button i').animate({ 'color': '#4d4d4d'}, 1000);
+		$('button.menu-button i').stop().animate({ 'color': '#4d4d4d'}, 1000);
 	}
 	SewolTruthBeyond.prototype.deactivate = function(){
-		//console.log('deactivete');
 	}
 	SewolTruthBeyond.prototype.movePageGlobally = function(elem){
 		var l = jQuery(elem).parent();

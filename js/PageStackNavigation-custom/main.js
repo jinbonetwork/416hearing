@@ -209,6 +209,7 @@
 			}
 
 			if($(self.pages[self.current]).data('handler')) $(self.pages[self.current]).data('handler').deactivate();
+			$('body').disablescroll();
 		},
 
 		// closes the menu
@@ -261,6 +262,7 @@
 				if( $openPage.data('handler') ) {
 					var subhandler = $openPage.data('handler');
 					subhandler.activate();
+					$('body').disablescroll("undo");
 				}
 			});
 			this.isChangePaging = false;

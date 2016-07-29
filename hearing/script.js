@@ -360,12 +360,14 @@ var sHearing1;
 		},
 
 		activate: function(){
-			this.Root.find('.open-inner-page').find('.refreshable').trigger('refresh');
-			this.Root.find('.open-inner-page').trigger('activate');
+			var $innerPage = this.Root.find('.open-inner-page');
+			$innerPage.find('.refreshable').trigger('refresh');
+			$innerPage.trigger('activate');
 		},
 
 		deactivate: function(){
-			this.Root.find('.open-inner-page').trigger('deactivate');
+			var $innerPage = this.Root.find('.open-inner-page');
+			$innerPage.trigger('deactivate');
 		},
 
 		getCurrent: function() {

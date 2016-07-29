@@ -244,8 +244,7 @@ var sHearing2;
 				this.appendSection(nTo);
 			}
 			this.current = nTo;
-
-			hash = "hearing2";
+			var hash = "#hearing2";
 			if(nTo) hash += "-"+nTo;
 			if(window.location.hash != hash) {
 				window.location.hash = hash;
@@ -424,12 +423,14 @@ var sHearing2;
 		},
 
 		activate: function(){
-			this.Root.find('.open-inner-page').find('.refreshable').trigger('refresh');
-			this.Root.find('.open-inner-page').trigger('activate');
+			var $innerPage = this.Root.find('.open-inner-page');
+			$innerPage.find('.refreshable').trigger('refresh');
+			$innerPage.trigger('activate');
 		},
 
 		deactivate: function(){
-			this.Root.find('.open-inner-page').trigger('deactivate');
+			var $innerPage = this.Root.find('.open-inner-page');
+			$innerPage.trigger('deactivate');
 		},
 
 		getCurrent: function() {
