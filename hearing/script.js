@@ -24,6 +24,7 @@ var sHearing1;
 		this.pageHandler = jQuery('body').data('handler');
 
 		this.init();
+		this.completeInit = false;
 	}
 
 	SewolHearing1.prototype = {
@@ -44,6 +45,7 @@ var sHearing1;
 				},
 				complete: function(){
 					self.initEvent();
+					this.completeInit = true;
 				}
 			});
 		},
@@ -360,14 +362,27 @@ var sHearing1;
 		},
 
 		activate: function(){
-			var $innerPage = this.Root.find('.open-inner-page');
-			$innerPage.find('.refreshable').trigger('refresh');
-			$innerPage.trigger('activate');
+			var self = this;
+			if(self.completeInit) activate();
+			else {
+				var intv = setInterval(function(){
+					if(self.completeInit){
+						activate(); clearInterval(intv);
+					}
+				}, 100);
+			}
+			function activate(){
+				var $innerPage = self.Root.find('.open-inner-page');
+				$innerPage.find('.refreshable').trigger('refresh');
+				$innerPage.trigger('activate');
+				$innerPage.find('.activatable').trigger('activate');
+			}
 		},
 
 		deactivate: function(){
 			var $innerPage = this.Root.find('.open-inner-page');
 			$innerPage.trigger('deactivate');
+			$innerPage.find('.activatable').trigger('deactivate');
 		},
 
 		getCurrent: function() {

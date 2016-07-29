@@ -13,6 +13,7 @@ var sJournal;
 		this.pageHandler = jQuery('body').data('handler')
 
 		this.init();
+		this.completeInit = false;
 	}
 
 	SewolJournal.prototype = {
@@ -27,6 +28,7 @@ var sJournal;
 				},
 				complete: function(){
 					self.initEvent();
+					this.completeInit = true;
 				}
 			});
 		},
@@ -131,7 +133,18 @@ var sJournal;
 		},
 
 		activate: function(){
-			this.Root.trigger('activate');
+			var self = this;
+			if(self.completeInit) activate();
+			else {
+				var intv = setInterval(function(){
+					if(self.completeInit){
+						activate(); clearInterval(intv);
+					}
+				}, 100);
+			}
+			function activate(){
+				self.Root.trigger('activate');
+			}
 		},
 
 		deactivate: function(){

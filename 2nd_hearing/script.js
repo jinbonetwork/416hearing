@@ -450,6 +450,7 @@ var sHearing2;
 		deactivate: function(){
 			var $innerPage = this.Root.find('.open-inner-page');
 			$innerPage.trigger('deactivate');
+			$innerPage.find('.activatable').trigger('deactivate');
 		},
 
 		getCurrent: function() {

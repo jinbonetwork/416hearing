@@ -41,7 +41,7 @@
 		});
 	}
 	SewolTruthBeyond.prototype.markupAfterStyle = function(){
-		this.$el('.video-wrap').clickAndPlayYoutube();
+		this.$el('.video-wrap').addClass('activatable').clickAndPlayYoutube(this.$el(), false);
 		this.$el('.navy-p1-image-wrap:last-child').fitEnd(
 			this.$el('.navy-p1-image-wrap:first-child'), 'bottom', 768
 		);
@@ -88,6 +88,7 @@
 	}
 	SewolTruthBeyond.prototype.activate = function(){
 		$('button.menu-button i').stop().animate({ 'color': '#4d4d4d'}, 1000);
+		this.Root.find('.activatable').trigger('activate');
 	}
 	SewolTruthBeyond.prototype.deactivate = function(){
 	}
