@@ -9,3 +9,4 @@ bundle.css
 bundle.js
 index.html.php
 rsync-bundles.sh
+rsync-bundles-raputer.sh
