@@ -26,9 +26,10 @@ var sHearing2;
 		this.controller = this.parseUrlHash();
 		this.current = 0;
 
-		this.pageHandler = jQuery('body').data('handler')
+		this.pageHandler = jQuery('body').data('handler');
 
 		this.init();
+		this.completeInit = false;
 	}
 
 	SewolHearing2.prototype = {
@@ -49,6 +50,7 @@ var sHearing2;
 				},
 				complete: function(){
 					self.initEvent();
+					self.completeInit = true;
 				}
 			});
 		},
@@ -67,36 +69,38 @@ var sHearing2;
 		initEvent: function() {
 			var self = this;
 			var outlineBreakPoint = '320 1024';
+			var $outline = self.Root.find('.outline');
+			var $header = self.Root.find('.outline > .header');
 			//첫 페이지 비디오 ////
-			self.Root.find('.outline #hearing2-video').addClass('refreshable').extraStyle({
+			$outline.find('#hearing2-video').addClass('refreshable').extraStyle({
 				ratio: (360/640)
 			});
-			self.Root.find('.outline #hearing2-video').respStyle({
+			$outline.find('#hearing2-video').respStyle({
 				'breakpoint': outlineBreakPoint,
 				'margin-bottom': '3 7 em max'
 			});
-			self.Root.find('.outline #hearing2-video').clickAndPlayYoutube();
+			$outline.find('#hearing2-video').addClass('activatable').clickAndPlayYoutube($outline, false);
 			// 쳇 페이지 헤더 ////
-			self.Root.find('.outline > .header').addClass('refreshable').respStyle({
+			$header.addClass('refreshable').respStyle({
 				'breakpoint': outlineBreakPoint,
 				'padding-top': '3 5 em max',
 				'padding-bottom': '3 5 em max'
 			});
 			// 첫 페이지 제목 ////
-			self.Root.find('.outline > .header .title-part-1 span').addClass('refreshable').respStyle({
+			$header.find('.title-part-1 span').addClass('refreshable').respStyle({
 				'breakpoint': outlineBreakPoint,
 				'font-size': '1 2 em max'
 			});
-			self.Root.find('.outline > .header .title-part-2 span').addClass('refreshable').respStyle({
+			$header.find('.title-part-2 span').addClass('refreshable').respStyle({
 				'breakpoint': outlineBreakPoint,
 				'font-size': '3 6 em max'
 			});
-			self.Root.find('.outline > .header .title-part-3 span').addClass('refreshable').respStyle({
+			$header.find('.title-part-3 span').addClass('refreshable').respStyle({
 				'breakpoint': outlineBreakPoint,
 				'font-size': '1.2 2.4 em max'
 			});
 			// 첫 페이지 의혹 리스트 ////
-			self.Root.find('.outline .content').addClass('refreshable').respGrid({
+			$outline.find('.content').addClass('refreshable').respGrid({
 				breakpoint: '320 768',
 				columns: '1 2',
 				ratio: 'auto',
@@ -104,13 +108,13 @@ var sHearing2;
 			});
 
 			// 첫 페이지의 기울어진 경계선을 위한 ////
-			self.Root.find('.outline .content .part:eq(0) .tilted-border-line').addClass('refreshable').tiltBorderLine();
+			$outline.find('.content .part:eq(0) .tilted-border-line').addClass('refreshable').tiltBorderLine();
 
 			// 첫 페이지 의혹 제목의 hover 효과를 위한 ////
-			self.Root.find('.outline .content .item .hover-text-wrap').addClass('refreshable').sameSizeWithParent('.item-wrap');
+			$outline.find('.content .item .hover-text-wrap').addClass('refreshable').sameSizeWithParent('.item-wrap');
 
 			//첫 페이지 스크롤 효과 ////
-			self.Root.find('.outline').scrEffectOfBgcolor({
+			$outline.scrEffectOfBgcolor({
 				background: '#ffffff #1a1a1a',
 				after: function($contain, bgcolor, bgcIndex){
 					var colors = ['#1a1a1a', '#ffffff'];
@@ -153,7 +157,7 @@ var sHearing2;
 					$(this).closest('.answer').hide();
 			});
 			// 로드 비디오 ////
-			$susp.find('.dialogue .video-wrap').addClass('refreshable').clickAndPlayYoutube();
+			$susp.find('.dialogue .video-wrap').addClass('refreshable').clickAndPlayYoutube($susp);
 			// 첫 페이지로 이동 ////
 			$susp.find('.go-back-outline').click(function() {
 				var num = $(this).parents('section').attr('id').replace(/suspicion\-/, '');
@@ -426,9 +430,21 @@ var sHearing2;
 		},
 
 		activate: function(){
-			var $innerPage = this.Root.find('.open-inner-page');
-			$innerPage.find('.refreshable').trigger('refresh');
-			$innerPage.trigger('activate');
+			var self = this;
+			if(self.completeInit) activate();
+			else {
+				var intv = setInterval(function(){
+					if(self.completeInit){
+						activate(); clearInterval(intv);
+					}
+				}, 100);
+			}
+			function activate(){
+				var $innerPage = self.Root.find('.open-inner-page');
+				$innerPage.find('.refreshable').trigger('refresh');
+				$innerPage.trigger('activate');
+				$innerPage.find('.activatable').trigger('activate');
+			}
 		},
 
 		deactivate: function(){

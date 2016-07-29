@@ -1,30 +1,16 @@
 (function($){
-	$.fn.clickAndPlayYoutube = function($scrollContainer){
+	$.fn.clickAndPlayYoutube = function($scrollContainer, isActive){
 		// Dependency:
 		//  - font-awesome
 		//  - extraStyle
 		//  - youtube api
 		//  - jquery-browser-plugin
 
-		var self = this;
-		if($.type(YT.Player) === 'function') begin();
-		else {
-			var intv = setInterval(function(){
-				if($.type(YT.Player) === 'function'){
-					clearInterval(intv);
-					begin();
-				}
-			}, 100);
-		}
-		function begin(){
-			self.each(function(){
-				new ClickAndPlayYoutube($(this), $scrollContainer);
-			});
-		}
-
-		return self;
+		return this.each(function(){
+			new ClickAndPlayYoutube($(this), $scrollContainer, isActive);
+		});
 	}
-	function ClickAndPlayYoutube($player, $scrollContainer){
+	function ClickAndPlayYoutube($player, $scrollContainer, isActive){
 		var self = this;
 		self.$player = $player;
 		self.$container = ( $scrollContainer ? $scrollContainer : $(window) );
@@ -32,13 +18,31 @@
 		self.id = $player.attr('data-youtube-id');
 		self.playerid = 'player-'+self.id;
 		self.$playIcon, self.$ffImage;
+		self.active = ( isActive === undefined || isActive ? true : false );
 
+		self.$player.on('activate', function(){ self.active = true; });
+
+		if($.type(YT.Player) === 'function') self.ready();
+		else {
+ 			var intv = setInterval(function(){
+				if($.type(YT.Player) === 'function'){
+					clearInterval(intv);
+					self.ready();
+				}
+			}, 100);
+		}
+
+	}
+	ClickAndPlayYoutube.prototype.ready = function(){
+		var self = this;
 		self.loadFirstFrameImage();
 		self.clickAndPlay();
 		if($.browser.mobile){
-			self.loadVideoInWindow();
+			self.loadVedioInMobile();
+			self.$container.scroll(self.loadVedioInMobile.bind(self));
+			self.$player.on('activate', function(){ self.active = true; self.loadVedioInMobile(); });
+			self.$player.on('deactivate', function(){ self.active = false; });
 		}
-
 		self.bindRefresh();
 	}
 	ClickAndPlayYoutube.prototype.loadFirstFrameImage = function(){
@@ -57,11 +61,9 @@
 		self.$playIcon.click(function(){ self.loadVideo('autoplay'); });
 		self.$ffImage.click(function(){ self.loadVideo('autoplay'); });
 	}
-	ClickAndPlayYoutube.prototype.loadVideoInWindow = function(){
+	ClickAndPlayYoutube.prototype.loadVedioInMobile = function(){
 		var self = this;
-		load();
-		self.$container.scroll(load);
-		function load(){
+		if(self.active){
 			var top = self.$player.offset().top;
 			if(self.$player.is(':visible') && top < $(window).height()){
 				self.loadVideo();
