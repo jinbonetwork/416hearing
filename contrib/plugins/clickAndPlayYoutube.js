@@ -1,18 +1,33 @@
 (function($){
-	$.fn.clickAndPlayYoutube = function(){
+	$.fn.clickAndPlayYoutube = function($scrollContainer){
 		// Dependency:
 		//  - font-awesome
 		//  - extraStyle
 		//  - youtube api
 		//  - jquery-browser-plugin
 
-		return this.each(function(){
-			new ClickAndPlayYoutube($(this));
-		});
+		var self = this;
+		if($.type(YT.Player) === 'function') begin();
+		else {
+			var intv = setInterval(function(){
+				if($.type(YT.Player) === 'function'){
+					clearInterval(intv);
+					begin();
+				}
+			}, 100);
+		}
+		function begin(){
+			self.each(function(){
+				new ClickAndPlayYoutube($(this), $scrollContainer);
+			});
+		}
+
+		return self;
 	}
-	function ClickAndPlayYoutube($player){
+	function ClickAndPlayYoutube($player, $scrollContainer){
 		var self = this;
 		self.$player = $player;
+		self.$container = ( $scrollContainer ? $scrollContainer : $(window) );
 		self.player = undefined;
 		self.id = $player.attr('data-youtube-id');
 		self.playerid = 'player-'+self.id;
@@ -44,13 +59,14 @@
 	}
 	ClickAndPlayYoutube.prototype.loadVideoInWindow = function(){
 		var self = this;
-		var intv = setInterval(function(){
+		load();
+		self.$container.scroll(load);
+		function load(){
 			var top = self.$player.offset().top;
-			if(self.$player.is(':visible') && 0 <= top && top < $(window).height()){
-				clearInterval(intv);
+			if(self.$player.is(':visible') && top < $(window).height()){
 				self.loadVideo();
 			}
-		}, 500);
+		}
 	}
 	ClickAndPlayYoutube.prototype.loadVideo = function(autoplay){
 		var self = this;
