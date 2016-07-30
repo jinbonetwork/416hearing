@@ -32,10 +32,14 @@
 		}
 		var myLazyload = new LazyLoad({
 			elements_selector: "img.lazyload",
-			container: document.getElementById('page-truth-beyond'),
-			callback_load: function(element) {
-				if(jQuery(element).hasClass('auto')) {
-					self.imageCropAuto(jQuery(element));
+			container: self.$el().get(0),
+			callback_load: function(image) {
+				var $image = $(image);
+				if($image.hasClass('auto')) {
+					$image.load(function(){ self.imageCropAuto($image); });
+					$(window).resize(function(){
+						if($image.is(':visible')) self.imageCropAuto($image);
+					})
 				}
 			}
 		});
@@ -55,12 +59,7 @@
 		new WOW({
 			scrollContainer: '#'+this.$el().attr('id')
 		}).init();
-
-		$(window).resize(function(){
-			jQuery('img.lazyload.auto').each(function() {
-				self.imageCropAuto(jQuery(this));
-			});
-		});
+;
 		self.$el('.related-material ol.list-with-circle-number li').mouseenter(function(e) {
 			jQuery(this).find('p').slideDown();
 		});
@@ -88,7 +87,7 @@
 	}
 	SewolTruthBeyond.prototype.activate = function(){
 		$('button.menu-button i').stop().animate({ 'color': '#4d4d4d'}, 1000);
-		this.Root.find('.activatable').trigger('activate');
+		this.$el('.activatable').trigger('activate');
 	}
 	SewolTruthBeyond.prototype.deactivate = function(){
 	}
@@ -159,7 +158,8 @@
 		$(markup).appendTo($container);
 	}
 	SewolTruthBeyond.prototype.imageCropAuto = function($image){
-		var w = $image.get(0).naturalWidth, h = $image.get(0).naturalHeight;
+		$image.css('width', '').css('height', '');
+		var w = $image.width(), h = $image.height();
 		var pw = $image.parent().width(), ph = $image.parent().height();
 		if(w >= pw || h >= ph){
 			if(w/pw < h/ph) $image.css({ width: '100%', height: 'auto' });
