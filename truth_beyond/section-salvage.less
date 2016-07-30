@@ -28,9 +28,15 @@
 		max-width: 1920px;
 		margin: 0 auto;
 		overflow: hidden;
+		min-height: 280px;
 		img {
 			width: 100%;
-			min-width: 500px;
+			@media screen and (max-width: 500px) {
+				position: absolute;
+				top: 0; left: 50%;
+				width: 500px;
+				transform: translate(-50%, 0);
+			}
 		}
 		p {
 			position: absolute;
