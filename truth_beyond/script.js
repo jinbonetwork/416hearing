@@ -45,13 +45,16 @@
 		});
 	}
 	SewolTruthBeyond.prototype.markupAfterStyle = function(){
-		this.$el('.video-wrap').addClass('activatable').clickAndPlayYoutube(this.$el(), false);
-		this.$el('.navy-p1-image-wrap:last-child').fitEnd(
-			this.$el('.navy-p1-image-wrap:first-child'), 'bottom', 768
-		);
-		this.nisPart1ImgArrange();
-		this.conclusionMapEffect();
-		this.mediaAndTextInTwoColumnStyle();
+		var self = this;
+		self.$el('.video-wrap').addClass('activatable').clickAndPlayYoutube(this.$el(), false);
+		self.$el('.navy-p1-image-wrap:last-child img').load(function(){
+			self.$el('.navy-p1-image-wrap:last-child').fitEnd(
+				self.$el('.navy-p1-image-wrap:first-child'), 'bottom', 768
+			);
+		});
+		self.nisPart1ImgArrange();
+		self.conclusionMapEffect();
+		self.mediaAndTextInTwoColumnStyle();
 	}
 	SewolTruthBeyond.prototype.events = function(){
 		var self = this;
