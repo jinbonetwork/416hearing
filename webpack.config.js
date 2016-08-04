@@ -10,7 +10,7 @@ module.exports = {
 	module: {
 		loaders: [
 			{ test: /\.less$/, loader: 'style-loader!css-loader!postcss-loader!less' },
-			{ test: /\.css$/, loader: 'style!css?modules!postcss' }
+			{ test: /\.css$/, loader: 'style-loader!css-loader!postcss-loader!less' }
 		]
 	},
 	postcss: function(){
