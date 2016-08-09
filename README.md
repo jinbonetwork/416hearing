@@ -1,4 +1,4 @@
-" 세월호 청문회"
+"세월호 청문회"
 ================
 
 소개
@@ -21,16 +21,42 @@
 설치
 ----
 * 다운로드: `git clone https://github.com/jinbonetwork/416hearing`
-* 인스톨: `npm install`
-* 개발할 때: `npm start`
-* 배포할 때: `npm run build`
+* 모듈 설치: `npm install`
+* 개발: `npm start`
+* 배포: `npm run build`
 
 의존도
 ------
 * nodejs
 * php 5.2 이상
 
+오픈 소스 및 모듈
+------
+* package.json의 `devDependencies`를 볼 것.
+* `contrib/`의 폴더 목록을 볼 것. (plugins는 제외)
+
 브라우져지원
 -----------
 * Chrome, Safari, Firefox, IE10 이상
 * 반응형 지원
+
+데이터 입력에 있어서의 중요 사항
+----------
+1. 416가족의 발자취: `data/journal.json`
+	* `level`은 1이나 0일 수 있는데, 1은 미디어가 있는 강조된 항목이다.
+	* `media`의 `type`은 `image`, `video`, `doc`일 수 있고, `media`의 `url`은 url이지만, `type`의 `url`은 youtube id이다.
+1. 1차 청문회
+	* 파트 제목: `data/1st_hearing/parts.json`
+	* 데이터: `data/1st_hearing/suspicions.json`
+		* `media`의 `size`는 `s=b` 또는 `s=s` 일 수 있다. `s=s`는 크기를 작게, `s=b`는 크기를 크기 표시하라는 뜻이다.
+		* youtube 영상의 경우, `meida`의 `url`에 youtube id를 표기한다.
+	* 증인정보: `data/witnesses.json`
+1. 2차 청문회
+	* 파트 제목: `data/1st_hearing/parts.json`
+	* 데이터: `data/1st_hearing/suspicions.json`
+		* `media`의 `url`은 파일 이름만을 표기한다. 단, youtube 영상의 경우는 youtube id를 표기한다.
+		* `dialouge`의 `video`는  youtube id이다.
+	* 증인정보: `data/witnesses.json`
+1. 끝나지 않는 진상규명: `trueth_beyond/data.json.js`
+	* `template`은 `SewolTruthBeyond.prototype`의 메쏘드의 이름이어야 한다.
+	* `src`는, 이미지일 경우에는 `data/trueth_beyond/images`에 있는 이미지의 파일이름이고, 문서일 경우에는 `data/trueth_beyond/docs`에 있는 문서으 파일이름이다.
