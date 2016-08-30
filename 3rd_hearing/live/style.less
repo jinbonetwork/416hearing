@@ -121,118 +121,6 @@
 			max-width: 40em;
 		}
 	}
-	section.opinion {
-		@color: #4d4d4d;
-		@color-strong: #7657c5;
-		@bgcolor: #dfe5ea;
-
-		color: @color;
-		.se-background{
-			background-color: @bgcolor;
-		}
-		.sect-name {
-			color: @color-strong;
-		}
-		.container p {
-			font-family: @font-noto;
-			font-weight: @font-weight;
-			font-size: 1.3em;
-			text-align: center;
-			margin: auto;
-		}
-		.opinion-form {
-			margin: 0;
-			padding: 0;
-			border: 0;
-
-			label {
-				display: inline-block;
-				padding: 3em 0 1em 0;
-				font-size: 1.1em;
-				font-family: @font-batang;
-				line-height: 1.5em;
-			}
-			fieldset.opinion-fieldset {
-				z-index: 100;
-				position: relative;
-				border: 0;
-				margin: 0;
-				padding: 0;
-				textarea {
-					height: 10em;
-					width: 100%;
-					margin: 0;
-					font-family: @font-mont;
-					font-size: 1em;
-					outline: none;
-				}
-				button.opinion-submit {
-					font-size: 1em;
-					font-family: @font-noto;
-					font-weight: @font-weight;
-					width: 100%;
-					cursor: pointer;
-					margin-top: 0.5em;
-					background-color: @color-strong;
-					border: 0;
-					line-height: 3em;
-					position: relative;
-					z-index: 2;
-				}
-			}
-			#opinion-memo-alert-box {
-				text-align: center;
-				color: @alert-color;
-				display: none;
-			}
-		}
-		#opinion-items-wrap {
-			padding: 1em 0 0 0;
-			color: @color;
-			.result-info {
-				text-align: right;
-			}
-			#opinion-items {
-				text-align: left;
-				list-style: none;
-				margin: 0;
-				padding: 0;
-				font-family: @font-noto;
-				font-weight: @font-weight;
-				li {
-					margin :0;
-					padding: 1em 0 0 0;
-					border-bottom: 1px dotted @color;
-					.regdate {
-						text-align: right;
-						padding-top: 1em;
-						font-size: 0.8em;
-						font-family: @font-mont;
-					}
-				}
-			}
-			#opinion-nav {
-				position: relative;
-				z-index: 2;
-				font-family: @font-noto;
-				font-weight: @font-weight;
-				display: inline-block;
-				list-style: none;
-				margin: 0;
-				padding: 5px 0 0 0;
-				li {
-					display: inline-block;
-					padding: 2px;
-					&.active {
-						cursor: pointer;
-					}
-					&.current {
-						color: @color-strong;
-					}
-				}
-			}
-		}
-	} //section.opinion
 	section.suspicion {
 		@color: #ffffff;
 		@color-strong: #0be4db;
@@ -433,19 +321,6 @@
 				margin-left: -4.5em;
 			}
 			span { font-size: 1.8em; }
-		}
-		section.opinion {
-			.container p {
-				font-size: 1.8em;
-			}
-			.opinion-form {
-				label {
-					font-size: 1.3em;
-				}
-				fieldset.opinion-fieldset button.opinion-submit {
-					width: 33.33%;
-				}
-			}
 		}
 		section.suspicion {
 			& > .content > article {

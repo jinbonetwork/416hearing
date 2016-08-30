@@ -59,207 +59,374 @@
 	</div>
 </section>
 
-<section class="opinion se-section">
-	<div class="se-background"></div>
-	<div class="sect-name section se-title se-left-title"><span>나도<br>청문위원</span></div>
-	<div class="container">
-		<form id="opinion-form" class="opinion-form" action="./3rd_hearing/live/opinion.php" method="post">
-			<label for="opinion-memo">
-				제3차 청문회에 참석하는 증인들에게 신문하고 싶은 내용을 적어주세요.<br>
-				적어주신 신문내용은 채택하여 현장에서 질문지로 제출할 예정입니다.
-			</label>
-			<fieldset class="opinion-fieldset">
-				<textarea class="opinion-memo" id="opinion-memo" name="memo"></textarea>
-				<button type="submit" class="opinion-submit">질문 보내기</button>
-			</fieldset>
-			<div id="opinion-memo-alert-box"></div>
-		</form>
-	</div>
-	<div id="opinion-items-wrap" class="container">
-	</div>
-</section>
-
 <section class="witnesses se-section">
 	<div class="se-background"></div>
 	<div class="sect-name section se-title se-left-title"><span>청문회<br>주요 증인</span></div>
 	<div class="content">
-		<p>제3차 청문회 조사대상자를 공개합니다.</p>
-		<article>
-			<div class="sect-name article"><span>세월호 선장,<br>선원</span></div>
-			<ul>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>이준석</p><p>선장</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>강원식</p><p>세월호 1등 항해사</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>김영호</p><p>세월호 2등 항해사</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>박한결</p><p>세월호 3등 항해사</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>조준기</p><p>세월호 조타수</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>박기호</p><p>세월호 기관장</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>강혜성</p><p>세월호 여객영업부 직원</p></div>
-				</li>
-			</ul>
-		</article>
-		<article>
-			<div class="sect-name article"><span>청해진 해운</span></div>
-			<ul>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>김한식</p><p>대표이사</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>안기현</p><p>해무이사</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>송기채</p><p>여수지역본부장</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>이성희</p><p>제주지역본부장</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>김재범</p><p>기획관리팀장</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>홍영기</p><p>해무팀 대리</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>남호만</p><p>물류팀장</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>김정수</p><p>물류팀 차장</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>신보식</p><p>세월호 선장</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>박진환</p><p>오하마나호 선장</p></div>
-				</li>
-			</ul>
-		</article>
-		<article>
-			<div class="sect-name article"><span>세월호 항적,<br>VTS 관련</span></div>
-			<ul>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>이상길</p><p>(주)GCSC 대표이사 (진도VTS 관제운영 시스템 유지보수업체)</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>조기정</p><p>(주)GMT 연구소장 (정부발표 AIS 항적복구 업체)</p></div>
-				</li>
-			</ul>
-		</article>
-		<article>
-			<div class="sect-name article"><span>인천항만청</span></div>
-			<ul>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>김영소</p><p>선원해사안전과장</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>박성규</p><p>선원해사안전과장</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>정철락</p><p>선박안전과 팀장</p></div>
-				</li>
-			</ul>
-		</article>
-		<article>
-			<div class="sect-name article"><span>한국 선급</span></div>
-			<ul>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>전종호</p><p>선임검사원</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>이상락</p><p>등록선업무팀장</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>이율성</p><p>기본기술팀장</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>조용선</p><p>수석검사원</p></div>
-				</li>
-			</ul>
-		</article>
-		<article>
-			<div class="sect-name article"><span>해양수산부</span></div>
-			<ul>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>연영진</p><p>세월호인양추진단 단장</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>이철조</p><p>전 세월호인양추진단 부단장</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>김현태</p><p>세월호인양추진단 부단장</p></div>
-				</li>
-				<li>
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<div class="descript"><p>박준권</p><p>선체처리기술검토TF 단장</p></div>
-				</li>
-			</ul>
-		</article>
-		<p>등 증인 총 39인과 참고인 4인</p>
-</section>
+		<h3>증인</h3>
+		<table width="100%">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>성명</th>
+					<th>직책(2014년 세월호 참사 당시. 단, 인양 관련 증인은 최근)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>강병기</td>
+					<td colspan="2">세월호 생존 탑승자</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>강신명</td>
+					<td colspan="2">서울지방경찰청장(2013.12.10.~ 2014.8.22.)</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>강원식</td>
+					<td colspan="2">세월호 1등 항해사</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>000</td>
+					<td colspan="2">세월호 여객영업부 직원</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>구관호</td>
+					<td colspan="2">서해지방해양경찰청 정보수사과장</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>구은수</td>
+					<td colspan="2">서울지방경찰청장(2014.9.12.~2015.12.28.)</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>길환영</td>
+					<td colspan="2">KBS 대표이사</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>김규현</td>
+					<td colspan="2">국가안보실 제1차장</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>김기춘</td>
+					<td colspan="2">대통령비서실장</td>
+				</tr>
+				<tr>
+					<td>10</td>
+					<td>김석균</td>
+					<td colspan="2">해양경찰청장</td>
+				</tr>
+				<tr>
+					<td>11</td>
+					<td>김시곤</td>
+					<td colspan="2">KBS 보도국장</td>
+				</tr>
+				<tr>
+					<td>12</td>
+					<td>김영모</td>
+					<td colspan="2">해양경찰청 정보수사국 정보과장</td>
+				</tr>
+				<tr>
+					<td>13</td>
+					<td>김윤상</td>
+					<td colspan="2">㈜언딘 대표</td>
+				</tr>
+				<tr>
+					<td>14</td>
+					<td>김장겸</td>
+					<td colspan="2">MBC 보도국장</td>
+				</tr>
+				<tr>
+					<td>15</td>
+					<td>김장수</td>
+					<td colspan="2">국가안보실장</td>
+				</tr>
+				<tr>
+					<td>16</td>
+					<td>김천일</td>
+					<td colspan="2">㈜언딘 이사</td>
+				</tr>
+				<tr>
+					<td>17</td>
+					<td>김판규</td>
+					<td colspan="2">해군본부 인사참모부장</td>
+				</tr>
+				<tr>
+					<td>18</td>
+					<td>김현태</td>
+					<td colspan="2">해양수산부 세월호인양추진단 부단장</td>
+				</tr>
+				<tr>
+					<td>19</td>
+					<td>김회종</td>
+					<td colspan="2">인천지방검찰청 2차장검사</td>
+				</tr>
+				<tr>
+					<td>20</td>
+					<td>김희석</td>
+					<td colspan="2">해군 제주민군복합항 후속조치TF 육상공사담당소령</td>
+				</tr>
+				<tr>
+					<td>21</td>
+					<td>남호만</td>
+					<td colspan="2">청해진해운 물류팀장</td>
+				</tr>
+				<tr>
+					<td>22</td>
+					<td>노현웅</td>
+					<td colspan="2">한겨레신문 기자</td>
+				</tr>
+				<tr>
+					<td>23</td>
+					<td>류찬열</td>
+					<td colspan="2">코리아쌀베지 대표</td>
+				</tr>
+				<tr>
+					<td>24</td>
+					<td>박상후</td>
+					<td colspan="2">MBC 보도국 전국부장</td>
+				</tr>
+				<tr>
+					<td>25</td>
+					<td>신보식</td>
+					<td colspan="2">세월호 선장</td>
+				</tr>
+				<tr>
+					<td>26</td>
+					<td>안광한</td>
+					<td colspan="2">MBC 대표이사</td>
+				</tr>
+				<tr>
+					<td>27</td>
+					<td>연영진</td>
+					<td colspan="2">해양수산부 세월호인양추진단 단장</td>
+				</tr>
+				<tr>
+					<td>28</td>
+					<td>이명준</td>
+					<td colspan="2">대통령비서실 사회안전비서관실 행정관</td>
+				</tr>
+				<tr>
+					<td>29</td>
+					<td>이성희</td>
+					<td colspan="2">청해진해운 제주지역본부장</td>
+				</tr>
+				<tr>
+					<td>30</td>
+					<td>이인수</td>
+					<td colspan="2">해양수산부 종합상황실장</td>
+				</tr>
+				<tr>
+					<td>31</td>
+					<td>이정현</td>
+					<td colspan="2">대통령비서실 홍보수석</td>
+				</tr>
+				<tr>
+					<td>32</td>
+					<td>이진동</td>
+					<td colspan="2">TV조선 사회부장</td>
+				</tr>
+				<tr>
+					<td>33</td>
+					<td>이춘재</td>
+					<td colspan="2">해양경찰청 경비안전국장</td>
+				</tr>
+				<tr>
+					<td>34</td>
+					<td>장기욱</td>
+					<td colspan="2">해양수산부 세월호인양추진단 인양추진과장</td>
+				</tr>
+				<tr>
+					<td>35</td>
+					<td>장진홍</td>
+					<td colspan="2">해군 해난구조대장</td>
+				</tr>
+				<tr>
+					<td>36</td>
+					<td>정순도</td>
+					<td colspan="2">전남지방경찰청장</td>
+				</tr>
+				<tr>
+					<td>37</td>
+					<td>최동해</td>
+					<td colspan="2">경기지방경찰청장</td>
+				</tr>
+				<tr>
+					<td>38</td>
+					<td>황영태</td>
+					<td colspan="2">해양경찰청 종합상황실장</td>
+				</tr>
+			</tbody>
+		</table>
 
-<script type="text/template" id="opinion-items-template">
-	<div id="opinion-items-wrap" class="container">
-		<div class="result-info">
-			<%= page %> / <%= total_page %>
-		</div>
-		<ul id="opinion-items">
-			<%= items %>
-		</ul>
-		<ul id="opinion-nav">
-			<%= navi %>
-		</ul>
+		<p>&nbsp;</p>
+
+		<h3>참고인</h3>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>성명</th>
+					<th>직책(2014년 세월호 참사 당시)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>000</td>
+					<td>선체인양전문가</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>000</td>
+					<td>유가족 등 피해자</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>김영근</td>
+					<td>참여정부 국가안전보장회의 사무처 종합상황실장</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>김주언</td>
+					<td>KBS 이사회 이사</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>김춘식</td>
+					<td>한국외국어대학교 교수</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>박승도</td>
+					<td>금호수중개발 대표</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>000</td>
+					<td>현)4․16세월호참사 특별조사위원회 조사관</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>신현철</td>
+					<td>엔에스뷰 대표</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>심인보</td>
+					<td>KBS기자협회진상조사단실무책임자(기자)</td>
+				</tr>
+				<tr>
+					<td>10</td>
+					<td>000</td>
+					<td>민간잠수사</td>
+				</tr>
+				<tr>
+					<td>11</td>
+					<td>000</td>
+					<td>유가족 등 피해자</td>
+				</tr>
+				<tr>
+					<td>12</td>
+					<td>이상갑</td>
+					<td>한국해양대학교 교수</td>
+				</tr>
+				<tr>
+					<td>13</td>
+					<td>이정일</td>
+					<td>변호사</td>
+				</tr>
+				<tr>
+					<td>14</td>
+					<td>이정환</td>
+					<td>미디어오늘 편집국장</td>
+				</tr>
+				<tr>
+					<td>15</td>
+					<td>장병수</td>
+					<td>언딘이사</td>
+				</tr>
+				<tr>
+					<td>16</td>
+					<td>000</td>
+					<td>유가족 등 피해자</td>
+				</tr>
+				<tr>
+					<td>17</td>
+					<td>000</td>
+					<td>민간잠수사</td>
+				</tr>
+				<tr>
+					<td>18</td>
+					<td>000</td>
+					<td>유가족 등 피해자</td>
+				</tr>
+				<tr>
+					<td>19</td>
+					<td>전진한</td>
+					<td>알권리연구소장</td>
+				</tr>
+				<tr>
+					<td>20</td>
+					<td>정성욱</td>
+					<td>416가족협의회 인양분과장</td>
+				</tr>
+				<tr>
+					<td>21</td>
+					<td>000</td>
+					<td>유가족 등 피해자</td>
+				</tr>
+				<tr>
+					<td>22</td>
+					<td>정홍규</td>
+					<td>KBS공정방송추진위원회 간사(기자)</td>
+				</tr>
+				<tr>
+					<td>23</td>
+					<td>조승호</td>
+					<td>방송기자연합회 정책위원장</td>
+				</tr>
+				<tr>
+					<td>24</td>
+					<td>조윤선</td>
+					<td>여성가족부 장관</td>
+				</tr>
+				<tr>
+					<td>25</td>
+					<td>000</td>
+					<td>유가족 등 피해자</td>
+				</tr>
+				<tr>
+					<td>26</td>
+					<td>최진봉</td>
+					<td>성공회대학교 교수</td>
+				</tr>
+				<tr>
+					<td>27</td>
+					<td>하성주</td>
+					<td>진도군청 세월호사고수습지원과 보상업무담당</td>
+				</tr>
+				<tr>
+					<td>28</td>
+					<td>허은무</td>
+					<td>진도군청 세월호사고수습지원과 과장</td>
+				</tr>
+				<tr>
+					<td>29</td>
+					<td>황민구</td>
+					<td>법영상분석연구소 대표</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<p>등 증인 총 38인과 참고인 29인</p>
 	</div>
-</script>
-
-<script type="text/template" id="opinion-item-template">
-	<li data-id="<%= id %>">
-		<div class="memo"><%= memo %></div>
-		<div class="regdate"><%= regdate %></div>
-	</li>
-</script>
-
-<script type="text/template" id="opinion-nav-template">
-	<li class="<%= classname %>" data-id="<%= id %>">
-		<span><%= label %></span>
-	</li>
-</script>
+</section>
