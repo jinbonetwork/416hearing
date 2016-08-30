@@ -171,7 +171,7 @@
 		}
 	}// section.suspicion
 	section.witnesses {
-		@color: #ffffff;
+		@color: #4d4d4d;
 		@color-strong: #ffb0a9;
 		@bgcolor: #1a1a1a;
 
@@ -182,6 +182,34 @@
 		.sect-name {
 			color: @color-strong;
 		}
+		& > .content > table {
+			font-family: @font-noto;
+			border-collapse: collapse;
+
+			thead {
+				background: #fafafa;
+				border-top: 3px solid  @color-strong;
+				border-bottom: 1px solid #d4d4d4;
+
+				th {
+					text-align: left;
+					padding: 10px 6px;
+				}
+			}
+			.numbers {
+				width: 46px;
+			}
+			.names {
+				font-weight: bold;
+				width: 90px;
+			}
+			td {
+				border-bottom: 1px solid #d4d4d4;
+				line-height: 140%;
+				padding: 10px 6px;
+			}
+		}
+		
 		& > .content > p {
 			font-family: @font-batang;
 			font-size: 1.1em;
