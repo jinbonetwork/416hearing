@@ -1,0 +1,573 @@
+@import "../../css/variables.less";
+
+#page-3rd-hearing {
+	font-size: @font-size-m;
+	section.title {
+		font-family: @font-noto;
+		font-weight: @font-weight;
+		text-align: center;
+		padding-bottom: 4em;
+		color: @color;
+		.se-background{
+			background-color: #ffffff;
+		}
+		.sect-name {
+			color: @color;
+		}
+		.content {
+			display: inline-block;
+			padding: 6em 0;
+			margin-left: -3em;
+			text-align: left;
+			transform: rotateZ(-30deg); -webkit-transform: rotateZ(-30deg);
+		}
+		.maintitle {
+			p {
+				&:first-child {
+					font-size: 1.3em;
+					line-height: 1em;
+					transform: skewX(30deg); -webkit-transform: skewX(30deg);
+					transform-origin: left top;; -webkit-transform-origin: left top;
+					position: relative;
+					left: 1.5em;
+				}
+				&:last-child {
+					font-size: 4em;
+					line-height: 1em;
+					transform: skewX(-30deg); -webkit-transform: skewX(-30deg);
+					transform-origin: left bottom; -webkit-transform-origin: left bottom;
+				}
+			}
+		}
+		.subtitle {
+			p {
+				font-size: 1.6em;
+				line-height: 1em;
+				color: #0be4db;
+			}
+			.period {
+				font-size: 0.5em;
+				line-height: 1em;
+				color: @color * 1.5;
+			}
+			transform: skewX(30deg); -webkit-transform: skewX(30deg);
+			transform-origin: left top; -webkit-transform-origin: left top;
+		}
+	}// section.title
+	.live {
+		position: relative;
+		z-index: 100;
+		padding-top: 5%;
+		margin: auto;
+		color: @color;
+
+		.se-background{
+			background-color: #fff;
+		}
+		.sect-name {
+			color: @color-strong;
+		}
+
+		.editor {
+			font-family: @font-batang;
+			color: @color;
+			text-align: left;
+			font-weight: normal;
+			font-size: 1.2em;
+			line-height: 1.6;
+			max-width: 680x;
+
+			h1, h2, h3, h4 {
+				font-family: @font-noto;
+				font-weight: @font-weight;
+				color: @color-strong;
+			}
+
+			img {
+				max-width: 100%;
+				height: auto !important;
+			}
+		}
+		button {
+			margin-top: 15px;
+			padding: 10px 15px;
+			background: @color-strong;
+			color: #fff;
+			font-weight: bold;
+			border: 0;
+			border-radius: 10px;
+			cursor: pointer;
+			display: none;
+		}
+	}
+	section:nth-of-type(n+2) {
+		padding: 4em 8% 4em 8%;
+		.sect-name {
+			padding-top: 1em;
+			transform: rotateZ(-30deg); -wekit-transform: rotateZ(-30deg);
+			transform-origin: 0 0; -webkit-transform-origin: 0 0;
+			span {
+				display: inline-block;;
+				text-align: right;
+				font-family: @font-noto;
+				font-weight: @font-weight;
+				font-size: 1.3em;
+				line-height: 1.1em;
+				transform: skewX(30deg); -webkit-transform: skewX(30deg);
+				transform-origin: 0 0; -webkit-transform-origin: 0 0;
+			}
+		}
+		.content, .container {
+			max-width: 40em;
+		}
+	}
+	section.opinion {
+		@color: #4d4d4d;
+		@color-strong: #7657c5;
+		@bgcolor: #dfe5ea;
+
+		color: @color;
+		.se-background{
+			background-color: @bgcolor;
+		}
+		.sect-name {
+			color: @color-strong;
+		}
+		.container p {
+			font-family: @font-noto;
+			font-weight: @font-weight;
+			font-size: 1.3em;
+			text-align: center;
+			margin: auto;
+		}
+		.opinion-form {
+			margin: 0;
+			padding: 0;
+			border: 0;
+
+			label {
+				display: inline-block;
+				padding: 3em 0 1em 0;
+				font-size: 1.1em;
+				font-family: @font-batang;
+				line-height: 1.5em;
+			}
+			fieldset.opinion-fieldset {
+				z-index: 100;
+				position: relative;
+				border: 0;
+				margin: 0;
+				padding: 0;
+				textarea {
+					height: 10em;
+					width: 100%;
+					margin: 0;
+					font-family: @font-mont;
+					font-size: 1em;
+					outline: none;
+				}
+				button.opinion-submit {
+					font-size: 1em;
+					font-family: @font-noto;
+					font-weight: @font-weight;
+					width: 100%;
+					cursor: pointer;
+					margin-top: 0.5em;
+					background-color: @color-strong;
+					border: 0;
+					line-height: 3em;
+					position: relative;
+					z-index: 2;
+				}
+			}
+			#opinion-memo-alert-box {
+				text-align: center;
+				color: @alert-color;
+				display: none;
+			}
+		}
+		#opinion-items-wrap {
+			padding: 1em 0 0 0;
+			color: @color;
+			.result-info {
+				text-align: right;
+			}
+			#opinion-items {
+				text-align: left;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				font-family: @font-noto;
+				font-weight: @font-weight;
+				li {
+					margin :0;
+					padding: 1em 0 0 0;
+					border-bottom: 1px dotted @color;
+					.regdate {
+						text-align: right;
+						padding-top: 1em;
+						font-size: 0.8em;
+						font-family: @font-mont;
+					}
+				}
+			}
+			#opinion-nav {
+				position: relative;
+				z-index: 2;
+				font-family: @font-noto;
+				font-weight: @font-weight;
+				display: inline-block;
+				list-style: none;
+				margin: 0;
+				padding: 5px 0 0 0;
+				li {
+					display: inline-block;
+					padding: 2px;
+					&.active {
+						cursor: pointer;
+					}
+					&.current {
+						color: @color-strong;
+					}
+				}
+			}
+		}
+	} //section.opinion
+	section.suspicion {
+		@color: #ffffff;
+		@color-strong: #0be4db;
+		@bgcolor: #1a1a1a;
+
+		color: @color;
+		.se-background{
+			background-color: @bgcolor;
+		}
+		.sect-name {
+			color: @color-strong;
+		}
+		& > .content > article {
+			margin-bottom: 2em;
+			& > .number {
+				float: left;
+				color: @color-strong;
+				font-family: @font-mont;
+				font-size: 1.3em;
+				line-height: 1.1em;
+			}
+			& > .title {
+				margin-left: 1.2em;
+				margin-bottom: 1em;
+				font-family: @font-noto;
+				font-weight: @font-weight;
+				text-align: justify;
+				.maintitle {
+					font-size: 1.1em;
+					margin-bottom: 0.5em;
+					line-height: 1.1em;
+				}
+				.subtitle {
+					font-size: 1em;
+					line-height: 1.1em;
+				}
+			}
+		}
+	}// section.suspicion
+	section.witnesses {
+		@color: #ffffff;
+		@color-strong: #ffb0a9;
+		@bgcolor: #1a1a1a;
+
+		color: @color;
+		.se-background{
+			background-color: @bgcolor;
+		}
+		.sect-name {
+			color: @color-strong;
+		}
+		& > .content > p {
+			font-family: @font-batang;
+			font-size: 1.1em;
+			line-height: 1.5em;
+			margin-bottom: 5em;
+			text-align: justify;
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+		}
+		& > .content article {
+			.article-color(@color) {
+				color: @color;
+				.sect-name span {
+					color:@color;
+					border-color: @color;
+				}
+			}
+			&:nth-of-type(1) { .article-color(#97d5ac); };
+			&:nth-of-type(2) { .article-color(#6d92c4); };
+			&:nth-of-type(3) { .article-color(#ffb0a9); };
+			&:nth-of-type(4) { .article-color(#0be4db); };
+			&:nth-of-type(5) { .article-color(#7657c5); };
+			&:nth-of-type(6) { .article-color(#f5f8f9); };
+
+			margin-bottom: 8em;
+			.sect-name.article {
+				padding: 0;
+				span {
+					padding: 0.5em;
+					font-size: 1.1em;
+					border: solid 1px;
+				}
+			}
+			ul {
+				padding-top: 3em;
+				li {
+					font-family: @font-noto;
+					font-weight: @font-weight;
+					margin-bottom: 0.5em;
+					.icon {
+						float: left;
+						i { font-size: 3em; }
+					}
+					.descript {
+						margin-left: 3em;
+						p:last-child {
+							font-size: 0.9em;
+							color: #ffffff;
+						}
+					}
+					&:after {
+						content: '';
+						display: block;
+						clear: both;
+					}
+				}// li
+				&:after {
+					content: '';
+					display: block;
+					clear: both;
+				}
+			}// ul
+		}
+	}// witnesses
+}// #page-3rd-hearing
+
+@media screen and (min-width: 425px) {
+	section.witnesses > .content article ul li {
+		float: left;
+		width: 50%;
+	}
+}
+@media screen and (min-width: 560px) {
+	#page-3rd-hearing {
+		font-size: @font-size-w;
+		section.title {
+			margin-left: -3em;
+			padding-top: 3em;
+			.maintitle {
+				p:first-child {
+					//font-size: 1.3em;
+					font-size: 1.95em;
+					left: 1.2em;
+				}
+				p:last-child {
+					//font-size: 4em;
+					font-size: 6em;
+				}
+			}
+			.subtitle {
+				p {
+					//font-size: 1.6em;
+					font-size: 2.4em;
+				}
+				.period {
+					//font-size: 0.5em;
+					font-size: 0.95em;
+				}
+			}
+		}
+		section:nth-of-type(n+2) {
+			padding: 8% 8% 8% 9.5em;
+			.sect-name.section {
+				padding-top: 7em;
+				margin-left: -3em;
+			}
+		}
+		section.witnesses > .content article ul {
+    		padding-top: 0;
+			li {
+				padding-right: 0.5em;
+			}
+		}
+	}
+}
+.is-admin .live button {
+	display: inline-block !important;
+}
+.saving {
+	.saving-background {
+		position: fixed;
+		z-index: 88888;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background: #333;
+		opacity: 0.6;
+	}
+	.is-loading {
+		position: fixed;
+		z-index: 88889;
+		left: 50%;
+		top: 50%;
+		color: #fff;
+		width: 100px;
+		height: 100px;
+		font-size: 100px;
+		font-weight: 100px;
+	}
+}
+@media screen and (min-width: 768px) {
+	#page-3rd-hearing {
+		section:nth-of-type(n+2) .sect-name {
+			&.section {
+				margin-left: -4.5em;
+			}
+			span { font-size: 1.8em; }
+		}
+		section.opinion {
+			.container p {
+				font-size: 1.8em;
+			}
+			.opinion-form {
+				label {
+					font-size: 1.3em;
+				}
+				fieldset.opinion-fieldset button.opinion-submit {
+					width: 33.33%;
+				}
+			}
+		}
+		section.suspicion {
+			& > .content > article {
+				& > .number {
+					font-size: 3em;
+				}
+				& > .title {
+					margin-left: 2.6em;
+					.maintitle {
+						font-size: 1.8em;
+					}
+					.subtitle {
+						font-size: 1.1em;
+					}
+				}
+				p#text-banner {
+					font-family: @font-batang;
+					margin-left: 2.6em;
+					padding-top: 2.6em;
+				}
+			}
+		}
+		section.witnesses > .content {
+			p {
+				font-size: 1.3em;
+			}
+			article {
+				.sect-name.article span {
+					font-size: 1.3em;
+				}
+				ul li {
+					width: 33.33%;
+					padding-right: 1em;
+					.icon {
+						float: none;
+						i { font-size: 6em; }
+					}
+					.descript { margin-left: 0 };
+				}
+			}
+		}
+	}// #page-3rd-hearing
+}
+@media screen and (min-width: 1024px) {
+	#page-3rd-hearing {
+		section.title {
+			padding: 8% 0;
+			@magnify: 1.5;
+			.maintitle {
+				p:first-child {
+					font-size: 1.95em * @magnify;
+					left: 1.2em;
+				}
+				p:last-child {
+					font-size: 6em * @magnify;
+				}
+			}
+			.subtitle {
+				p {
+					font-size: 2.4em * @magnify;
+				}
+				.period {
+					font-size: 0.95em * @magnify;
+				}
+			}
+		}
+		section:nth-of-type(n+2) {
+			padding-left: 21em;
+			.sect-name {
+				&.section {
+					padding-top: 10em;
+					margin-left: -7em;
+				}
+				span { font-size: 3em; }
+			}
+		}
+		section.witnesses > .content article ul li {
+			width: 25%;
+		}
+	}// #page-3rd-hearing
+}
+@media screen and (min-width: 1280px) {
+	#page-3rd-hearing {
+		section.title {
+			padding: 15% 0;
+			@magnify: 1.8;
+			.maintitle {
+				p:first-child {
+					font-size: 1.95em * @magnify;
+					left: 1.2em;
+				}
+				p:last-child {
+					font-size: 6em * @magnify;
+				}
+			}
+			.subtitle {
+				p {
+					font-size: 2.4em * @magnify;
+				}
+				.period {
+					font-size: 0.95em * @magnify;
+				}
+			}
+		}
+		section:nth-of-type(n+2) {
+			padding-left: 30em;
+			padding-right: 0;
+			.sect-name {
+				&.section {
+				}
+				span { font-size: 4.24em; }
+			}
+		}
+	}
+}
+@media screen and (min-width: 1680px) {
+	#page-3rd-hearing {
+		section.title {
+			padding: 15em 0;
+		}
+		section:nth-of-type(n+2) {
+			padding-left: 40em;
+		}
+	}
+}

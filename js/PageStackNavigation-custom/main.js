@@ -83,6 +83,9 @@
 					case 'hearing2':
 						this.openPage('page-2nd-hearing',0,false);
 						break;
+					case 'hearing3':
+						this.openPage('page-3rd-hearing',0,false);
+						break;
 					case 'journal':
 						this.openPage('page-journal',0,false);
 						break;
@@ -322,12 +325,15 @@
 				case 'page':
 					switch(to) {
 						case 0:
-							hash += 'truthbeyond';
+							hash += 'hearing3';
 							break;
 						case 1:
-							hash += 'hearing2';
+							hash += 'truthbeyond';
 							break;
 						case 2:
+							hash += 'hearing2';
+							break;
+						case 3:
 							hash += 'hearing1';
 							break;
 						case 4:
@@ -345,6 +351,10 @@
 					break;
 				case 'page-2nd-hearing':
 					hash += 'hearing2';
+					if(to) hash += '-'+to;
+					break;
+				case 'page-3rd-hearing':
+					hash += 'hearing3';
 					if(to) hash += '-'+to;
 					break;
 				case 'page-journal':

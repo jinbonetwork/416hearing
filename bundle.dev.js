@@ -1,6 +1,7 @@
 require('./css/style.less');
 require('./journal/style.less');
 require('./2nd_hearing/style.less');
+require('./3rd_hearing/live/style.less');
 require('./hearing/style.less');
 require('./witnesses/witnesses.less');
 require('./truth_beyond/style.less');
@@ -25,6 +26,7 @@ require('./js/script.js');
 require('./journal/script.js');
 require('./witnesses/witnesses.js');
 require('./2nd_hearing/script.js');
+require('./3rd_hearing/live/live.js');
 require('./hearing/script.js');
 require('./truth_beyond/script.js');
 require('./truth_beyond/style.js');

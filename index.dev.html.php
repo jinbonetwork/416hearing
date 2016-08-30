@@ -2,6 +2,8 @@
 require_once "config/config.php";
 if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	define("__EDIT_MODE__",true);
+} else{
+	define("__EDIT_MODE__",false);
 }
 ?>
 <!DOCTYPE html>
@@ -76,11 +78,11 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 <body>
 <script>
   window.fbAsyncInit = function() {
-	      FB.init({
-			        appId      : '578918368936572',
-						      xfbml      : true,
-							        version    : 'v2.7'
-									    });
+	FB.init({
+		appId      : '578918368936572',
+		xfbml      : true,
+		version    : 'v2.7'
+	});
   };
 
   (function(d, s, id){
@@ -93,6 +95,7 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 </script>
 	<!-- navigation -->
 	<nav class="pages-nav">
+		<div class="pages-nav__item"><a class="link link--page" href="#page-3rd-hearing">3차 청문회</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-truth-beyond">끝나지 않은 진상규명</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-2nd-hearing">2차 청문회</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-hearing">1차 청문회</a></div>
@@ -105,6 +108,9 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	</section>
 	<!-- pages stack -->
 	<div class="pages-stack">
+		<div class="page<?php print (__EDIT_MODE__ ==true ? " is-admin" : ""); ?>" id="page-3rd-hearing">
+			<?php echo file_get_contents(dirname(__FILE__).'/3rd_hearing/index.html'); ?>
+		</div>
 		<div class="page" id="page-truth-beyond">
 			<?php echo file_get_contents(dirname(__FILE__).'/truth_beyond/index.html'); ?>
 		</div>
