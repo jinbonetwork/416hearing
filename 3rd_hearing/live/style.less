@@ -54,7 +54,7 @@
 			transform-origin: left top; -webkit-transform-origin: left top;
 		}
 	}// section.title
-	.live {
+	section.live {
 		position: relative;
 		z-index: 100;
 		padding-top: 5%;
@@ -103,24 +103,34 @@
 	section:nth-of-type(n+2) {
 		padding: 4em 8% 4em 8%;
 		.sect-name {
-			padding-top: 1em;
-			transform: rotateZ(-30deg); -wekit-transform: rotateZ(-30deg);
-			transform-origin: 0 0; -webkit-transform-origin: 0 0;
+			position: absolute;
+			top: 0;
+			left: 0;
+			/*
+			margin-left: 0 !important;
+			padding: 0 !important;
+			*/
 			span {
-				display: inline-block;;
-				text-align: right;
-				font-family: @font-noto;
-				font-weight: @font-weight;
-				font-size: 1.3em;
+				display: block;
+				font-family: @font-noto; font-weight: @font-weight;
 				line-height: 1.1em;
-				transform: skewX(30deg); -webkit-transform: skewX(30deg);
-				transform-origin: 0 0; -webkit-transform-origin: 0 0;
+				width: 4em;
+				font-size: 1.3em;
+				text-align: left;
+				transform: rotateZ(-30deg) skewX(30deg); //-webkit-transform: rotateZ(30deg) skewX(-30deg);
+				transform-origin: right top; //-webkit-transform-origin: center;
 			}
 		}
 		.content, .container {
 			max-width: 40em;
 		}
 	}
+	section:nth-of-type(2) {
+		.sect-name span {
+			width: 3em;
+		}
+	}
+
 	section.suspicion {
 		@color: #ffffff;
 		@color-strong: #0be4db;
@@ -275,10 +285,6 @@
 		}
 		section:nth-of-type(n+2) {
 			padding: 8% 8% 8% 9.5em;
-			.sect-name.section {
-				padding-top: 7em;
-				margin-left: -3em;
-			}
 		}
 		section.witnesses > .content article ul {
     		padding-top: 0;
@@ -317,9 +323,6 @@
 @media screen and (min-width: 768px) {
 	#page-3rd-hearing {
 		section:nth-of-type(n+2) .sect-name {
-			&.section {
-				margin-left: -4.5em;
-			}
 			span { font-size: 1.8em; }
 		}
 		section.suspicion {
@@ -390,10 +393,6 @@
 		section:nth-of-type(n+2) {
 			padding-left: 21em;
 			.sect-name {
-				&.section {
-					padding-top: 10em;
-					margin-left: -7em;
-				}
 				span { font-size: 3em; }
 			}
 		}
@@ -429,8 +428,6 @@
 			padding-left: 30em;
 			padding-right: 0;
 			.sect-name {
-				&.section {
-				}
 				span { font-size: 4.24em; }
 			}
 		}

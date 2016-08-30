@@ -17,8 +17,16 @@ var sHearingLive;
 	SewolHearingLive.prototype = {
 		init: function() {
 			var self = this;
+
+			self.Root.scrEffectOfTitle({
+				title: '.sect-name',
+				position: 'left',
+				section: 'section',
+				active: 560,
+				option: 'wait'
+			});
 			self.Root.scrEffectOfBgcolor({
-				background: '#ffffff #ffffff #dfe5ea #1a1a1a #1a1a1a',
+				background: '#ffffff #ffffff #1a1a1a #dfe5ea',
 				section: 'section'
 			});
 
