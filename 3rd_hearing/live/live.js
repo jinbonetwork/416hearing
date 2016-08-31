@@ -27,7 +27,20 @@ var sHearingLive;
 			});
 			self.Root.scrEffectOfBgcolor({
 				background: '#ffffff #ffffff #1a1a1a #dfe5ea',
-				section: 'section'
+				section: 'section',
+				after: function($contain, bgcolor, bgcIndex){
+					var colors = ['#4d4d4d', '#4d4d4d', '#ffffff', '#4d4d4d'];
+					$('button.menu-button i').stop().animate({'color': colors[bgcIndex]}, 1000);
+
+					for(var i = 0; i < 4; i++){
+						var $allElem = self.Root.find('section').eq(i).children().eq(2).find('*');
+						if(i === bgcIndex) {
+							$allElem.css('color', '');
+						} else {
+							$allElem.css('color', colors[bgcIndex]);
+						}
+					}
+				}
 			});
 
 			this.initLive();
