@@ -1,5 +1,6 @@
 *.swp
 config/db.config.php
+config/config.php
 data/docs/*
 data/live*
 data/live/live.html
