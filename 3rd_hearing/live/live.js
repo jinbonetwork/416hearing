@@ -22,8 +22,7 @@ var sHearingLive;
 				title: '.sect-name',
 				position: 'left',
 				section: 'section',
-				active: 560,
-				option: 'wait'
+				active: 560
 			});
 			self.Root.scrEffectOfBgcolor({
 				background: '#ffffff #ffffff #1a1a1a #dfe5ea',
@@ -33,7 +32,7 @@ var sHearingLive;
 					$('button.menu-button i').stop().animate({'color': colors[bgcIndex]}, 1000);
 
 					for(var i = 0; i < 4; i++){
-						var $allElem = self.Root.find('section').eq(i).children().eq(2).find('*');
+						var $allElem = self.Root.find('section').eq(i).children().eq(1).find('*');
 						if(i === bgcIndex) {
 							$allElem.css('color', '');
 						} else {
