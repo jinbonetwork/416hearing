@@ -95,8 +95,8 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 </script>
 	<!-- navigation -->
 	<nav class="pages-nav">
-		<div class="pages-nav__item"><a class="link link--page" href="#page-3rd-hearing">3차 청문회</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-truth-beyond">끝나지 않은 진상규명</a></div>
+		<div class="pages-nav__item"><a class="link link--page" href="#page-3rd-hearing">3차 청문회</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-2nd-hearing">2차 청문회</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-hearing">1차 청문회</a></div>
 		<div class="pages-nav__item"><a class="link link--page" href="#page-journal">416가족의 발자취</a></div>
@@ -108,11 +108,11 @@ if(preg_match("/edit$/i",$_SERVER['REQUEST_URI'])) {
 	</section>
 	<!-- pages stack -->
 	<div class="pages-stack">
-		<div class="page<?php print (__EDIT_MODE__ ==true ? " is-admin" : ""); ?>" id="page-3rd-hearing">
-			<?php echo file_get_contents(dirname(__FILE__).'/3rd_hearing/index.html'); ?>
-		</div>
 		<div class="page" id="page-truth-beyond">
 			<?php echo file_get_contents(dirname(__FILE__).'/truth_beyond/index.html'); ?>
+		</div>
+		<div class="page<?php print (__EDIT_MODE__ ==true ? " is-admin" : ""); ?>" id="page-3rd-hearing">
+			<?php echo file_get_contents(dirname(__FILE__).'/3rd_hearing/index.html'); ?>
 		</div>
 		<div class="page" id="page-2nd-hearing">
 			<?php echo file_get_contents(dirname(__FILE__).'/2nd_hearing/index.html'); ?>
